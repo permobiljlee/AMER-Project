@@ -1,0 +1,78 @@
+table Currency
+	lineageTag: 0f8706c0-c21b-4877-a2c2-a16276419119
+
+	column Currency_SK
+		dataType: string
+		isHidden
+		lineageTag: 7208cf65-9932-4cb2-b14b-6bc9105c9612
+		summarizeBy: none
+		sourceColumn: Currency_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency_BK
+		dataType: string
+		isHidden
+		lineageTag: 2d2f4009-7ede-47c6-8de1-87f6d4c7acb3
+		summarizeBy: none
+		sourceColumn: Currency_BK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataLoadDatetime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 88aa83aa-7db4-4894-bbe7-51ae004abe99
+		summarizeBy: none
+		sourceColumn: DataLoadDatetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Record source'
+		dataType: string
+		lineageTag: 6967d680-7046-4482-9675-3244023d5237
+		summarizeBy: none
+		sourceColumn: Record source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Change type'
+		dataType: string
+		lineageTag: 155a37e7-c08b-4dbd-81ca-2f97952f08fc
+		summarizeBy: none
+		sourceColumn: Change type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Currency code'
+		dataType: string
+		lineageTag: 1ddf8d0f-dd16-4c6a-98e0-c7a58818d832
+		summarizeBy: none
+		sourceColumn: Currency code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Currency name'
+		dataType: string
+		lineageTag: 873e94bb-d32c-419c-a637-a971761bdcc5
+		summarizeBy: none
+		sourceColumn: Currency name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Currency-b4c8ab58-cebf-4ee2-a845-b39150bbdb9f = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [CreateNavigationProperties=false, CommandTimeout=#duration(0, 4, 10, 0)]),
+				    sales_Rpt_dim_Currency = Source{[Schema="sales_Rpt",Item="dim_Currency"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(sales_Rpt_dim_Currency,{{"ChangeType", "Change type"}, {"CurrencyCode", "Currency code"}, {"CurrencyName", "Currency name"}, {"RecordSource", "Record source"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

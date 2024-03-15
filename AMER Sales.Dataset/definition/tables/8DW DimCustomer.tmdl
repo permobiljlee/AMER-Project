@@ -1,0 +1,394 @@
+table '8DW DimCustomer'
+	lineageTag: ff51bbb9-eca9-402d-91dd-71b26a8ea519
+
+	column WKCustomer
+		dataType: int64
+		formatString: 0
+		lineageTag: 56b33d99-1f7b-4edb-bdab-d7ec89101fa0
+		summarizeBy: none
+		sourceColumn: WKCustomer
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column BKCustomer
+		dataType: string
+		lineageTag: 7dd6b92c-f72b-42c0-b02a-172262b0bde7
+		summarizeBy: none
+		sourceColumn: BKCustomer
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataAreaId
+		dataType: string
+		lineageTag: 07c43b26-856a-4f8b-8b80-9a39f30da38c
+		summarizeBy: none
+		sourceColumn: DataAreaId
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustAccount
+		dataType: string
+		lineageTag: 273b21e5-9eb8-47d8-8de4-8023d9047989
+		summarizeBy: none
+		sourceColumn: CustAccount
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompanyId
+		dataType: string
+		lineageTag: bc9f290e-aad4-4bf9-ab51-0cc9aaa70f6b
+		summarizeBy: none
+		sourceColumn: CompanyId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Provider Name'
+		dataType: string
+		lineageTag: 93d0a5ac-4fc4-4870-a8f8-8e3c8f9c8d8e
+		summarizeBy: none
+		sourceColumn: Provider Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: be26a559-55ff-4bc0-be75-ea49fe3afe3c
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 4071223c-f27f-4d0f-b834-a9efdb62beac
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Street
+		dataType: string
+		lineageTag: 8a03cb4b-77ec-4d07-ba69-01b0a7fbe288
+		summarizeBy: none
+		sourceColumn: Street
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: f94dbc30-32f7-4876-bb9d-5725d9e1999e
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZipCode
+		dataType: string
+		lineageTag: d1a804fc-8935-4834-834a-7de8e6d1ca59
+		summarizeBy: none
+		sourceColumn: ZipCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryRegion
+		dataType: string
+		lineageTag: 53a656a6-a244-4772-838a-c49397c945ff
+		summarizeBy: none
+		sourceColumn: CountryRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesRep
+		dataType: string
+		lineageTag: 228bce87-c671-417d-b93f-d65c704a9e31
+		summarizeBy: none
+		sourceColumn: SalesRep
+
+		annotation SummarizationSetBy = Automatic
+
+	column MarketCode
+		dataType: string
+		lineageTag: 6017a1c0-7d14-4198-bc19-eb8b1f8bff76
+		summarizeBy: none
+		sourceColumn: MarketCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column MarketDescription
+		dataType: string
+		lineageTag: 8007607e-c994-4d51-ad15-74c8c3080cf5
+		summarizeBy: none
+		sourceColumn: MarketDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column MarketGroupCode
+		dataType: string
+		lineageTag: f675ff0e-41da-4156-b4e1-97a7238e206e
+		summarizeBy: none
+		sourceColumn: MarketGroupCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegionCode
+		dataType: string
+		lineageTag: fc729e38-2b84-4d1d-b08d-2f793cc8d6a6
+		summarizeBy: none
+		sourceColumn: RegionCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegionDescription
+		dataType: string
+		lineageTag: 0b797dab-5201-4c01-b23f-37be93479461
+		summarizeBy: none
+		sourceColumn: RegionDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column InternalCustomer
+		dataType: string
+		lineageTag: 16c4048d-7d8b-4752-96de-48392bde42c3
+		summarizeBy: none
+		sourceColumn: InternalCustomer
+
+		annotation SummarizationSetBy = Automatic
+
+	column GraphicalSalesRegionCode
+		dataType: string
+		lineageTag: 92f94332-d51b-4e6a-8cb6-b9fedf0e5dcd
+		summarizeBy: none
+		sourceColumn: GraphicalSalesRegionCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column GraphicalSalesRegionDescription
+		dataType: string
+		lineageTag: 33d665ea-6028-4abc-9f60-a9256350885a
+		summarizeBy: none
+		sourceColumn: GraphicalSalesRegionDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column SSID
+		dataType: string
+		lineageTag: baf672f8-c269-4472-82e5-da8c1a3dfa90
+		summarizeBy: none
+		sourceColumn: SSID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Global
+		dataType: string
+		lineageTag: 83647a16-ebb1-4052-bf8a-29356216e5dc
+		summarizeBy: none
+		sourceColumn: Global
+
+		annotation SummarizationSetBy = Automatic
+
+	column BusinessRegion
+		dataType: string
+		lineageTag: 7b4c45ac-b552-4156-9196-54f64068ce8e
+		summarizeBy: none
+		sourceColumn: BusinessRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column Market
+		dataType: string
+		lineageTag: a9f66995-5fb2-42b9-b19b-ac6dd78f0f07
+		summarizeBy: none
+		sourceColumn: Market
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustAccount#
+		dataType: string
+		lineageTag: 47e7f801-0968-4a57-bd43-c7790d3da098
+		summarizeBy: none
+		sourceColumn: CustAccount#
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Group.Account No'
+		dataType: string
+		lineageTag: a5963da1-0532-47b0-a149-9a4fd976393d
+		summarizeBy: none
+		sourceColumn: Customer Group.Account No
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Group.Business Unit'
+		dataType: string
+		lineageTag: 7f979f95-49f4-481b-b820-068c4ffd94c3
+		summarizeBy: none
+		sourceColumn: Customer Group.Business Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Group.Dealer Group'
+		dataType: string
+		lineageTag: 8c40e7c4-d9f8-4b83-a394-46a2c2247e40
+		summarizeBy: none
+		sourceColumn: Customer Group.Dealer Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Country Region List.Country Code'
+		dataType: string
+		lineageTag: f9ffd781-60ff-45ca-9125-504b53c1f9fe
+		summarizeBy: none
+		sourceColumn: Country Region List.Country Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Country Region List.Country Name'
+		dataType: string
+		lineageTag: fbb9d7a0-2873-4aa2-b196-25734d0bc4af
+		summarizeBy: none
+		sourceColumn: Country Region List.Country Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Country Region List.Region'
+		dataType: string
+		lineageTag: 4f9d0989-ceba-4d4a-98de-55670e377070
+		summarizeBy: none
+		sourceColumn: Country Region List.Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Country Region List.Sub region'
+		dataType: string
+		lineageTag: dfb1f007-cd3c-45e5-b632-73e8ca06c4fa
+		summarizeBy: none
+		sourceColumn: Country Region List.Sub region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dealer / Country'
+		dataType: string
+		lineageTag: 82ebdcf0-53a1-41fb-87d7-33f2b043b683
+		summarizeBy: none
+		sourceColumn: Dealer / Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompositeKey
+		dataType: string
+		lineageTag: b186dda5-98e7-4cf1-9b48-d51e7e951ce2
+		summarizeBy: none
+		sourceColumn: CompositeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'US Canada Dealers'
+		dataType: string
+		lineageTag: 7b102e20-cb69-49ed-9f36-02b8857e80b6
+		summarizeBy: none
+		sourceColumn: US Canada Dealers
+
+		annotation SummarizationSetBy = Automatic
+
+	column StateFix =
+			
+			VAR Cust = [CustAccount#]
+			RETURN
+			IF(
+			    CONTAINSSTRING([City],"ONT"),
+			    "ON",
+			    IF(
+			    CONTAINSSTRING([Street],"Canotek"),
+			        "ON",
+			MINX(
+			    FILTER(
+			        '8DW DimCustomer',
+			        [CustAccount] = Cust &&
+			        [US Canada Dealers] = "Keep"
+			    ),
+			    [State]
+			)))
+		dataType: string
+		lineageTag: 81553f96-3e53-42d6-a8e1-188d3cb2cb9a
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ROHO Sales Rep Code' =
+			
+			LOOKUPVALUE(
+			    'ROHO Mapping'[Rep Code],
+			    'ROHO Mapping'[SalesRep],
+			    '8DW DimCustomer'[SalesRep])
+		dataType: string
+		lineageTag: e9d262b0-89b2-41bd-94c9-d1a9048c7b0b
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TiLite Diff (customer)' =
+			
+			IF('8DW DimCustomer'[CustAccount#] IN
+			{"0120193","0130203","0150008","0170108","0280041","0100110",	"0100398",	"0100647",	"0100945",	"0101214",	"0101254",	"0101681",	"0101914",	"0101999",	"0102026",	"0102050","100110",	"100398",	"100647",	"100945",	"101214",	"101254",	"101681",	"101914",	"101999",	"102026",	"102050",	"102051",	"102052",	"102053",	"102054",	"102055",	"102056",	"102057",	"102058",	"102059",	"102060",	"102061",	"102062",	"102063",	"102065",	"102066",	"102067",	"102069",	"102070",	"102071",	"102072",	"102073",	"102074",	"102075",	"102076",	"102077",	"102078",	"102079",	"102080",	"102081",	"102082",	"102083",	"102084",	"102085",	"102086",	"102087",	"102088",	"102090",	"102091",	"102092",	"102093",	"102094",	"102095",	"102096",	"102097",	"102098",	"102099",	"102100",	"102101",	"102102",	"102103",	"102104",	"102105",	"102106",	"102107",	"102108",	"102109",	"102110",	"102111",	"120193",	"130203",	"130214",	"130215",	"130216",	"150008",	"170108",	"170146",	"170147",	"170148",	"280041",	"280190",	"280191",	"280192",	"620021",	"650008",	"7000001",	"7000002",	"7000003",	"7000004",	"7000005",	"7000008",	"7000009",	"7000017",	"7000018",	"7000026",	"7000027",	"7000028",	"7000029",	"7000031",	"7000033",	"7000035",	"7000036",	"7000040",	"7000041",	"7000042",	"7000043",	"7000044",	"7000045",	"7000047",	"7000048",	"7000049",	"7000053",	"7000054",	"7000055",	"7000056",	"7000059",	"7000060",	"7000062",	"7000065",	"7000066",	"7000067",	"7000071",	"7000072",	"7000073",	"7000075",	"7000076",	"7000081",	"7000082",	"7000083",	"7000085",	"7000087",	"7000089",	"7000091",	"7000092",	"7000093",	"7000095",	"7000098",	"7000100",	"7000107",	"7000112",	"7000115",	"7000116",	"7000120",	"7000121",	"7000122",	"7000124",	"7000125",	"7000126",	"7000128",	"7000129",	"7000132",	"7000133",	"7000134",	"7000136",	"7000139",	"7000140",	"7000142",	"7000144",	"7000148",	"7000149",	"7000151",	"7000152",	"7000153",	"7000154",	"7000155",	"7000156",	"7000157",	"7000158",	"7000159",	"7000160",	"7000162",	"7000163",	"7000164",	"7000166",	"7000167",	"7000168",	"7000169",	"7000170",	"7000173",	"7000174",	"7000175",	"7000176",	"7000178",	"7000179",	"7000180",	"7000181",	"7000183",	"7000185",	"7000186",	"7000187",	"7000188",	"7000190",	"7000191",	"7000193",	"7000194",	"7000195",	"7000196",	"7000197",	"7000198",	"7000200",	"7000201",	"7000206",	"7000207",	"7000208",	"7000209",	"7000210",	"7000211",	"7000212",	"7000213",	"7000214",	"7000215",	"7000217",	"7000218",	"7000219",	"7000220",	"7000223",	"7000224",	"7000227",	"7000232",	"7000233",	"7000234",	"7000235",	"7000236",	"7000237",	"7000238",	"7000244",	"7000245",	"7000247",	"7000248",	"7000249",	"7000251",	"7000252",	"7000253",	"7000254",	"7000255",	"7020004",	"7020005",	"7020006",	"7020010",	"7020013",	"7020014",	"7020024",	"7030002",	"7030003",	"7030004",	"7030005",	"7030006",	"7030010",	"7030012",	"7030013",	"7030015",	"7030016",	"7030017",	"7030018",	"7030019",	"7030023",	"7030024",	"7030025",	"7030026",	"7030029",	"7030030",	"7030031",	"7030033",	"7030034",	"7030035",	"7030036",	"7030037",	"7030038",	"7040001",	"7040002",	"7040004",	"7040005",	"7040006",	"7040007",	"7040008",	"7040009",	"7040010",	"7040011",	"7040013",	"7040014",	"7040018",	"7040022",	"7040023",	"7040025",	"7040026",	"7040029",	"7040030",	"7040031",	"7040032",	"7040034",	"7040035",	"7040036",	"7040037",	"7040038"
+			}, 1,0)
+		dataType: int64
+		formatString: 0
+		lineageTag: d26acf18-c001-4e99-9d39-aaf742841917
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TiLite Missing (customer)' =
+			
+			IF('8DW DimCustomer'[CustAccount#] IN
+			{"0102051",	"0102052",	"0102053",	"0102054",	"0102055",	"0102056",	"0102057",	"0102058",	"0102059",	"0102060",	"0102061",	"0102062",	"0102063",	"0102065",	"0102066",	"0102067",	"0102069",	"0102070",	"0102071",	"0102072",	"0102073",	"0102074",	"0102075",	"0102076",	"0102077",	"0102078",	"0102079",	"0102080",	"0102081",	"0102082",	"0102083",	"0102084",	"0102085",	"0102086",	"0102087",	"0102088",	"0102090",	"0102091",	"0102092",	"0102093",	"0102094",	"0102095",	"0102096",	"0102097",	"0102098",	"0102099",	"0102100",	"0102101",	"0102102",	"0102103",	"0102104",	"0102105",	"0102106",	"0102107",	"0102108",	"0102109",	"0102110",	"0102111",	"0130214",	"0130215",	"0130216",	"0170146",	"0170147",	"0170148",	"0280190",	"0280191",	"0280192",	"0620021",	"0650008",	"7000251",	"7000252",	"7000253",	"7000254",	"7000255",	"7030037",	"7030038",	"7040038"
+			}, 1,0)
+		dataType: int64
+		formatString: 0
+		lineageTag: 83fd3143-0c43-4cea-9b58-8498b27c5be3
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '8DW DimCustomer-c47655de-2a1b-4b39-a528-f068402c3a05' = m
+		mode: import
+		source = ```
+				let
+				    Source = Sql.Databases("setimdb04"),
+				    BIDW = Source{[Name="BIDW"]}[Data],
+				    DW_DimCustomer = BIDW{[Schema="DW",Item="DimCustomer"]}[Data],
+				    #"Removed Other Columns" = Table.SelectColumns(DW_DimCustomer,{"WKCustomer", "BKCustomer", "DataAreaId", "CustAccount", "CompanyId", "Name", "City", "Description", "Street", "State", "ZipCode", "CountryRegion", "SalesRep", "MarketCode", "MarketDescription", "MarketGroupCode", "RegionCode", "RegionDescription", "InternalCustomer", "GraphicalSalesRegionCode", "GraphicalSalesRegionDescription", "SSID", "Global", "BusinessRegion", "Market"}),
+				    #"Trim CustAccount" = Table.AddColumn(#"Removed Other Columns", "Custom", each if([CompanyId]="ROHO") then Text.Range([CustAccount],0,8) else if([CompanyId]="TISP" or [CompanyId]="MAX" and Text.Length([CustAccount])=15) then Text.Range([CustAccount],8,7) else [CustAccount]),
+				    #"Renamed Columns" = Table.RenameColumns(#"Trim CustAccount",{{"Custom", "CustAccount2"}}),
+				    #"Merge CustAcct2 w/ Custom G" = Table.NestedJoin(#"Renamed Columns", {"CustAccount2"}, #"Customer Group", {"CustAccount2"}, "Customer Group", JoinKind.LeftOuter),
+				    #"Expanded Customer Group" = Table.ExpandTableColumn(#"Merge CustAcct2 w/ Custom G", "Customer Group", {"Account No", "Business Unit", "Dealer Group"}, {"Customer Group.Account No", "Customer Group.Business Unit", "Customer Group.Dealer Group"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Expanded Customer Group", {"WKCustomer"}),
+				    #"Uppercased Text1" = Table.TransformColumns(#"Removed Duplicates",{{"CountryRegion", Text.Upper, type text}}),
+				    #"Merged Queries1" = Table.NestedJoin(#"Uppercased Text1", {"CountryRegion"}, #"Country Region List", {"CountryRegion"}, "Country Region List", JoinKind.LeftOuter),
+				    #"Expanded Country Region List" = Table.ExpandTableColumn(#"Merged Queries1", "Country Region List", {"Country Code", "Country Name", "Region", "Sub region"}, {"Country Region List.Country Code", "Country Region List.Country Name", "Country Region List.Region", "Country Region List.Sub region"}),
+				    #"Added Custom" = Table.AddColumn(#"Expanded Country Region List", "Dealer / Country", each if([CustAccount2] = "02700000" or [CustAccount2] = "02802400" or [CustAccount2] = "03626200" or [CustAccount2] = "80258000") then "OBSS/Nutec"
+				
+				else if([Customer Group.Dealer Group]<>null and [Country Region List.Country Code] = "USA") then [Customer Group.Dealer Group] 
+				
+				else if([Customer Group.Dealer Group]=null and [Country Region List.Country Code] = "USA" or [Country Region List.Country Code] = "BMU" or [Country Region List.Country Code] = "BRB" or [Country Region List.Country Code] = "ABW" or [Country Region List.Country Code] = "DOM") then "Other US" 
+				
+				else [Country Region List.Sub region]),
+				    #"Trimmed Text" = Table.TransformColumns(#"Added Custom",{{"CustAccount2", Text.Trim, type text}}),
+				    #"Cleaned Text" = Table.TransformColumns(#"Trimmed Text",{{"CustAccount2", Text.Clean, type text}}),
+				    #"Uppercased Text" = Table.TransformColumns(#"Cleaned Text",{{"CustAccount2", Text.Upper, type text}}),
+				    #"Added Custom1" = Table.AddColumn(#"Uppercased Text", "CompositeKey", each [CustAccount2]&"ABC"),
+				    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "US Canada Dealers", each if([DataAreaId] = "US" and [#"Dealer / Country"] = "Canada") then "Remove" else "Keep"),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom2",{{"WKCustomer", type text}}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Changed Type",{{"CustAccount2", "CustAccount#"}, {"Name", "Provider Name"}})
+				in
+				    #"Renamed Columns1"
+				```
+
+	annotation PBI_ResultType = Exception
+

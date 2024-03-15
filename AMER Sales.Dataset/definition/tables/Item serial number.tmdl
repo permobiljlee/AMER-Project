@@ -1,0 +1,124 @@
+table 'Item serial number'
+	lineageTag: 03e3ccbe-ca47-4239-a03a-c51ea6d01702
+
+	column ItemSerialNumber_SK
+		dataType: string
+		isHidden
+		lineageTag: 7364ab11-398d-4548-a5c8-a72d20835b85
+		summarizeBy: none
+		sourceColumn: ItemSerialNumber_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemSerialNumber_BK
+		dataType: string
+		isHidden
+		lineageTag: 7f3a48b9-50b3-4428-b7b1-9e623360d546
+		summarizeBy: none
+		sourceColumn: ItemSerialNumber_BK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataLoadDatetime
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 8c876561-ca85-40ef-a0d4-545729104fa8
+		summarizeBy: none
+		sourceColumn: DataLoadDatetime
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column RecordSource
+		dataType: string
+		lineageTag: ca3e8d3c-ad41-4b2f-947e-40122348a3ce
+		summarizeBy: none
+		sourceColumn: RecordSource
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChangeType
+		dataType: string
+		isHidden
+		lineageTag: 4ccfd410-d4f3-4729-8c16-b759b8116c8f
+		summarizeBy: none
+		sourceColumn: ChangeType
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataareaId
+		dataType: string
+		lineageTag: e18dc4f6-f77f-4160-98f3-166645076ae1
+		summarizeBy: none
+		sourceColumn: DataareaId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 09b59d58-8947-4331-84e9-c061b1b4f1ef
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Serialnumber
+		dataType: string
+		lineageTag: c1c9b14f-74d3-4c09-b95c-da6b673fbdb5
+		summarizeBy: none
+		sourceColumn: Serialnumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Manifacturing date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3c64aba2-a72b-4893-9d59-f01e024abde5
+		summarizeBy: none
+		sourceColumn: Manifacturing date
+
+		annotation SummarizationSetBy = Automatic
+
+	column FlexRowAuditId
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 92985c1c-c7cc-423e-839e-7ed28d11df38
+		summarizeBy: count
+		sourceColumn: FlexRowAuditId
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FlexRowHashType1
+		dataType: string
+		isHidden
+		lineageTag: f087ec68-40f6-40f3-ab4a-eeb9b1890829
+		summarizeBy: none
+		sourceColumn: FlexRowHashType1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Item serial number-a1938e5a-a049-429f-939f-e1163c945f14' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [CreateNavigationProperties=false, CommandTimeout=#duration(0, 4, 10, 0)]),
+				    sales_Rpt_dim_ItemSerialNumber = Source{[Schema="sales_Rpt",Item="dim_ItemSerialNumber"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(sales_Rpt_dim_ItemSerialNumber,{{"DATAAREAID", "DataareaId"}, {"DESCRIPTION", "Description"}, {"MANUFACTURINGDATE", "Manifacturing date"}, {"SERIALNUMBER", "Serialnumber"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

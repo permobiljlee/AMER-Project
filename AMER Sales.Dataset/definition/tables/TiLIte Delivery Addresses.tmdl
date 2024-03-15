@@ -1,0 +1,119 @@
+table 'TiLIte Delivery Addresses'
+	lineageTag: 9211680b-2c0d-4ae1-bddb-f8b81cf5068a
+
+	column SalesOrder
+		dataType: string
+		lineageTag: 7722cac0-1dbd-4f2c-a5a2-3fca3ddab0f5
+		summarizeBy: none
+		sourceColumn: SalesOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer
+		dataType: string
+		lineageTag: b1850f77-a54d-4890-8798-64396dd095a5
+		summarizeBy: none
+		sourceColumn: Customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastInvoice
+		dataType: string
+		lineageTag: d97c5638-b957-4768-8de4-a88869136ecb
+		summarizeBy: none
+		sourceColumn: LastInvoice
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		lineageTag: 0e694a5b-f43d-4694-8063-c217b16cb601
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipAddress1
+		dataType: string
+		lineageTag: 002ea27e-9557-4089-a185-1c3470c3741f
+		summarizeBy: none
+		sourceColumn: ShipAddress1
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipAddress2
+		dataType: string
+		lineageTag: 882a173b-a684-4f8f-bebb-de2ae0a79692
+		summarizeBy: none
+		sourceColumn: ShipAddress2
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipAddress3
+		dataType: string
+		lineageTag: 0a5ee838-ca70-4066-950a-5b0babae6444
+		summarizeBy: none
+		sourceColumn: ShipAddress3
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipAddress3Loc
+		dataType: string
+		lineageTag: 7a671438-f286-40cf-9b95-617f356aae8e
+		summarizeBy: none
+		sourceColumn: ShipAddress3Loc
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipAddress4
+		dataType: string
+		lineageTag: 8568ebb5-e93e-41cb-9439-0544c6f8a40e
+		summarizeBy: none
+		sourceColumn: ShipAddress4
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipAddress5
+		dataType: string
+		lineageTag: eb10ee1e-91d2-4532-afe9-72dc9cbd2949
+		summarizeBy: none
+		sourceColumn: ShipAddress5
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipPostalCode
+		dataType: string
+		lineageTag: 76b37666-7d88-4f2d-8531-2969d06bc8fb
+		summarizeBy: none
+		sourceColumn: ShipPostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 712918ea-cc48-4f8d-9652-110450f0c2b8
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountyZip
+		dataType: string
+		lineageTag: f6b3bd5a-8ebd-435d-84be-7bf365b451e8
+		summarizeBy: none
+		sourceColumn: CountyZip
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'TiLIte Delivery Addresses' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("USPASDB10", "SysproCompanyW", [Query="SELECT DISTINCT [SalesOrder]#(lf)      ,[Customer]        #(lf)      ,[LastInvoice]#(lf)      ,[CustomerName]#(lf)      ,[ShipAddress1]#(lf)      ,[ShipAddress2]#(lf)      ,[ShipAddress3]#(lf)      ,[ShipAddress3Loc]#(lf)      ,[ShipAddress4]#(lf)      ,[ShipAddress5]#(lf)      ,[ShipPostalCode]#(lf)      ,[State]#(lf)      ,[CountyZip]#(lf)  FROM [SysproCompanyW].[dbo].[SorMaster]#(lf)WHERE [OrderDate] >= '01-01-2021'"])
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,399 @@
+table 'YTD Rankings_Total US'
+	lineageTag: 7b606879-5ab4-4bed-a8ae-88d6d64fc3ed
+
+	column Region_
+		dataType: string
+		lineageTag: 1545f365-b4df-497d-9b38-99448d41a9c8
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Sales Rep Map[Region_]
+
+		annotation SummarizationSetBy = Automatic
+
+	column RepName
+		dataType: string
+		lineageTag: 4f8faa05-a63f-49c7-9137-e1f2f189ac44
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Sales Rep Map[RepName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rank Total STB' =
+			
+			RANK.EQ(
+			    'YTD Rankings_Total US'[STB Total],
+			    'YTD Rankings_Total US'[STB Total],
+			    DESC
+			)
+		dataType: int64
+		formatString: 0
+		lineageTag: 2dc3dad7-17ae-4531-9841-1c65b05615bc
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rank TiLite' =
+			
+			IF(
+			    'YTD Rankings_Total US'[Budget TiLite] < 1000,
+			    BLANK(),
+			RANKX (
+			    FILTER ( 'YTD Rankings_Total US', 'YTD Rankings_Total US'[Budget TiLite] > 1000 ),
+			    [TiLite $'s]
+			))
+		dataType: int64
+		formatString: 0
+		lineageTag: 3bb51788-f419-44ee-9a5e-725720781e37
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'STB Total'
+		dataType: double
+		formatString: #,##0.0 %
+		lineageTag: 6ee32939-863c-4ce9-aa7f-58ac434e5d9f
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [STB Total]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'STB TiLite'
+		dataType: double
+		formatString: #,##0.0 %
+		lineageTag: b063edc2-00dc-4a22-ae2d-b3bd6d952ab9
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [STB TiLite]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'STB SmartDrive'
+		dataType: double
+		formatString: #,##0.0 %
+		lineageTag: 9919bdfb-a4d7-420f-b124-cca242581afa
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [STB SmartDrive]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'STB ROHO'
+		dataType: double
+		formatString: #,##0.0 %
+		lineageTag: c88e5bc6-79b0-44a1-9966-e7208f726ac0
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [STB ROHO]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'STB Comfort'
+		dataType: double
+		formatString: #,##0.0 %
+		lineageTag: 97e6d88e-836b-4f8d-aa64-35374c5dfc38
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [STB Comfort]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Power $''s'
+		dataType: double
+		formatString: $ #,##0
+		lineageTag: dcbffca4-3ce4-4ad3-bd0c-4fd14c08d72c
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Power $'s]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'TiLite $''s'
+		dataType: double
+		formatString: $ #,##0
+		lineageTag: d3702657-34fa-4461-af9d-7035f656c59a
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [TiLite $'s]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Type
+		dataType: string
+		lineageTag: 9318fd60-af29-44b6-8667-4c369d4390cd
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Sales Rep Map[Type]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Budget TiLite'
+		dataType: double
+		formatString: $ #,##0
+		lineageTag: eec7a4e2-834b-4d76-a510-20eda97e8eb3
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Budget TiLite]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'S&P $''s'
+		dataType: double
+		formatString: $ #,##0
+		lineageTag: 1d1d1a10-3dfb-44bf-af3f-e23a20d9d37b
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [S&P $'s]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Budget SmartDrive'
+		dataType: double
+		formatString: $ #,##0
+		lineageTag: 3f5bb8d9-5453-4395-920b-3628f21f817e
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Budget SmartDrive]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Budget S&P'
+		dataType: double
+		formatString: $ #,##0
+		lineageTag: 7c66d532-2bb0-4422-a4e0-963ef7a4c358
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Budget S&P]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Budget Total'
+		dataType: double
+		formatString: $ #,##0
+		lineageTag: e4cb1e13-772b-4775-b116-716d572ffb19
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Budget Total]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Budget Power'
+		dataType: double
+		formatString: $ #,##0
+		lineageTag: 23ec76e9-3434-4b2b-9a8a-5c4a9785fdc3
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Budget Power]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'STB Power'
+		dataType: double
+		formatString: #,##0.0 %
+		lineageTag: 04eee3ba-d879-466a-b099-ddea6dc43cf6
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [STB Power]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'SmartDrive $''s'
+		dataType: double
+		formatString: $ #,##0
+		lineageTag: 8a2b7ca9-df8f-4173-b59a-18ce15c7fe34
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [SmartDrive $'s]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Rank Power' =
+			
+			IF(
+			    'YTD Rankings_Total US'[Budget Power] < 1000,
+			    BLANK(),
+			    RANKX (
+			        FILTER ( 'YTD Rankings_Total US', 'YTD Rankings_Total US'[Budget Power] > 1000 ),
+			        [Power $'s]
+			    )
+			)
+		dataType: int64
+		formatString: 0
+		lineageTag: 88086a3c-67f3-4ccb-aed1-86046078b403
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rank S&P' =
+			
+			IF(
+			    'YTD Rankings_Total US'[Budget S&P] < 1000,
+			    BLANK(),
+			RANKX (
+			    FILTER ( 'YTD Rankings_Total US', 'YTD Rankings_Total US'[Budget S&P] > 1000 ),
+			    [S&P $'s]
+			))
+		dataType: int64
+		formatString: 0
+		lineageTag: 9348e885-b8eb-4522-92fd-887d1b7b768b
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rank SmartDrives' =
+			
+			IF(
+			    'YTD Rankings_Total US'[Budget SmartDrive] < 1000,
+			    BLANK(),
+			RANKX (
+			    FILTER ( 'YTD Rankings_Total US', 'YTD Rankings_Total US'[Budget SmartDrive] > 1000 ),
+			    [SmartDrive $'s]
+			))
+		dataType: int64
+		formatString: 0
+		lineageTag: 469589b0-dbde-47b9-b37f-92ec1ae87666
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rep
+		dataType: string
+		lineageTag: c33303a6-0014-4161-93da-ba2ed53c392f
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Sales Rep Map[Rep]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rank Total STB - West' =
+			
+			IF(
+			    'YTD Rankings_Total US'[Budget Total] < 1000 || 'YTD Rankings_Total US'[Region_] = "East",
+			    BLANK(),
+			RANKX (
+			    FILTER ( 'YTD Rankings_Total US', 'YTD Rankings_Total US'[Budget Total] > 1000 && 'YTD Rankings_Total US'[Region_] = "West" ),
+			    [STB Total]
+			))
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e063f65-1324-49ce-aa9f-33afa44f11ef
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rank Total STB - East' =
+			
+			IF(
+			    'YTD Rankings_Total US'[Budget Total] < 1000 || 'YTD Rankings_Total US'[Region_] = "West",
+			    BLANK(),
+			RANKX (
+			    FILTER ( 'YTD Rankings_Total US', 'YTD Rankings_Total US'[Budget Total] > 1000 && 'YTD Rankings_Total US'[Region_] = "East" ),
+			    [STB Total]
+			))
+		dataType: int64
+		formatString: 0
+		lineageTag: f8aa659d-a36f-4905-8c27-71be738fd15f
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: adabb4c7-1b90-4aa1-9df1-b03d3330cb9a
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Sales Rep Map[Region]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'YTD Rankings_Total US' = calculated
+		mode: import
+		source =
+				
+				SUMMARIZE(
+				        FILTER(
+				        'Sales Rep Map',
+				        'Sales Rep Map'[Region_] IN {"East", "West"} &&
+				        'Sales Rep Map'[Type] IN {"FL", "MOB", "S&P"} &&
+				        'Sales Rep Map'[Active (1) / Inactive (0)] = "1"),
+				    'Sales Rep Map'[Region_],
+				    'Sales Rep Map'[RepName],
+				    'Sales Rep Map'[Rep],
+				    'Sales Rep Map'[Type],
+				    'Sales Rep Map'[Region],
+				    "Budget Total", [BudgetTotal YTD],
+				    "Budget Power", [BudgetPWC YTD],
+				    "Budget TiLite", [BudgetTiLIte YTD],
+				    "Budget SmartDrive", [BudgetSD YTD],
+				    "Budget S&P", [BudgetROHO YTD] + [BudgetComfort YTD],
+				    "STB Total", [STB Total YTD],
+				    "STB Power", [STB PWC YTD],
+				    "STB TiLite", [STB TiLite YTD],
+				    "STB SmartDrive", [STB Smart Combined YTD],
+				    "STB ROHO", [STB ROHO YTD],
+				    "STB Comfort", [STB Comfort YTD],
+				    "Power $'s", [STB Actuals - Total Invoiced US Power Chairs],
+				    "TiLite $'s", [STB Actuals - Total Invoiced US TiLite Chairs],
+				    "SmartDrive $'s", [STB Actuals - Total Invoiced US Combined SmartDrives],
+				    "S&P $'s", [STB Actuals - Total Invoiced US ROHO] + [STB Actuals - Total Invoiced US Comfort])
+
+	annotation PBI_Id = 1cef8030db5d4cf1a079fc38e8d2da95
+

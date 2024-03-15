@@ -1,0 +1,247 @@
+table DW_DimItem
+	lineageTag: 2eac1c83-60b9-4028-931b-f48913394c51
+
+	column WKItem
+		dataType: int64
+		formatString: 0
+		lineageTag: 952ee9b0-4caf-4c9e-8642-8f63141247fd
+		summarizeBy: none
+		sourceColumn: WKItem
+
+		annotation SummarizationSetBy = Automatic
+
+	column BKItem
+		dataType: string
+		lineageTag: 9af7203e-717f-46a1-95c4-0d4726809d3c
+		summarizeBy: none
+		sourceColumn: BKItem
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemNumber
+		dataType: string
+		lineageTag: fb3c6036-55fc-4ceb-aa87-26cfbc8594e0
+		summarizeBy: none
+		sourceColumn: ItemNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemName
+		dataType: string
+		lineageTag: a9c7ce5c-b970-4af7-978d-2032eaf928b5
+		summarizeBy: none
+		sourceColumn: ItemName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemGroupId
+		dataType: string
+		lineageTag: 8ce9afe1-a3dd-4944-b648-75615392b406
+		summarizeBy: none
+		sourceColumn: ItemGroupId
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemGroupName
+		dataType: string
+		lineageTag: 75f79961-fd01-4033-9469-8a2d2602edcf
+		summarizeBy: none
+		sourceColumn: ItemGroupName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subdivision
+		dataType: string
+		lineageTag: ea0d7762-06ea-4c05-94f4-067be295c94a
+		summarizeBy: none
+		sourceColumn: Subdivision
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrimaryVendorId
+		dataType: string
+		lineageTag: 1aaa27c5-87a0-4a88-a5a3-2684a3dbcd3e
+		summarizeBy: none
+		sourceColumn: PrimaryVendorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryOfOrigin
+		dataType: string
+		lineageTag: 0eebc578-c66f-4851-881b-7e53eacc8995
+		summarizeBy: none
+		sourceColumn: CountryOfOrigin
+
+		annotation SummarizationSetBy = Automatic
+
+	column NameAlias
+		dataType: string
+		lineageTag: 0ce104bc-51b5-43da-8c60-60e32fca4890
+		summarizeBy: none
+		sourceColumn: NameAlias
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dataareaid
+		dataType: string
+		lineageTag: f53dc683-e599-407b-bb4a-360165281b17
+		summarizeBy: none
+		sourceColumn: Dataareaid
+
+		annotation SummarizationSetBy = Automatic
+
+	column Per_AfterMarketItemNum
+		dataType: string
+		lineageTag: b08d9117-b095-490d-bcff-a9f16d8b76fb
+		summarizeBy: none
+		sourceColumn: Per_AfterMarketItemNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Per_AfterMarketLevel
+		dataType: int64
+		formatString: 0
+		lineageTag: 8dc7ab7f-5572-4f13-abf3-30bb44c2496a
+		summarizeBy: sum
+		sourceColumn: Per_AfterMarketLevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Per_NeedsProgramming
+		dataType: int64
+		formatString: 0
+		lineageTag: 04d166f3-953a-4d86-950c-2cb5a44a57d1
+		summarizeBy: sum
+		sourceColumn: Per_NeedsProgramming
+
+		annotation SummarizationSetBy = Automatic
+
+	column Per_OnChairLevel
+		dataType: int64
+		formatString: 0
+		lineageTag: 271b2326-71ae-4b04-b82b-9873b0a21d25
+		summarizeBy: sum
+		sourceColumn: Per_OnChairLevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Per_WarrantyDays
+		dataType: int64
+		formatString: 0
+		lineageTag: 795157a7-8440-44c5-b320-dbd4ec211a0b
+		summarizeBy: sum
+		sourceColumn: Per_WarrantyDays
+
+		annotation SummarizationSetBy = Automatic
+
+	column DW_ValidFrom
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3cc141a4-6a23-47ab-9791-a7b9e76ce0b7
+		summarizeBy: none
+		sourceColumn: DW_ValidFrom
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DW_UpdateDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d8049e30-52b7-4570-8b03-ebe15dc0b327
+		summarizeBy: none
+		sourceColumn: DW_UpdateDateTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column DW_IsDeleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ae62f588-d4a1-4d26-81e9-f5cbd03ec880
+		summarizeBy: none
+		sourceColumn: DW_IsDeleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column DW_IsInferred
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c697e104-989f-4f63-a18f-3b3ab9448cba
+		summarizeBy: none
+		sourceColumn: DW_IsInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column DW_IsCurrent
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 88a7691e-d78b-45a2-bac7-f91523f52ea5
+		summarizeBy: none
+		sourceColumn: DW_IsCurrent
+
+		annotation SummarizationSetBy = Automatic
+
+	column DW_Rowid
+		dataType: int64
+		formatString: 0
+		lineageTag: 9eea5097-4e4a-4322-8215-9c748ff38f4c
+		summarizeBy: sum
+		sourceColumn: DW_Rowid
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemNameLocal
+		dataType: string
+		lineageTag: 9e86b4b0-67ad-4150-900b-25ccd6c2a725
+		summarizeBy: none
+		sourceColumn: ItemNameLocal
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Subdivision - Trim.1'
+		dataType: string
+		lineageTag: d4ccf923-1550-42f9-bd55-3041977517cb
+		summarizeBy: none
+		sourceColumn: Subdivision - Trim.1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Combo
+		dataType: string
+		lineageTag: 0c968b4e-2428-4e81-ac97-a05b66eff4d3
+		summarizeBy: none
+		sourceColumn: Combo
+
+		annotation SummarizationSetBy = Automatic
+
+	column CommissionableCheck
+		dataType: string
+		lineageTag: 582afe1c-52a3-4c85-9283-2a4a537d7fe0
+		summarizeBy: none
+		sourceColumn: CommissionableCheck
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DW_DimItem-3471f4a3-581d-4c1c-8f7f-7b35c3726622 = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("setimdb04"),
+				    BIDW = Source{[Name="BIDW"]}[Data],
+				    DW_DimItem = BIDW{[Schema="DW",Item="DimItem"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(DW_DimItem, each [Dataareaid] = "COMC" or [Dataareaid] = "ROHO" or [Dataareaid] = "TISP" or [Dataareaid] = "AHC"),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Filtered Rows", "Subdivision", "Subdivision - Copy"),
+				    #"Renamed Columns" = Table.RenameColumns(#"Duplicated Column",{{"Subdivision - Copy", "Subdivision - Trim"}}),
+				    #"Split Column by Character Transition" = Table.SplitColumn(#"Renamed Columns", "Subdivision - Trim", Splitter.SplitTextByCharacterTransition({"0".."9"}, (c) => not List.Contains({"0".."9"}, c)), {"Subdivision - Trim.1", "Subdivision - Trim.2"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Split Column by Character Transition",{"Subdivision - Trim.2"}),
+				    #"Added Custom" = Table.AddColumn(#"Removed Columns", "Combo", each if [Dataareaid] = "ROHO"
+				then [#"Subdivision - Trim.1"]&[ItemGroupId]
+				else "COMC"),
+				    #"Added Conditional Column" = Table.AddColumn(#"Added Custom", "CommissionableCheck", each if [Combo] = "COMC" then "Comfort Company" else if [Combo] = "03165" then "Commissionable" else if [Combo] = "07514" then "Commissionable" else if [Combo] = "07517" then "Commissionable" else if [Combo] = "07647" then "Commissionable" else if [Combo] = "07515" then "Commissionable" else if [Combo] = "07518" then "Commissionable" else if [Combo] = "07648" then "Commissionable" else if [Combo] = "07516" then "Commissionable" else if [Combo] = "07519" then "Commissionable" else if [Combo] = "07649" then "Commissionable" else if [Combo] = "07524" then "Commissionable" else if [Combo] = "07521" then "Commissionable" else if [Combo] = "07650" then "Commissionable" else if [Combo] = "07642" then "Commissionable" else if [Combo] = "07522" then "Commissionable" else if [Combo] = "07651" then "Commissionable" else if [Combo] = "07641" then "Commissionable" else if [Combo] = "07523" then "Commissionable" else if [Combo] = "07640" then "Commissionable" else if [Combo] = "07643" then "Commissionable" else if [Combo] = "07644" then "Commissionable" else if [Combo] = "03600" then "Commissionable" else if [Combo] = "07704" then "Commissionable" else if [Combo] = "02106" then "Commissionable" else if [Combo] = "09710" then "Commissionable" else if [Combo] = "01540" then "Commissionable" else if [Combo] = "01170" then "Commissionable" else if [Combo] = "07180" then "Commissionable" else if [Combo] = "02105" then "Commissionable" else if [Combo] = "03295" then "Commissionable" else if [Combo] = "03155" then "Commissionable" else if [Combo] = "01112" then "Commissionable" else if [Combo] = "01110" then "Commissionable" else if [Combo] = "12340" then "Commissionable" else if [Combo] = "12342" then "Commissionable" else if [Combo] = "12341" then "Commissionable" else if [Combo] = "12346" then "Commissionable" else if [Combo] = "12348" then "Commissionable" else if [Combo] = "12347" then "Commissionable" else if [Combo] = "02128" then "Commissionable" else if [Combo] = "02127" then "Commissionable" else if [Combo] = "14356" then "Commissionable" else if [Combo] = "07526" then "Commissionable" else if [Combo] = "07525" then "Commissionable" else if [Combo] = "01117" then "Commissionable" else if [Combo] = "01115" then "Commissionable" else if [Combo] = "70240" then "Commissionable" else if [Combo] = "01114" then "Commissionable" else if [Combo] = "01113" then "Commissionable" else if [Combo] = "03120" then "Commissionable" else if [Combo] = "03305" then "Commissionable" else if [Combo] = "12343" then "Commissionable" else if [Combo] = "12345" then "Commissionable" else if [Combo] = "12344" then "Commissionable" else if [Combo] = "12349" then "Commissionable" else if [Combo] = "12351" then "Commissionable" else if [Combo] = "12350" then "Commissionable" else if [Combo] = "02126" then "Commissionable" else if [Combo] = "02101" then "Commissionable" else if [Combo] = "02102" then "Commissionable" else if [Combo] = "02103" then "Commissionable" else if [Combo] = "02150" then "Commissionable" else if [Combo] = "07530" then "Commissionable" else if [Combo] = "03175" then "Commissionable" else if [Combo] = "03160" then "Commissionable" else if [Combo] = "13352" then "Commissionable" else if [Combo] = "03303" then "Commissionable" else if [Combo] = "07527" then "Commissionable" else if [Combo] = "10725" then "Commissionable" else if [Combo] = "07655" then "Commissionable" else if [Combo] = "07656" then "Commissionable" else if [Combo] = "02360" then "Commissionable" else "Non-Commissionable")
+				in
+				    #"Added Conditional Column"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

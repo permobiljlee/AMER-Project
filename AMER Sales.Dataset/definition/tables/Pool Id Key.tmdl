@@ -1,0 +1,44 @@
+table 'Pool Id Key'
+	excludeFromModelRefresh
+	lineageTag: 01b33d82-5057-4b7f-995a-6cdc098e1cba
+
+	column Pool
+		dataType: string
+		lineageTag: a1f2f2bc-e621-455b-a0c5-e7adb30e5764
+		summarizeBy: none
+		sourceColumn: Pool
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: fd3895c8-85e4-4aec-ac38-98b6485e5067
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ECON
+		dataType: string
+		lineageTag: 5ccca66a-e971-4dad-8223-d1a1e1ca2aac
+		summarizeBy: none
+		sourceColumn: ECON
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Pool Id Key-5fdf4fbe-5c69-46eb-bc61-88b2b2a6d1eb' = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows([]),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Workspaces{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+				    #"6f63d4a4-f820-4e65-9358-77d113f3785f" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="6f63d4a4-f820-4e65-9358-77d113f3785f"]}[Data],
+				    #"Pool ID Key_" = #"6f63d4a4-f820-4e65-9358-77d113f3785f"{[entity="Pool ID Key",version=""]}[Data]
+				in
+				    #"Pool ID Key_"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

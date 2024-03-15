@@ -1,0 +1,31 @@
+table 'Dealer / Country'
+	lineageTag: 96a34704-73d6-40fb-b16f-949bfc639d1a
+
+	column 'Dealer Group Sort Order'
+		dataType: int64
+		formatString: 0
+		lineageTag: 05a21391-a547-4030-adea-0641205271f9
+		summarizeBy: sum
+		sourceColumn: Dealer Group Sort Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'US Dealer / Country'
+		dataType: string
+		lineageTag: d3cb99ee-b9cd-4dcf-88e7-c0e5d0a9e7b5
+		summarizeBy: none
+		sourceColumn: US Dealer / Country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dealer / Country' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("PY7LCoMwEEV/RWYttOm7yyhZFIwRp3YTXIgEdGEDkvx/JxPo7twzzOVaCwJKaOPmYSwtnFJAzXwm/kjGC+GAPfOVuHnXzDdiExa3FwOyuJPQPqz+y/Hxv9e56EkCfQxLITe3r/PEVhxJy07mUpEWKa3yh0iTTIV4aGNwc3ZpWqd6bapXA+P4Aw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Dealer Group Sort Order" = _t, #"US Dealer / Country" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Dealer Group Sort Order", Int64.Type}, {"US Dealer / Country", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,703 @@
+table QuotesTEST
+	lineageTag: e9fd5688-11d9-4f30-a0ea-07f714a5cca6
+
+	measure 'Net Amount (Total)' =
+			
+			SUM('QuotesTEST'[Net Amount])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 57a5c6d2-bee0-4abc-91ab-a0de8e744ca8
+
+	measure 'CNT Converted' =
+			
+			CALCULATE(
+			    COUNT('QuotesTEST'[Chairs]),
+			        'QuotesTEST'[Open-0/Converted-1] = 1,
+			        USERELATIONSHIP('QuotesTEST'[Order date], 'Date'[Date]))
+		formatString: 0
+		lineageTag: a5e05252-b904-455d-bddd-e69f849dd709
+
+	measure 'Conversion Rate' = ```
+			
+			VAR TotalQuotes = 
+			[Quoted]
+			VAR ConvertedQuotes = 
+			CALCULATE(
+			    [Quoted],
+			    'QuotesTEST'[Open-0/Converted-1] = 1,
+			    USERELATIONSHIP('Date'[Date], 'QuotesTEST'[Order date]))
+			RETURN
+			DIVIDE(ConvertedQuotes, TotalQuotes) / 1
+			```
+		formatString: 0%;-0%;0%
+		lineageTag: 10816625-6f2f-4113-b075-5f630e391f93
+
+	measure ConvertedQuotes =
+			
+			CALCULATE(
+			    [Quoted],
+			    'QuotesTEST'[Open-0/Converted-1] = 1,
+			    USERELATIONSHIP('Date'[Date], 'QuotesTEST'[Order date]))
+		formatString: 0
+		lineageTag: 4e04ff2c-8a21-465d-83bb-99ea46fa6bf1
+
+	measure OpenQuotes = ```
+			
+			CALCULATE(
+			    [Quoted],
+			    'QuotesTEST'[Open-0/Converted-1] = 0,
+			        USERELATIONSHIP('Date'[Date], 'QuotesTEST'[Order_Date Key])) 
+			        +
+			CALCULATE(
+			    [Quoted],
+			    'LegacyQuotesTEST'[Order_Number] = "",
+			        USERELATIONSHIP('Date'[Date], 'LegacyQuotesTEST'[Order Date Key]))
+			```
+		formatString: 0
+		lineageTag: b5bfc1fd-6518-4b82-9c46-42a9c1e8c1b5
+
+	measure 'Quoted YoY Change (Thin)' =
+			
+			IF([Quoted PY MTD] > 0,
+			    DIVIDE(
+			        [Quoted MTD],
+			        [Quoted PY MTD]) - 1, BLANK())
+		formatString: 0%;-0%;0%
+		lineageTag: 41110f48-418d-4ff2-a6de-353f33a490fe
+
+	column FactType
+		dataType: string
+		lineageTag: 99b30e9e-7401-4d72-bdd1-e64c52235eff
+		summarizeBy: none
+		sourceColumn: FactType
+
+		annotation SummarizationSetBy = Automatic
+
+	column BillToCustomer_SK
+		dataType: string
+		lineageTag: a87a3bd7-ce61-47a9-8182-a3fca54cfd0b
+		summarizeBy: none
+		sourceColumn: BillToCustomer_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Company_SK
+		dataType: string
+		lineageTag: 82c8b711-701b-404d-8a42-71919496c9f6
+		summarizeBy: none
+		sourceColumn: Company_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuoteDate_SK
+		dataType: int64
+		formatString: 0
+		lineageTag: 7437b8a7-cc27-4f0c-8241-61c79769148f
+		summarizeBy: sum
+		sourceColumn: QuoteDate_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderStatus
+		dataType: int64
+		formatString: 0
+		lineageTag: 72741edc-263d-4cf4-b86c-58aba3f5230a
+		summarizeBy: sum
+		sourceColumn: OrderStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNumber
+		dataType: string
+		lineageTag: 54404266-4c5e-4543-af61-3b3d47ebb134
+		summarizeBy: none
+		sourceColumn: OrderNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column ConfigurationsHeader_SK
+		dataType: string
+		lineageTag: 60d12a57-bdee-4c29-b84f-48c7ceaef02d
+		summarizeBy: none
+		sourceColumn: ConfigurationsHeader_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesQuotationHeader_SK
+		dataType: string
+		lineageTag: b1d8a89a-9676-4d5a-8673-7d4a4e6e4b16
+		summarizeBy: none
+		sourceColumn: SalesQuotationHeader_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Chairs
+		dataType: double
+		formatString: 0
+		lineageTag: 68c861e2-e6e2-44cd-8857-9d0a50d04195
+		summarizeBy: sum
+		sourceColumn: Chairs
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Net Amount'
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: f5653568-1985-4cf7-967d-bb76f42d65ef
+		summarizeBy: sum
+		sourceColumn: Net Amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: double
+		lineageTag: 59e9a510-1ff0-4993-bc92-484ed62c5e57
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Quote_Date_Key = ```
+			
+			SWITCH(TRUE(), 
+			    'QuotesTEST'[QuoteDate_SK] = 19000101, 
+			        Date(year('QuotesTEST'[ValidToDate]), 
+			            month('QuotesTEST'[ValidToDate]) , 
+			            day('QuotesTEST'[ValidToDate]) -120), 
+			            date(LEFT('QuotesTEST'[QuoteDate_SK],4), MID('QuotesTEST'[QuoteDate_SK], 5, 2), RIGHT('QuotesTEST'[QuoteDate_SK], 2)
+			            )
+			        )
+			```
+		dataType: dateTime
+		lineageTag: 2574c7f3-d5b5-4857-92ef-ee96468eaeda
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column ValidToDate =
+			
+			LOOKUPVALUE(
+			    'Econ configuration'[ValidToDate],
+			    'Econ configuration'[ConfigurationsHeader_SK],
+			    'QuotesTEST'[ConfigurationsHeader_SK])
+		dataType: string
+		formatString: 0
+		lineageTag: 4b4bd31c-4e90-46ed-8f15-a04835744f61
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order date' = ```
+			
+			LOOKUPVALUE(
+			    'Facts_Sales Orders'[Date],
+			    'Facts_Sales Orders'[OrderNumber], 
+			    'QuotesTEST'[OrderNumber], 
+			    'Facts_Sales Orders'[Order type], "Chair",
+			    'Facts_Sales Orders'[Fact type], "SO", 
+			    MAX('Facts_Sales Orders'[Order status])
+			    )
+			```
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 59f50403-9543-47f9-b03b-dacde624f522
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Dealer/Country =
+			
+			RELATED('Customer Table'[US Dealer / Country (Motion)])
+		dataType: string
+		lineageTag: 183206af-007a-4fc4-bf60-89b89d11d2b0
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Chair Model' =
+			
+			LOOKUPVALUE(
+			    'Econ configuration'[Chair model (Config details)],
+			    'Econ configuration'[ConfigurationsHeader_SK],
+			    'QuotesTEST'[ConfigurationsHeader_SK])
+		dataType: string
+		lineageTag: ec85a184-1d9b-4348-8c32-7d04a5d55d0b
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Conversion Days (adj outlier)' = ```
+			
+			VAR days =
+			IF(
+			    ISBLANK('QuotesTEST'[DaysOpen]), 0, 
+			    DATEDIFF('QuotesTEST'[Quote_Date_Key],
+			    'QuotesTEST'[Order date],
+			    DAY)
+			)
+			
+			VAR adj =
+			SWITCH(
+			    TRUE(), 
+			        days < 181 && days > 1, days, 
+			        BLANK()
+			    )
+			
+			RETURN adj
+			
+			```
+		dataType: int64
+		formatString: 0
+		lineageTag: df0fe1cf-7141-4a7d-af48-ab3c4331c45f
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column DaysOpen =
+			
+			IF (
+			    ISBLANK(QuotesTEST[OrderNumberSQH]),
+			    DATEDIFF('QuotesTEST'[Quote_Date_Key], TODAY(), DAY),
+			    DATEDIFF('QuotesTEST'[Quote_Date_Key], 'QuotesTEST'[Order_Date Key], DAY)
+			)
+		dataType: int64
+		formatString: 0
+		lineageTag: 02b019b5-af28-4559-a263-31583ba46887
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quote Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 170da901-85ec-42a0-bbec-07814eb6472a
+		summarizeBy: none
+		sourceColumn: Quote Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column QuoteID
+		dataType: string
+		lineageTag: 54a7436b-2470-4f5b-be31-5dd264be429f
+		summarizeBy: none
+		sourceColumn: QuoteID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipToCustomer_SK
+		dataType: string
+		lineageTag: 4c8d9658-7349-425d-8e51-aaa6b5359720
+		summarizeBy: none
+		sourceColumn: ShipToCustomer_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Open-0/Converted-1 =
+			
+			SWITCH(
+			    TRUE(),
+			    'QuotesTEST'[Quotes Status] = 4, 4,
+			    ISBLANK('QuotesTEST'[OrderNumberSQH]) && 'QuotesTEST'[Quotes Status] <> 4, 0,
+			    1)
+		dataType: int64
+		formatString: 0
+		lineageTag: c1adb734-3741-4aba-b4e2-f69818b20d60
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"QuotesTEST","TableItemName":"Open-0/Converted-1 (groups)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column OrderNumberSQH =
+			
+			VAR cansearch =
+			LOOKUPVALUE(
+			    'Sales quotation'[CANOrderID],
+			    'Sales quotation'[D365QuoteID],
+			    'QuotesTEST'[QuoteID])
+			VAR ussearch =
+			MAXX(
+			    FILTER(
+			        'Sales quotation',
+			        'Sales quotation'[D365QuoteID] = 'QuotesTEST'[QuoteID]
+			            && NOT(ISBLANK('Sales quotation'[USOrderID]))
+			    ),
+			    'Sales quotation'[USOrderID]
+			)
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    'QuotesTEST'[Company_SK] = "A1CC37EFDDBBDA8BAA87443BAE04F2CA6C0BFB6D", cansearch,
+			    NOT(ISBLANK(ussearch)), ussearch
+			)
+		dataType: string
+		lineageTag: 5d61813e-ca2a-4d89-9c4a-ba82cd53d78c
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Open-0/Converted-1 (groups)' =
+			SWITCH(
+				TRUE,
+				ISBLANK('QuotesTEST'[Open-0/Converted-1]),
+				"(Blank)",
+				'QuotesTEST'[Open-0/Converted-1] IN {1},
+				"Converted",
+				'QuotesTEST'[Open-0/Converted-1] IN {4},
+				"D365 - CNCLD",
+				'QuotesTEST'[Open-0/Converted-1] IN {0},
+				"Open",
+				"Other"
+			)
+		dataType: string
+		lineageTag: 67fc8ef3-1394-4105-9879-f1415a8ca68e
+		summarizeBy: none
+		isDataTypeInferred
+		sortByColumn: Open-0/Converted-1
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "QuotesTEST"
+				          }
+				        },
+				        "Property": "Open-0/Converted-1"
+				      }
+				    }
+				  ]
+				}
+
+		changedProperty = SortByColumn
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"q","Entity":"QuotesTEST"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"q"}},"Property":"Open-0/Converted-1"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"Converted","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"q"}},"Property":"Open-0/Converted-1"}}],"Values":[[{"Literal":{"Value":"1L"}}]]}}},{"DisplayName":"D365 - CNCLD","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"q"}},"Property":"Open-0/Converted-1"}}],"Values":[[{"Literal":{"Value":"4L"}}]]}}},{"DisplayName":"Open","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"q"}},"Property":"Open-0/Converted-1"}}],"Values":[[{"Literal":{"Value":"0L"}}]]}}},{"DisplayName":"Other"}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rep =
+			
+			RELATED('Sales Rep Map'[RepName])
+		dataType: string
+		lineageTag: b2675d94-d575-4532-9e0f-586543c9d261
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order_Date Key' =
+			
+			SWITCH(true(),
+			    'QuotesTEST'[OrderNumber] = BLANK(),
+			    EDATE( 'QuotesTEST'[Quote_Date_Key], 6),
+			    'QuotesTEST'[Order date]
+			)
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6e7c65fc-1165-44b7-89cc-0c7f32d5eaf5
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer = ```
+			
+			VAR econ =
+			RELATED('Econ configuration'[Branchcode])
+			
+			VAR ship =
+			RELATED('Ship to customer'[Ship to customer account])
+			
+			VAR code =
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(econ), ship,
+			    econ)
+			RETURN 
+			code
+			```
+		dataType: string
+		lineageTag: e31b5b7a-3422-4337-9edd-1a979767bc7b
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Name' =
+			
+			LOOKUPVALUE(
+			    'Scala to D365 Acct Bridge'[ORGANIZATIONNAME],
+			    'Scala to D365 Acct Bridge'[D365 CUSTOMERACCOUNT],
+			    QuotesTEST[Customer])
+		dataType: string
+		lineageTag: 43a35855-c8d5-4784-9d46-554a8e4eb989
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quotes Status' =
+			
+			MAXX(
+			    FILTER(
+			        'Sales quotation',
+			        'Sales quotation'[D365QuoteID] = 'QuotesTEST'[QuoteID]
+			            && NOT(ISBLANK('Sales quotation'[QuoteStatus]))
+			    ),
+			    'Sales quotation'[QuoteStatus]
+			)
+		dataType: int64
+		formatString: 0
+		lineageTag: c44b330e-a4c4-4c28-9f83-e378d4112084
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuoteType
+		dataType: string
+		lineageTag: 0bf69b31-b9c5-4733-93db-a35afaa82213
+		summarizeBy: none
+		sourceColumn: QuoteType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Exec DaysOpen - Conversion' = ```
+			
+			VAR sansorder =
+			SWITCH(TRUE(), 
+			    QuotesTEST[DaysOpen] >= 0 &&  QuotesTEST[DaysOpen] <= 30 , "1. 0-30",  
+			    QuotesTEST[DaysOpen] > 30 &&  QuotesTEST[DaysOpen] <= 60 , "2. 31-60", 
+			    QuotesTEST[DaysOpen] > 60 &&  QuotesTEST[DaysOpen] <= 90 , "3. 61-90",  
+			    QuotesTEST[DaysOpen] > 90 &&  QuotesTEST[DaysOpen] <= 120 , "4. 91-120", 
+			    QuotesTEST[DaysOpen] > 120 &&  QuotesTEST[DaysOpen] <= 150 , "5. 121-150",  
+			    QuotesTEST[DaysOpen] > 150 &&  QuotesTEST[DaysOpen] <= 180 , "6. 151-180", 
+			    QuotesTEST[DaysOpen] > 180  , "Not Converted") 
+			
+			VAR orderage =
+			SWITCH(
+			    TRUE(), 
+			    DATEDIFF(QuotesTEST[Quote_Date_Key], QuotesTEST[Order_Date Key],DAY) >= 0, DATEDIFF(QuotesTEST[Quote_Date_Key], QuotesTEST[Order_Date Key],DAY))
+			
+			VAR orderbucket =
+			SWITCH(TRUE(), 
+			    orderage >= 0 &&  orderage <= 30 , "1. 0-30",  
+			    orderage > 30 &&  orderage <= 60 , "2. 31-60", 
+			    orderage > 60 &&  orderage <= 90 , "3. 61-90",  
+			    orderage > 90 &&  orderage <= 120 , "4. 91-120", 
+			    orderage > 120 &&  orderage <= 150 , "5. 121-150",  
+			    orderage > 150 &&  orderage <= 180 , "6. 151-180", 
+			    orderage > 180  , "7. >180")
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    QuotesTEST[Open-0/Converted-1] = 0, sansorder,
+			    ISBLANK(orderbucket) || orderbucket = "7. >180" || sansorder = "7. >180", "Not Converted", 
+			    orderbucket)
+			```
+		dataType: string
+		lineageTag: 44aa4414-d548-4bce-b68f-acef9f230167
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quote From Today' = ```
+			
+			VAR dayscount =
+			DATEDIFF('QuotesTEST'[Quote_Date_Key], TODAY(), DAY)
+			
+			RETURN
+			SWITCH(TRUE(), 
+			    dayscount >= 0 &&  dayscount <= 30 , "1. 0-30",  
+			    dayscount > 30 &&  dayscount <= 60 , "2. 31-60", 
+			    dayscount > 60 &&  dayscount <= 90 , "3. 61-90",  
+			    dayscount > 90 &&  dayscount <= 120 , "4. 91-120", 
+			    dayscount > 120 &&  dayscount <= 150 , "5. 121-150",  
+			    dayscount > 150 &&  dayscount <= 180 , "6. 151-180", 
+			    dayscount > 180 &&  dayscount <= 365 , "7. 181-365",
+			    "8. 365+") 
+			// dayscount
+			```
+		dataType: string
+		lineageTag: 6f12f355-427a-4dfb-9425-88e9af54e0f2
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipToCustomer_SK2
+		dataType: string
+		lineageTag: 6ffafaa3-2845-45b7-9f7a-935d2e455cff
+		summarizeBy: none
+		sourceColumn: ShipToCustomer_SK2
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipToCustomer_BK
+		dataType: string
+		lineageTag: 0036b64a-c85b-40cb-872b-6cfa6b76c5a6
+		summarizeBy: none
+		sourceColumn: ShipToCustomer_BK
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to customer RecordSource'
+		dataType: string
+		lineageTag: 7d61c00b-fbda-44d7-bca2-f2a15d3761c5
+		summarizeBy: none
+		sourceColumn: Ship to customer RecordSource
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to customer'
+		dataType: string
+		lineageTag: 4e229b44-c269-42b4-8b01-c52f9739704a
+		summarizeBy: none
+		sourceColumn: Ship to customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to customer name'
+		dataType: string
+		lineageTag: bec8efe1-2576-4296-ab7a-d93fda4aeebd
+		summarizeBy: none
+		sourceColumn: Ship to customer name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to customer company'
+		dataType: string
+		lineageTag: 2fb0db5f-5c80-4b20-b8e2-dd97e21587f0
+		summarizeBy: none
+		sourceColumn: Ship to customer company
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to address city'
+		dataType: string
+		lineageTag: c7333c40-19dd-4dc5-8434-c72d5b95ba88
+		summarizeBy: none
+		sourceColumn: Ship to address city
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to sales segment Id'
+		dataType: string
+		lineageTag: 653508be-3997-43eb-8c44-ba42e109f4ab
+		summarizeBy: none
+		sourceColumn: Ship to sales segment Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to sales sub segment Id'
+		dataType: string
+		lineageTag: 9cf86325-b4ff-4a80-a17e-869fdc5272d8
+		summarizeBy: none
+		sourceColumn: Ship to sales sub segment Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to company chain'
+		dataType: string
+		lineageTag: 61a6131b-8e72-45ca-81e3-4310928b0338
+		summarizeBy: none
+		sourceColumn: Ship to company chain
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to commission sales group Id'
+		dataType: string
+		lineageTag: b3a354d6-fe23-4d58-87d1-f28f2fddf607
+		summarizeBy: none
+		sourceColumn: Ship to commission sales group Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to salesunit Id'
+		dataType: string
+		lineageTag: 58e25b87-9936-4a1a-9bd9-161783661fee
+		summarizeBy: none
+		sourceColumn: Ship to salesunit Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to salesunit area short'
+		dataType: string
+		lineageTag: a83abcb8-0107-4fe6-8b20-ae4884f1fd3a
+		summarizeBy: none
+		sourceColumn: Ship to salesunit area short
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to internal customer'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3507ab03-c72d-45da-a46d-d68fd00e99d6
+		summarizeBy: sum
+		sourceColumn: Ship to internal customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Login(SubReq) =
+			
+			RELATED('Sales Rep Map'[Email])
+		dataType: string
+		lineageTag: c34bea69-1893-4f9d-a245-4ce348728f05
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column ATP(SubReq) =
+			
+			RELATED('Econ configuration'[Atp])
+		dataType: string
+		lineageTag: a00ba8f8-6fb3-42b9-ad96-96b6ea9ba9ac
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Chair Model(SubReq)' =
+			
+			RELATED('Econ configuration'[Chair model])
+		dataType: string
+		lineageTag: 0de25adb-d7a9-4012-a3c9-d554a50631d7
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition QuotesTEST = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "EDW", [Query="WITH Grouped AS (#(lf)SELECT#(lf)    FactType,#(lf)    QuoteID,#(lf)    QuoteType,#(lf)    BillToCustomer_SK,#(lf)    ShipToCustomer_SK,#(lf)    Company_SK,#(lf)    MAX(QuoteDate_SK) AS QuoteDate_SK,#(lf)    OrderStatus,#(lf)    OrderNumber,#(lf)    ConfigurationsHeader_SK,#(lf)    SalesQuotationHeader_SK,#(lf)    SUM(NoChairs) AS Chairs,#(lf)    SUM([NetPrice]) AS [Net Amount],#(lf)    SUM(ISNULL(Quantity, 1)) AS Quantity#(lf)FROM sales_Rpt.fact_Sales#(lf)WHERE FactType = 'EQ'#(lf)AND QuoteType IN ('chair', 'PowerWheelchairQuote', 'PowerWheelChairQuote', 'SmartDriveQuote', 'SMRT')#(lf)GROUP BY#(lf)    FactType,#(lf)    QuoteID,#(lf)    QuoteType,#(lf)    ShipToCustomer_SK,#(lf)    BillToCustomer_SK,#(lf)    Company_SK,#(lf)    QuoteDate_SK,#(lf)    OrderStatus,#(lf)    OrderNumber,#(lf)    ConfigurationsHeader_SK,#(lf)    SalesQuotationHeader_SK#(lf)),#(lf)#(lf)Ranked AS (#(lf)    SELECT#(lf)        FactType,#(lf)        QuoteID,#(lf)        QuoteType,#(lf)        ShipToCustomer_SK,#(lf)        BillToCustomer_SK,#(lf)        Company_SK,#(lf)        QuoteDate_SK,#(lf)        OrderStatus,#(lf)        OrderNumber,#(lf)        ConfigurationsHeader_SK,#(lf)        SalesQuotationHeader_SK,#(lf)        Chairs,#(lf)        [Net Amount],#(lf)        Quantity,#(lf)        ROW_NUMBER() OVER (PARTITION BY ConfigurationsHeader_SK ORDER BY OrderStatus DESC) AS RowNum#(lf)    FROM Grouped#(lf)),#(lf)#(lf)QuotesTest AS (#(lf)SELECT#(lf)    FactType,#(lf)    QuoteID,#(lf)    QuoteType,#(lf)    ShipToCustomer_SK,#(lf)    BillToCustomer_SK,#(lf)    Company_SK,#(lf)    QuoteDate_SK,#(lf)    OrderStatus,#(lf)    OrderNumber,#(lf)    ConfigurationsHeader_SK,#(lf)    SalesQuotationHeader_SK,#(lf)    ISNULL(Chairs,1) AS Chairs,#(lf)    [Net Amount],#(lf)    Quantity#(lf)FROM Ranked#(lf)WHERE RowNum = 1#(lf)),#(lf)#(lf)ShipTo AS (#(lf)SELECT [ShipToCustomer_SK]#(lf)      ,[ShipToCustomer_BK]#(lf)      ,[Ship to customer RecordSource]#(lf)      ,[Ship to customer]#(lf)      ,[Ship to customer name]#(lf)      ,[Ship to customer company]#(lf)      ,[Ship to address city]#(lf)      ,[Ship to sales segment Id]#(lf)      ,[Ship to sales sub segment Id]#(lf)      ,[Ship to company chain]#(lf)      ,[Ship to commission sales group Id]#(lf)      ,[Ship to salesunit Id]#(lf)      ,[Ship to salesunit area short]#(lf)      ,[Ship to internal customer]#(lf)  FROM [sales_Rpt].[dim_ShipToCustomer]#(lf))#(lf)#(lf)SELECT *#(lf)FROM QuotesTest QT#(lf)LEFT JOIN ShipTo ST#(lf)ON QT.ShipToCustomer_SK = ST.ShipToCustomer_SK"]),
+				    #"Inserted Date" = Table.AddColumn(Source, "Quote Date", each Date.From(Text.From([QuoteDate_SK], "en-US")), type date)
+				in
+				    #"Inserted Date"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

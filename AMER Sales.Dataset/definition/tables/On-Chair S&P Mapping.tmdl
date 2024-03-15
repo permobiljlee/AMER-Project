@@ -1,0 +1,64 @@
+table 'On-Chair S&P Mapping'
+	lineageTag: c5ee1001-1d87-472f-929e-733159ee0b38
+
+	column 'ZIP5 Code'
+		dataType: string
+		lineageTag: fada1238-daa7-4ed7-a8b7-1a942ea8654e
+		summarizeBy: none
+		sourceColumn: ZIP5 Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Place name'
+		dataType: string
+		lineageTag: 6e782057-1dd9-495b-aec0-a659ec71a6df
+		summarizeBy: none
+		sourceColumn: Place name
+
+		annotation SummarizationSetBy = Automatic
+
+	column States
+		dataType: string
+		lineageTag: 4490ce1d-6fd8-41d7-bb9e-8ca57d26520c
+		summarizeBy: none
+		sourceColumn: States
+
+		annotation SummarizationSetBy = Automatic
+
+	column Territory
+		dataType: string
+		lineageTag: 90e868da-d9d8-46da-b48c-7c75f7c9bd15
+		summarizeBy: none
+		sourceColumn: Territory
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'S&P Rep'
+		dataType: string
+		lineageTag: 8269a4a7-203f-4320-b99b-7fc286f46d22
+		summarizeBy: none
+		sourceColumn: S&P Rep
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Territory Rep Code'
+		dataType: string
+		lineageTag: cb737c1c-91fb-47ee-9375-0356dfaadaf3
+		summarizeBy: none
+		sourceColumn: Territory Rep Code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'On-Chair S&P Mapping-8b751ad9-7ee2-4aaf-b84b-46eee84ad67b' = m
+		mode: import
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Source{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+				    #"ffc29d12-4878-47f4-82ca-0ccedce46d93" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="ffc29d12-4878-47f4-82ca-0ccedce46d93"]}[Data],
+				    Query1 = #"ffc29d12-4878-47f4-82ca-0ccedce46d93"{[entity="Query"]}[Data]
+				in
+				    Query1
+
+	annotation PBI_ResultType = Table
+

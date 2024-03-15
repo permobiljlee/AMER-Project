@@ -1,0 +1,68 @@
+table 'US Rehab Booking Targets'
+	lineageTag: 582bb821-71f9-4c08-9ee8-5a81f6a017f3
+
+	column Area
+		dataType: string
+		lineageTag: dc217dbe-aad8-494e-83be-d4c9d3696a5d
+		summarizeBy: none
+		sourceColumn: Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account No'
+		dataType: string
+		lineageTag: ee9534c3-8ce9-4033-9ff6-f7c7e0b90b3e
+		summarizeBy: none
+		sourceColumn: Account No
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Scala Account No'
+		dataType: string
+		lineageTag: 74fa3b97-198c-4737-a5ab-d7a3761e7284
+		summarizeBy: none
+		sourceColumn: Scala Account No
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to customer name'
+		dataType: string
+		lineageTag: 6bc3bb97-394e-4b10-8bc0-f38f2c1cf356
+		summarizeBy: none
+		sourceColumn: Ship to customer name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Q4 2022 Target'
+		dataType: double
+		lineageTag: 173ccaaf-2f42-45bc-a023-f1e97c54013c
+		summarizeBy: sum
+		sourceColumn: Q4 2022 Target
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '2023 Target'
+		dataType: double
+		lineageTag: 6dc1dace-d323-4bfa-88d6-53f8b8538c25
+		summarizeBy: sum
+		sourceColumn: 2023 Target
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'US Rehab Booking Targets-ffe5bbf6-b348-49e2-821d-57107feaf931' = m
+		mode: import
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    #"fc733773-34e0-482d-bb06-bfdebc5c6289" = Source{[workspaceId="fc733773-34e0-482d-bb06-bfdebc5c6289"]}[Data],
+				    #"a1db1ebd-3b6b-434b-bcd1-a6d8cbe4c029" = #"fc733773-34e0-482d-bb06-bfdebc5c6289"{[dataflowId="a1db1ebd-3b6b-434b-bcd1-a6d8cbe4c029"]}[Data],
+				    Query1 = #"a1db1ebd-3b6b-434b-bcd1-a6d8cbe4c029"{[entity="Query"]}[Data]
+				in
+				    Query1
+
+	annotation PBI_ResultType = Table
+

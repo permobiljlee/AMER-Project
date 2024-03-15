@@ -1,0 +1,52 @@
+table 'DF_Sales Rep Lookup (2)'
+	lineageTag: 84cd55e4-e6b3-40ed-9670-007aebbd429c
+
+	column WKSalesRep
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f43ef67-edca-4ee3-a2c5-f7e0a4e7bce1
+		summarizeBy: sum
+		sourceColumn: WKSalesRep
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column BKSalesRep
+		dataType: string
+		lineageTag: 0e074a1a-4f3a-4f92-98dd-8c42cf44056d
+		summarizeBy: none
+		sourceColumn: BKSalesRep
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesRepCode
+		dataType: string
+		lineageTag: e8cc87d5-8571-473a-a5da-bcb3c4bd7733
+		summarizeBy: none
+		sourceColumn: SalesRepCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PERM Code'
+		dataType: string
+		lineageTag: b66b3299-a3bd-4a52-b5c6-415cd51dfbb5
+		summarizeBy: none
+		sourceColumn: PERM Code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DF_Sales Rep Lookup (2)-9178c8f6-bd81-43dc-b621-9de896953135' = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Workspaces{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+				    #"2ebf11a4-fa51-4271-8c6a-b8e4653bbba7" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="2ebf11a4-fa51-4271-8c6a-b8e4653bbba7"]}[Data],
+				    #"Sales Rep Lookup_" = #"2ebf11a4-fa51-4271-8c6a-b8e4653bbba7"{[entity="Sales Rep Lookup",version=""]}[Data]
+				in
+				    #"Sales Rep Lookup_"
+
+	annotation PBI_ResultType = Table
+

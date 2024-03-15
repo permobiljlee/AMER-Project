@@ -1,0 +1,80 @@
+table 8DEALER_LIST_NET
+	lineageTag: 875ad3eb-ce5e-4b7f-b42b-3a54be1492e5
+
+	column AccountNo
+		dataType: string
+		lineageTag: f03ad6ec-e474-4970-befd-8b2efe670daf
+		summarizeBy: none
+		sourceColumn: AccountNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column DealerName
+		dataType: string
+		lineageTag: 1298e4b4-133b-42db-b0bb-5648b2c06dd4
+		summarizeBy: none
+		sourceColumn: DealerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column RepCode
+		dataType: string
+		lineageTag: c73d52fb-9e05-4dd8-b4c1-fcae9f8264bf
+		summarizeBy: none
+		sourceColumn: RepCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column LogonName
+		dataType: string
+		lineageTag: 7c082abf-2ecd-4bf4-b5d4-986e2e32631e
+		summarizeBy: none
+		sourceColumn: LogonName
+
+		annotation SummarizationSetBy = Automatic
+
+	column TradeCode
+		dataType: string
+		lineageTag: 856a40cd-38bb-408c-add9-6c8a5bf27b03
+		summarizeBy: none
+		sourceColumn: TradeCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dealer_Search
+		dataType: string
+		lineageTag: 574f23e9-1302-44c1-befa-cb77d2f34f25
+		summarizeBy: none
+		sourceColumn: Dealer_Search
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZipCode
+		dataType: string
+		lineageTag: 29b24f84-4602-4a1c-9168-f38914062df6
+		summarizeBy: none
+		sourceColumn: ZipCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inv ZipCode'
+		dataType: string
+		lineageTag: dc70137f-ef89-4dbf-bdbb-d7bfeb9887ad
+		summarizeBy: none
+		sourceColumn: Inv ZipCode
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 8DEALER_LIST_NET-7792cf88-762c-4ae1-9ab3-4d7d011e5516 = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("usnasdb04"),
+				    scalaDB = Source{[Name="scalaDB_PROD_COPY"]}[Data],
+				    dbo_DEALER_LIST_NET = scalaDB{[Schema="dbo",Item="DEALER_LIST_NET"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(dbo_DEALER_LIST_NET,{"Del Address", "Del Address 2", "Del Address 3", "City", "State", "Phone", "Fax", "DealerCategory", "RepName", "Region", "Curr_year", "Prev_year", "DiscCode", "Inv Address", "MemberID", "Inv Address2", "Inv Address3", "Inv City", "Inv State", "Inv Phone", "Inv Fax", "VAT Number", "Bank Account No", "ShipmentBlocked", "PayCodeNum", "ARBal", "Sales_PrevYear", "Sales_YTD", "CreditLimit", "Dealer_Status", "Payment Terms", "Dealer_Cert", "Current Discount", "Dealer_Rating", "Del_address", "Website", "Dealer_Remarks", "Acc_notes", "Annual_Sales", "Annual_Sales_Year", "Number_Of_Chairs", "Average_Price", "Fund_Medicaid", "Fund_Medicare", "Fund_Privat", "Fund_Insurance", "Type_Of_Entity", "Type_Of_Business", "SeatAndPosRep"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

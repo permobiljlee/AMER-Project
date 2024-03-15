@@ -1,0 +1,61 @@
+table 'Country Region List'
+	lineageTag: 225c63c2-8d88-48d5-910b-1f27a1eb6328
+
+	column CountryRegion
+		dataType: string
+		lineageTag: 45e3b097-ba58-42c8-993c-403b33353999
+		summarizeBy: none
+		sourceColumn: CountryRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Country Code'
+		dataType: string
+		lineageTag: a96312df-c6c2-4cda-99a5-b821cf9ec54e
+		summarizeBy: none
+		sourceColumn: Country Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Country Name'
+		dataType: string
+		lineageTag: d300d9f3-e3b3-418a-b841-5f35b11cf286
+		summarizeBy: none
+		sourceColumn: Country Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: aba25e74-7634-463b-986e-1847c5f25841
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sub region'
+		dataType: string
+		lineageTag: 959b706b-d414-48d2-a6b2-573d40a8356c
+		summarizeBy: none
+		sourceColumn: Sub region
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Country Region List-b750cb83-35d8-47c7-8f91-eae90f1468d7' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://permobil.sharepoint.com/sites/BIBRAmericas", [ApiVersion = 15]),
+				    #"Clean up of Country region codes in DimCustomer table xls xlsx_https://permobil sharepoint com/sites/BIBRAmericas/Shared Documents/General/Sales Reports 2020/" = Source{[Name="Clean up of Country region codes in DimCustomer table.xls.xlsx",#"Folder Path"="https://permobil.sharepoint.com/sites/BIBRAmericas/Shared Documents/General/Sales Reports 2020/"]}[Content],
+				    #"Imported Excel" = Excel.Workbook(#"Clean up of Country region codes in DimCustomer table xls xlsx_https://permobil sharepoint com/sites/BIBRAmericas/Shared Documents/General/Sales Reports 2020/"),
+				    Country_Region_Code_Table = #"Imported Excel"{[Item="Country_Region_Code",Kind="Table"]}[Data],
+				    #"Uppercased Text" = Table.TransformColumns(Country_Region_Code_Table,{{"CountryRegion", Text.Upper, type text}, {"Country Code", Text.Upper, type text}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Uppercased Text", {"Country Code", "CountryRegion"}),
+				    #"Added Custom" = Table.AddColumn(#"Removed Duplicates", "Sub region 2", each if [Sub region]=null then [Region] else [Sub region]),
+				    #"Removed Columns" = Table.RemoveColumns(#"Added Custom",{"Sub region"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Sub region 2", "Sub region"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

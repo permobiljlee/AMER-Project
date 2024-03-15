@@ -1,0 +1,39 @@
+table 'Days Grouping Table'
+	lineageTag: 4b5861e2-b1fd-4af3-a6af-a7652e8fa761
+
+	column 'Days Grouping'
+		dataType: string
+		lineageTag: 7e3772b6-0f67-44a1-8761-3936f9d4cbb3
+		summarizeBy: none
+		sourceColumn: Days Grouping
+
+		annotation SummarizationSetBy = Automatic
+
+	column Relationship
+		dataType: string
+		lineageTag: 6923a143-1da4-4f5b-99a5-b3d56c0e15a2
+		summarizeBy: none
+		sourceColumn: Relationship
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sort Order'
+		dataType: int64
+		formatString: 0
+		lineageTag: 713ebc12-eac5-4d42-81c3-1e1db9368917
+		summarizeBy: sum
+		sourceColumn: Sort Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Days Grouping Table' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("Xco9DsMgDIbhq1ieg4WhkGTO3gsQtrI2UpX0/MVGzd/2PX6dElrjLXbIBP+FuUvo2USRI9inhshmFHmCfWoY2bATPgiOrYlddRAHghNaDNWDONZ4QOO8WetLu/QEF+rDc1lhWt7f8lnLq17vHjDnHw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Days Grouping" = _t, Relationship = _t, #"Sort Order" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Days Grouping", type text}, {"Relationship", type text}, {"Sort Order", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

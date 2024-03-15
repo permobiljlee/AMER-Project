@@ -1,0 +1,355 @@
+table 'Sales Rep Map'
+	lineageTag: 77537e4e-c0c1-450a-8666-f255b9bffd0c
+
+	measure 'Current User' = ```
+			
+			IF(ISBLANK(
+			    LOOKUPVALUE(
+			        'Sales Rep Map'[RepName], 
+			        'Sales Rep Map'[Email], 
+			        'Facts'[USERNAME])
+			        ), 
+			        UPPER(
+			            'Facts'[USERPRINCIPALNAME]), 
+			                LOOKUPVALUE(
+			                    'Sales Rep Map'[Email], 
+			                    'Sales Rep Map'[Email], 
+			                    'Facts'[USERNAME])
+			                )
+			```
+		lineageTag: fa689b80-87c5-440a-9df8-c55a1896daef
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Rep
+		dataType: string
+		lineageTag: a5dbc708-7e97-485d-8f2d-9f0f76a0e33f
+		summarizeBy: none
+		sourceColumn: Rep
+
+		annotation SummarizationSetBy = Automatic
+
+	column RepName
+		dataType: string
+		lineageTag: 3ca7c58a-bc22-4445-b99e-2b53cfa5b8da
+		summarizeBy: none
+		sourceColumn: RepName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'D365 Commission Group ID(sometimes called SalesUnit)'
+		dataType: string
+		lineageTag: 5f4fda2f-ecb4-440e-9d45-e14cd7858e19
+		summarizeBy: none
+		sourceColumn: D365 Commission Group ID(sometimes called SalesUnit)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: c78c6d43-6f37-4a31-b3a1-d890a57ab238
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Sales Rep Map","TableItemName":"Region_","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column UserId
+		dataType: int64
+		formatString: 0
+		lineageTag: ae54f78d-ef2a-49ee-b1fb-07a2d4cfb506
+		summarizeBy: count
+		sourceColumn: UserId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Logon
+		dataType: string
+		lineageTag: 6131ad80-5335-45df-87db-33c89c6db3b4
+		summarizeBy: none
+		sourceColumn: Logon
+
+		annotation SummarizationSetBy = Automatic
+
+	column FirstName
+		dataType: string
+		lineageTag: 37ad70aa-28f3-4303-87fe-2e0b102dcc69
+		summarizeBy: none
+		sourceColumn: FirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastName
+		dataType: string
+		lineageTag: f35a926e-f031-4d89-8db0-1007b0fbafe0
+		summarizeBy: none
+		sourceColumn: LastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: 9e73c71d-0c7e-4ff3-89b7-a94b81eed612
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phone1
+		dataType: string
+		lineageTag: e311392d-4e67-4c80-9812-c1dfd9c22e27
+		summarizeBy: none
+		sourceColumn: Phone1
+
+		annotation SummarizationSetBy = Automatic
+
+	column MgrId
+		dataType: int64
+		formatString: 0
+		lineageTag: a5bc04eb-c9b9-4104-b5ab-a7427f94f30a
+		summarizeBy: count
+		sourceColumn: MgrId
+
+		annotation SummarizationSetBy = Automatic
+
+	column MgrLogon
+		dataType: string
+		lineageTag: f8f6b215-3df2-4d9f-8b15-b9e84057a9df
+		summarizeBy: none
+		sourceColumn: MgrLogon
+
+		annotation SummarizationSetBy = Automatic
+
+	column MgrFirstName
+		dataType: string
+		lineageTag: fdc027b7-a89a-4676-92bd-12f000f5099e
+		summarizeBy: none
+		sourceColumn: MgrFirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MgrLastName
+		dataType: string
+		lineageTag: 5d78ddcf-ff28-427a-903d-f2c79f06af04
+		summarizeBy: none
+		sourceColumn: MgrLastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MgrEmail
+		dataType: string
+		lineageTag: 2d877a28-2cc7-4ca4-aff3-23489d3ba706
+		summarizeBy: none
+		sourceColumn: MgrEmail
+
+		annotation SummarizationSetBy = Automatic
+
+	column Terr
+		dataType: string
+		lineageTag: cccdb32f-c82d-495e-b55b-7c9877c42935
+		summarizeBy: none
+		sourceColumn: Terr
+
+		annotation SummarizationSetBy = Automatic
+
+	column TerrDescr
+		dataType: string
+		lineageTag: 273535a2-6eb2-4457-9084-67399c4ab373
+		summarizeBy: none
+		sourceColumn: TerrDescr
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCT
+		dataType: string
+		lineageTag: 88f62ad2-2ad4-46d9-b3d8-fa6ecbfe7c8b
+		summarizeBy: none
+		sourceColumn: ACCT
+
+		annotation SummarizationSetBy = Automatic
+
+	column EditedRLS
+		dataType: string
+		lineageTag: 90b0e3b8-66a5-4fcc-b46f-13c8b7d7cfcc
+		summarizeBy: none
+		sourceColumn: EditedRLS
+
+		annotation SummarizationSetBy = Automatic
+
+	column ClinicalEmail
+		dataType: string
+		lineageTag: c7b33575-7398-4bbd-bb43-f2d7073c7fb8
+		summarizeBy: none
+		sourceColumn: ClinicalEmail
+
+		annotation SummarizationSetBy = Automatic
+
+	column Area
+		dataType: string
+		lineageTag: 1a4a48f1-7d79-4185-8c13-00a6ce2ad1a7
+		summarizeBy: none
+		sourceColumn: Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column EditedRLS2
+		dataType: string
+		lineageTag: 0a0a384e-b071-4e44-bf82-8ca2580e0aea
+		summarizeBy: none
+		sourceColumn: EditedRLS2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Alt email'
+		dataType: string
+		lineageTag: 69b7558b-a2af-4baa-9290-020551425a98
+		summarizeBy: none
+		sourceColumn: Alt email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 5b60d030-786b-41c2-b34b-c5f828aa7c17
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region_ =
+			SWITCH(
+				TRUE,
+				ISBLANK('Sales Rep Map'[Region]),
+				"(Blank)",
+				'Sales Rep Map'[Region] IN {"10"},
+				"Canada",
+				'Sales Rep Map'[Region] IN {"C3",
+					"E1",
+					"E2",
+					"E3",
+					"E4"},
+				"East",
+				'Sales Rep Map'[Region] IN {"C1",
+					"C2",
+					"W1",
+					"W2",
+					"W3",
+					"W4"},
+				"West",
+				'Sales Rep Map'[Region]
+			)
+		dataType: string
+		lineageTag: 4bb84f0a-b152-4ca6-819f-5cfc21f54fed
+		summarizeBy: none
+		isDataTypeInferred
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Sales Rep Map"
+				          }
+				        },
+				        "Property": "Region"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"s","Entity":"Sales Rep Map"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"Region"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"Canada","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"Region"}}],"Values":[[{"Literal":{"Value":"'10'"}}]]}}},{"DisplayName":"East","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"Region"}}],"Values":[[{"Literal":{"Value":"'C3'"}}],[{"Literal":{"Value":"'E1'"}}],[{"Literal":{"Value":"'E2'"}}],[{"Literal":{"Value":"'E3'"}}],[{"Literal":{"Value":"'E4'"}}]]}}},{"DisplayName":"West","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"Region"}}],"Values":[[{"Literal":{"Value":"'C1'"}}],[{"Literal":{"Value":"'C2'"}}],[{"Literal":{"Value":"'W1'"}}],[{"Literal":{"Value":"'W2'"}}],[{"Literal":{"Value":"'W3'"}}],[{"Literal":{"Value":"'W4'"}}]]}}}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RVP Email'
+		dataType: string
+		lineageTag: 551e7840-230b-496c-8521-88069147a94a
+		summarizeBy: none
+		sourceColumn: RVP Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RVP Logon'
+		dataType: string
+		lineageTag: 56abb1ba-72b3-4704-82ff-31e1da87fd5e
+		summarizeBy: none
+		sourceColumn: RVP Logon
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Joined Terr'
+		dataType: string
+		lineageTag: 478c783e-4305-456f-a99f-56a82d7c61ae
+		summarizeBy: none
+		sourceColumn: Joined Terr
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Active (1) / Inactive (0)'
+		dataType: string
+		lineageTag: a3558ac3-b257-4cea-911f-b88b872d12e7
+		summarizeBy: none
+		sourceColumn: Active (1) / Inactive (0)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'S&P On-Chair Rep'
+		dataType: string
+		lineageTag: 980a98a0-a4f2-4a57-90ab-bb7392a83008
+		summarizeBy: none
+		sourceColumn: S&P On-Chair Rep
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Canada Rep Mapping'
+		dataType: string
+		lineageTag: 332dd79a-7883-46f1-8559-21a58bcffd5e
+		summarizeBy: none
+		sourceColumn: Canada Rep Mapping
+
+		annotation SummarizationSetBy = Automatic
+
+	column FinSalesRep
+		dataType: string
+		lineageTag: 04cffffd-89ee-4252-8b6b-18472477aea9
+		summarizeBy: none
+		sourceColumn: FinSalesRep
+
+		annotation SummarizationSetBy = Automatic
+
+	column FinSalesRep_SK
+		dataType: string
+		lineageTag: b9d08393-54bf-4c51-a0e5-76c309e24eca
+		summarizeBy: none
+		sourceColumn: FinSalesRep_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vendor_D365
+		dataType: string
+		lineageTag: a2345a9f-4a9c-4529-89b9-d556df8426cd
+		summarizeBy: none
+		sourceColumn: Vendor_D365
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Sales Rep Map-dbcbb8da-9566-42e5-910d-808135482f9c' = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows([]),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Workspaces{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+				    #"5c4bf4d3-0a37-4dfe-9e24-40a79d245a34" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="5c4bf4d3-0a37-4dfe-9e24-40a79d245a34"]}[Data],
+				    Query_ = #"5c4bf4d3-0a37-4dfe-9e24-40a79d245a34"{[entity="Query",version=""]}[Data]
+				in
+				    Query_
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

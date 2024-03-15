@@ -1,0 +1,25 @@
+table InDateList
+	lineageTag: 850cac7b-d1ed-4b72-9d5a-3f82f612e3b0
+
+	column InDateList
+		dataType: string
+		lineageTag: 9cb09bf9-1b04-4e4f-a9be-c2ceed1c9d3c
+		summarizeBy: none
+		sourceColumn: InDateList
+
+		annotation SummarizationSetBy = Automatic
+
+	partition InDateList-9fe04740-7a6d-4ab6-848f-d77b2d5347b2 = m
+		mode: import
+		source =
+				let
+				    Source = DateTime.ToText(Date.AddDays(DateTime.LocalNow(),-1),[Format="yyyy-MM-dd'T'HH:mm:ss'Z'", Culture="en-US"]),
+				    #"Converted to Table" = #table(1, {{Source}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Converted to Table",{{"Column1", "YstDate"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"YstDate", type text}}),
+				    YstDate = #"Changed Type"[YstDate]
+				in
+				    YstDate
+
+	annotation PBI_ResultType = List
+

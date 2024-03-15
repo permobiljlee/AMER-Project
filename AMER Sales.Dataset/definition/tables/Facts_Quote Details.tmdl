@@ -1,0 +1,444 @@
+table 'Facts_Quote Details'
+	lineageTag: 08f8d0ae-1bab-4952-9f94-a09afe2354d6
+
+	measure 'Quote Detail Net Price' = CALCULATE(sum('Facts_Quote Details'[Net price]))
+		lineageTag: 1b223801-afc2-4d0c-ba0b-8342bf10c518
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Quoted FQD' =
+			
+			DISTINCTCOUNT('Facts_Quote Details'[ConfigurationsHeader_SK])
+		lineageTag: 58be7872-cb9d-4c3a-9bde-2659b8671650
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Quote Detail Net Price - On-Chair (UR)' =
+			
+			CALCULATE(
+			    SUM('Facts_Quote Details'[Net price]),
+			    USERELATIONSHIP('Facts'[OrderNumber], 'Facts_Quote Details'[OrderNumber]))
+		lineageTag: 878fb96f-cf68-495f-9fef-756b3d35659f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Fact type'
+		dataType: string
+		lineageTag: 67bb1dc5-4b94-4199-9279-d36fc8b40e6a
+		summarizeBy: none
+		sourceColumn: Fact type
+
+		annotation SummarizationSetBy = Automatic
+
+	column RecordSource
+		dataType: string
+		lineageTag: a892378e-2b74-4106-ba80-a751bdb9f101
+		summarizeBy: none
+		sourceColumn: RecordSource
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_SK
+		dataType: string
+		lineageTag: 4649fad1-d4d0-464d-81b2-348be7f1a887
+		summarizeBy: none
+		sourceColumn: Customer_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipToCustomer_SK
+		dataType: string
+		lineageTag: a14dc7c0-f163-4808-a301-89e5015faa17
+		summarizeBy: none
+		sourceColumn: ShipToCustomer_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column FinProduct_SK
+		dataType: string
+		lineageTag: e081b5e6-cf04-4872-934d-54676485e827
+		summarizeBy: none
+		sourceColumn: FinProduct_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Company_SK
+		dataType: string
+		lineageTag: 86a3afd7-9f26-45a8-b96d-2de7db72d558
+		summarizeBy: none
+		sourceColumn: Company_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReleasedProduct_SK
+		dataType: string
+		lineageTag: 21119dae-891a-4608-90e1-944c7b31b857
+		summarizeBy: none
+		sourceColumn: ReleasedProduct_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date_SK
+		dataType: int64
+		formatString: 0
+		lineageTag: 6a72c69a-bf43-47b6-b03d-8c948aebf78d
+		summarizeBy: sum
+		sourceColumn: Date_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuoteDate_SK
+		dataType: int64
+		formatString: 0
+		lineageTag: 4aa48fb3-c1cb-4807-affa-b381447f26b1
+		summarizeBy: sum
+		sourceColumn: QuoteDate_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quote type'
+		dataType: string
+		lineageTag: b4a31177-b22c-493e-8c52-be606b19bfc0
+		summarizeBy: none
+		sourceColumn: Quote type
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuoteID
+		dataType: string
+		lineageTag: 548cd00b-949c-4550-a083-270ae6a7df54
+		summarizeBy: none
+		sourceColumn: QuoteID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order status'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1841fbef-7212-47bd-934a-f2631c36b1d2
+		summarizeBy: sum
+		sourceColumn: Order status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order type'
+		dataType: string
+		lineageTag: b0e266e4-ac63-43dc-8272-ed753ffd212d
+		summarizeBy: none
+		sourceColumn: Order type
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNumber
+		dataType: string
+		lineageTag: 7c5593c8-3bc4-41ff-8a76-aa2b8082cde0
+		summarizeBy: none
+		sourceColumn: OrderNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column NoChairs
+		dataType: double
+		lineageTag: 53f78904-0dcd-48cb-8ab6-efabcfeaf12b
+		summarizeBy: sum
+		sourceColumn: NoChairs
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ItemNumber
+		dataType: string
+		lineageTag: 3ba6ffaa-f7b7-42a6-8044-26dc82e9e1e3
+		summarizeBy: none
+		sourceColumn: ItemNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column SerialNumber
+		dataType: string
+		lineageTag: aa803d8c-b3b1-4549-bb3b-2a1188de97e9
+		summarizeBy: none
+		sourceColumn: SerialNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Net price'
+		dataType: double
+		lineageTag: 79998fff-d9b4-4265-aee7-0e66b75fbe93
+		summarizeBy: sum
+		sourceColumn: Net price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ConfigurationsHeader_SK
+		dataType: string
+		lineageTag: d865b7be-a2a2-4a29-874a-38bb05b368db
+		summarizeBy: none
+		sourceColumn: ConfigurationsHeader_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesQuotationHeader_SK
+		dataType: string
+		lineageTag: 229668a5-f609-4e88-9be3-b94d7af2f091
+		summarizeBy: none
+		sourceColumn: SalesQuotationHeader_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesOrderHeader_SK
+		dataType: string
+		lineageTag: 5133a52e-fddb-4f18-9e13-6bde82b617a1
+		summarizeBy: none
+		sourceColumn: SalesOrderHeader_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReturnOrderHeader_SK
+		dataType: string
+		lineageTag: 84dee9f2-09f9-4436-add4-f9cff3364925
+		summarizeBy: none
+		sourceColumn: ReturnOrderHeader_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesCommissionGroup_SK
+		dataType: string
+		lineageTag: ccd18ff6-5e26-4f82-80d0-484f6b9c01c2
+		summarizeBy: none
+		sourceColumn: SalesCommissionGroup_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 20400813-5e39-4091-b4ab-7eb504334678
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Quote Details Net Price' = calculate([Net Price (LC)])
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 6fd05d47-24f4-44be-a2d0-f2d927ea18f4
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCode = ```
+			
+			
+			VAR finprod =
+			LOOKUPVALUE(
+			    'Financial product'[Financial product code],
+			    'Financial product'[FinProduct_SK],
+			    'Facts_Quote Details'[FinProduct_SK]
+			    )
+			
+			VAR relprod =
+			LOOKUPVALUE(
+			    'Released product'[Financial product code],
+			    'Released product'[ReleasedProduct_SK],
+			    'Facts_Quote Details'[ReleasedProduct_SK]
+			    )
+			
+			VAR which =
+			IF(ISBLANK(finprod) || 'Facts_Quote Details'[FinProduct_SK] = "FE4C2E1D71B7541E1DF74D32C2CB4A68369A5A48",
+			    relprod,
+			    finprod
+			    )
+			
+			RETURN 
+			// IF('Facts_Quote Details'[ItemNumber] <> "Freight",
+			//     which,
+			//     "Freight"
+			//     )
+			relprod
+			```
+		dataType: string
+		lineageTag: 996cacdf-92a9-4c03-963a-ff4ffd4807be
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Chair Base' = ```
+			
+			SWITCH(
+			    TRUE(), 
+			        'Facts_Quote Details'[ItemNumber] = "108400-99-0", "F5 VS GRP 4", 
+			        'Facts_Quote Details'[ItemNumber] = "11555", "F5 VS GRP 3",  
+			        'Facts_Quote Details'[ItemNumber] = "11351", "M3 NPO",  
+			        'Facts_Quote Details'[ItemNumber] = "11352", "M3 SPO",  
+			        'Facts_Quote Details'[ItemNumber] = "109052-99-0", "M3 MPO", 
+			        'Facts_Quote Details'[ItemNumber] = "11613", "M3 SPO HD",  
+			        'Facts_Quote Details'[ItemNumber] = "11614", "M3 MPO HD",  
+			        'Facts_Quote Details'[ItemNumber] = "11332", "F3 SPO", 
+			        'Facts_Quote Details'[ItemNumber] = "11331", "F3 NPO",  
+			        'Facts_Quote Details'[ItemNumber] = "108398-99-0", "F3 MPO", 
+			        'Facts_Quote Details'[ItemNumber] = "11611", "F3 SPO HD",  
+			        'Facts_Quote Details'[ItemNumber] = "11612", "F3 MPO HD", 
+			        'Facts_Quote Details'[ItemNumber] = "10908", "M300 HD SPO", 
+			        'Facts_Quote Details'[ItemNumber] = "105799-99-0", "M300 HD MPO", BLANK())
+			```
+		dataType: string
+		lineageTag: d9492b61-da6c-469b-8416-007bbf8c37da
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Chair base (header)' = ```
+			
+			CALCULATE(MAX(
+			    'Facts_Quote Details'[Chair Base]), 
+			    ALLEXCEPT('Facts_Quote Details',
+			        'Facts_Quote Details'[QuoteID]))
+			```
+		dataType: string
+		lineageTag: 8a5cc87a-f949-4e08-ba6d-d6dc961b2915
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNumberSQH =
+			
+			VAR cansearch =
+			LOOKUPVALUE(
+			    'Sales quotation'[CANOrderID],
+			    'Sales quotation'[D365QuoteID],
+			    'Facts_Quote Details'[QuoteID])
+			VAR ussearch =
+			MAXX(
+			    FILTER(
+			        'Sales quotation',
+			        'Sales quotation'[D365QuoteID] = 'Facts_Quote Details'[QuoteID]
+			            && NOT(ISBLANK('Sales quotation'[USOrderID]))
+			    ),
+			    'Sales quotation'[USOrderID]
+			)
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    'Facts_Quote Details'[Company_SK] = "A1CC37EFDDBBDA8BAA87443BAE04F2CA6C0BFB6D", cansearch,
+			    NOT(ISBLANK(ussearch)), ussearch
+			)
+		dataType: string
+		lineageTag: 7283df53-7de7-4fdd-bfba-d109df7b2410
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Open-0/Converted-1 =
+			
+			IF(ISBLANK('Facts_Quote Details'[OrderNumberSQH]), 0, 1)
+		dataType: int64
+		formatString: 0
+		lineageTag: b95580cd-8d8d-4168-bc44-c7e967137bc1
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Facts_Quote Details","TableItemName":"Open-0/Converted-1 (groups)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column 'Open-0/Converted-1 (groups)' =
+			SWITCH(
+				TRUE,
+				ISBLANK('Facts_Quote Details'[Open-0/Converted-1]),
+				"(Blank)",
+				'Facts_Quote Details'[Open-0/Converted-1] IN {1},
+				"Converted",
+				'Facts_Quote Details'[Open-0/Converted-1] IN {0},
+				"Open",
+				"Other"
+			)
+		dataType: string
+		formatString: 0
+		lineageTag: cbe9bceb-8d46-4672-a91d-65c6368280f4
+		summarizeBy: none
+		isDataTypeInferred
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Facts_Quote Details"
+				          }
+				        },
+				        "Property": "Open-0/Converted-1"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"f","Entity":"Facts_Quote Details"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"f"}},"Property":"Open-0/Converted-1"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"Converted","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"f"}},"Property":"Open-0/Converted-1"}}],"Values":[[{"Literal":{"Value":"1L"}}]]}}},{"DisplayName":"Open","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"f"}},"Property":"Open-0/Converted-1"}}],"Values":[[{"Literal":{"Value":"0L"}}]]}}},{"DisplayName":"Other"}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Name' = ```
+			
+			
+			VAR prodname =
+			LOOKUPVALUE(
+			    'Released product'[Product name],
+			    'Released product'[ReleasedProduct_SK],
+			    'Facts_Quote Details'[ReleasedProduct_SK]
+			    )
+			
+			RETURN 
+			prodname
+			```
+		dataType: string
+		lineageTag: a126fb79-2151-4e0f-9c6e-8dd1bb6b8718
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial Product Desc Lvl2' = ```
+			
+			
+			VAR prodname =
+			LOOKUPVALUE(
+			    'Released product'[Financial product desc Lvl2],
+			    'Released product'[ReleasedProduct_SK],
+			    'Facts_Quote Details'[ReleasedProduct_SK]
+			    )
+			
+			RETURN 
+			prodname
+			```
+		dataType: string
+		lineageTag: 893ce168-8e2c-4ecb-88dd-65c3b9c33aeb
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Facts_Quote Details-7d35086c-fa8d-477e-8502-34ee8edb4b34' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [CreateNavigationProperties=false, CommandTimeout=#duration(0, 4, 10, 0), Query="SELECT [FactType]#(lf)      ,[RecordSource]#(lf)      ,[Customer_SK]#(lf)      ,[ShipToCustomer_SK]#(lf)      ,[FinProduct_SK]#(lf)      ,[Company_SK]#(lf)      ,[ReleasedProduct_SK]#(lf)      ,[Date_SK]#(lf)      ,[QuoteDate_SK]#(lf)      ,[QuoteType]#(lf)      ,[QuoteID]#(lf)      ,[OrderStatus]#(lf)      ,[OrderType]#(lf)      ,[OrderNumber]#(lf)      ,[NoChairs]#(lf)      ,[ItemNumber]#(lf)      ,[SerialNumber]#(lf)      ,[NetPrice]#(lf)      ,[ConfigurationsHeader_SK]#(lf)      ,[SalesQuotationHeader_SK]#(lf)      ,[SalesOrderHeader_SK]#(lf)      ,[ReturnOrderHeader_SK]#(lf)      ,[SalesCommissionGroup_SK]#(lf)  FROM [sales_Rpt].[fact_Sales]#(lf)WHERE FactType IN ('EQ') #(lf)AND QuoteType IN ('powerwheelchairquote','smartdrivequote')#(lf)AND (Company_SK = 'A1CC37EFDDBBDA8BAA87443BAE04F2CA6C0BFB6D' OR Company_SK = 'DBF107EA99A53AFD092321B962232EFB81FF9297' OR Company_SK = #(lf)'B473A5ECB9EEEBFCB444E0D4B4269A1E0E33740B')#(lf)AND (Date_SK >= 20210601#(lf)OR Date_SK = 19000101) #(lf)AND QuoteType NOT IN ('SparePartsQuote', 'SmartDrivePartsQuote')"]),
+				    #"Renamed Columns" = Table.RenameColumns(Source,{ {"FactType", "Fact type"},  {"NetPrice", "Net price"}, {"OrderStatus", "Order status"}, {"QuoteType", "Quote type"},{"OrderType", "Order type"}}),
+				    #"Inserted Date" = Table.AddColumn(#"Renamed Columns", "Date", each Date.From(Text.From([Date_SK], "en-US")), type date)
+				in
+				    #"Inserted Date"
+
+	annotation PBI_ResultType = Table
+

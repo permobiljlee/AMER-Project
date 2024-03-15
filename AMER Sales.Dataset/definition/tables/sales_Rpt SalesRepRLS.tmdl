@@ -1,0 +1,30 @@
+table 'sales_Rpt SalesRepRLS'
+	lineageTag: 3e9e9da2-f727-4059-af94-9c52ce3f559f
+
+	column Customer_SK
+		dataType: string
+		lineageTag: a3181f97-7c65-4e06-b637-af4cc6072607
+		summarizeBy: none
+		sourceColumn: Customer_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: 23239a37-4553-40ec-a124-cc12560235e9
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'sales_Rpt SalesRepRLS-8d7adaa8-0165-48b1-8f25-7bd9832b8002' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [CreateNavigationProperties=false, CommandTimeout=#duration(0, 4, 10, 0)]),
+				    sales_Rpt_SalesRepRLS = Source{[Schema="sales_Rpt",Item="SalesRepRLS"]}[Data]
+				in
+				    sales_Rpt_SalesRepRLS
+
+	annotation PBI_ResultType = Table
+

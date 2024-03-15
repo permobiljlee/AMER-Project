@@ -1,0 +1,155 @@
+table 'Product Code'
+	lineageTag: 27436d48-1be1-4cb3-abbe-5ec5ea42e57b
+
+	column ProductCode
+		dataType: string
+		lineageTag: bb8adac1-086c-466c-8f6b-a8a3390f6f01
+		summarizeBy: none
+		sourceColumn: ProductCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductLvl1Name
+		dataType: string
+		lineageTag: 853e7479-d48c-4153-abac-a22da6fa87e2
+		summarizeBy: none
+		sourceColumn: ProductLvl1Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: 40d5318e-1c34-417b-9e8c-a971bf32ee38
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PU Value Stream'
+		dataType: string
+		lineageTag: 0850d9c3-b9c7-42ef-964a-9e3c09b33e58
+		summarizeBy: none
+		sourceColumn: PU Value Stream
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChairModel
+		dataType: string
+		lineageTag: b5236c6b-fa85-4e9a-a122-405b8049f971
+		summarizeBy: none
+		sourceColumn: ChairModel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 422ae32f-02ac-4cc1-9eba-4a049652bab2
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Group'
+		dataType: string
+		lineageTag: 12fd2f7a-654a-4890-85be-a7efb5c753f4
+		summarizeBy: none
+		sourceColumn: Product Group
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Product Code","TableItemName":"Product Group (groups)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column 'Market Category'
+		dataType: string
+		lineageTag: 903d7ccf-759d-449d-95c3-04d7d88e9e0f
+		summarizeBy: none
+		sourceColumn: Market Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Group (groups)' =
+			SWITCH(
+				TRUE,
+				ISBLANK('Product Code'[Product Group]),
+				"(Blank)",
+				'Product Code'[Product Group] IN {"Bariatric"},
+				"Bariatric",
+				'Product Code'[Product Group] IN {"C300 Corpus 3G R-Net"},
+				"C300 Corpus 3G R-Net",
+				'Product Code'[Product Group] IN {"C350 Corpus 3G R-Net"},
+				"C350 Corpus 3G R-Net",
+				'Product Code'[Product Group] IN {"C500 Corpus 3G R-Net"},
+				"C500 Corpus 3G R-Net",
+				'Product Code'[Product Group] IN {"Explorer Mini"},
+				"Explorer Mini",
+				'Product Code'[Product Group] IN {"F3 Corpus",
+					"F3 MPO",
+					"F3 MPO HD",
+					"F3 NPO",
+					"F3 SPO",
+					"F3 SPO HD"},
+				"F3 Corpus",
+				'Product Code'[Product Group] IN {"F5 Corpus"},
+				"F5 Corpus",
+				'Product Code'[Product Group] IN {"M1"},
+				"M1",
+				'Product Code'[Product Group] IN {"M3 Corpus",
+					"M3 MPO",
+					"M3 MPO HD",
+					"M3 NPO",
+					"M3 SPO",
+					"M3 SPO HD"},
+				"M3 Corpus",
+				'Product Code'[Product Group] IN {"M300 Corpus 3G R-Net"},
+				"M300 Corpus 3G R-Net",
+				'Product Code'[Product Group] IN {"M5 Corpus"},
+				"M5 Corpus",
+				'Product Code'[Product Group] IN {"Pediatric"},
+				"Pediatric",
+				'Product Code'[Product Group] IN {"F5 Corpus VS",
+					"F5 VS GRP 3",
+					"F5 VS GRP 4",
+					"M Corpus VS"},
+				"Standing",
+				'Product Code'[Product Group]
+			)
+		dataType: string
+		lineageTag: cfc2c3fb-fb67-4aa8-8353-3fbb3e05627f
+		summarizeBy: none
+		isDataTypeInferred
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Product Code"
+				          }
+				        },
+				        "Property": "Product Group"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"p","Entity":"Product Code"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"p"}},"Property":"Product Group"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"Bariatric","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"p"}},"Property":"Product Group"}}],"Values":[[{"Literal":{"Value":"'Bariatric'"}}]]}}},{"DisplayName":"C300 Corpus 3G R-Net","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"p"}},"Property":"Product Group"}}],"Values":[[{"Literal":{"Value":"'C300 Corpus 3G R-Net'"}}]]}}},{"DisplayName":"C350 Corpus 3G R-Net","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"p"}},"Property":"Product Group"}}],"Values":[[{"Literal":{"Value":"'C350 Corpus 3G R-Net'"}}]]}}},{"DisplayName":"C500 Corpus 3G R-Net","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"p"}},"Property":"Product Group"}}],"Values":[[{"Literal":{"Value":"'C500 Corpus 3G R-Net'"}}]]}}},{"DisplayName":"Explorer Mini","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"p"}},"Property":"Product Group"}}],"Values":[[{"Literal":{"Value":"'Explorer Mini'"}}]]}}},{"DisplayName":"F3 Corpus","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"p"}},"Property":"Product Group"}}],"Values":[[{"Literal":{"Value":"'F3 Corpus'"}}],[{"Literal":{"Value":"'F3 MPO'"}}],[{"Literal":{"Value":"'F3 MPO HD'"}}],[{"Literal":{"Value":"'F3 NPO'"}}],[{"Literal":{"Value":"'F3 SPO'"}}],[{"Literal":{"Value":"'F3 SPO HD'"}}]]}}},{"DisplayName":"F5 Corpus","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"p"}},"Property":"Product Group"}}],"Values":[[{"Literal":{"Value":"'F5 Corpus'"}}]]}}},{"DisplayName":"M1","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"p"}},"Property":"Product Group"}}],"Values":[[{"Literal":{"Value":"'M1'"}}]]}}},{"DisplayName":"M3 Corpus","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"p"}},"Property":"Product Group"}}],"Values":[[{"Literal":{"Value":"'M3 Corpus'"}}],[{"Literal":{"Value":"'M3 MPO'"}}],[{"Literal":{"Value":"'M3 MPO HD'"}}],[{"Literal":{"Value":"'M3 NPO'"}}],[{"Literal":{"Value":"'M3 SPO'"}}],[{"Literal":{"Value":"'M3 SPO HD'"}}]]}}},{"DisplayName":"M300 Corpus 3G R-Net","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"p"}},"Property":"Product Group"}}],"Values":[[{"Literal":{"Value":"'M300 Corpus 3G R-Net'"}}]]}}},{"DisplayName":"M5 Corpus","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"p"}},"Property":"Product Group"}}],"Values":[[{"Literal":{"Value":"'M5 Corpus'"}}]]}}},{"DisplayName":"Pediatric","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"p"}},"Property":"Product Group"}}],"Values":[[{"Literal":{"Value":"'Pediatric'"}}]]}}},{"DisplayName":"Standing","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"p"}},"Property":"Product Group"}}],"Values":[[{"Literal":{"Value":"'F5 Corpus VS'"}}],[{"Literal":{"Value":"'F5 VS GRP 3'"}}],[{"Literal":{"Value":"'F5 VS GRP 4'"}}],[{"Literal":{"Value":"'M Corpus VS'"}}]]}}}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Product Code-9d2abda6-775e-4e99-8bcb-bce61d24bfef' = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Workspaces{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+				    #"11f039f7-235d-4d80-b9db-924495bb1394" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="11f039f7-235d-4d80-b9db-924495bb1394"]}[Data],
+				    Query_ = #"11f039f7-235d-4d80-b9db-924495bb1394"{[entity="Query",version=""]}[Data]
+				in
+				    Query_
+
+	annotation PBI_ResultType = Table
+

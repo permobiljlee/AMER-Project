@@ -1,0 +1,109 @@
+table 'Master Actuals 2023'
+	lineageTag: ba732345-1cba-47db-bac5-3ee115824de6
+
+	column 'Sales Hierarchy'
+		dataType: string
+		lineageTag: 09106330-0574-4452-880b-005a115a03ac
+		summarizeBy: none
+		sourceColumn: Sales Hierarchy
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 43f5b51e-8e67-47dd-ac11-37e9987dd5b6
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column RepName
+		dataType: string
+		lineageTag: 9fefdae8-afbe-4808-914e-dd558a23c320
+		summarizeBy: none
+		sourceColumn: RepName
+
+		annotation SummarizationSetBy = Automatic
+
+	column RepCode
+		dataType: string
+		lineageTag: e4674ede-bdd4-40ed-9fae-fe6d1dbba9a6
+		summarizeBy: none
+		sourceColumn: RepCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Line'
+		dataType: string
+		lineageTag: c8845d21-865c-4ea9-91f4-cc47752af3f4
+		summarizeBy: none
+		sourceColumn: Product Line
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoicing
+		dataType: double
+		lineageTag: 94847c39-d66c-42ee-be0d-bd03a2fb5107
+		summarizeBy: sum
+		sourceColumn: Invoicing
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 2438c114-3ac8-4b2a-8aac-418f9c36d466
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 59efb587-2c70-4838-97d9-485a3584dde4
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Month = MONTH([Date])
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d6085b0-d05a-4ce8-8306-bce185bc48b1
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column EOMonth =
+			
+			YEAR([Date]) * 10000 + MONTH([Date]) * 100 + DAY(EOMONTH([Date], 0))
+		dataType: int64
+		formatString: 0
+		lineageTag: 196efb57-efe7-42d3-a750-310bd26490b0
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Master Actuals 2023' = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"fc733773-34e0-482d-bb06-bfdebc5c6289" = Workspaces{[workspaceId="fc733773-34e0-482d-bb06-bfdebc5c6289"]}[Data],
+				    #"57984f59-d2bb-4acd-8a65-2b81d62fcc08" = #"fc733773-34e0-482d-bb06-bfdebc5c6289"{[dataflowId="57984f59-d2bb-4acd-8a65-2b81d62fcc08"]}[Data],
+				    #"Master US Actuals_" = #"57984f59-d2bb-4acd-8a65-2b81d62fcc08"{[entity="Master US Actuals",version=""]}[Data]
+				in
+				    #"Master US Actuals_"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

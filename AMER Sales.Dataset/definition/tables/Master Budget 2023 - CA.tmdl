@@ -1,0 +1,137 @@
+table 'Master Budget 2023 - CA'
+	lineageTag: acafc2b6-1d14-44a2-9e8b-eccc4c72eca4
+
+	column Region
+		dataType: string
+		lineageTag: f58260bc-6073-4136-95c6-7dbedebb6e1f
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rep
+		dataType: string
+		lineageTag: d34fcb94-740e-446c-9a41-10b07d0e2bf2
+		summarizeBy: none
+		sourceColumn: Rep
+
+		annotation SummarizationSetBy = Automatic
+
+	column RepName
+		dataType: string
+		lineageTag: 02655bc0-18d2-416b-8748-526371b6abda
+		summarizeBy: none
+		sourceColumn: RepName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 12045ccb-625c-4a1f-8887-3f48e7023db7
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column D365
+		dataType: string
+		lineageTag: 2a917448-ec74-4f27-a5a9-00a3a7896df9
+		summarizeBy: none
+		sourceColumn: D365
+
+		annotation SummarizationSetBy = Automatic
+
+	column Area
+		dataType: string
+		lineageTag: e5672b63-5174-48a3-979d-b36137999871
+		summarizeBy: none
+		sourceColumn: Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Line'
+		dataType: string
+		lineageTag: 19899c09-fb84-4494-9f7f-e3fb7290b526
+		summarizeBy: none
+		sourceColumn: Product Line
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8b16a77f-c6c6-44e1-84a1-55bc455d64b0
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Budget
+		dataType: double
+		lineageTag: 46f3a4a6-9b3e-434d-872c-b8c2dab419c2
+		summarizeBy: sum
+		sourceColumn: Budget
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: a0d7c1ff-3321-41be-8145-24413815651e
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 36f510ee-e038-420d-a69a-a326bd0e56c0
+		summarizeBy: sum
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Custom
+		dataType: string
+		lineageTag: a9d218eb-d0d6-45ce-bf25-8d822f047414
+		summarizeBy: none
+		sourceColumn: Custom
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: e87a2aa9-ce21-499f-a12b-89e1760dfd26
+		summarizeBy: sum
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Master Budget 2023 - CA' = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows([]),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Workspaces{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+				    #"5a1c40bf-39a4-42dd-995f-95c2fed52ed5" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="5a1c40bf-39a4-42dd-995f-95c2fed52ed5"]}[Data],
+				    #"Master Data List_" = #"5a1c40bf-39a4-42dd-995f-95c2fed52ed5"{[entity="Canada Master Budget",version=""]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(#"Master Data List_",{{"Budget", type number}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Product Line] <> "Power Parts" and [Product Line] <> "TiLite Parts")),
+				    #"Added Conditional Column" = Table.AddColumn(#"Filtered Rows", "Custom", each if [Product Line] = "Power Chairs" then 1 else if [Product Line] = "TiLite Chairs" then 2 else if [Product Line] = "SmartDrive" then 3 else if [Product Line] = "SmartDrive On-Chair" then 4 else if [Product Line] = "SmartDrive Off Chair" then 5 else if [Product Line] = "ROHO" then 6 else if [Product Line] = "Comfort" then 7 else if [Product Line] = "Third Party" then 8 else if [Product Line] = "Surfaces" then 9 else null),
+				    #"Sorted Rows" = Table.Sort(#"Added Conditional Column",{{"Custom", Order.Ascending}}),
+				    #"Added Index" = Table.AddIndexColumn(#"Sorted Rows", "Index", 1, 1, Int64.Type),
+				    #"Filtered Rows1" = Table.SelectRows(#"Added Index", each ([Year] = 2023))
+				in
+				    #"Filtered Rows1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

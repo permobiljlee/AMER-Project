@@ -1,0 +1,885 @@
+table 'Ship to customer'
+	lineageTag: 21ad55f4-3ad4-4162-af7d-36a3ef4da2be
+
+	column ShipToCustomer_SK
+		dataType: string
+		isHidden
+		lineageTag: 2b60bbcf-08bc-4421-b6aa-758c247112f3
+		summarizeBy: none
+		sourceColumn: ShipToCustomer_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipToCustomer_BK
+		dataType: string
+		isHidden
+		lineageTag: 1087f9b8-8e5f-4804-b8ca-2d39d36d67be
+		summarizeBy: none
+		sourceColumn: ShipToCustomer_BK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to customer RecordSource'
+		dataType: string
+		lineageTag: 47925c34-3021-4044-aa78-c7461d939094
+		summarizeBy: none
+		sourceColumn: Ship to customer RecordSource
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to customer'
+		dataType: string
+		lineageTag: 7a9b7cfa-3893-40ed-b329-b9782d619e59
+		summarizeBy: none
+		sourceColumn: Ship to customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to customer name'
+		dataType: string
+		lineageTag: 1432e09d-3bec-428d-a627-c5571981f76f
+		summarizeBy: none
+		sourceColumn: Ship to customer name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to customer company'
+		dataType: string
+		lineageTag: 11bab4a7-5bc4-4ed8-b230-4b23576e961c
+		summarizeBy: none
+		sourceColumn: Ship to customer company
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to address city'
+		dataType: string
+		lineageTag: 647c1ae9-1f5f-4279-8f5c-12fab6651015
+		summarizeBy: none
+		sourceColumn: Ship to address city
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to address country region Id'
+		dataType: string
+		lineageTag: 892b8825-c335-405d-a686-1533319389ba
+		summarizeBy: none
+		sourceColumn: Ship to address country region Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to address country region ISOCode'
+		dataType: string
+		lineageTag: f50386f4-832f-4a51-90fb-4f66893777bf
+		summarizeBy: none
+		sourceColumn: Ship to address country region ISOCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to address description'
+		dataType: string
+		lineageTag: f2a717cb-ad11-4cc0-b4ed-60a7d7908f51
+		summarizeBy: none
+		sourceColumn: Ship to address description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to address state'
+		dataType: string
+		lineageTag: cd1723e1-7f82-459f-bae1-3828f3860771
+		summarizeBy: none
+		sourceColumn: Ship to address state
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to address street'
+		dataType: string
+		lineageTag: fe79c731-7ee5-4d2c-aed1-3395962ba409
+		summarizeBy: none
+		sourceColumn: Ship to address street
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to address ZIP code'
+		dataType: string
+		lineageTag: 0a76cac3-8ae8-4c2e-b7eb-22191c9b4b3d
+		summarizeBy: none
+		sourceColumn: Ship to address ZIP code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to sales segment Id'
+		dataType: string
+		lineageTag: 795b5a6f-490d-43d7-9049-061392d1ef66
+		summarizeBy: none
+		sourceColumn: Ship to sales segment Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to sales sub segment Id'
+		dataType: string
+		lineageTag: 302c5398-659f-4ced-8238-7810d7df52a0
+		summarizeBy: none
+		sourceColumn: Ship to sales sub segment Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to company chain'
+		dataType: string
+		lineageTag: a8954d9f-d277-4d1e-badc-f759922d2c43
+		summarizeBy: none
+		sourceColumn: Ship to company chain
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to chain description'
+		dataType: string
+		lineageTag: 21ad81bc-ffe9-4dd9-b705-cab639f9c301
+		summarizeBy: none
+		sourceColumn: Ship to chain description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to customer account'
+		dataType: string
+		lineageTag: d583cc8a-2d9a-4957-8c1b-cb104f981ae5
+		summarizeBy: none
+		sourceColumn: Ship to customer account
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to discount price group Id'
+		dataType: string
+		lineageTag: 06732e22-fadc-449f-9b25-479fa3059c88
+		summarizeBy: none
+		sourceColumn: Ship to discount price group Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to internal customer'
+		dataType: int64
+		formatString: 0
+		lineageTag: 125c9369-3d50-4b7f-afe4-456369606c2e
+		summarizeBy: sum
+		sourceColumn: Ship to internal customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to line discount code'
+		dataType: string
+		lineageTag: 48ba7a74-de22-4090-ad39-c9556e9b7a7e
+		summarizeBy: none
+		sourceColumn: Ship to line discount code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to sales currency code'
+		dataType: string
+		lineageTag: c77b6bf0-a1d6-4e9c-a69e-ebd085357d38
+		summarizeBy: none
+		sourceColumn: Ship to sales currency code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to Region.Territory' = if(isblank([Ship to salesunit Id]), REPLACE(mid('Ship to customer'[Ship to commission sales group Id],1,3),2,1,""), REPLACE(mid('Ship to customer'[Ship to salesunit Id],1,3),2,1,""))
+		dataType: string
+		lineageTag: d548cbd3-66ac-4d2c-9bbd-a217063ed475
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to commission sales group Id'
+		dataType: string
+		lineageTag: d31cc9fb-1614-4d0c-95d8-d5bcd7147316
+		summarizeBy: none
+		sourceColumn: Ship to commission sales group Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to commission sales group name'
+		dataType: string
+		lineageTag: 0da9da1e-6349-4d15-8bbf-11893b1b9064
+		summarizeBy: none
+		sourceColumn: Ship to commission sales group name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to commission sales group tran. status'
+		dataType: string
+		lineageTag: 0c77112c-655d-40f4-9a76-db6303193103
+		summarizeBy: none
+		sourceColumn: Ship to commission sales group tran. status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to salesunit Id'
+		dataType: string
+		lineageTag: 9780ee43-3990-48bf-b5de-5bc8a84fadce
+		summarizeBy: none
+		sourceColumn: Ship to salesunit Id
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Ship to customer","TableItemName":"Ship to salesunit Id (East & West)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column 'Ship to salesunit area short'
+		dataType: string
+		lineageTag: 06b72ecf-865b-4a43-9e9b-f171f76b57c2
+		summarizeBy: none
+		sourceColumn: Ship to salesunit area short
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to salesunit desc'
+		dataType: string
+		lineageTag: 11d2129a-169f-47ce-a03a-9627c8cd87bc
+		summarizeBy: none
+		sourceColumn: Ship to salesunit desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to salesunit orgtype'
+		dataType: string
+		lineageTag: 5450103d-931c-4095-b645-47392022abad
+		summarizeBy: none
+		sourceColumn: Ship to salesunit orgtype
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to salesunit region'
+		dataType: string
+		lineageTag: 9aa52b64-f466-4f0b-9bd7-959f50942c1c
+		summarizeBy: none
+		sourceColumn: Ship to salesunit region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to salesunit area'
+		dataType: string
+		lineageTag: 5123a403-ca25-44bb-b4c8-fb6fe7e24701
+		summarizeBy: none
+		sourceColumn: Ship to salesunit area
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to salesunit territory'
+		dataType: string
+		lineageTag: 5a015876-b01e-4987-9c08-28e2080deff9
+		summarizeBy: none
+		sourceColumn: Ship to salesunit territory
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to salesunit subterritory'
+		dataType: string
+		lineageTag: 352e9bfb-8b25-45b5-9ab9-9254dffff271
+		summarizeBy: none
+		sourceColumn: Ship to salesunit subterritory
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to Region.Territory.SubTerritory' = ```
+			
+			IF(isblank([Ship to salesunit Id]),
+			    IF(LEFT('Ship to customer'[Ship to commission sales group Id], 2) = "SA",
+			        MID([Ship to commission sales group Id],1,6),
+			        MID([Ship to commission sales group Id],1,5)), 
+			        MID([Ship to salesunit ID],1,5))
+			```
+		dataType: string
+		lineageTag: dc1a5955-7fdc-487c-8b5d-b866e399e175
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to salesunit Id (East & West)' =
+			SWITCH(
+			  TRUE,
+			  ISBLANK('Ship to customer'[Ship to salesunit Id]),
+			  "(Blank)",
+			  'Ship to customer'[Ship to salesunit Id] IN {"C.4.4",
+			    "C.1.0",
+			    "C.2.0",
+			    "C.3.0",
+			    "C.3.1",
+			    "C.3.2",
+			    "C.3.2-SP3",
+			    "C.3.3",
+			    "C.3.4",
+			    "C.3.4-SP4",
+			    "C.3.5",
+			    "C.3.6",
+			    "C.3.6-SP4",
+			    "C.3.7",
+			    "C.4.0",
+			    "C.4.1",
+			    "C.4.2",
+			    "C.4.3",
+			    "C.4.3-SP14",
+			    "C.4.4-SP4",
+			    "C.4.5",
+			    "C.4.6",
+			    "E.1.0",
+			    "E.1.1",
+			    "E.1.1-SP5",
+			    "E.1.2",
+			    "E.1.2-SP6",
+			    "E.1.3",
+			    "E.1.3-SP5",
+			    "E.1.3-SP6",
+			    "E.1.4",
+			    "E.1.4-SP6",
+			    "E.2.0",
+			    "E.2.1",
+			    "E.2.1-SP7",
+			    "E.2.2",
+			    "E.2.3",
+			    "E.2.4",
+			    "E.2.4-SP8",
+			    "E.2.5",
+			    "E.2.5-SP7",
+			    "E.2.5-SP8",
+			    "E.2.6",
+			    "E.2.6-SP8",
+			    "E.2.7",
+			    "E.3.0",
+			    "E.3.1",
+			    "E.3.1-SP2",
+			    "E.3.2",
+			    "E.3.2-SP2",
+			    "E.3.3",
+			    "E.3.4",
+			    "E.3.5",
+			    "E.3.5-SP9",
+			    "E.3.6",
+			    "E.3.6-SP9",
+			    "E.3.7",
+			    "E.4.0",
+			    "E.4.1",
+			    "E.4.2",
+			    "E.4.2-SP10",
+			    "E.4.3",
+			    "E.4.3-SP10",
+			    "E.4.4",
+			    "E.4.5",
+			    "E.4.5-SP10",
+			    "E.4.6",
+			    "E.4.7",
+			    "E.4.8",
+			    "E.4.9"},
+			  "East",
+			  'Ship to customer'[Ship to salesunit Id] IN {"W.3.2",
+			    "C.1.1",
+			    "C.1.2",
+			    "C.1.3",
+			    "C.1.4",
+			    "C.1.4-SP1",
+			    "C.2.1",
+			    "C.2.2",
+			    "C.2.3",
+			    "C.2.3-SP2",
+			    "C.2.4",
+			    "C.2.4-SP1",
+			    "C.2.5",
+			    "C.2.5-SP1",
+			    "W.1.0",
+			    "W.1.0-SP3",
+			    "W.1.1",
+			    "W.1.1-SP11",
+			    "W.1.2",
+			    "W.1.3",
+			    "W.1.4",
+			    "W.1.5",
+			    "W.1.5-SP11",
+			    "W.1.6",
+			    "W.2.0",
+			    "W.2.1",
+			    "W.2.2",
+			    "W.2.2-SP12",
+			    "W.2.3",
+			    "W.2.3-SP12",
+			    "W.2.4",
+			    "W.2.4-SP12",
+			    "W.3.0",
+			    "W.3.1",
+			    "W.3.1-SP11",
+			    "W.3.3",
+			    "W.3.4",
+			    "W.3.5",
+			    "W.3.6",
+			    "W.4.0",
+			    "W.4.1",
+			    "W.4.1-SP13",
+			    "W.4.2",
+			    "W.4.2-SP13",
+			    "W.4.3",
+			    "W.4.3-SP13",
+			    "W.4.4",
+			    "W.4.5"},
+			  "West",
+			  "Other"
+			)
+		dataType: string
+		lineageTag: 33649f17-6a75-424f-a3d1-62d62bc1a770
+		summarizeBy: none
+		isDataTypeInferred
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Ship to customer"
+				          }
+				        },
+				        "Property": "Ship to salesunit Id"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"s","Entity":"Ship to customer"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"Ship to salesunit Id"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"East","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"Ship to salesunit Id"}}],"Values":[[{"Literal":{"Value":"'C.4.4'"}}],[{"Literal":{"Value":"'C.1.0'"}}],[{"Literal":{"Value":"'C.2.0'"}}],[{"Literal":{"Value":"'C.3.0'"}}],[{"Literal":{"Value":"'C.3.1'"}}],[{"Literal":{"Value":"'C.3.2'"}}],[{"Literal":{"Value":"'C.3.2-SP3'"}}],[{"Literal":{"Value":"'C.3.3'"}}],[{"Literal":{"Value":"'C.3.4'"}}],[{"Literal":{"Value":"'C.3.4-SP4'"}}],[{"Literal":{"Value":"'C.3.5'"}}],[{"Literal":{"Value":"'C.3.6'"}}],[{"Literal":{"Value":"'C.3.6-SP4'"}}],[{"Literal":{"Value":"'C.3.7'"}}],[{"Literal":{"Value":"'C.4.0'"}}],[{"Literal":{"Value":"'C.4.1'"}}],[{"Literal":{"Value":"'C.4.2'"}}],[{"Literal":{"Value":"'C.4.3'"}}],[{"Literal":{"Value":"'C.4.3-SP14'"}}],[{"Literal":{"Value":"'C.4.4-SP4'"}}],[{"Literal":{"Value":"'C.4.5'"}}],[{"Literal":{"Value":"'C.4.6'"}}],[{"Literal":{"Value":"'E.1.0'"}}],[{"Literal":{"Value":"'E.1.1'"}}],[{"Literal":{"Value":"'E.1.1-SP5'"}}],[{"Literal":{"Value":"'E.1.2'"}}],[{"Literal":{"Value":"'E.1.2-SP6'"}}],[{"Literal":{"Value":"'E.1.3'"}}],[{"Literal":{"Value":"'E.1.3-SP5'"}}],[{"Literal":{"Value":"'E.1.3-SP6'"}}],[{"Literal":{"Value":"'E.1.4'"}}],[{"Literal":{"Value":"'E.1.4-SP6'"}}],[{"Literal":{"Value":"'E.2.0'"}}],[{"Literal":{"Value":"'E.2.1'"}}],[{"Literal":{"Value":"'E.2.1-SP7'"}}],[{"Literal":{"Value":"'E.2.2'"}}],[{"Literal":{"Value":"'E.2.3'"}}],[{"Literal":{"Value":"'E.2.4'"}}],[{"Literal":{"Value":"'E.2.4-SP8'"}}],[{"Literal":{"Value":"'E.2.5'"}}],[{"Literal":{"Value":"'E.2.5-SP7'"}}],[{"Literal":{"Value":"'E.2.5-SP8'"}}],[{"Literal":{"Value":"'E.2.6'"}}],[{"Literal":{"Value":"'E.2.6-SP8'"}}],[{"Literal":{"Value":"'E.2.7'"}}],[{"Literal":{"Value":"'E.3.0'"}}],[{"Literal":{"Value":"'E.3.1'"}}],[{"Literal":{"Value":"'E.3.1-SP2'"}}],[{"Literal":{"Value":"'E.3.2'"}}],[{"Literal":{"Value":"'E.3.2-SP2'"}}],[{"Literal":{"Value":"'E.3.3'"}}],[{"Literal":{"Value":"'E.3.4'"}}],[{"Literal":{"Value":"'E.3.5'"}}],[{"Literal":{"Value":"'E.3.5-SP9'"}}],[{"Literal":{"Value":"'E.3.6'"}}],[{"Literal":{"Value":"'E.3.6-SP9'"}}],[{"Literal":{"Value":"'E.3.7'"}}],[{"Literal":{"Value":"'E.4.0'"}}],[{"Literal":{"Value":"'E.4.1'"}}],[{"Literal":{"Value":"'E.4.2'"}}],[{"Literal":{"Value":"'E.4.2-SP10'"}}],[{"Literal":{"Value":"'E.4.3'"}}],[{"Literal":{"Value":"'E.4.3-SP10'"}}],[{"Literal":{"Value":"'E.4.4'"}}],[{"Literal":{"Value":"'E.4.5'"}}],[{"Literal":{"Value":"'E.4.5-SP10'"}}],[{"Literal":{"Value":"'E.4.6'"}}],[{"Literal":{"Value":"'E.4.7'"}}],[{"Literal":{"Value":"'E.4.8'"}}],[{"Literal":{"Value":"'E.4.9'"}}]]}}},{"DisplayName":"West","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"Ship to salesunit Id"}}],"Values":[[{"Literal":{"Value":"'W.3.2'"}}],[{"Literal":{"Value":"'C.1.1'"}}],[{"Literal":{"Value":"'C.1.2'"}}],[{"Literal":{"Value":"'C.1.3'"}}],[{"Literal":{"Value":"'C.1.4'"}}],[{"Literal":{"Value":"'C.1.4-SP1'"}}],[{"Literal":{"Value":"'C.2.1'"}}],[{"Literal":{"Value":"'C.2.2'"}}],[{"Literal":{"Value":"'C.2.3'"}}],[{"Literal":{"Value":"'C.2.3-SP2'"}}],[{"Literal":{"Value":"'C.2.4'"}}],[{"Literal":{"Value":"'C.2.4-SP1'"}}],[{"Literal":{"Value":"'C.2.5'"}}],[{"Literal":{"Value":"'C.2.5-SP1'"}}],[{"Literal":{"Value":"'W.1.0'"}}],[{"Literal":{"Value":"'W.1.0-SP3'"}}],[{"Literal":{"Value":"'W.1.1'"}}],[{"Literal":{"Value":"'W.1.1-SP11'"}}],[{"Literal":{"Value":"'W.1.2'"}}],[{"Literal":{"Value":"'W.1.3'"}}],[{"Literal":{"Value":"'W.1.4'"}}],[{"Literal":{"Value":"'W.1.5'"}}],[{"Literal":{"Value":"'W.1.5-SP11'"}}],[{"Literal":{"Value":"'W.1.6'"}}],[{"Literal":{"Value":"'W.2.0'"}}],[{"Literal":{"Value":"'W.2.1'"}}],[{"Literal":{"Value":"'W.2.2'"}}],[{"Literal":{"Value":"'W.2.2-SP12'"}}],[{"Literal":{"Value":"'W.2.3'"}}],[{"Literal":{"Value":"'W.2.3-SP12'"}}],[{"Literal":{"Value":"'W.2.4'"}}],[{"Literal":{"Value":"'W.2.4-SP12'"}}],[{"Literal":{"Value":"'W.3.0'"}}],[{"Literal":{"Value":"'W.3.1'"}}],[{"Literal":{"Value":"'W.3.1-SP11'"}}],[{"Literal":{"Value":"'W.3.3'"}}],[{"Literal":{"Value":"'W.3.4'"}}],[{"Literal":{"Value":"'W.3.5'"}}],[{"Literal":{"Value":"'W.3.6'"}}],[{"Literal":{"Value":"'W.4.0'"}}],[{"Literal":{"Value":"'W.4.1'"}}],[{"Literal":{"Value":"'W.4.1-SP13'"}}],[{"Literal":{"Value":"'W.4.2'"}}],[{"Literal":{"Value":"'W.4.2-SP13'"}}],[{"Literal":{"Value":"'W.4.3'"}}],[{"Literal":{"Value":"'W.4.3-SP13'"}}],[{"Literal":{"Value":"'W.4.4'"}}],[{"Literal":{"Value":"'W.4.5'"}}]]}}},{"DisplayName":"Other"}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	column MasterAccount = ```
+			
+			IF('Ship to customer'[Ship to customer RecordSource] = "d365", 
+			        'Ship to customer'[Ship to customer account],
+			    LOOKUPVALUE('Scala to D365 Acct Bridge'[D365 CUSTOMERACCOUNT], 
+			        'Scala to D365 Acct Bridge'[Scala AccountNo],
+			        'Ship to customer'[Ship to customer]))
+			```
+		dataType: string
+		lineageTag: d67b6a58-4d51-4df1-a6f9-b9b9a8d3bc89
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column MasterCompanyChain =
+			
+			IF('Ship to customer'[Ship to customer account] = 'Ship to customer'[MasterAccount],
+			    'Ship to customer'[Ship to company chain],
+			    LOOKUPVALUE('Account to Global'[Global Acct],
+			    'Account to Global'[Ship to Account],
+			    'Ship to customer'[MasterAccount]
+			    ))
+		dataType: string
+		lineageTag: 77f94f48-9cd0-404c-bf79-3a8293abc0a3
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Ship to customer","TableItemName":"MasterCompanyChain (groups)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column ProfileSubTerritory =
+			
+			VAR AccountNumber = [MasterAccount]
+			
+			RETURN
+			MINX(
+			    FILTER( // tested on 1/4/2023 and did not find any MasterAccount duplicates in 3,374 row, therfore MINX doesn't apply as there is only one answer per row
+			        'Ship to customer',
+			        [MasterAccount] = AccountNumber &&
+			        [Ship to customer RecordSource] = "d365"
+			    ),
+			    IF('Ship to customer'[Ship to customer company] <> "CAN",
+			        [Ship to Region.Territory.SubTerritory],
+			        LEFT([Ship to Region.Territory.SubTerritory],3)
+			)
+			)
+		dataType: string
+		lineageTag: 7bede41e-6925-4f6a-b6da-92d853a451f3
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProfileCustomerGroup = ```
+			
+			VAR ThisOrderNumber = [MasterAccount]
+			
+			RETURN
+			MINX(
+			    FILTER(
+			        'Ship to customer',
+			        [MasterAccount] = ThisOrderNumber &&
+			        [Ship to customer RecordSource] = "d365"
+			    ),
+			    [Ship to sales segment Id]
+			)
+			
+			```
+		dataType: string
+		lineageTag: 7aab447b-12bd-4330-af21-b6cffd50203b
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Ship to customer","TableItemName":"Customer Group","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column ProfileCustomerName =
+			
+			VAR ThisOrderNumber = [MasterAccount]
+			
+			RETURN
+			MINX(
+			    FILTER(
+			        'Ship to customer',
+			        [MasterAccount] = ThisOrderNumber &&
+			        [Ship to customer RecordSource] = "d365"
+			    ),
+			    [Ship to customer name]
+			)
+		dataType: string
+		lineageTag: b2e3fbc9-dbb2-4914-95c6-392d029c60a0
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column MasterCountry =
+			
+			Switch(
+			    True(),
+			    'Ship to customer'[Ship to customer company] IN {"AHC", "CAN"}, "Canada",
+			    'Ship to customer'[Ship to customer company] = "TISP" && 'Ship to customer'[Ship to address country region Id] ="CANADA", "Canada"
+			    )
+		dataType: string
+		lineageTag: f2aafe09-8574-403e-9680-b06c4539eae4
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column MasterCanada_CustomerGroup =
+			
+			Switch(
+			    True(),
+			    'Ship to customer'[Ship to customer company] IN {"AHC"}, MID('Ship to customer'[Ship to customer],1,3),
+			    'Ship to customer'[Ship to customer company] IN {"CAN"}, 'Ship to customer'[Ship to sales sub segment Id],
+			    'Ship to customer'[Ship to customer company] = "TISP", "TiLite"
+			    )
+		dataType: string
+		lineageTag: 89c529c7-0cdf-4d52-9dbf-311a03d835a5
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Canada Master Customer.ORGANIZATIONNAME'
+		dataType: string
+		lineageTag: 84fcee47-3d8d-4ef6-a66a-d12a5800b83d
+		summarizeBy: none
+		sourceColumn: Canada Master Customer.ORGANIZATIONNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Canada Master Customer.NAMEALIAS'
+		dataType: string
+		lineageTag: ea882040-c322-44a1-8119-efcf5ba0d82e
+		summarizeBy: none
+		sourceColumn: Canada Master Customer.NAMEALIAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Canada Master Customer.SALESSEGMENTID'
+		dataType: string
+		lineageTag: f8ca4f43-6578-42bd-8e8d-5763a490c21d
+		summarizeBy: none
+		sourceColumn: Canada Master Customer.SALESSEGMENTID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Canada Master Customer.SALESSUBSEGMENTID'
+		dataType: string
+		lineageTag: 37bcba16-f8f2-4d09-aedd-e0ef93156aa6
+		summarizeBy: none
+		sourceColumn: Canada Master Customer.SALESSUBSEGMENTID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DealerNETZip =
+			LOOKUPVALUE(
+			    '8DEALER_LIST_NET'[ZipCode],
+			    '8DEALER_LIST_NET'[AccountNo],
+			    'Ship to customer'[Ship to customer])
+		dataType: string
+		lineageTag: 170229a3-341b-4965-9dae-ae3625d00562
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProfileZip = ```
+			
+			VAR MasterAccount = [MasterAccount]
+			
+			VAR Method1 =
+			MINX(
+			    FILTER(
+			        'Ship to customer',
+			        [MasterAccount] = MasterAccount &&
+			        [Ship to customer RecordSource] = "d365"
+			    ),
+			    'Ship to customer'[Ship to address ZIP code]
+			)
+			
+			
+			RETURN
+			IF(NOT(ISBLANK(Method1)), Method1, 
+			    'Ship to customer'[DealerNETZip])
+			```
+		dataType: string
+		lineageTag: 665f3ee9-f1f9-4470-9da3-af3bc573ec36
+		dataCategory: PostalCode
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MasterCompanyChain (groups)' =
+			SWITCH(
+				TRUE,
+				ISBLANK('Ship to customer'[MasterCompanyChain]),
+				"(Blank)",
+				'Ship to customer'[MasterCompanyChain] IN {"NSM"},
+				"National Seating & Mobility",
+				'Ship to customer'[MasterCompanyChain] IN {"USM"},
+				"Numotion",
+				"Other"
+			)
+		dataType: string
+		lineageTag: ff2b5358-109c-4448-a0fa-0ca0be15ce2c
+		summarizeBy: none
+		isDataTypeInferred
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Ship to customer"
+				          }
+				        },
+				        "Property": "MasterCompanyChain"
+				      }
+				    }
+				  ]
+				}
+
+		changedProperty = SortByColumn
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"s","Entity":"Ship to customer"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"MasterCompanyChain"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"National Seating & Mobility","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"MasterCompanyChain"}}],"Values":[[{"Literal":{"Value":"'NSM'"}}]]}}},{"DisplayName":"Numotion","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"MasterCompanyChain"}}],"Values":[[{"Literal":{"Value":"'USM'"}}]]}}},{"DisplayName":"Other"}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	column Check
+		type: calculated
+		dataType: int64
+		lineageTag: 132a54b1-ebb6-4cd8-b600-a5c6c9781597
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Ship to customer","TableItemName":"Check (groups)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column 'Check (groups)' =
+			SWITCH(
+				TRUE,
+				ISBLANK('Ship to customer'[Check]),
+				"(Blank)",
+				'Ship to customer'[Check] IN {1},
+				"Demo Received",
+				'Ship to customer'[Check] IN {0},
+				"No Demo",
+				"Other"
+			)
+		dataType: string
+		formatString: 0
+		lineageTag: 88c3da3e-8ac0-42d4-8fbe-2c2289599834
+		summarizeBy: none
+		isDataTypeInferred
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Ship to customer"
+				          }
+				        },
+				        "Property": "Check"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"s","Entity":"Ship to customer"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"Check"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"Demo Received","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"Check"}}],"Values":[[{"Literal":{"Value":"1L"}}]]}}},{"DisplayName":"No Demo","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"Check"}}],"Values":[[{"Literal":{"Value":"0L"}}]]}}},{"DisplayName":"Other"}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TiLite Account' =
+			
+			IF(LEFT('Ship to customer'[Ship to customer account], 8) = "00000000" &&
+			    'Ship to customer'[Ship to customer company] = "TISP",
+			    RIGHT('Ship to customer'[Ship to customer account], 7), "0")
+		dataType: string
+		lineageTag: 0c32e3cb-ef78-461e-ba57-0e2bc224a5bf
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Group' =
+			SWITCH(
+				TRUE,
+				ISBLANK('Ship to customer'[ProfileCustomerGroup]),
+				"(Blank)",
+				'Ship to customer'[ProfileCustomerGroup] IN {"NSM"},
+				"National Seating & Mobility",
+				'Ship to customer'[ProfileCustomerGroup] IN {"USM"},
+				"Numotion",
+				"Other"
+			)
+		dataType: string
+		lineageTag: d3e2f5e9-0fc8-414c-862b-35e4eeb6e22b
+		summarizeBy: none
+		isDataTypeInferred
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Ship to customer"
+				          }
+				        },
+				        "Property": "ProfileCustomerGroup"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"s","Entity":"Ship to customer"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"ProfileCustomerGroup"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"National Seating & Mobility","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"ProfileCustomerGroup"}}],"Values":[[{"Literal":{"Value":"'NSM'"}}]]}}},{"DisplayName":"Numotion","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"ProfileCustomerGroup"}}],"Values":[[{"Literal":{"Value":"'USM'"}}]]}}},{"DisplayName":"Other"}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipToSK_D365 =
+			
+			IF([Ship to customer RecordSource] <> "ldw",
+			    'Ship to customer'[ShipToCustomer_SK])
+		dataType: string
+		lineageTag: a8586e01-0df7-473c-9fec-00671d45f196
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Rep' =
+			
+			LOOKUPVALUE(
+			    'Sales Rep Map'[RepName],
+			    'Sales Rep Map'[D365 Commission Group ID(sometimes called SalesUnit)],
+			    'Ship to customer'[ProfileSubTerritory])
+		dataType: string
+		lineageTag: 9f639b75-777c-4d95-b4dd-62bd8abe2692
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProfileRegion =
+			
+			VAR AccountNumber = [MasterAccount]
+			
+			RETURN
+			MAXX(
+			    FILTER(
+			        'Ship to customer',
+			        [MasterAccount] = AccountNumber &&
+			        [Ship to customer RecordSource] = "d365"
+			    ),
+			    'Ship to customer'[Ship to salesunit area short]
+			)
+		dataType: string
+		lineageTag: 8f75aba6-8ee6-4fce-9eee-b412806d0c13
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Rep (Customer Master)' =
+			
+			if('Ship to customer'[Ship to customer company] = "AHC",
+			LOOKUPVALUE(
+			    'Sales Rep (Customer Master)'[Sales Rep (Customer Master)],
+			    'Sales Rep (Customer Master)'[Ship to commission sales group name],
+			    'Ship to customer'[Ship to commission sales group name], ""),
+			IF('Ship to customer'[Ship to customer company] = "TISP" && 'Ship to customer'[TiLite Account] <> "0",
+			    'Ship to customer'[Ship to commission sales group Id],"")
+			)
+		dataType: string
+		lineageTag: 42db264b-3b52-4a77-88fc-f70d742aaec6
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Ship to salesunit region Hierarchy'
+		lineageTag: 0d011498-42b4-4fb8-9cbb-bf8c3480e4fb
+
+		level 'Ship to salesunit region'
+			lineageTag: f458766d-4874-4364-84a7-c22d1a1780f3
+			column: 'Ship to salesunit region'
+
+		level 'Ship to salesunit area'
+			lineageTag: e4ae4c1d-9b7d-4413-b199-4cd95da0688b
+			column: 'Ship to salesunit area'
+
+		level 'Ship to salesunit territory'
+			lineageTag: ddcd9f7b-2f8c-4f31-8a61-93e1d820388a
+			column: 'Ship to salesunit territory'
+
+		level 'Ship to salesunit subterritory'
+			lineageTag: 6a9342fc-ce72-4190-be28-e5502e196767
+			column: 'Ship to salesunit subterritory'
+
+		level 'Ship to salesunit Id'
+			lineageTag: cecf3784-06ea-4658-a308-1aa7d01bf4c6
+			column: 'Ship to salesunit Id'
+
+	partition 'Ship to customer-bbff6426-82f7-4eb5-b06f-d7a19498762e' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [CreateNavigationProperties=false, CommandTimeout=#duration(0, 4, 10, 0)]),
+				    sales_mart_dim_ShipToCustomer_All = Source{[Schema="sales_Rpt",Item="dim_ShipToCustomer"]}[Data],
+				    #"Merged Queries" = Table.NestedJoin(sales_mart_dim_ShipToCustomer_All, {"Ship to customer"}, #"Canada Master Customer", {"Cust Account (SHIP-TO)"}, "Canada Master Customer", JoinKind.LeftOuter),
+				    #"Expanded Canada Master Customer" = Table.ExpandTableColumn(#"Merged Queries", "Canada Master Customer", {"ORGANIZATIONNAME", "NAMEALIAS", "SALESSEGMENTID", "SALESSUBSEGMENTID"}, {"Canada Master Customer.ORGANIZATIONNAME", "Canada Master Customer.NAMEALIAS", "Canada Master Customer.SALESSEGMENTID", "Canada Master Customer.SALESSUBSEGMENTID"})
+				in
+				    #"Expanded Canada Master Customer"
+
+	annotation PBI_ResultType = Table
+

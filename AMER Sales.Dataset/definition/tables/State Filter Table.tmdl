@@ -1,0 +1,32 @@
+table 'State Filter Table'
+	excludeFromModelRefresh
+	lineageTag: 3a0e4df8-8c04-4905-8346-ab383eb11f92
+
+	column State
+		dataType: string
+		lineageTag: 288cb195-5d81-4a0e-aed8-e0e290bccb36
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'State Abbr'
+		dataType: string
+		lineageTag: c13868c4-12a1-42ee-8a0a-fb7e9db6485d
+		summarizeBy: none
+		sourceColumn: State Abbr
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'State Filter Table' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("VZLRbuIwEEV/BfHcn0AJLSnEqQgl2636ME1cMkqwke2Usl+/nhlvxEp+uUee8Z3reX9frkb4hDMsH5ar3fLjgYEfWG9FO/xjDYPfCQxgPHgieyYZjPhlnUG6la2E2dE66CyRKhFjdBuwnQLBA8Ncj3AFpyPJ10weYx121OlRDD1p607c+klab2IFYtSbgnXRQU/vFLnIcURjkfwV0qEwHQKPUCgB9spK+m3/jbOtRWsTpna4EXljsrMT+tRiJ0UloCHX5TpJdxvBdETyRLyHtp+8DoGal6kO2x5PYIgUicRcvA3UvFQJeU/ncqExy3qGdnJMJNHSmiCmSklT6U+Xfk+tE/kGDlMdk74uNnC++B45dLWZ8bN2XtPQ6nlmpf7BlrJV5czerBuISDTKutAvMnA2ps4PZXc8h0EGUxJK1SN1q+TVahjjz/HyVbJsldMnS9lUslkv2hh/G79BdutFMtz3ttOLwqfA95Jjbaf/ndTZHZ+d1OLkoCl1rymEg0roh9fg8Ivla4A+qleJ9qjdOcYdwTEBjFspto5iq4GYqjkFHqBJTPuwuLvayDc06FtrPPJNsd/c7DlWE4jJfvwF", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [State = _t, #"State Abbr" = _t])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

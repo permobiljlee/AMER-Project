@@ -1,0 +1,126 @@
+table 'Market sales region'
+	lineageTag: ea41a4c6-5f0e-41f8-98d2-0f084c009b11
+
+	column MarketSalesRegion_SK
+		dataType: string
+		isHidden
+		lineageTag: ea44a00f-de84-42ab-8922-0bd4021d000c
+		summarizeBy: none
+		sourceColumn: MarketSalesRegion_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MarketSalesRegion_BK
+		dataType: string
+		isHidden
+		lineageTag: beaa308a-257f-4167-bc2a-fea58bb9b69e
+		summarizeBy: none
+		sourceColumn: MarketSalesRegion_BK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataLoadDatetime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2294b1ac-8b3a-4ce4-b15e-921991b60536
+		summarizeBy: none
+		sourceColumn: DataLoadDatetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Record source'
+		dataType: string
+		lineageTag: 05f3adca-6d14-4da7-8423-0b9ba9714c53
+		summarizeBy: none
+		sourceColumn: Record source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Change type'
+		dataType: string
+		lineageTag: 6348cd4e-2507-4b9b-9bab-0375f59ce1cf
+		summarizeBy: none
+		sourceColumn: Change type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Market sales region'
+		dataType: string
+		lineageTag: 7b562d66-695f-468d-abea-6feeda8e8071
+		summarizeBy: none
+		sourceColumn: Market sales region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Market sales region desc'
+		dataType: string
+		lineageTag: f3b308a5-cd3c-4992-bb27-6f3891472e31
+		summarizeBy: none
+		sourceColumn: Market sales region desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Market Lvl1'
+		dataType: string
+		lineageTag: 8817ac1a-341e-4a30-97ea-2a17a7d9f61e
+		summarizeBy: none
+		sourceColumn: Market Lvl1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Market Lvl2'
+		dataType: string
+		lineageTag: a08b919b-cacb-4d20-a28c-3796bb8bbf10
+		summarizeBy: none
+		sourceColumn: Market Lvl2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Market Lvl3'
+		dataType: string
+		lineageTag: 7c3a6a25-020c-42b4-b61b-bcb1ffaa8be7
+		summarizeBy: none
+		sourceColumn: Market Lvl3
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Market desc Lvl1'
+		dataType: string
+		lineageTag: b34b0123-937c-4d14-8952-29b759580b6a
+		summarizeBy: none
+		sourceColumn: Market desc Lvl1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Market desc Lvl2'
+		dataType: string
+		lineageTag: 31b06b0d-5c43-41e2-b7c5-2097f57b1926
+		summarizeBy: none
+		sourceColumn: Market desc Lvl2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Market desc Lvl3'
+		dataType: string
+		lineageTag: ab078e87-53f0-49ca-bcd7-444a37bf6fd3
+		summarizeBy: none
+		sourceColumn: Market desc Lvl3
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Market sales region-7b29b953-a827-49ac-96fc-47f4e0db4f6b' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [CreateNavigationProperties=false, CommandTimeout=#duration(0, 4, 10, 0)]),
+				    sales_mart_dim_MarketSalesRegion_All = Source{[Schema="sales_Rpt",Item="dim_MarketSalesRegion"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(sales_mart_dim_MarketSalesRegion_All,{{"ChangeType", "Change type"}, {"MarketDescLvl1", "Market desc Lvl1"}, {"MarketDescLvl2", "Market desc Lvl2"}, {"MarketDescLvl3", "Market desc Lvl3"}, {"MarketLvl1", "Market Lvl1"}, {"MarketLvl2", "Market Lvl2"}, {"MarketLvl3", "Market Lvl3"}, {"MarketSalesRegion", "Market sales region"}, {"MarketSalesRegionDesc", "Market sales region desc"}, {"RecordSource", "Record source"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

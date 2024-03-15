@@ -1,0 +1,53 @@
+table 'Scala to D365 Acct Bridge'
+	excludeFromModelRefresh
+	lineageTag: 58a9e84e-6659-450a-a058-f53a4b7f0952
+
+	column 'Scala AccountNo'
+		dataType: string
+		lineageTag: 6d9346a0-6b7f-4f5e-af78-0467151a9692
+		summarizeBy: none
+		sourceColumn: Scala AccountNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORGANIZATIONNAME
+		dataType: string
+		lineageTag: 5fb5ccee-7bc5-4f01-8ae4-ebbd721fd673
+		summarizeBy: none
+		sourceColumn: ORGANIZATIONNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'D365 CUSTOMERACCOUNT'
+		dataType: string
+		lineageTag: 5377eb38-8cac-45e3-8a0a-30401543a594
+		summarizeBy: none
+		sourceColumn: D365 CUSTOMERACCOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Destination Company'
+		dataType: string
+		lineageTag: d36c2a14-e089-42f0-ad0a-0d34cb38248e
+		summarizeBy: none
+		sourceColumn: Destination Company
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Scala to D365 Acct Bridge-6c3c9777-eb2a-47de-82c4-4402856cdd0c' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://permobil.sharepoint.com/sites/BISalesUAT", [ApiVersion = 15]),
+				    #"Acct Map 1 JR xlsx_https://permobil sharepoint com/sites/BISalesUAT/Shared Documents/Power BI Model/" = Source{[Name="Acct Map 1 JR.xlsx",#"Folder Path"="https://permobil.sharepoint.com/sites/BISalesUAT/Shared Documents/Power BI Model/"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"Acct Map 1 JR xlsx_https://permobil sharepoint com/sites/BISalesUAT/Shared Documents/Power BI Model/"),
+				    #"Scala to Account Map_Sheet" = #"Imported Excel Workbook"{[Item="Scala to Account Map",Kind="Sheet"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(#"Scala to Account Map_Sheet",{"Column5", "Column6"}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Columns", [PromoteAllScalars=true])
+				in
+				    #"Promoted Headers"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

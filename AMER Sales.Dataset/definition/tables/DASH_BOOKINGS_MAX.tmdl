@@ -1,0 +1,130 @@
+table DASH_BOOKINGS_MAX
+	lineageTag: 593553c7-7808-42e1-8f0d-e0c507a4f510
+
+	column 'ORDER NO'
+		dataType: string
+		lineageTag: af6810df-20cb-4e15-abe6-cbafdae70c11
+		summarizeBy: none
+		sourceColumn: ORDER NO
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 01e7c417-ff1a-4f75-9314-1e1110fc5737
+		summarizeBy: none
+		sourceColumn: DATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column QTY
+		dataType: double
+		lineageTag: 728cf6bd-2fb6-4946-ba46-c516d0a1d885
+		summarizeBy: sum
+		sourceColumn: QTY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'PO NUMBER'
+		dataType: string
+		lineageTag: afc45f19-928a-4799-98b8-8c66b14245e8
+		summarizeBy: none
+		sourceColumn: PO NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PROD LINE'
+		dataType: string
+		lineageTag: 28f9555c-962a-4b90-99b7-f8da14342518
+		summarizeBy: none
+		sourceColumn: PROD LINE
+
+		annotation SummarizationSetBy = Automatic
+
+	column NET
+		dataType: double
+		lineageTag: 7363a78f-980e-47db-9fa0-8bc3dcb5d8ba
+		summarizeBy: sum
+		sourceColumn: NET
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DEALERCODE
+		dataType: string
+		lineageTag: 94d7adf5-956f-42c1-9463-2fea1de2823c
+		summarizeBy: none
+		sourceColumn: DEALERCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRANSTYPE
+		dataType: string
+		lineageTag: 87ceb8d4-16ec-41d3-b26e-a757c87e94dc
+		summarizeBy: none
+		sourceColumn: TRANSTYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column MergedOrderNo
+		dataType: string
+		lineageTag: 67ead55f-4346-4995-818f-fe3e9340f86e
+		summarizeBy: none
+		sourceColumn: MergedOrderNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Rep Code' = ```
+			
+			VAR ver1 =
+			LOOKUPVALUE(
+			        'TiLite_AttachmentReporting_Lines'[Sales Rep (Customer Master)],
+			        'TiLite_AttachmentReporting_Lines'[SalesOrder],
+			        'DASH_BOOKINGS_MAX'[MergedOrderNo])
+			RETURN
+			IF(ISBLANK(ver1),
+			LOOKUPVALUE(
+			    'DASH_BOOKINGS_TILITECHAIRONLY'[Sales Rep Code],
+			    'DASH_BOOKINGS_TILITECHAIRONLY'[Merged_SalesOrderNo],
+			    'DASH_BOOKINGS_MAX'[MergedOrderNo]),
+			    ver1
+			)
+			
+			```
+		lineageTag: 086be1c3-701b-4465-bf4a-decf326b3cdb
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderLink = ```
+			
+			CALCULATE(
+			    SELECTEDVALUE(
+			        'DASH_BOOKINGS_MAX'[ORDER NO]),
+			        USERELATIONSHIP('TiLite_AttachmentReporting_Lines'[SalesOrder], 
+			            'DASH_BOOKINGS_MAX'[MergedOrderNo]))
+			
+			```
+		dataType: string
+		lineageTag: 366dc9bd-d7b8-41fa-855e-103c27644dfe
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DASH_BOOKINGS_MAX-6c11da61-2130-4427-8293-28a327f0ff12 = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("USNASDB04", "SCALADB", [Query="SELECT [ORDER NO]#(lf)      ,[DATE]#(lf)      ,[QTY]#(lf)      ,[PO NUMBER]#(lf)      ,[PROD LINE]#(lf)      ,[NET]#(lf)      ,[DEALERCODE]#(lf)      ,[TRANSTYPE]#(lf)  FROM [scalaDB].[dbo].[DASH_BOOKINGS_MAX]#(lf)WHERE [DATE] >= '01-01-2023'"]),
+				    #"Inserted Merged Column" = Table.AddColumn(Source, "Merged", each Text.Combine({"00000000", [ORDER NO]}), type text),
+				    #"Renamed Columns" = Table.RenameColumns(#"Inserted Merged Column",{{"Merged", "MergedOrderNo"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

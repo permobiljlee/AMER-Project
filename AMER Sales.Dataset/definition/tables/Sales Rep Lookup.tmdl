@@ -1,0 +1,69 @@
+table 'Sales Rep Lookup'
+	excludeFromModelRefresh
+	lineageTag: 0029272f-389d-4701-87c5-3cb63c9a1cb6
+
+	column WKSalesRep
+		dataType: int64
+		formatString: 0
+		lineageTag: 9eb85d8a-3db5-4d1d-b05d-f42aadd0015a
+		summarizeBy: sum
+		sourceColumn: WKSalesRep
+
+		annotation SummarizationSetBy = Automatic
+
+	column BKSalesRep
+		dataType: string
+		lineageTag: a8c76ca5-a01b-4d5f-81c0-8744c647ffb9
+		summarizeBy: none
+		sourceColumn: BKSalesRep
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesRepCode
+		dataType: string
+		lineageTag: 76a0fdf9-2141-4cdb-9cb3-a41ae5035d84
+		summarizeBy: none
+		sourceColumn: SalesRepCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PERM Code'
+		dataType: string
+		lineageTag: a625955b-67d3-48bc-b443-5d542e2b76b5
+		summarizeBy: none
+		sourceColumn: PERM Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesRepDescription
+		dataType: string
+		lineageTag: c03afbc9-a5b9-4fe8-a9a0-72f3c8d24d9a
+		summarizeBy: none
+		sourceColumn: SalesRepDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompanyCode
+		dataType: string
+		lineageTag: 978be75d-d67d-4119-b397-7a3b95dbc30f
+		summarizeBy: none
+		sourceColumn: CompanyCode
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Sales Rep Lookup' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://permobil.sharepoint.com/sites/BIBRAmericas/Shared%20Documents/General/S&P%20Dashboard/DataWarehouse_PERMOBIL_Global_Rep_Code.xlsx"), null, true),
+				    #"Sales Rep Lookup_Sheet" = Source{[Item="Sales Rep Lookup",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Sales Rep Lookup_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"WKSalesRep", Int64.Type}, {"BKSalesRep", type text}, {"SalesRepCode", type any}, {"PERM Code", type text}, {"SalesRepDescription", type text}, {"SalesRegionCode", Int64.Type}, {"SalesRegion", type text}, {"MarketGroupCode", Int64.Type}, {"MarketGroup", type text}, {"BusinessRegion", type text}, {"BusinessRegionCode", Int64.Type}, {"SalesArea", type text}, {"SalesAreaCode", Int64.Type}, {"SalesTerritory", type any}, {"UserID", type text}, {"DW_ValidFrom", type date}, {"DW_UpdateDateTime", type datetime}, {"DW_IsDeleted", Int64.Type}, {"DW_IsInferred", Int64.Type}, {"DW_IsCurrent", Int64.Type}, {"DW_Rowid", Int64.Type}, {"CompanyCode", type text}, {"GlobalSalesRepCode", type text}, {"MDSEnterDateTime", type datetime}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Changed Type",{"WKSalesRep", "BKSalesRep", "SalesRepCode", "PERM Code", "SalesRepDescription", "CompanyCode"})
+				in
+				    #"Removed Other Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

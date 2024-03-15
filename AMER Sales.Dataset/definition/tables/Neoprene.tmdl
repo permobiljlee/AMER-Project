@@ -1,0 +1,36 @@
+table Neoprene
+	lineageTag: 26abddb8-476a-4993-b48c-135b5a20ab23
+
+	column ITEM_MINOR
+		dataType: string
+		lineageTag: a9e4c0bb-e207-4c00-8db8-111da77a31fa
+		summarizeBy: none
+		sourceColumn: ITEM_MINOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 704eb840-6e81-4f6e-856d-d83e8a09a24f
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Neoprene = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://permobil.sharepoint.com/sites/BIBRAmericas", [ApiVersion = 15]),
+				    #"Budget for Power BI By dealer group and by product 2020 xlsx_https://permobil sharepoint com/sites/BIBRAmericas/Shared Documents/General/Sales Reports 2020/" = Source{[Name="Budget for Power BI By dealer group and by product 2020.xlsx",#"Folder Path"="https://permobil.sharepoint.com/sites/BIBRAmericas/Shared Documents/General/Sales Reports 2020/"]}[Content],
+				    #"Imported Excel" = Excel.Workbook(#"Budget for Power BI By dealer group and by product 2020 xlsx_https://permobil sharepoint com/sites/BIBRAmericas/Shared Documents/General/Sales Reports 2020/"),
+				    Neoprene_Sheet = #"Imported Excel"{[Item="Neoprene",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Neoprene_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ITEM_MINOR", type text}, {"Type", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

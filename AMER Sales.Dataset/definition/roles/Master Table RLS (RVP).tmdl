@@ -1,0 +1,10 @@
+role 'Master Table RLS (RVP)'
+	modelPermission: read
+
+	tablePermission 'Sales Rep Map' =
+			[RVP Logon] = USERPRINCIPALNAME()
+			||
+			[RVP Email] = USERPRINCIPALNAME()
+
+	annotation PBI_Id = e376c4c443784c5596d861b88fb07bbb
+

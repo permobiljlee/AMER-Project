@@ -1,0 +1,48 @@
+table 'Original Dates'
+	excludeFromModelRefresh
+	lineageTag: 621e7696-47fa-4b21-a64d-6a9ebcbe8b1f
+
+	column Order_Number
+		dataType: string
+		lineageTag: 5685e526-c71e-4b7d-a185-6a4f43a86552
+		summarizeBy: none
+		sourceColumn: Order_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'eCon ID'
+		dataType: string
+		lineageTag: 22c090ea-3908-4288-be62-3ce5c4769f23
+		summarizeBy: none
+		sourceColumn: eCon ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Portal Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bbb20cbc-1dd9-4b3a-b1bf-1042600396ed
+		summarizeBy: none
+		sourceColumn: Portal Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 'Original Dates' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://permobil.sharepoint.com/sites/BIBRAmericas", [ApiVersion = 15]),
+				    #"Budget for Power BI By dealer group and by product 2020 xlsx_https://permobil sharepoint com/sites/BIBRAmericas/Shared Documents/General/Sales Reports 2020/" = Source{[Name="Budget for Power BI By dealer group and by product 2020.xlsx",#"Folder Path"="https://permobil.sharepoint.com/sites/BIBRAmericas/Shared Documents/General/Sales Reports 2020/"]}[Content],
+				    #"Imported Excel" = Excel.Workbook(#"Budget for Power BI By dealer group and by product 2020 xlsx_https://permobil sharepoint com/sites/BIBRAmericas/Shared Documents/General/Sales Reports 2020/"),
+				    #"Change quote date_Sheet" = #"Imported Excel"{[Item="Change quote date",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Change quote date_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Order_Number", type any}, {"eCon ID", type text}, {"Portal Date", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

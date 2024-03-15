@@ -1,0 +1,158 @@
+table 'Financial product'
+	lineageTag: 4430a3df-21af-4cb2-bffc-5b415a6dd3d8
+
+	column FinProduct_SK
+		dataType: string
+		isHidden
+		lineageTag: dc9a389c-ac6b-4d88-a8e7-3082ba5bad19
+		summarizeBy: none
+		sourceColumn: FinProduct_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FinProduct_BK
+		dataType: string
+		isHidden
+		lineageTag: 0b8b2569-8d88-457e-992b-8688347c04b6
+		summarizeBy: none
+		sourceColumn: FinProduct_BK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataLoadDatetime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6e880412-e4db-4a27-9b23-fcb39565b18c
+		summarizeBy: none
+		sourceColumn: DataLoadDatetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Record source'
+		dataType: string
+		lineageTag: 11302c57-695f-4d4e-a775-aa67b23f37b1
+		summarizeBy: none
+		sourceColumn: Record source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Change type'
+		dataType: string
+		lineageTag: dab140cb-ca8e-4182-ae1a-a97128570bfa
+		summarizeBy: none
+		sourceColumn: Change type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product code'
+		dataType: string
+		lineageTag: 8d5d28db-86c5-4e72-bf0a-4a1606d6f17c
+		summarizeBy: none
+		sourceColumn: Financial product code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product desc'
+		dataType: string
+		lineageTag: 7cba6315-d7a1-480a-9873-5fb8c8d0dd8f
+		summarizeBy: none
+		sourceColumn: Financial product desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product code Lvl1'
+		dataType: string
+		lineageTag: db8263d6-f83d-4201-bf1d-cf3f8e552830
+		summarizeBy: none
+		sourceColumn: Financial product code Lvl1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product code Lvl2'
+		dataType: string
+		lineageTag: 49629b07-e17f-49ce-ae36-71a25395bade
+		summarizeBy: none
+		sourceColumn: Financial product code Lvl2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product code Lvl3'
+		dataType: string
+		lineageTag: 0c3bd827-d1cc-4a32-9809-0143ef65676a
+		summarizeBy: none
+		sourceColumn: Financial product code Lvl3
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product code Lvl4'
+		dataType: string
+		lineageTag: 7f2ee918-20da-4b9d-aa10-ec0549396b4b
+		summarizeBy: none
+		sourceColumn: Financial product code Lvl4
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product code Lvl5'
+		dataType: string
+		lineageTag: 3eb78632-7cff-429b-a873-70a4c8a215d7
+		summarizeBy: none
+		sourceColumn: Financial product code Lvl5
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product desc Lvl1'
+		dataType: string
+		lineageTag: 070baa0a-fb66-41c3-abf8-c05f95fd4ca4
+		summarizeBy: none
+		sourceColumn: Financial product desc Lvl1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product desc Lvl2'
+		dataType: string
+		lineageTag: 3976de6e-7d7c-4908-95cd-d84a6f626db4
+		summarizeBy: none
+		sourceColumn: Financial product desc Lvl2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product desc Lvl3'
+		dataType: string
+		lineageTag: 90d322b8-3bf6-4f1d-b045-df9227162e53
+		summarizeBy: none
+		sourceColumn: Financial product desc Lvl3
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product Desc Lvl4'
+		dataType: string
+		lineageTag: 87a81321-3332-4f3d-8654-ca96ba9840da
+		summarizeBy: none
+		sourceColumn: Financial product Desc Lvl4
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product desc Lvl5'
+		dataType: string
+		lineageTag: ca896ec0-bf79-471e-872d-d64c8c628e37
+		summarizeBy: none
+		sourceColumn: Financial product desc Lvl5
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Financial product-ea287309-c115-4e4d-828b-65f07d26d659' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [CreateNavigationProperties=false, CommandTimeout=#duration(0, 4, 10, 0)]),
+				    sales_mart_dim_FinProduct_All = Source{[Schema="sales_Rpt",Item="dim_FinProduct"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(sales_mart_dim_FinProduct_All,{{"ChangeType", "Change type"}, {"FinProductCode", "Financial product code"}, {"FinProductCodeLvl1", "Financial product code Lvl1"}, {"FinProductCodeLvl2", "Financial product code Lvl2"}, {"FinProductCodeLvl3", "Financial product code Lvl3"}, {"FinProductCodeLvl4", "Financial product code Lvl4"}, {"FinProductCodeLvl5", "Financial product code Lvl5"}, {"FinProductDescLvl1", "Financial product desc Lvl1"}, {"FinProductDesc", "Financial product desc"}, {"FinProductDescLvl2", "Financial product desc Lvl2"}, {"FinProductDescLvl3", "Financial product desc Lvl3"}, {"FinProductDescLvl4", "Financial product Desc Lvl4"}, {"FinProductDescLvl5", "Financial product desc Lvl5"}, {"RecordSource", "Record source"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,226 @@
+table OR01_QUOTE_CONV_UNION_View
+	excludeFromModelRefresh
+	lineageTag: 9e2d68e3-3ac1-4106-9826-47d7851b19b7
+
+	column Order_Number
+		dataType: string
+		lineageTag: b2720534-8bb2-4cb5-9ae2-1edcdb5d1cc0
+		summarizeBy: none
+		sourceColumn: Order_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quote_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 415915c7-3fda-454e-9fd9-440f77bb258c
+		summarizeBy: none
+		sourceColumn: Quote_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dealer_Code
+		dataType: string
+		lineageTag: 4ca2b5b7-5dc3-41e3-ba63-e8c03eb80b00
+		summarizeBy: none
+		sourceColumn: Dealer_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dealer_Name
+		dataType: string
+		lineageTag: 1535956f-73cf-4ace-8e14-e19bbfd44314
+		summarizeBy: none
+		sourceColumn: Dealer_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column PL_Code
+		dataType: string
+		lineageTag: fc8c0965-ad24-4764-b164-2da746f08889
+		summarizeBy: none
+		sourceColumn: PL_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column PL_Name
+		dataType: string
+		lineageTag: 29eec3a5-da42-415f-87b7-3762fcd3b80c
+		summarizeBy: none
+		sourceColumn: PL_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quote_Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 44ef6cb8-59c7-4eb5-93ba-69b421ed5862
+		summarizeBy: sum
+		sourceColumn: Quote_Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quote_Month
+		dataType: int64
+		formatString: 0
+		lineageTag: a5473ac1-b09d-4f4e-9c74-e4d2c0099199
+		summarizeBy: sum
+		sourceColumn: Quote_Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quote_ID
+		dataType: string
+		lineageTag: c7a50cc7-c528-4947-939f-8e3a15bc272a
+		summarizeBy: none
+		sourceColumn: Quote_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0f1f9629-d71d-41a2-a1bf-767e05d2a752
+		summarizeBy: none
+		sourceColumn: Order_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 189ee25e-e3a9-417e-8133-fccbc2df229f
+		summarizeBy: none
+		sourceColumn: Invoice_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quote_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: 6212fac6-7036-4336-9030-0e9f81b71154
+		summarizeBy: sum
+		sourceColumn: Quote_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f9ffd6c-5ecc-475e-b741-5316ac1ae195
+		summarizeBy: sum
+		sourceColumn: Order_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: 21a22a4a-7347-44a0-b8a3-6f0340e865c5
+		summarizeBy: sum
+		sourceColumn: Invoice_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Chair
+		dataType: string
+		lineageTag: f0e5c3c9-8f71-4694-ad17-e109c6609f83
+		summarizeBy: none
+		sourceColumn: Chair
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompositeKey
+		dataType: string
+		lineageTag: 7b535fb8-ab10-46ac-b6fa-834dffdf4412
+		summarizeBy: none
+		sourceColumn: CompositeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product II'
+		dataType: string
+		lineageTag: c7cbeee9-4266-4959-a061-b17cc0f3ebfa
+		summarizeBy: none
+		sourceColumn: Product II
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Code' = ```
+			SWITCH(TRUE(), 
+			OR01_QUOTE_CONV_UNION_View[PL_Code] IN {"1A","1B","1C"} , "ACC2", OR01_QUOTE_CONV_UNION_View[PL_Code] = "1D" , "ACL2", 
+			OR01_QUOTE_CONV_UNION_View[PL_Code] IN {"1E", "1F"} , "ARC2", OR01_QUOTE_CONV_UNION_View[PL_Code] = "1G" ,  "PRC2", 
+			OR01_QUOTE_CONV_UNION_View[PL_Code] IN {"24","79", "80", "90", "91"}, "3EM1", OR01_QUOTE_CONV_UNION_View[PL_Code] IN {"81", "93", "92"} ,  "3CF5",  OR01_QUOTE_CONV_UNION_View[PL_Code] = "82" ,  "4CFF", 
+			OR01_QUOTE_CONV_UNION_View[PL_Code] = "83" ,  "4DF5", 
+			OR01_QUOTE_CONV_UNION_View[PL_Code] = "59" ,  "5BF5", 
+			OR01_QUOTE_CONV_UNION_View[PL_Code] = "20" ,  "5BF6", 
+			OR01_QUOTE_CONV_UNION_View[PL_Code] = "61" ,  "5CR1", 
+			OR01_QUOTE_CONV_UNION_View[PL_Code] = "78", "5BM1", 
+			OR01_QUOTE_CONV_UNION_View[PL_Code] IN {"72", "89"} , "3CM1", OR01_QUOTE_CONV_UNION_View[PL_Code] = "75" , "3CR3", 
+			OR01_QUOTE_CONV_UNION_View[PL_Code] = "74" , "3CF3", 
+			OR01_QUOTE_CONV_UNION_View[PL_Code] = "77" , "4CFC", 
+			"Other")
+			```
+		dataType: string
+		lineageTag: 02bb2f01-fb89-4cb6-bb90-c7858a6ebace
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'New Quote Date' =
+			
+			IF(ISBLANK(
+			    OR01_QUOTE_CONV_UNION_View[Original quote date]),
+			    OR01_QUOTE_CONV_UNION_View[Quote_Date],
+			    OR01_QUOTE_CONV_UNION_View[Original quote date])
+		dataType: dateTime
+		lineageTag: 2d3ab485-7207-496a-9ea7-992637541b4b
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original quote date' = RELATED('Original Dates'[Portal Date])
+		dataType: dateTime
+		lineageTag: 7e6ed6e0-e05b-47d9-bd80-9be075959451
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Date Key' =
+			
+			IF(
+			    'OR01_QUOTE_CONV_UNION_View'[Order_Count] = 0,
+			    EDATE( 'OR01_QUOTE_CONV_UNION_View'[New Quote Date], 6),
+			    'OR01_QUOTE_CONV_UNION_View'[Order_Date]
+			)
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 187d5a56-f648-46c9-91fa-ce250e06d5fd
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition OR01_QUOTE_CONV_UNION_View = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("USNASDB04", "EconQuoteConf"),
+				    dbo_OR01_Quote_Conv_UNION_View = Source{[Schema="dbo",Item="OR01_Quote_Conv_UNION_View"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(dbo_OR01_Quote_Conv_UNION_View, each [Quote_Date] > #datetime(2017, 12, 31, 0, 0, 0)),
+				    #"Trimmed Text" = Table.TransformColumns(#"Filtered Rows",{{"Dealer_Code", Text.Trim, type text}}),
+				    #"Cleaned Text" = Table.TransformColumns(#"Trimmed Text",{{"Dealer_Code", Text.Clean, type text}}),
+				    #"Uppercased Text" = Table.TransformColumns(#"Cleaned Text",{{"Dealer_Code", Text.Upper, type text}}),
+				    #"Added Custom" = Table.AddColumn(#"Uppercased Text", "CompositeKey", each [Dealer_Code]&"ABC"),
+				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Product II", each "Pwc Chairs"),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom1",{{"Product II", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

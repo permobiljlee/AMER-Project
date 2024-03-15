@@ -1,0 +1,38 @@
+table 'Holiday US'
+	lineageTag: 2286adb6-dc35-4319-aa9d-ea85e0d30ebd
+
+	column Holiday
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d8035e42-214e-4f22-8f70-9a1d8c0b1861
+		summarizeBy: none
+		sourceColumn: Holiday
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Name of holiday'
+		dataType: string
+		lineageTag: 7df75f9c-8e8d-4e8a-8d02-d4c3feed6a2c
+		summarizeBy: none
+		sourceColumn: Name of holiday
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Holiday US-83857afa-503f-4a47-a4c6-d367dee90a62' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://permobil.sharepoint.com/sites/BISalesUAT", [ApiVersion = 15]),
+				    #"Holidays xlsx_https://permobil sharepoint com/sites/BISalesUAT/Shared Documents/Power BI Model/" = Source{[Name="Holidays.xlsx",#"Folder Path"="https://permobil.sharepoint.com/sites/BISalesUAT/Shared Documents/Power BI Model/"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"Holidays xlsx_https://permobil sharepoint com/sites/BISalesUAT/Shared Documents/Power BI Model/"),
+				    Holidays_Sheet = #"Imported Excel Workbook"{[Item="Holidays",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Holidays_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Holiday", type date}}),
+				    #"Removed Bottom Rows" = Table.RemoveLastN(#"Changed Type",1)
+				in
+				    #"Removed Bottom Rows"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,32 @@
+table 'ROHO Mapping'
+	lineageTag: 86b062e1-4c9d-450d-9eee-5bca4b90053a
+
+	column SalesRep
+		dataType: string
+		lineageTag: e6b8b8a1-edf1-4f3e-91b9-40c33011dcad
+		summarizeBy: none
+		sourceColumn: SalesRep
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rep Code'
+		dataType: string
+		lineageTag: c0eb2076-0ace-4e5b-a249-1610c5e914d9
+		summarizeBy: none
+		sourceColumn: Rep Code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'ROHO Mapping-6fa14b8b-81aa-4232-a107-7429f2d5fb3d' = m
+		mode: import
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Source{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+				    #"2ebf11a4-fa51-4271-8c6a-b8e4653bbba7" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="2ebf11a4-fa51-4271-8c6a-b8e4653bbba7"]}[Data],
+				    #"ROHO Mapping1" = #"2ebf11a4-fa51-4271-8c6a-b8e4653bbba7"{[entity="ROHO Mapping"]}[Data]
+				in
+				    #"ROHO Mapping1"
+
+	annotation PBI_ResultType = Table
+

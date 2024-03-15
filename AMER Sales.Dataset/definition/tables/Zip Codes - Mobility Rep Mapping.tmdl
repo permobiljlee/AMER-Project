@@ -1,0 +1,67 @@
+table 'Zip Codes - Mobility Rep Mapping'
+	lineageTag: 460e03cc-c34a-4f77-949b-882ebe9fd592
+
+	column 'ZIP5 Code'
+		dataType: string
+		lineageTag: 54805761-7bb6-4916-99b7-4d2cc0a956a2
+		summarizeBy: none
+		sourceColumn: ZIP5 Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Place name'
+		dataType: string
+		lineageTag: 4da98dac-af27-452a-84cb-ad2858c5b7c7
+		summarizeBy: none
+		sourceColumn: Place name
+
+		annotation SummarizationSetBy = Automatic
+
+	column States
+		dataType: string
+		lineageTag: f6ec2cc3-be61-461c-b4b0-8f92e6ab79ce
+		summarizeBy: none
+		sourceColumn: States
+
+		annotation SummarizationSetBy = Automatic
+
+	column Territory
+		dataType: string
+		lineageTag: a3b9043f-78b5-4d05-b212-c7678c85eb00
+		summarizeBy: none
+		sourceColumn: Territory
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Territory count'
+		dataType: string
+		lineageTag: eab9e970-53c2-4207-bbca-30b0c4c0e54d
+		summarizeBy: none
+		sourceColumn: Territory count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zip_Code
+		dataType: string
+		lineageTag: 82ec56ce-4c8b-48a1-b7dc-6275ef07ac3d
+		summarizeBy: none
+		sourceColumn: Zip_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Zip Codes - Mobility Rep Mapping' = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Workspaces{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+				    #"e7379b27-318f-4c19-8e8b-72ac143b57d7" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="e7379b27-318f-4c19-8e8b-72ac143b57d7"]}[Data],
+				    #"Zip Codes - Sales Rep Mapping - Mobility_" = #"e7379b27-318f-4c19-8e8b-72ac143b57d7"{[entity="Zip Codes - Sales Rep Mapping - Mobility",version=""]}[Data]
+				in
+				    #"Zip Codes - Sales Rep Mapping - Mobility_"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

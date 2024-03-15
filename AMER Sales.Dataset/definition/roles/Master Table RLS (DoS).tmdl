@@ -1,0 +1,12 @@
+role 'Master Table RLS (DoS)'
+	modelPermission: read
+
+	tablePermission 'Sales Rep Map' =
+			[MgrLogon] = USERPRINCIPALNAME()
+			||
+			[MgrEmail] = USERPRINCIPALNAME()
+			||
+			[Joined Terr] = USERPRINCIPALNAME()
+
+	annotation PBI_Id = 0976126c9d104785bbd16d1234670051
+

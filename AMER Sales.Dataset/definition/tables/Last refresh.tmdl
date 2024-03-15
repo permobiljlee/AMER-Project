@@ -1,0 +1,37 @@
+table 'Last refresh'
+	lineageTag: afb35baf-a661-4f46-99a1-c9e7e5008962
+
+	measure 'Color Date' = if(FIRSTNONBLANK('Last refresh'[Last Refresh],TODAY()) >today(),"lightgreen","red")
+		lineageTag: d78dc171-ba4f-497b-b094-4eebff95648d
+
+	column 'Last Refresh'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6e1ce450-f490-4616-894b-67914a73cf8f
+		summarizeBy: none
+		sourceColumn: Last Refresh
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column = [Last Refresh] - .1
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 55eb891a-53bb-45fa-b08d-b36c3ca7b91e
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Last refresh-adf78735-bba1-430d-8ec2-84598b017ddc' = m
+		mode: import
+		source =
+				let
+				    Source = DateTime.LocalNow(),
+				    #"Converted to Table" = #table(1, {{Source}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Converted to Table",{{"Column1", type datetime}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Column1", "Last Refresh"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

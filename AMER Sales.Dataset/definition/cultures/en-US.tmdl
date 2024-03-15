@@ -1,0 +1,6120 @@
+culture en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "DynamicImprovement": "HighConfidence",
+			  "Entities": {
+			    "facts.sum_net_price": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Facts",
+			          "ConceptualProperty": "Net Price (LC)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Net": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "facts.sum_quantity": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Facts",
+			          "ConceptualProperty": "Sum quantity"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "sales_budget.sum_budget": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sales budget",
+			          "ConceptualProperty": "Sum Budget"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "sales_budget.speed_to_budget": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sales budget",
+			          "ConceptualProperty": "Speed to budget"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "sales_budget.diff_budget": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sales budget",
+			          "ConceptualProperty": "Diff budget"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "sales_budget.monthnumber": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sales budget",
+			          "ConceptualProperty": "Monthnumber"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "sales_budget_excel.east_west_region": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sales Budget_Excel",
+			          "ConceptualProperty": "East.West Region"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "date.date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date",
+			          "ConceptualProperty": "Date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "DATE": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "financial_product.financial_product_desc": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Financial product",
+			          "ConceptualProperty": "Financial product desc"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Product": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "bill_to_customer.region_territory": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Bill to customer",
+			          "ConceptualProperty": "Bill to Region.Territory"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "bill_to_customer.customer_account": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Bill to customer",
+			          "ConceptualProperty": "Customer account"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "bill_to_customer.customer_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Bill to customer",
+			          "ConceptualProperty": "Customer name"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "bill_to_customer.internalcustomer": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Bill to customer",
+			          "ConceptualProperty": "InternalCustomer"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table1_measure_table.ussc_pwc_booked_units": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "1 Measure Table",
+			          "ConceptualProperty": "USSC PWC Booked Units"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "ship_to_customer.region_territory_ship_to": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ship to customer",
+			          "ConceptualProperty": "Region.Territory_Ship To"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "ship_to_customer.ship_to_sales_currency_code": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ship to customer",
+			          "ConceptualProperty": "Ship to sales currency code"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "ship_to_customer.ship_to_region_territory": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ship to customer",
+			          "ConceptualProperty": "Ship to Region.Territory"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "ship_to_customer.ship_to_region_territory_subterritory": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ship to customer",
+			          "ConceptualProperty": "Ship to Region.Territory.SubTerritory"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "ship_to_customer.ship_to_commission_sales_group_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ship to customer",
+			          "ConceptualProperty": "Ship to commission sales group name"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "facts.ordernumber": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Facts",
+			          "ConceptualProperty": "OrderNumber"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ORDER #": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "scala_reentered_chair_orders.original_order_number": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Scala Re-entered Chair Orders",
+			          "ConceptualProperty": "Original order number"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "scala_reentered_chair_orders.date_ordered": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Scala Re-entered Chair Orders",
+			          "ConceptualProperty": "Date Ordered"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "sales_budget_excel__bridge.commission_group_sometimes_called_salesunit": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sales Budget_Excel - Bridge",
+			          "ConceptualProperty": "Commission Group (sometimes called SalesUnit)"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "sales_budget_excel__bridge.currentrep": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sales Budget_Excel - Bridge",
+			          "ConceptualProperty": "CurrentRep"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "date.month_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date",
+			          "ConceptualProperty": "Month name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Month": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "date.month": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date",
+			          "ConceptualProperty": "Month"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "date.calender_quarter_year": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date",
+			          "ConceptualProperty": "Calender quarter year"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "facts.itemnumber": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Facts",
+			          "ConceptualProperty": "ItemNumber"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "ship_to_customer.ship_to_sales_segment_id": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ship to customer",
+			          "ConceptualProperty": "Ship to sales segment Id"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "facts.net_price": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Facts",
+			          "ConceptualProperty": "Net price"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "ship_to_customer.ship_to_customer_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ship to customer",
+			          "ConceptualProperty": "Ship to customer name"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "released_product.product_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Released product",
+			          "ConceptualProperty": "Product name"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "ship_to_customer.mastercompanychain": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ship to customer",
+			          "ConceptualProperty": "MasterCompanyChain"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Company Chain": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ship_to_customer.masteraccount": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ship to customer",
+			          "ConceptualProperty": "MasterAccount"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ACCOUNT #": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Account": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sales_budget_excel__bridge.regioncode": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sales Budget_Excel - Bridge",
+			          "ConceptualProperty": "RegionCode"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "sales_budget_excel__bridge.regioncode_groups": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sales Budget_Excel - Bridge",
+			          "ConceptualProperty": "RegionCode (groups)"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "facts.chair_value_stream_groups": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Facts",
+			          "ConceptualProperty": "Chair Value Stream (groups)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Value Stream": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "facts.product_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Facts",
+			          "ConceptualProperty": "Product Name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "PRODUCT": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "date.py": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date",
+			          "ConceptualProperty": "PY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Prior Date": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sales_budget_excel__bridge_econ.currentrep": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sales Budget_Excel - Bridge (Econ)",
+			          "ConceptualProperty": "CurrentRep"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "sales_rep_map.region": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sales Rep Map",
+			          "ConceptualProperty": "Region"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Region Code": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "REGION": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sales_rep_map.region_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sales Rep Map",
+			          "ConceptualProperty": "Region_"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Sales Hierarchy": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Region": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_chairs__us": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Chairs - US"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Net Price": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_tilite_chairs": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Actuals - Total Invoiced US TiLite Chairs"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Invoiced": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "TiLite Chairs": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "NET SALES": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "YTD Inv": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "TiLite": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_smartdrives_off_chair_for_commissions__total_us": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced SmartDrives Off-Chair for Commissions - Total US"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NET SALES": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_tilite_smartdrives_onchair": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced TiLite On-Chair - SmartDrives Aluminum"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "SmartDrives - On-Chair AL": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_roho": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Actuals - Total Invoiced US ROHO"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Invoiced": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "ROHO": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "NET SALES": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "YTD Inv": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "NET PRICE": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_comfort": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Actuals - Total Invoiced US Comfort"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Invoiced": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Comfort": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "NET SALES": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "YTD Inv": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_pwc_q1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB PWC"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "STB PWC": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Power Chairs": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_comfort_q1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Comfort"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "STB Comf": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Comfort": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_tilite_q1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB TiLite"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "STB MWC": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "TiLite Chairs": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_smart_off_q1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Smart Off Q1"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.stb_smarton_q1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Smart-On Q1"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.stb_roho_q1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB ROHO"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "STB ROHO": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "ROHO": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_chairs__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Chairs - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Power Chairs": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_parts__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Parts - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Invoiced Power Parts - CAN": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Power Parts": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_tilite_chairs_demo__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced TiLIte Chairs - (Demo) Aluminum - CAN"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "sales_rep_map.repname": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sales Rep Map",
+			          "ConceptualProperty": "RepName"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Rep Name": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Rep": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Name": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sales_rep_map.rep": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sales Rep Map",
+			          "ConceptualProperty": "Rep"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "ship_to_customer.profilecustomername": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ship to customer",
+			          "ConceptualProperty": "ProfileCustomerName"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "CUSTOMER": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ship_to_customer.profilecustomergroup": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ship to customer",
+			          "ConceptualProperty": "ProfileCustomerGroup"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "CUSTOMER GROUP": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "facts.invoicenumber": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Facts",
+			          "ConceptualProperty": "InvoiceNumber"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "facts.product_line": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Facts",
+			          "ConceptualProperty": "Product Line"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "PRODUCT LINE": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table8dw_dimcustomer.custaccount": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "8DW DimCustomer",
+			          "ConceptualProperty": "CustAccount#"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ACCOUNT #": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table8dw_dimcustomer.provider_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "8DW DimCustomer",
+			          "ConceptualProperty": "Provider Name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "CUSTOMER": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "factcustomerinvoice_union.ponumber": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FactCustomerInvoice_UNION",
+			          "ConceptualProperty": "PONumber"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "PO #": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "factcustomerinvoice_union.product_line2": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FactCustomerInvoice_UNION",
+			          "ConceptualProperty": "Product Line2"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "factcustomerinvoice_union.invoicenumber": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FactCustomerInvoice_UNION",
+			          "ConceptualProperty": "InvoiceNumber"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "dw_dimproduct.productname": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DW DimProduct",
+			          "ConceptualProperty": "ProductName"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "PRODUCT": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_tilite_smartdrives_onchair1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced TiLite On-Chair - SmartDrives"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NET SALES": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.facts_recon": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Facts Recon"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.fact_invoice_recon": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Fact Invoice Recon"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.invoiced_returned_orders__ussc_power_chairs": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Returned Orders - USSC Power Chairs"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "RO Power": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_returned_orders__ussc_power_parts": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Returned Orders - USSC Power Parts"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "RO Parts": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_returned_orders__ussc_smartdrives": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Returned Orders - USSC SmartDrives"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "RO SD": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_chairs__ussc": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Chairs - USSC (excl Freight)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Power": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_parts__ussc": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Parts - USSC"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.invoiced_tilite_chairs__aluminum": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced TiLite Chairs - US Aluminum"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "TiLite - AL": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_tilite_chairs__aluminum_excl_on_chair_smartdrives": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced TiLite Chairs - US Aluminum excl On-Chair SD"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "TiLite - AL less SD": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_tilite_chairs__titanium": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced TiLite Chairs - US Titanium"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "TiLite - Ti": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_tilite_chairs__titanium_excl_on_chair_smartdrives": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced TiLite Chairs - US Titanium excl On-Chair SD"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "TiLite - Ti less SD": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_tilite_smartdrives_onchair__titanium": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced TiLite On-Chair - SmartDrives Titanium"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "SmartDrives - On-Chair Ti": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_tilite_chairs__aluminum_demo__ussc": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced TiLIte Chairs - (Demo) USSC Aluminum"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "TiLite - AL Demo": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_tilite_chairs__titanium_demo__ussc": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced TiLIte Chairs - (Demo) USSC Titanium"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "TiLite - Ti Demo": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_smartdrives_off_chair_for_commissions__ussc": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced SmartDrives Off-Chair for Commissions - USSC"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "SmartDrives - Off-Chair": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "factcustomerinvoice_union.provider_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FactCustomerInvoice_UNION",
+			          "ConceptualProperty": "Provider Name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "CUSTOMER": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tilite_attachmentreporting_lines.invoicedate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "TiLite_AttachmentReporting_Lines",
+			          "ConceptualProperty": "InvoiceDate"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "DATE": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tilite_attachmentreporting_lines.trnmonth": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "TiLite_AttachmentReporting_Lines",
+			          "ConceptualProperty": "TrnMonth"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "tilite_attachmentreporting_lines.invoice": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "TiLite_AttachmentReporting_Lines",
+			          "ConceptualProperty": "Invoice"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "tilite_attachmentreporting_lines.product_line": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "TiLite_AttachmentReporting_Lines",
+			          "ConceptualProperty": "Product Line"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "tilite_attachmentreporting_lines.customername": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "TiLite_AttachmentReporting_Lines",
+			          "ConceptualProperty": "CustomerName"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "CUSTOMER": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tilite_attachmentreporting_lines.tilite_chair_model": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "TiLite_AttachmentReporting_Lines",
+			          "ConceptualProperty": "TiLite Chair Model"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "CHAIR MODEL": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.total_invoiced_power_chairs": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Actuals - Total Invoiced US Power Chairs"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Invoiced": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Power Chairs": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "NET SALES": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "YTD Inv": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.total_combined_smartdrives": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Actuals - Total Invoiced US Combined SmartDrives"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Invoiced": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "SmartDrive": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "YTD Inv": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_smart_combined_q1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Smart Combined"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "STB SD": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "SmartDrive": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_smartdrives_off_chair__total_can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced SmartDrives Off Chair - Total CAN"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "tilite_attachmentreporting_lines.salesorder": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "TiLite_AttachmentReporting_Lines",
+			          "ConceptualProperty": "SalesOrder"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ORDER #": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "factcustomerinvoice_union.ordernumber": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FactCustomerInvoice_UNION",
+			          "ConceptualProperty": "OrderNumber"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ORDER #": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table1_measure_table.budgetpwc": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "1 Measure Table",
+			          "ConceptualProperty": "BudgetPWC"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Budget": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "FY Budget": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table1_measure_table.budgettiliteonchair": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "1 Measure Table",
+			          "ConceptualProperty": "BudgetTiLite"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Budget": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "FY Budget": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table1_measure_table.budgetsd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "1 Measure Table",
+			          "ConceptualProperty": "BudgetSD"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Budget": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "FY Budget": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table1_measure_table.budgetrohoonchair": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "1 Measure Table",
+			          "ConceptualProperty": "BudgetROHO"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Budget": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "FY Budget": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table1_measure_table.budgetcomfortonchair": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "1 Measure Table",
+			          "ConceptualProperty": "BudgetComfort"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Budget": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "FY Budget": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table1_measure_table.budget3rdparty": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "1 Measure Table",
+			          "ConceptualProperty": "Budget3rdParty"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Budget": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table1_measure_table.budgettru": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "1 Measure Table",
+			          "ConceptualProperty": "BudgetTru"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Budget": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.total_power_chairs__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Total Power Chairs - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NET SALES": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Power Chairs": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Invoiced": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Chairs - D365": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.total_combined_smartdrives_can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Total Combined SmartDrives CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "SmartDrives": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Invoiced": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_pwc__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB PWC - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Power Chairs": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "STB": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_tilite__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB TiLite - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "TiLite Chairs": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "STB": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_smart_combined__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Smart Combined - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "SmartDrive": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "STB": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_montreal_roho__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Montreal ROHO - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NET SALES": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "ROHO": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Invoiced": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_roho__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB ROHO - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ROHO": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "STB": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_comfort__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Comfort - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Comfort": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "STB": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_montreal_comfort__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Montreal Comfort - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NET SALES": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Comfort": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Invoiced": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_montreal_3rd_party__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Montreal 3rd Party - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NET SALES": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Third Party": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Invoiced": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Net Invoice": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "3rd Party": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_montreal_trushape__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Montreal TruShape - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NET SALES": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Trushape": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Invoiced": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Tru-Shape": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_third_party__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Third Party - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Third Party": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "STB": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_trushape__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Trushape - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Trushape": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "STB": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.total_canada": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Total Canada"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Total": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_montreal_smartdrives__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Montreal SmartDrives - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NET SALES": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "SmartDrives": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "econ_configuration.clientname": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "ClientName"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Client Name": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Client": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "econ_configuration.branchcode": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "Branchcode"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Account Number": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Account #": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "econ_configuration.shipto_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "Shipto_Name"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "econ_configuration.chair_model": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "Chair model"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Chair Model": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Model": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "econ_configuration.scalanumber": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "Scalanumber"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Order Number": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "econ_configuration.trade_code": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "Trade code"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "econ_configuration.atp": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "Atp"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ATP": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "econ_configuration.monthly_conversion_rate_us": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "Monthly Conversion Rate US"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "econ_configuration.monthly_unconverted_us": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "Monthly Unconverted US"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "econ_configuration.column180_days": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": ">/< 180 Days"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "sales_budget_excel__bridge_econ.overregion": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sales Budget_Excel - Bridge (Econ)",
+			          "ConceptualProperty": "OverRegion"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "sales_budget_excel__bridge_econ.regioncode": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sales Budget_Excel - Bridge (Econ)",
+			          "ConceptualProperty": "RegionCode"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "econ_configuration.monthly_conversion_rate_can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "Monthly Conversion Rate CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "% of Quotes Converted": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "econ_configuration.monthly_unconverted_can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "Monthly Unconverted CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Open": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "econ_configuration.avg_conversion_days_can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "AVG Conversion Days CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "AVG Conversion Days": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dealer___country.us_dealer___country": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dealer / Country",
+			          "ConceptualProperty": "US Dealer / Country"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.invoiced_power_chairs__scala_can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Chairs - Scala CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Chairs - Scala": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_tilite_parts": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced TiLite Parts"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "TiLite Parts": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_total_canada": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Total Canada"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Total": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.total_canada_main": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Total Canada (MAIN)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Total": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_total_main__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Total (MAIN) - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Total": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_total_other__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Total (OTHER) - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Total": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.total_canada_other": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Total Canada (OTHER)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Total": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_pwc_ytd__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB PWC YTD - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_tilite_ytd__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB TiLite YTD - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_smart_combined_ytd__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Smart Combined YTD - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_roho_ytd__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB ROHO YTD - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_comfort_ytd__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Comfort YTD - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_total_main_ytd__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Total (MAIN) YTD - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_third_party_ytd__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Third Party YTD - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_total_other_ytd__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Total (OTHER) YTD - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_trushape_ytd__can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Trushape YTD - CAN"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ship_to_customer.canada_master_customer_salessegmentid": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ship to customer",
+			          "ConceptualProperty": "Canada Master Customer.SALESSEGMENTID"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Segment ID": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ship_to_customer.canada_master_customer_salessubsegmentid": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ship to customer",
+			          "ConceptualProperty": "Canada Master Customer.SALESSUBSEGMENTID"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Sub Seg": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ship_to_customer.canada_master_customer_organizationname": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ship to customer",
+			          "ConceptualProperty": "Canada Master Customer.ORGANIZATIONNAME"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Org Name": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ship_to_customer.canada_master_customer_namealias": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ship to customer",
+			          "ConceptualProperty": "Canada Master Customer.NAMEALIAS"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Alias": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ship_to_customer.ship_to_customer_company": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ship to customer",
+			          "ConceptualProperty": "Ship to customer company"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "CO": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "facts.pool_id_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Facts",
+			          "ConceptualProperty": "Pool Id Name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Pool ID": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "facts.finproddesc_1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Facts",
+			          "ConceptualProperty": "FinProdDesc 1"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Fin Prod": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "factcustomerinvoice_union.wkinvoicedate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FactCustomerInvoice_UNION",
+			          "ConceptualProperty": "WKInvoiceDate"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Invoice Date": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "factcustomerinvoice_union.net_amount_lc": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FactCustomerInvoice_UNION",
+			          "ConceptualProperty": "Net Amount (LC)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Net": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dw_dimproduct.canada_product": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DW DimProduct",
+			          "ConceptualProperty": "Canada Product"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Product": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sales_rep_map.region_groups": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sales Rep Map",
+			          "ConceptualProperty": "Region (groups)"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.roho_bookings": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "ROHO Bookings"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NET PRICE": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.total_power_chairs_orders": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Total Power Chairs (Orders)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NET PRICE": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.onchair_smartdrive_bookings": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "On-Chair SmartDrive Bookings"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NET PRICE": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.tilite_bookings": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "TiLite Bookings"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NET PRICE": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.offchair_smartdrive_bookings": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Off-Chair SmartDrive Bookings"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NET PRICE": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.units_invoice_2021": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Units- Invoice 2021"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.units_invoice_2022": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Units- Invoice 2022"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.units_invoice_2023": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Units- Invoice 2023"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.unit_growth__invoice_2122": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "% Unit Growth YoY PPY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Unit % Growth": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.price_growth_yoy_2122": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "% Price Growth YoY PPY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Invoiced % Growth": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.price_2023_inv": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Price 2023 Inv"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.price_growth_ytd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "% Sales Growth YTD"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "YTD Invoiced % Growth": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "% Growth Total": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Inv. Growth YTD": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "YTD Growth": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.units_growth_ytd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "% Units Growth YTD"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "YTD Unit % Growth": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "% Growth Units": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.price_2021_inv": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Price 2021 Inv"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.price_2022_inv": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Price 2022 Inv"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.total_cy": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Total CY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Total": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.total_py": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Total PY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "% Sales Growth": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.price_total_py": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Price Total PY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Total PY": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Prior Total": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.units__quotes": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Units - Quotes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Units": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.units__quotes_py": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Units - Quotes PY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Prior Units": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.units_growth__quotes": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "% Units Growth - Quotes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "% Units Growth": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.units__bookings": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Units - Bookings"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Units": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.units__bookings_py": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Units - Bookings PY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Units - PY": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.units_growth__bookings": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "% Units Growth - Bookings"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "% Units Growth": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ship_to_customer.ship_to_sales_sub_segment_id": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ship to customer",
+			          "ConceptualProperty": "Ship to sales sub segment Id"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "SUB SEGMENT": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "facts.customeraccount": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Facts",
+			          "ConceptualProperty": "CustomerAccount"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "facts.customergroup": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Facts",
+			          "ConceptualProperty": "CustomerGroup"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "facts.customer": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Facts",
+			          "ConceptualProperty": "Customer"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "all_sp_orders.provider_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "All S&P Orders",
+			          "ConceptualProperty": "Provider Name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "CUSTOMER": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "all_sp_orders.ordernumber": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "All S&P Orders",
+			          "ConceptualProperty": "OrderNumber"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ORDER #": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "all_sp_orders.ponumber": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "All S&P Orders",
+			          "ConceptualProperty": "PONumber"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "PO #": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "facts_sales_orders.ordernumber": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Facts_Sales Orders",
+			          "ConceptualProperty": "OrderNumber"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ORDER #": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "facts_sales_orders.product_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Facts_Sales Orders",
+			          "ConceptualProperty": "Product Name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "PRODUCT": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dash_bookings_max.orderlink": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DASH_BOOKINGS_MAX",
+			          "ConceptualProperty": "OrderLink"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ORDER #": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dash_bookings_max.order_no": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DASH_BOOKINGS_MAX",
+			          "ConceptualProperty": "ORDER NO"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ORDER #": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dw_dimitem.itemname": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DW_DimItem",
+			          "ConceptualProperty": "ItemName"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ITEM": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dash_bookings_tilitechaironly.order_no": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DASH_BOOKINGS_TILITECHAIRONLY",
+			          "ConceptualProperty": "ORDER NO"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ORDER #": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dash_bookings_tilitechaironly.dealercode": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DASH_BOOKINGS_TILITECHAIRONLY",
+			          "ConceptualProperty": "DEALERCODE"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ACCOUNT #": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dash_bookings_tilitechaironly.dealer_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DASH_BOOKINGS_TILITECHAIRONLY",
+			          "ConceptualProperty": "DEALER NAME"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "CUSTOMER": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dash_bookings_tilitechaironly.prod_line": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DASH_BOOKINGS_TILITECHAIRONLY",
+			          "ConceptualProperty": "PROD LINE"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "PRODUCT": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tilite_open_orders.status": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "TiLite Open Orders",
+			          "ConceptualProperty": "Status"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "STATUS": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tilite_open_orders.days_late": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "TiLite Open Orders",
+			          "ConceptualProperty": "Days Late"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "DAYS LATE": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tilite_open_orders.late_order": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "TiLite Open Orders",
+			          "ConceptualProperty": "Late Order?"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "LATE? (Y or N)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "LATE?": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tilite_master_orderdata.regioncountry": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "TiLite_Master_OrderData",
+			          "ConceptualProperty": "RegionCountry"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Country": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tilite_master_quotesdata.regioncountry": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "TiLite_Master_QuotesData",
+			          "ConceptualProperty": "RegionCountry"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Country": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "company.company_groups": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Company",
+			          "ConceptualProperty": "Company (groups)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Company": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_chairs__us_2023": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Chairs - US 2023"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Invoiced 2023": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Invoiced Chairs - 2023": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Total YTD": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Net Price": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "2023 - Sales": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_chairs__us_2023_units": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Chairs - US 2023 (Units)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Units 2023": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Units YTD": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Units": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "2023 - Units": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Qty 2023": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "YTD Units": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_chairs__us_2022": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Chairs - US 2022"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Invoiced 2022": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Invoiced Chairs - 2022": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Net Price": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Total Prior": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "2022 - Sales": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_chairs__us_2022_units": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Chairs - US 2022 (NSM Units)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Units 2022": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Units": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Units Prior": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "2022 - Units": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "PYTD Units": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_chairs__us_2021_units": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Chairs - US 2021 (Units)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Units 2021": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_chairs__us_2021": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Chairs - US 2021"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Invoiced 2021": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_parts__us_py": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Parts - US PY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Invoiced Parts - PY": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_parts__us_cy": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Parts - US CY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Invoiced Parts - CY": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.dolls_diff_top": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Dolls Diff Top"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Sales Diff": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.dolls_diff_bottom": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Dolls Diff Bottom"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Sales Diff": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "facts.customercchain": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Facts",
+			          "ConceptualProperty": "CustomerCChain"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.units__invoice": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Units - Invoice"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.units_py": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Units PY"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.units_growth__invoices": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "% Units Growth - Invoices"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.total_growth__invoices": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "% Total Growth - Invoices"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.invoiced_power_chairs__us_2023_nsm": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Chairs - US 2023 NSM"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Invoiced 2023": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "YTD Invoiced": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_chairs__us_2023_nsm_currmonth": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Chairs - US 2023 NSM CurrMonth"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Curr Month": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_chairs__us_2023_nsm_prevmonth": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Chairs - US 2023 NSM PrevMonth"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Prev Month": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_chairs__us_2023_nsm_prevmonth__1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Chairs - US 2023 NSM PrevMonth - 1"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Prev Month - 2": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_chairs__us_2023_nsm_prevmonth__2": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Chairs - US 2023 NSM PrevMonth - 2"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Prev Month - 3": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_chairs_currmonth_growth_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Chairs CurrMonth Growth %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "CGrowth %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_chairs_prevmonth_growth_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Chairs PrevMonth Growth %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "P Growth %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Month -1 Grwth": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_chairs_pprevmonth_growth_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Chairs PPrevMonth Growth %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "PP Growth %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Month -2 Growth": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_chairs_ppprevmonth_growth_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Chairs PPPrevMonth Growth %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "PPP Growth %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Month -3 Growth": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_power_chairs__us_2022_nsm": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced Power Chairs - US 2022 NSM"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "PYTD Invoiced": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.sales_growth_mtd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "% Sales Growth MTD"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "MTD Growth": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "date.month_name_abbr": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date",
+			          "ConceptualProperty": "Month Name Abbr"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Month": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ship_to_customer.mastercompanychain_groups": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ship to customer",
+			          "ConceptualProperty": "MasterCompanyChain (groups)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Customer Group": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "econ_configuration.demo_check_groups": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "Demo Check (groups)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Demo Check": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "econ_configuration.customer_group_groups": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "Customer Group (groups)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Customer Group": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "econ_configuration.shipto_name1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "ShipTo_Name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Dealer": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "facts_quote_details.quoteid": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Facts_Quote Details",
+			          "ConceptualProperty": "QuoteID"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table1_measures.growth_mtd_quoted": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "1 Measures",
+			          "ConceptualProperty": "Growth* (MTD) Quoted"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table1_measures.conversion_rate_brought_forward": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "1 Measures",
+			          "ConceptualProperty": "Conversion rate (brought forward)"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.heat_map__us_2022_units": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Heat Map - US 2022 Units"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Prev Year Units": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.heat_map__us_2022_sales": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Heat Map - US 2022 Sales"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Prev Year Sales": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.heat_map__us_2023_units": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Heat Map - US 2023 Units"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Curr Year Units": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.heat_map__us_2023_sales": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Heat Map - US 2023 Sales"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Curr Year Sales": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.heat_map_3_month_growth_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Heat Map -3 Month Growth %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "-3 Month Grwth": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.heat_map_2_month_growth_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Heat Map -2 Month Growth %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "-2 Month Grwth": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.heat_map_1_month_growth_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Heat Map -1 Month Growth %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "-1 Month Grwth": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.heat_map_0_month_growth_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Heat Map 0 Month Growth %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "0 Month Grwth": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "econ_configuration.averages_march__april": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "Averages March - April"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "March - April AVG": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "econ_configuration.averages_may__june": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "Averages May - June"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "May - June AVG": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "econ_configuration.averages": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "Averages"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Growth": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "econ_configuration.quote_date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "Quote Date"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "econ_configuration.tradecode": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "Tradecode"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "facts_quote_details.open0_converted1_groups": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Facts_Quote Details",
+			          "ConceptualProperty": "Open-0/Converted-1 (groups)"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.quoted_yoy_change_thin": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Quoted YoY Change (Thin)"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table3_profile_measures.quoted_mtd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Quoted MTD"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Quoted": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.quoted_avg_conversion_days": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Quoted (AVG Conversion Days)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Avg Conversion Days": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.quoted_yoy_change": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Quoted YoY Change"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "YoY Growth %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "econ_configuration.repname": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "Repname"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Rep": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "quotestest.open0_converted1_groups": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "QuotesTEST",
+			          "ConceptualProperty": "Open-0/Converted-1 (groups)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Status": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "quotestest.quoteid": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "QuotesTEST",
+			          "ConceptualProperty": "QuoteID"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Quote ID": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "product_code.product_group_groups": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Product Code",
+			          "ConceptualProperty": "Product Group (groups)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Product Group": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tilite_master_quotesdata.quotes_status": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "TiLite_Master_QuotesData",
+			          "ConceptualProperty": "Quotes Status"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Status": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tilite_master_quotesdata.quoteno": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "TiLite_Master_QuotesData",
+			          "ConceptualProperty": "QuoteNo"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Quote #": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tilite_master_quotesdata.chairtype": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "TiLite_Master_QuotesData",
+			          "ConceptualProperty": "ChairType"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Chair Type": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tilite_master_quotesdata.customer_no": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "TiLite_Master_QuotesData",
+			          "ConceptualProperty": "Customer No"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Customer #": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tilite_master_quotesdata.customername": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "TiLite_Master_QuotesData",
+			          "ConceptualProperty": "CustomerName"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Customer": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tilite_master_quotesdata.net_price_quotes": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "TiLite_Master_QuotesData",
+			          "ConceptualProperty": "Net Price Quotes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Net Price": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "quotestest.convertedquotes": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "QuotesTEST",
+			          "ConceptualProperty": "ConvertedQuotes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Converted": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "quotestest.openquotes": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "QuotesTEST",
+			          "ConceptualProperty": "OpenQuotes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Open": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "quotestest.quoted_yoy_change_thin": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "QuotesTEST",
+			          "ConceptualProperty": "Quoted YoY Change (Thin)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "YoY Growth": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.exec_conversion_rate_brought_forward": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Exec Conversion rate (brought forward)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Conversion Rate": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.exec_conversion_rate_ti": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Exec Conversion rate (Ti)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Conversion Rate": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "econ_configuration.convert_cnt_can": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "Convert Cnt CAN"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "econ_configuration.column180_days1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": ">/<180 Days"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "econ_configuration.sum_np": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "SUM NP"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "econ_configuration.quoteid": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Econ configuration",
+			          "ConceptualProperty": "QuoteID"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "quotestest.quote_from_today": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "QuotesTEST",
+			          "ConceptualProperty": "Quote From Today"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Quote Age": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table1_measure_table.budgettotal_fy": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "1 Measure Table",
+			          "ConceptualProperty": "BudgetTotal FY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "FY Budget": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_trushape": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced TruShape - US"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NET SALES": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_actuals__total_invoiced": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Actuals - Total Invoiced US"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "YTD Inv": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_total_ytd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Total YTD"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "STB Total": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "US DoS": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_pwc_ytd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB PWC YTD"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "STB PWC": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_tilite_ytd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB TiLite YTD"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "STB TiLite": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "STB MWC": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_smart_combined_ytd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Smart Combined YTD"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "STB SD": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_roho_ytd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB ROHO YTD"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "STB ROHO": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.stb_comfort_ytd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "STB Comfort YTD"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "STB Comf": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table3_profile_measures.invoiced_tilite_chairs1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "3 Profile Measures",
+			          "ConceptualProperty": "Invoiced TiLite Chairs - US"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Invoiced": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ytd_rankings_total_us.region": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "YTD Rankings_Total US",
+			          "ConceptualProperty": "Region"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Area": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ytd_rankings_total_us.rank_total_stb__east": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "YTD Rankings_Total US",
+			          "ConceptualProperty": "Rank Total STB - East"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Rank": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ytd_rankings_total_us.rank_total_stb__west": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "YTD Rankings_Total US",
+			          "ConceptualProperty": "Rank Total STB - West"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Rank": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

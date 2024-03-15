@@ -1,0 +1,33 @@
+table 'Account to Global'
+	lineageTag: adc511c3-1b3c-4a59-bb1b-87caa7fefdaf
+
+	column 'Ship to Account'
+		dataType: string
+		lineageTag: 1e2cdf8c-9c0a-4432-a988-2e219755851d
+		summarizeBy: none
+		sourceColumn: Ship to Account
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Global Acct'
+		dataType: string
+		lineageTag: a2251611-9ddf-4d0d-a076-ecf48da95329
+		summarizeBy: none
+		sourceColumn: Global Acct
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Account to Global-c7f6e847-8190-4c32-ac16-c8244948bb3d' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://permobil.sharepoint.com/sites/BISalesUAT", [ApiVersion = 15]),
+				    #"Acct Map 1 JR xlsx_https://permobil sharepoint com/sites/BISalesUAT/Shared Documents/Power BI Model/" = Source{[Name="Acct Map 1 JR.xlsx",#"Folder Path"="https://permobil.sharepoint.com/sites/BISalesUAT/Shared Documents/Power BI Model/"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"Acct Map 1 JR xlsx_https://permobil sharepoint com/sites/BISalesUAT/Shared Documents/Power BI Model/"),
+				    #"D365 to Global Account_Sheet" = #"Imported Excel Workbook"{[Item="D365 to Global Account",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"D365 to Global Account_Sheet", [PromoteAllScalars=true])
+				in
+				    #"Promoted Headers"
+
+	annotation PBI_ResultType = Table
+

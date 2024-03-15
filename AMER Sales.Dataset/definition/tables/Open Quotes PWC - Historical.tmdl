@@ -1,0 +1,100 @@
+table 'Open Quotes PWC - Historical'
+	lineageTag: 57c8b358-7042-4ed2-a41c-d2b22829bac4
+
+	column 'Date Key'
+		dataType: dateTime
+		lineageTag: f95bed9a-4b15-4832-930a-5b0ec8c52d8c
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Date Key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Number'
+		dataType: string
+		lineageTag: 38b26fc6-21ac-4c3a-91a0-4dfcd44f81d0
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Order Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date (Quote)'
+		dataType: dateTime
+		lineageTag: 928b4208-e035-4891-ab38-314eae285ebf
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Date (Quote)]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dealer Code'
+		dataType: string
+		lineageTag: 744691bf-a74f-432a-bb17-a1be80f9d666
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Dealer Code]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Code'
+		dataType: string
+		lineageTag: 4c296077-5476-42fd-af36-5d56e7543fd6
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Product Code]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quote Count'
+		dataType: int64
+		lineageTag: ac8f7601-f25b-4739-983d-672b5a00b756
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Quote Count]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quote Age'
+		dataType: int64
+		lineageTag: 27696aca-73f3-4d51-96a7-792631d6fbcb
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Quote Age]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Open Quotes PWC - Historical' = calculated
+		mode: import
+		source =
+				
+				SELECTCOLUMNS(
+				    GENERATE(
+				        'OR01_QUOTE_CONV_UNION_View',
+				        FILTER(
+				            ALLNOBLANKROW('Date'),
+				            AND(
+				                'Date'[Date] >= 'OR01_QUOTE_CONV_UNION_View'[New Quote Date],
+				                'Date'[Date] <= 'OR01_QUOTE_CONV_UNION_View'[Order Date Key]
+				            )
+				        )
+				    ),
+				    "Date Key", 'Date'[Date],
+				    "Order Number", 'OR01_QUOTE_CONV_UNION_View'[Order_Number],
+				    "Date (Quote)", 'OR01_QUOTE_CONV_UNION_View'[New Quote Date],
+				    "Dealer Code", 'OR01_QUOTE_CONV_UNION_View'[Dealer_Code],
+				    "Product Code", 'OR01_QUOTE_CONV_UNION_View'[Product Code],
+				    // "Chair Base", OR01_QUOTE_CONV_UNION_View[Chair base],
+				    "Quote Count", 'OR01_QUOTE_CONV_UNION_View'[Quote_Count],
+				    "Quote Age", DATEDIFF( 'OR01_QUOTE_CONV_UNION_View'[New Quote Date], 'Date'[Date], DAY)
+				)
+
+	annotation PBI_Id = 4806897725d54c1698d6fe5cf536b2d3
+

@@ -1,0 +1,301 @@
+table 'Sales order'
+	lineageTag: f32073bd-d15a-4178-9555-90e416ce3e00
+
+	column SalesOrderHeader_SK
+		dataType: string
+		lineageTag: 36231cb6-ec1b-4519-b979-628f56eda169
+		summarizeBy: none
+		sourceColumn: SalesOrderHeader_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesOrderHeader_BK
+		dataType: string
+		lineageTag: b6b580d8-175e-4b6c-a658-44764b4a6896
+		summarizeBy: none
+		sourceColumn: SalesOrderHeader_BK
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataLoadDatetime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4b2777e6-e330-4246-94f1-df268f031e40
+		summarizeBy: none
+		sourceColumn: DataLoadDatetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column RecordSource
+		dataType: string
+		lineageTag: 48bc4527-0b1d-49b0-a93c-4dc169f24076
+		summarizeBy: none
+		sourceColumn: RecordSource
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChangeType
+		dataType: string
+		lineageTag: 0a362cab-7371-4781-976b-90b10d3086d4
+		summarizeBy: none
+		sourceColumn: ChangeType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_SK
+		dataType: string
+		lineageTag: 30e215e7-e986-42cc-b545-0451a3046253
+		summarizeBy: none
+		sourceColumn: Customer_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order number'
+		dataType: string
+		lineageTag: 44659435-81cd-45f0-ae73-0d7fef83fb90
+		summarizeBy: none
+		sourceColumn: Order number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3bb39999-a780-4795-b6aa-585263282b61
+		summarizeBy: none
+		sourceColumn: Order date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order status'
+		dataType: int64
+		formatString: 0
+		lineageTag: b82d4b09-65c2-439a-b5b1-622372ae95fe
+		summarizeBy: none
+		sourceColumn: Order status
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerAccount
+		dataType: string
+		lineageTag: cb442251-e82a-4467-85ce-c576ebd3d808
+		summarizeBy: none
+		sourceColumn: CustomerAccount
+
+		annotation SummarizationSetBy = Automatic
+
+	column InvoiceAccount
+		dataType: string
+		lineageTag: d130fd54-d556-4c0d-b2ab-1d37740fd83b
+		summarizeBy: none
+		sourceColumn: InvoiceAccount
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveryAddress
+		dataType: string
+		lineageTag: 8b849f65-2ae8-4b5c-8f34-d1c5df66be79
+		summarizeBy: none
+		sourceColumn: DeliveryAddress
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveryCity
+		dataType: string
+		lineageTag: 9aa1b053-1e55-46d6-8cf3-1cd7f130db55
+		summarizeBy: none
+		sourceColumn: DeliveryCity
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveryState
+		dataType: string
+		lineageTag: a5380451-593c-4bd2-b3ca-68ce5832ef72
+		summarizeBy: none
+		sourceColumn: DeliveryState
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveryZip
+		dataType: string
+		lineageTag: ac36781c-4612-46c0-a0dc-e08abd935ec5
+		summarizeBy: none
+		sourceColumn: DeliveryZip
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveryCountry
+		dataType: string
+		lineageTag: 1fd930a0-194b-4580-a3b0-e6f363ad04b4
+		summarizeBy: none
+		sourceColumn: DeliveryCountry
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerReference
+		dataType: string
+		lineageTag: e9350d99-219a-4336-ada0-2ae31d32a4e4
+		summarizeBy: none
+		sourceColumn: CustomerReference
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesRepID
+		dataType: string
+		lineageTag: f2692c7a-f9c3-44aa-8304-fac1bb9d7e2d
+		summarizeBy: none
+		sourceColumn: SalesRepID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubmittedbyEmail
+		dataType: string
+		lineageTag: c7df1645-79f6-491d-9aa7-b7eccead0dc6
+		summarizeBy: none
+		sourceColumn: SubmittedbyEmail
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Line discount group'
+		dataType: string
+		lineageTag: 865852f5-48a0-48fd-a37c-d2ad9354daaa
+		summarizeBy: none
+		sourceColumn: Line discount group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Price group'
+		dataType: string
+		lineageTag: d8cad70d-e710-407a-8fc4-5f5835505f02
+		summarizeBy: none
+		sourceColumn: Price group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Requested receipt date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: de3eaa12-433d-429f-a8cd-fc68c1475122
+		summarizeBy: none
+		sourceColumn: Requested receipt date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Requested ship date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d6e6074d-7e75-4b64-89c0-63dd64c7e2dc
+		summarizeBy: none
+		sourceColumn: Requested ship date
+
+		annotation SummarizationSetBy = Automatic
+
+	column ConfirmedShippingDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 243afb1a-dbd8-4f70-8fa9-9520f446f886
+		summarizeBy: none
+		sourceColumn: ConfirmedShippingDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Requested shipping date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2e05aceb-8529-4880-af7c-d093f6ac7479
+		summarizeBy: none
+		sourceColumn: Requested shipping date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mode of delivery'
+		dataType: string
+		lineageTag: 5349ef64-a226-4c97-8675-757cfa753c16
+		summarizeBy: none
+		sourceColumn: Mode of delivery
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesUnit
+		dataType: string
+		lineageTag: 62596717-5524-41c5-8bfd-ca8678e8a52f
+		summarizeBy: none
+		sourceColumn: SalesUnit
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuotationNumber
+		dataType: string
+		lineageTag: bcbdd092-d71b-42e6-9e7c-00c6e68ac22d
+		summarizeBy: none
+		sourceColumn: QuotationNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderAmount
+		dataType: double
+		lineageTag: 61e28754-58eb-4572-886b-41341e51f44c
+		summarizeBy: none
+		sourceColumn: OrderAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OrderDiscount
+		dataType: double
+		lineageTag: 53f514d5-04b2-4ef3-b919-8e44009b87df
+		summarizeBy: none
+		sourceColumn: OrderDiscount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sales order PoolId'
+		dataType: string
+		lineageTag: fa0b5426-f7d4-41df-98f8-285f70f78e84
+		summarizeBy: none
+		sourceColumn: Sales order PoolId
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataAreaID
+		dataType: string
+		lineageTag: 3f9d9977-7035-4fc8-8647-809d3b265cdf
+		summarizeBy: none
+		sourceColumn: DataAreaID
+
+		annotation SummarizationSetBy = Automatic
+
+	column FlexRowAuditId
+		dataType: int64
+		formatString: 0
+		lineageTag: 61496658-7606-4660-aaa2-d08fb21cdf07
+		summarizeBy: none
+		sourceColumn: FlexRowAuditId
+
+		annotation SummarizationSetBy = Automatic
+
+	column FlexRowHashType1
+		dataType: string
+		lineageTag: 1ba7910c-9508-4e26-951f-d3fe03a8d508
+		summarizeBy: none
+		sourceColumn: FlexRowHashType1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Sales order-e0f277b5-541c-47b4-b09a-531226a93311' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [CreateNavigationProperties=false, CommandTimeout=#duration(0, 4, 10, 0)]),
+				    sales_mart_Rpt_SalesOrderHeader = Source{[Schema="sales_Rpt",Item="dim_SalesOrderHeader"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(sales_mart_Rpt_SalesOrderHeader,{{"LineDiscountGroup", "Line discount group"}, {"Modeofdelivery", "Mode of delivery"}, {"OrderDate", "Order date"}, {"OrderNumber", "Order number"}, {"OrderStatus", "Order status"}, {"PriceGroup", "Price group"}, {"RequestedReceiptDate", "Requested receipt date"}, {"RequestedShipDate", "Requested ship date"}, {"RequestedShippingDate", "Requested shipping date"}, {"SALESORDERPOOLID", "Sales order PoolId"}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Renamed Columns", {"Order number"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Removed Duplicates","","(Blank)",Replacer.ReplaceValue,{"Sales order PoolId"})
+				in
+				    #"Replaced Value"
+
+	annotation PBI_ResultType = Table
+

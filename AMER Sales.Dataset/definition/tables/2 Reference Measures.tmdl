@@ -1,0 +1,118 @@
+table '2 Reference Measures'
+	lineageTag: 35249ccb-a491-4161-9245-187777ab1aa7
+
+	measure 'Current Working Day - Month' =
+			
+			CALCULATE(
+			    MAX('Date'[Current Working Day of Month]),
+			        FILTER('Date',
+			            'Date'[Date] = TODAY()
+			        )
+			    )
+		formatString: 0
+		lineageTag: 926f9a98-a6bd-489a-8f2e-3a3c3296a019
+
+	measure 'Current Working Day - Quarter' =
+			
+			CALCULATE(
+				MAX('Date'[Current Working Day of Quarter]),
+			        FILTER('Date',
+			            'Date'[Date] = TODAY()
+			        )
+			    )
+		formatString: 0
+		lineageTag: 6204f42a-9601-4fbb-a64e-63dd4754cb41
+
+	measure 'Total Working Day - Month' =
+			
+			CALCULATE(
+				MAX('Date'[Total Working Days in Month]),
+			        FILTER('Date',
+			            'Date'[Month] = TODAY()
+			        )
+			    )
+		lineageTag: f5a15dbe-324e-4150-ad9c-d4db0b103692
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Working Day - Quarter' =
+			
+			CALCULATE(
+				MAX('Date'[Total Working Days in Quarter]),
+			        FILTER('Date',
+			            'Date'[Date] = TODAY()
+			        )
+			    )
+		lineageTag: 1b33b045-2412-4e59-91de-b6db5dd846b7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Working Day - Year' =
+			
+			CALCULATE(
+				MAX('Date'[Total Working Days in Year]),
+			        FILTER('Date',
+			            'Date'[Date] = TODAY()
+			        )
+			    )
+		formatString: 0
+		lineageTag: 3f899ad5-f2b5-4d8d-96ce-264914a1e355
+
+	measure 'Current Working Day - Year' =
+			
+			CALCULATE(
+				MAX('Date'[Current Working Day of Year]),
+			        FILTER('Date',
+			            'Date'[Date] = TODAY()
+			        )
+			    )
+		formatString: 0
+		lineageTag: c4694c03-7107-4193-bb47-69d37b081d22
+
+	measure 'Today''s Date' = TODAY()
+		formatString: General Date
+		lineageTag: b171cc0f-a4f6-4a5e-aafb-8fbe7dca1780
+
+	measure 'Adj Factor - STB MTD' =
+			
+			DIVIDE(
+				[Current Working Day - Month],
+				[Total Working Day - Month]
+				)
+		lineageTag: 282298ce-30ff-41f2-883f-21bf12e5334e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure COLUMN = "**************"
+		lineageTag: 5f64b868-9e82-4dc2-a61e-13a60969bdf5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure * = BLANK()
+		lineageTag: 8a96c733-c58e-489e-a605-32b3af593ace
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Days - Month' =
+			
+			CALCULATE(
+				MAX('Date'[Day of month]),
+			        FILTER('Date',
+			            'Date'[Month] = TODAY()
+			        )
+			    )
+		lineageTag: 23f16b59-1997-4daf-bc17-3e3c60806d8f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '2 Reference Measures-9a1abf59-2f31-472e-ad35-477f35e65bdc' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

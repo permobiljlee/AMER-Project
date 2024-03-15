@@ -1,0 +1,202 @@
+table 'TiLite Open Orders'
+	lineageTag: aec4775f-f756-4d09-bf41-3218b4df51c2
+
+	column Customer
+		dataType: string
+		lineageTag: e2523ac3-94e2-435a-b8f1-11ea4cbe5ea6
+		summarizeBy: none
+		sourceColumn: Customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		lineageTag: 5a76ca46-92b7-4f94-9cae-e5976d959e37
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerClass
+		dataType: string
+		lineageTag: d41aee82-51af-4f58-a20b-99823c72c39b
+		summarizeBy: none
+		sourceColumn: CustomerClass
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerPoNumber
+		dataType: string
+		lineageTag: de373370-fdee-461e-bd4b-19a9b2cc0cdb
+		summarizeBy: none
+		sourceColumn: CustomerPoNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Branch
+		dataType: string
+		lineageTag: c36ec150-0fb2-4804-ac88-2218e0bd3a74
+		summarizeBy: none
+		sourceColumn: Branch
+
+		annotation SummarizationSetBy = Automatic
+
+	column Area
+		dataType: string
+		lineageTag: c5fc1405-43b7-4008-abec-5d57736bcaa4
+		summarizeBy: none
+		sourceColumn: Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column StateOrCountry
+		dataType: string
+		lineageTag: 9134ad4c-1482-406d-84ec-c66c951d428d
+		summarizeBy: none
+		sourceColumn: StateOrCountry
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 810bae21-abdb-404d-8eda-f55bd98b0425
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subregion
+		dataType: string
+		lineageTag: 1d526124-808e-46b3-9fcb-00bc4d6901f1
+		summarizeBy: none
+		sourceColumn: Subregion
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesOrder
+		dataType: string
+		lineageTag: c465cc68-6730-41fc-9d92-b44383a02c6e
+		summarizeBy: none
+		sourceColumn: SalesOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6fbee77d-a5b9-4fea-bf03-059122f08bd5
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReqShipDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6634a14f-25b0-4424-b2b3-4917366871d2
+		summarizeBy: none
+		sourceColumn: ReqShipDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Late Order?'
+		dataType: string
+		lineageTag: 9d2c99cf-9a20-479a-8727-b78df1d8178a
+		summarizeBy: none
+		sourceColumn: Late Order?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days Late'
+		dataType: string
+		lineageTag: 468889c9-faf5-4864-826d-3cf7b2ef0270
+		summarizeBy: none
+		sourceColumn: Days Late
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 4d420223-4d76-4324-9abf-216350b49bde
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column MProductClass
+		dataType: string
+		lineageTag: 7e39b769-b09f-4065-8e7b-ee629716e086
+		summarizeBy: none
+		sourceColumn: MProductClass
+
+		annotation SummarizationSetBy = Automatic
+
+	column PCSumm
+		dataType: string
+		lineageTag: ac39d6b1-c572-40a2-99a6-c4c4c131364e
+		summarizeBy: none
+		sourceColumn: PCSumm
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductType
+		dataType: string
+		lineageTag: 6af2daa6-5776-45d3-bac5-036b1c14e390
+		summarizeBy: none
+		sourceColumn: ProductType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Metal
+		dataType: string
+		lineageTag: 55190685-9809-4650-a765-fe87a2779de8
+		summarizeBy: none
+		sourceColumn: Metal
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderStatus
+		dataType: string
+		lineageTag: 300aeaa0-86e9-4aee-a27c-38ed93ac93dc
+		summarizeBy: none
+		sourceColumn: OrderStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: cf68ae04-68ef-43f4-abd9-eabee8310736
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 64bc78a4-3e3f-4109-b7c0-c18e592e689f
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column NetValue
+		dataType: double
+		lineageTag: 795c02f9-eb8f-4af4-9111-bae95da8b52f
+		summarizeBy: sum
+		sourceColumn: NetValue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'TiLite Open Orders-9c6bdc09-0107-48da-9442-90f802c159dd' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("uspasdb10", "sysprocompanyw", [Query="SELECT#(lf)#(tab)SorMaster.Customer,#(lf)#(tab)ArCustomer.Name AS [CustomerName],#(lf)#(tab)ArCustomer.CustomerClass,#(lf)#(tab)SorMaster.CustomerPoNumber,#(lf)#(tab)SorMaster.Branch,#(lf)#(tab)ArCustomer.Area,#(lf)#(tab)SalArea.Description AS [StateOrCountry],#(lf)#(tab)SalAreaPlus.Region,#(lf)#(tab)SalAreaPlus.Subregion,#(lf)#(tab)SorMaster.SalesOrder,#(lf)#(tab)SorMaster.OrderDate,#(lf)#(tab)SorMaster.ReqShipDate,#(lf)#(tab)CASE#(lf)#(tab)#(tab)WHEN SorMaster.ReqShipDate < convert(date,getdate()) THEN 'Y'#(lf)#(tab)#(tab)ELSE 'N'#(lf)#(tab)END AS [Late Order?],#(lf)#(tab)CASE#(lf)#(tab)#(tab)WHEN DATEDIFF(DD, ReqShipDate, convert(date,getdate())) <= 0 THEN 'Not Late'#(lf)#(tab)#(tab)WHEN DATEDIFF(DD, ReqShipDate, convert(date,getdate())) < 6 THEN '1-5 Days Late'#(lf)#(tab)#(tab)WHEN DATEDIFF(DD, ReqShipDate, convert(date,getdate())) < 16 THEN '6-15 Days Late'#(lf)#(tab)#(tab)ELSE '15+ Days Late'#(lf)#(tab)END AS [Days Late],#(lf)#(tab)CASE#(lf)#(tab)#(tab)WHEN LEFT(RIGHT(ArCustomer.Customer,7),3) = '017' THEN 'US Demo'#(lf)#(tab)#(tab)WHEN LEFT(RIGHT(ArCustomer.Customer,7),3) = '706' THEN 'CA Demo'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '180050' THEN 'R&D Test'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '180013' THEN 'MISC CC'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '180027' THEN 'End User Chair'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '180031' THEN 'Mktg Promo'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '180032' THEN 'CE US'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '180033' THEN 'CE CA'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '180034' THEN 'CE INTL'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '180051' THEN 'CE Frame Only'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '180035' THEN 'Clinical'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '180049' THEN 'EBay'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '182238' THEN 'Legal'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '182258' THEN 'End User Parts'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '188888' THEN 'Pilot Parts'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '189999' THEN 'Demos'#(lf)#(tab)#(tab)ELSE 'Customer Order'#(lf)#(tab)END AS [Type],#(lf)#(tab)SorDetail.MProductClass,#(lf)#(tab)SalProductClassPlus.PCSumm AS [PCSumm],#(lf)#(tab)SalProductClassPlus.PCClass AS [ProductType],#(lf)#(tab)SalProductClassPlus.Metal,#(lf)#(tab)SorMaster.OrderStatus,#(lf)#(tab)KeyDefinitions.KeyDefinition AS [Status],#(lf)    COUNT(DISTINCT SorMaster.SalesOrder) AS Quantity,#(lf)    ROUND(SUM(#(lf)            ((SorDetail.MBackOrderQty + SorDetail.MShipQty) * SorDetail.MPrice) *#(lf)            (((100 - SorDetail.MDiscPct1)/100)) *#(lf)            ((100 - SorDetail.MDiscPct2)/100) *#(lf)            ((100 - SorDetail.MDiscPct3)/100))+SUM(SorDetail.NMscChargeCost),2#(lf)        ) AS NetValue#(lf)    FROM SysproCompanyW.dbo.SorMaster#(lf)        JOIN SysproCompanyW.dbo.SorDetail ON SorMaster.SalesOrder = SorDetail.SalesOrder#(lf)        JOIN SysproCompanyW.dbo.[CusSorMaster+] ON SorMaster.SalesOrder = [CusSorMaster+].SalesOrder#(lf)#(tab)#(tab)LEFT JOIN SysproCompanyW.dbo.[SalProductClass+] SalProductClassPlus ON SorDetail.MProductClass = SalProductClassPlus.ProductClass#(lf)#(tab)#(tab)JOIN SysproCompanyW.dbo.ArCustomer ON SorMaster.Customer = ArCustomer.Customer#(lf)#(tab)#(tab)JOIN SysproCompanyW.dbo.SalArea SalArea ON ArCustomer.Area = SalArea.Area#(lf)#(tab)#(tab)LEFT JOIN SysproCompanyW.dbo.[SalArea+] SalAreaPlus ON ArCustomer.Area = SalAreaPlus.Area#(lf)#(tab)#(tab)JOIN SysproSupplement.dbo.KeyDefinitions ON SorMaster.OrderStatus = KeyDefinitions.KeyName#(lf)    WHERE#(lf)        SorMaster.OrderStatus BETWEEN '1' AND '9'#(lf)        AND SorMaster.SalesOrder NOT BETWEEN '000000000800000' AND '000000000999999' AND SorMaster.SalesOrder < '000000008000000' --RMA exclusion#(lf)#(tab)#(tab)AND (NOT [CusSorMaster+].ProcessedBy = '')#(lf)        AND ([CusSorMaster+].ProcessedBy IS NOT NULL)#(lf)        AND NOT SorDetail.MProductClass = ''#(lf)        AND EXISTS(SELECT LineType FROM SysproCompanyW.dbo.SorDetail WHERE LineType = '1' AND SalesOrder = SorMaster.SalesOrder)#(lf)#(tab)#(tab)AND SorMaster.OrderDate > '2022-12-31'#(lf)AND SalProductClassPlus.PCClass <> 'PARTS'#(lf)#(tab)GROUP BY SorMaster.Customer, ArCustomer.Name, ArCustomer.CustomerClass,#(lf)#(tab)#(tab)CASE#(lf)#(tab)#(tab)WHEN LEFT(RIGHT(ArCustomer.Customer,7),3) = '017' THEN 'US Demo'#(lf)#(tab)#(tab)WHEN LEFT(RIGHT(ArCustomer.Customer,7),3) = '706' THEN 'CA Demo'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '180050' THEN 'R&D Test'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '180013' THEN 'MISC CC'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '180027' THEN 'End User Chair'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '180031' THEN 'Mktg Promo'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '180032' THEN 'CE US'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '180033' THEN 'CE CA'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '180034' THEN 'CE INTL'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '180051' THEN 'CE Frame Only'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '180035' THEN 'Clinical'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '180049' THEN 'EBay'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '182238' THEN 'Legal'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '182258' THEN 'End User Parts'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '188888' THEN 'Pilot Parts'#(lf)#(tab)#(tab)WHEN RIGHT(ArCustomer.Customer,6) = '189999' THEN 'Demos'#(lf)#(tab)#(tab)ELSE 'Customer Order' END,#(lf)#(tab)#(tab)SorMaster.CustomerPoNumber, SorMaster.Branch, ArCustomer.Area, SalArea.Description, SalAreaPlus.Region, SalAreaPlus.Subregion, SorMaster.SalesOrder, SorMaster.OrderDate, SorMaster.ReqShipDate, #(lf)#(tab)#(tab)CASE#(lf)#(tab)#(tab)WHEN SorMaster.ReqShipDate < convert(date,getdate()) THEN 'Y'#(lf)#(tab)#(tab)ELSE 'N' END,#(lf)#(tab)CASE#(lf)#(tab)#(tab)WHEN DATEDIFF(DD, ReqShipDate, convert(date,getdate())) <= 0 THEN 'Not Late'#(lf)#(tab)#(tab)WHEN DATEDIFF(DD, ReqShipDate, convert(date,getdate())) < 6 THEN '1-5 Days Late'#(lf)#(tab)#(tab)WHEN DATEDIFF(DD, ReqShipDate, convert(date,getdate())) < 16 THEN '6-15 Days Late'#(lf)#(tab)#(tab)ELSE '15+ Days Late' END,#(lf)#(tab)SorDetail.MProductClass, SalProductClassPlus.PCSumm, SalProductClassPlus.PCClass, SalProductClassPlus.Metal, SorMaster.OrderStatus, KeyDefinitions.KeyDefinition"])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

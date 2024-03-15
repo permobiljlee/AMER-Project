@@ -1,0 +1,120 @@
+table YearCalendarMonth
+	lineageTag: 5edebc00-65e4-4751-8bd5-f5a371a26fe5
+
+	column yyyymm
+		dataType: int64
+		formatString: 0
+		lineageTag: 0acecfef-f678-4884-bc47-4493de53cc4c
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [yyyymm]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9115dfac-e4a8-4d45-9a80-ee4281253fd5
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'yyyymm -0'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7957517a-94ba-4352-8c3b-32ba35ed531e
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [yyyymm -0]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'yyyymm -1'
+		dataType: int64
+		formatString: 0
+		lineageTag: ce350cb9-23ac-40c9-9042-6436d249afb3
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [yyyymm -1]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'yyyymm -2'
+		dataType: int64
+		formatString: 0
+		lineageTag: 121d9875-27dc-4160-a8a3-f8af02934591
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [yyyymm -2]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'yyyymm -3'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3cd77fa1-4d36-422b-ae87-46658483b63d
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [yyyymm -3]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'yyyymm -4'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6584bbe0-a81e-4708-b6cd-7eec9f54c20e
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [yyyymm -4]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'yyyymm -5'
+		dataType: int64
+		formatString: 0
+		lineageTag: a6da3858-4c04-4dc7-976f-816f584340fc
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [yyyymm -5]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'yyyymm -6'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f813808-e028-4d16-bc17-967d7428741d
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [yyyymm -6]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition YearCalendarMonth = calculated
+		mode: import
+		source = ```
+				
+				SELECTCOLUMNS(
+				    SUMMARIZE('Date', 'Date'[yyyymm], "Date", LASTDATE('Date'[Date])), "yyyymm", 'Date'[yyyymm] ,  "Date", [Date], 
+				"yyyymm -0", IF( [Date] = EOMONTH(TODAY(),0), CALCULATE(SELECTEDVALUE('Date'[yyyymm]),DATEADD('Date'[Date], -0, MONTH))),
+				"yyyymm -1", IF( [Date] = EOMONTH(TODAY(),0), CALCULATE(SELECTEDVALUE('Date'[yyyymm]),DATEADD('Date'[Date], -1, MONTH))),
+				"yyyymm -2", IF( [Date] = EOMONTH(TODAY(),0), CALCULATE(SELECTEDVALUE('Date'[yyyymm]),DATEADD('Date'[Date], -2, MONTH))),
+				"yyyymm -3", IF( [Date] = EOMONTH(TODAY(),0), CALCULATE(SELECTEDVALUE('Date'[yyyymm]),DATEADD('Date'[Date], -3, MONTH))),
+				"yyyymm -4", IF( [Date] = EOMONTH(TODAY(),0), CALCULATE(SELECTEDVALUE('Date'[yyyymm]),DATEADD('Date'[Date], -4, MONTH))),
+				"yyyymm -5", IF( [Date] = EOMONTH(TODAY(),0), CALCULATE(SELECTEDVALUE('Date'[yyyymm]),DATEADD('Date'[Date], -5, MONTH))),
+				"yyyymm -6", IF( [Date] = EOMONTH(TODAY(),0), CALCULATE(SELECTEDVALUE('Date'[yyyymm]),DATEADD('Date'[Date], -6, MONTH)))
+				)
+				```
+
+	annotation PBI_Id = 5292da955d004208a20ce9d042c38ca9
+

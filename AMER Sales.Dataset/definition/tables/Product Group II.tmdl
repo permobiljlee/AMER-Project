@@ -1,0 +1,31 @@
+table 'Product Group II'
+	lineageTag: 14f45247-67bf-4bc5-82de-f08353368f6e
+
+	column 'Product Group II Sort order'
+		dataType: int64
+		formatString: 0
+		lineageTag: 64e6248d-6f03-472b-a542-7d5a01c9743b
+		summarizeBy: none
+		sourceColumn: Product Group II Sort order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Group II'
+		dataType: string
+		lineageTag: f065a492-683f-4273-8e92-59c91b87288a
+		summarizeBy: none
+		sourceColumn: Product Group II
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Product Group II-992110cd-cc96-4b26-be54-bb1c015e3ba4' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("Tc8/C8IwEIfhr1Iyd7DWv3NXocW6hQ6HScmBbcL1VPz2XhIpju9D+HHRWlWqVN37XjQOkBY1lFptf9QBcZZa5IYPZJtyt2YR1jd7wX6SNIQvm+0gdvXOpzhKNH4aPXHqU1yhZ+8g5NmzQE0mbX6SVBuhC452YZhNpnhwA1SAgcDA6Ofs8eq/T1Tx5padJTUMXw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type text) meta [Serialized.Text = true]) in type table [#"Product Group II Sort order" = _t, #"Product Group II" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Product Group II Sort order", Int64.Type}, {"Product Group II", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

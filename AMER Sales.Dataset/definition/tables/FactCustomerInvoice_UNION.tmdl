@@ -1,0 +1,693 @@
+table FactCustomerInvoice_UNION
+	lineageTag: ff928af9-fb5b-49db-8104-5ba81ab8cf3f
+
+	measure 'MAXX Invoice TiLite_SMRT' = ```
+			
+			VAR InvoiceNumbers = 
+			SELECTCOLUMNS(
+			    FILTER(TiLite_AttachmentReporting_Lines, 
+			        NOT(ISBLANK(TiLite_AttachmentReporting_Lines[Invoice]))), 
+			        "InvoiceNumber", TiLite_AttachmentReporting_Lines[Invoice])
+			RETURN 
+			MAXX(
+			    FILTER(FactCustomerInvoice_UNION, 
+			        FactCustomerInvoice_UNION[InvoiceNumber] IN InvoiceNumbers), 
+			        FactCustomerInvoice_UNION[NetAmount])
+			```
+		lineageTag: b8859ddb-5111-455e-9ab9-e635f2dbcccb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure RLSFactUNION = ```
+			
+			
+			VAR FindUser =
+			    IF (
+			        SUMX (
+			            FILTER (
+			                'Sales Rep Map',
+			                UPPER ( 'Sales Rep Map'[Logon] ) = UPPER ( USERNAME () )
+			                    || UPPER ( 'Sales Rep Map'[Alt email] ) = UPPER ( USERPRINCIPALNAME () )
+			            ),
+			            // Check connection to customer  
+			            FIND (
+			               
+			                UPPER ( 'Sales Rep Map'[Rep] ),
+			                [RLSViewableFactUNION],
+			                
+			                ,
+			                0
+			            )
+			               
+			        ) > 0,
+			        1,
+			        0
+			    )
+			RETURN
+			    FindUser
+			```
+		isHidden
+		lineageTag: 4e6e33a5-7300-484b-8477-2a136e867776
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure RLSViewableFactUNION =
+			
+			CALCULATE(
+			FIRSTNONBLANK(
+			VALUES(
+			'FactCustomerInvoice_UNION'[SalesRepCode (Master Customer)])
+			,1)
+			)
+		isHidden
+		lineageTag: b79bc2a4-2a73-482c-9cc0-57e637b92eec
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure RLSFactUNIONDoS = ```
+			
+			
+			VAR FindUser =
+			    IF (
+			        SUMX (
+			            FILTER (
+			                'Sales Rep Map',
+			                UPPER ( 'Sales Rep Map'[MgrLogon] ) = UPPER ( USERNAME () )
+			                    || UPPER ( 'Sales Rep Map'[MgrEmail] ) = UPPER ( USERPRINCIPALNAME () )
+			            ),
+			            // Check connection to customer  
+			            FIND (
+			               
+			                UPPER ( 'Sales Rep Map'[Rep] ),
+			                [RLSViewableFactUNION],
+			                
+			                ,
+			                0
+			            )
+			               
+			        ) > 0,
+			        1,
+			        0
+			    )
+			RETURN
+			    FindUser
+			```
+		isHidden
+		lineageTag: 2f4cb70a-fd4d-4d54-9536-49318aab5883
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net Amount (LC)' =
+			
+			CALCULATE(
+			    SUM('FactCustomerInvoice_UNION'[NetAmount])
+			        )
+		lineageTag: f0594080-7147-4d63-9b54-6546447fa887
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WKInvoiceDate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: f1ccabab-4573-48f6-94a6-1fc7c1865538
+		summarizeBy: none
+		sourceColumn: WKInvoiceDate
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKCompany
+		dataType: int64
+		formatString: 0
+		lineageTag: 9fb679d1-bf8d-41d4-b3ea-f9a225e33b8e
+		summarizeBy: none
+		sourceColumn: WKCompany
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKCustomer
+		dataType: int64
+		formatString: 0
+		lineageTag: e23850c9-00ac-4cea-afe1-e3d935a03732
+		summarizeBy: sum
+		sourceColumn: WKCustomer
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKSalesRep
+		dataType: int64
+		formatString: 0
+		lineageTag: fc6b3cc7-6f9b-45c8-8aaa-93d0a4bfad09
+		summarizeBy: sum
+		sourceColumn: WKSalesRep
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKProduct
+		dataType: int64
+		formatString: 0
+		lineageTag: 4dff965d-d0b6-4d13-b00c-5a0d890b2e5d
+		summarizeBy: none
+		sourceColumn: WKProduct
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKAccount
+		dataType: int64
+		formatString: 0
+		lineageTag: 24436fab-cd89-40d2-b9ef-6ef21cfd6ca9
+		summarizeBy: sum
+		sourceColumn: WKAccount
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKInvoiceAccount
+		dataType: int64
+		formatString: 0
+		lineageTag: ff5b9af8-fb4d-4260-a8d8-46b516f1a1b0
+		summarizeBy: sum
+		sourceColumn: WKInvoiceAccount
+
+		annotation SummarizationSetBy = Automatic
+
+	column InvoiceNumber
+		dataType: string
+		lineageTag: 9f479ce2-eb3b-47f7-8405-b58a5c641c54
+		summarizeBy: none
+		sourceColumn: InvoiceNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNumber
+		dataType: string
+		lineageTag: 7c0349cf-4560-4ff3-9538-db708ae46317
+		summarizeBy: none
+		sourceColumn: OrderNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column PONumber
+		dataType: string
+		lineageTag: 45099294-9821-48e1-b16b-04675fda6143
+		summarizeBy: none
+		sourceColumn: PONumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column SerialNumber
+		dataType: string
+		lineageTag: 5fd97b7e-4666-4aed-b7a8-7467848f9a2c
+		summarizeBy: none
+		sourceColumn: SerialNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsChair
+		dataType: int64
+		formatString: 0
+		lineageTag: d9e40563-af8b-4df5-9dfe-aae807c7301c
+		summarizeBy: sum
+		sourceColumn: IsChair
+
+		annotation SummarizationSetBy = Automatic
+
+	column NetAmount
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 0cddc137-748e-4cc7-b56e-181b6db189bc
+		summarizeBy: sum
+		sourceColumn: NetAmount
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderQuantity
+		dataType: double
+		lineageTag: 1f6d089a-f989-4d5f-b810-227dc0aab2d0
+		summarizeBy: sum
+		sourceColumn: OrderQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OrderDate
+		dataType: dateTime
+		formatString: m/d/yy
+		lineageTag: 89842b14-9cdf-4007-b5e4-b6b47274237c
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column InvoiceDays
+		dataType: int64
+		formatString: 0
+		lineageTag: 555a8aea-13c3-49dd-8f97-52b3dc970602
+		summarizeBy: sum
+		sourceColumn: InvoiceDays
+
+		annotation SummarizationSetBy = Automatic
+
+	column NoOfChairs
+		dataType: int64
+		formatString: 0
+		lineageTag: c4c3c645-440c-4912-a823-59fb148841bd
+		summarizeBy: sum
+		sourceColumn: NoOfChairs
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKProduct2
+		dataType: string
+		lineageTag: 9f402662-a866-45ea-8b90-88b105cb8ead
+		summarizeBy: none
+		sourceColumn: WKProduct2
+
+		annotation SummarizationSetBy = Automatic
+
+	column TiLite_ShiptoWKCustomer = ```
+			
+			IF('FactCustomerInvoice_UNION'[WKCompany] <> 98,
+			    IF('FactCustomerInvoice_UNION'[WKCustomer] <> -1,
+			        'FactCustomerInvoice_UNION'[WKCustomer],
+			        'FactCustomerInvoice_UNION'[WKInvoiceAccount]),
+			            LOOKUPVALUE('DW FactSalesOrderTiLite'[WKCustomer], 
+			                'DW FactSalesOrderTiLite'[OrderNumber],
+			                'FactCustomerInvoice_UNION'[OrderNumber])
+			)
+			```
+		dataType: int64
+		formatString: 0
+		lineageTag: 6ff90b23-e3a9-4392-a6da-2d576e18a67c
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SalesRepCode (Master Customer)' =
+			
+			
+			VAR method1 =
+			IF(FactCustomerInvoice_UNION[WKCompany] = 82 &&
+			    RELATED('8DW DimCustomer'[DataAreaId]) = "ROHO" &&
+			        'FactCustomerInvoice_UNION'[WKSalesRep] <> 1195,
+			        LOOKUPVALUE('8DW DimCustomer'[ROHO Sales Rep Code],
+			            '8DW DimCustomer'[WKCustomer],
+			            FactCustomerInvoice_UNION[TiLite_ShiptoWKCustomer]),
+			IF(NOT(FactCustomerInvoice_UNION[WKCompany] IN {98,104}),
+			    LOOKUPVALUE('Global Rep Map (2)'[PERM Code NEW],
+			        'Global Rep Map (2)'[WKSalesRep],
+			        FactCustomerInvoice_UNION[WKSalesRep]),
+			IF('FactCustomerInvoice_UNION'[WKCompany] = 98
+			&& 'FactCustomerInvoice_UNION'[CUSTACCOUNT MASTER SK] <> "No Match",
+			    LOOKUPVALUE('Ship to customer'[Ship to commission sales group Id],
+			        'Ship to customer'[TiLite Account],
+			        'FactCustomerInvoice_UNION'[TiLite Account]),
+			IF('FactCustomerInvoice_UNION'[WKCompany] = 104,
+			    LOOKUPVALUE('Ship to customer'[Sales Rep (Customer Master)],
+			        'Ship to customer'[ShipToCustomer_SK],
+			        'FactCustomerInvoice_UNION'[CUSTACCOUNT EDW ID],
+			    LOOKUPVALUE('Global Rep Map (2)'[SalesRepCode],
+			        'Global Rep Map (2)'[WKSalesRep],
+			        FactCustomerInvoice_UNION[WKSalesRep])
+			)))))
+			
+			RETURN
+			method1
+		dataType: string
+		lineageTag: f0b9ccf8-7616-4f08-9671-1a2fa6264721
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Provider Name' =
+			
+			RELATED('8DW DimCustomer'[Provider Name])
+		dataType: string
+		lineageTag: 46b5cf8d-f6c7-426f-9eb7-2b4180c21dc2
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Line2' = ```
+			
+			IF('FactCustomerInvoice_UNION'[WKCompany] = 98 &&
+			    'FactCustomerInvoice_UNION'[DW_DimProd] = "TiLiTE",
+			    "TiLite Chairs",
+			    
+			IF('FactCustomerInvoice_UNION'[WKCompany] = 98 &&
+			    'FactCustomerInvoice_UNION'[DW_DimProd] <> "TILITE",
+			    "TiLite Parts")
+			)
+			```
+		dataType: string
+		lineageTag: bd8575dd-15ba-43f0-9f21-cbb756c2a962
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column DW_DimProd = ```
+			
+			// RELATED('DW DimProduct'[ProductLvl2Name]) 
+			LOOKUPVALUE('DW DimProduct'[ProductLvl2Name], 'DW DimProduct'[WKProduct], 'FactCustomerInvoice_UNION'[WKProduct])
+			```
+		dataType: string
+		lineageTag: 664cd708-96ad-41f0-995d-864b555563ca
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Line' = ```
+			
+			 IF(ISBLANK(FactCustomerInvoice_UNION[Product Line2]) &&
+			    'FactCustomerInvoice_UNION'[DW_DimProd] = "ROHO", "ROHO",
+			    CALCULATE(
+			        FIRSTNONBLANK('TiLite_AttachmentReporting_Lines'[Product Line],1), 
+			            FILTER(ALL('TiLite_AttachmentReporting_Lines'), 
+			            'TiLite_AttachmentReporting_Lines'[Invoice] = 'FactCustomerInvoice_UNION'[InvoiceNumber])
+			))
+			```
+		dataType: string
+		lineageTag: 4beb36de-30b6-4d88-a5e3-98a7ece1990c
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Item = ```
+			RELATED(DW_DimItem[ItemName]) 
+			```
+		dataType: string
+		lineageTag: 51bdfc3d-c84c-411d-b4cc-4f689fcdbab6
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TiLite Chair Model' =
+			
+			RELATED('TiLite Chair Type'[Chair Type])
+		dataType: string
+		lineageTag: bd559daf-2cbc-4196-87bd-cc263ce68019
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CUSTACCOUNT EDW ID' =
+			
+			switch(
+			    true(),
+			    FactCustomerInvoice_UNION[WKCompany] = 104,
+			     (CONCATENATE(
+			            CONCATENATE("LDW~",[CUSTACCOUNT LDW BK]),"~AHC")),
+			    FactCustomerInvoice_UNION[WKCompany] = 98,
+			     (CONCATENATE(
+			            CONCATENATE("LDW~",[CUSTACCOUNT LDW BK]),"~TISP")),
+			     (CONCATENATE(
+			            CONCATENATE("LDW~",[CUSTACCOUNT LDW BK]),"~AHC"))
+			)
+		dataType: string
+		lineageTag: 344e8d3c-8349-449e-bb17-aba7317926a5
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CUSTACCOUNT LDW BK' = ```
+			
+			//added logic for wkcustomer rows without entries (-1) to be excluded from the switch function.
+			IF(FactCustomerInvoice_UNION[WKCustomer] <> -1,
+			    SWITCH(
+			        true(),
+			        FactCustomerInvoice_UNION[WKCompany] IN {104}, // AHC
+			            (LOOKUPVALUE(
+			                '8DW DimCustomer'[BKCustomer], 
+			                '8DW DimCustomer'[WKCustomer], 
+			                FactCustomerInvoice_UNION[WKCustomer])
+			            ),
+			            FactCustomerInvoice_UNION[WKCompany] = 98, 
+			            (LOOKUPVALUE(
+			                '8DW DimCustomer'[BKCustomer], 
+			                '8DW DimCustomer'[WKCustomer], 
+			                FactCustomerInvoice_UNION[TiLite_ShiptoWKCustomer])
+			            ),
+			            (LOOKUPVALUE(
+			                '8DW DimCustomer'[BKCustomer], 
+			                '8DW DimCustomer'[WKCustomer], 
+			                FactCustomerInvoice_UNION[TiLite_ShiptoWKCustomer])
+			            )
+			        ),
+			//Resolves the wkcustomer nonentries by using wkinvoiceaccount rows instead.
+			LOOKUPVALUE(
+			    '8DW DimCustomer'[BKCustomer], 
+			    '8DW DimCustomer'[WKCustomer], 
+			    FactCustomerInvoice_UNION[WKInvoiceAccount]))
+			```
+		dataType: string
+		lineageTag: 34d87130-32eb-45d1-853e-e2217c30b372
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CUSTACCOUNT MASTER SK' =
+			
+			LOOKUPVALUE('Ship to customer'[ShipToCustomer_SK],
+			'Ship to customer'[ShipToCustomer_BK], 'FactCustomerInvoice_UNION'[CUSTACCOUNT EDW ID], "No Match")
+		dataType: string
+		lineageTag: dcbba1b2-6de3-4f1e-a4cd-f84592db739b
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKItem
+		dataType: int64
+		formatString: 0
+		lineageTag: 0aca2f38-298d-48ec-a347-ab4313a4b57f
+		summarizeBy: none
+		sourceColumn: WKItem
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKCurrency
+		dataType: int64
+		formatString: 0
+		lineageTag: 5328632d-5134-4ff2-a995-2cba6b066187
+		summarizeBy: sum
+		sourceColumn: WKCurrency
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSRPAmount
+		dataType: double
+		lineageTag: 1cce863c-2e74-4aa6-9808-8f7c9de6161a
+		summarizeBy: sum
+		sourceColumn: MSRPAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GrossAmount
+		dataType: double
+		lineageTag: 6599f97c-6735-4fea-b415-662b0161d466
+		summarizeBy: sum
+		sourceColumn: GrossAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CostAmount
+		dataType: double
+		lineageTag: b99489f0-3cfe-441c-a105-32d1013ad39a
+		summarizeBy: sum
+		sourceColumn: CostAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DiscountAmount
+		dataType: double
+		lineageTag: bccb3616-c9a6-44b1-8732-26898e421626
+		summarizeBy: sum
+		sourceColumn: DiscountAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MSRPUnitPrice
+		dataType: double
+		lineageTag: 11be4950-54fe-49a4-8976-32100f6565df
+		summarizeBy: sum
+		sourceColumn: MSRPUnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GrossUnitPrice
+		dataType: double
+		lineageTag: 1279b62b-3318-48ad-9cc9-35cf304baa09
+		summarizeBy: sum
+		sourceColumn: GrossUnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NetUnitPrice
+		dataType: double
+		lineageTag: 007f9cb7-d406-4ee1-8150-407df7508b08
+		summarizeBy: sum
+		sourceColumn: NetUnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CostUnitPrice
+		dataType: double
+		lineageTag: a41fb236-26c9-461f-b1a3-c3fcdadd7564
+		summarizeBy: sum
+		sourceColumn: CostUnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DiscountPercent
+		dataType: double
+		lineageTag: c21ecf6f-7229-48c9-9866-6e10f05a78ef
+		summarizeBy: sum
+		sourceColumn: DiscountPercent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'TiLite Account' = ```
+			
+			IF(RIGHT('FactCustomerInvoice_UNION'[CUSTACCOUNT EDW ID], 4) = "TISP" &&
+			    MID('FactCustomerInvoice_UNION'[CUSTACCOUNT EDW ID], 10, 8) = "00000000", 
+			    MID('FactCustomerInvoice_UNION'[CUSTACCOUNT EDW ID], 18, 7), "0")
+			```
+		dataType: string
+		lineageTag: 34e99a73-2595-4329-aca0-364409cd6fe2
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TiLite Order Type' =
+			
+			LOOKUPVALUE(
+			    'TiLite_Master_OrderData'[OrderType],
+			    'TiLite_Master_OrderData'[OrderNo],
+			    'FactCustomerInvoice_UNION'[OrderNumber])
+		dataType: string
+		lineageTag: f0f0b315-16f0-4b30-b2ef-7afffc9c7527
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Number' = ```
+			RELATED(DW_DimItem[ItemNumber]) 
+			```
+		dataType: string
+		lineageTag: c67a0c8d-0f8b-4c55-a563-f2ca93314220
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TiLite CMD' =
+			
+			if(mid([Item Number],1,3)="CMD","CMD","")
+		dataType: string
+		lineageTag: 48539f03-7b16-402f-b7fc-1f0a43ca0dae
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TiLite Chair Type' =
+			
+			LOOKUPVALUE(
+			    'TiLite_Master_OrderData'[ChairType (groups)],
+			    'TiLite_Master_OrderData'[OrderNo],
+			    'FactCustomerInvoice_UNION'[OrderNumber])
+		dataType: string
+		lineageTag: e81e3e90-e504-4ab4-a1eb-ee1b5b57d7e9
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SalesRepCode (SO Header)' =
+			
+			-- explain the measure here
+			VAR method1 =
+			IF(FactCustomerInvoice_UNION[WKCompany] = 82 &&
+			    RELATED('8DW DimCustomer'[DataAreaId]) = "ROHO" &&
+			        'FactCustomerInvoice_UNION'[WKSalesRep] <> 1195,
+			        LOOKUPVALUE('8DW DimCustomer'[ROHO Sales Rep Code],
+			            '8DW DimCustomer'[WKCustomer],
+			            FactCustomerInvoice_UNION[TiLite_ShiptoWKCustomer]),
+			IF(NOT(FactCustomerInvoice_UNION[WKCompany] IN {98,104}),
+			    LOOKUPVALUE('Global Rep Map (2)'[PERM Code NEW],
+			        'Global Rep Map (2)'[WKSalesRep],
+			        FactCustomerInvoice_UNION[WKSalesRep]),
+			IF('FactCustomerInvoice_UNION'[WKCompany] = 98,
+			    LOOKUPVALUE('TiLite_Master_OrderData'[Salesperson],
+			        'TiLite_Master_OrderData'[OrderNo],
+			        'FactCustomerInvoice_UNION'[OrderNumber]),
+			    LOOKUPVALUE('Global Rep Map (2)'[SalesRepCode],
+			        'Global Rep Map (2)'[WKSalesRep],
+			        FactCustomerInvoice_UNION[WKSalesRep])
+			)))
+			
+			RETURN
+			method1
+		dataType: string
+		lineageTag: 34e0871b-a6f9-4ba9-8e0d-e8ac671ab96c
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactCustomerInvoice_UNION-58362ece-f87a-4708-85d4-8a802730066d = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("SETIMDB04", "BIDW", [Query="SELECT #(lf)       [WKInvoiceDate]#(lf)      ,[WKItem]#(lf)      ,[WKCompany]#(lf)      ,[WKCustomer]#(lf)      ,[WKCurrency]#(lf)      ,[WKSalesRep]#(lf)      ,[WKProduct]#(lf)      ,[WKAccount]#(lf)      ,[WKInvoiceAccount]#(lf)      ,[InvoiceNumber]#(lf)      ,[OrderNumber]#(lf)      ,[PONumber]#(lf)      ,[SerialNumber]#(lf)      ,[IsChair]#(lf)      ,[MSRPAmount]#(lf)      ,[GrossAmount]#(lf)      ,[NetAmount]#(lf)      ,[CostAmount]#(lf)      ,[DiscountAmount]#(lf)      ,[MSRPUnitPrice]#(lf)      ,[GrossUnitPrice]#(lf)      ,[NetUnitPrice]#(lf)      ,[CostUnitPrice]#(lf)      ,[OrderQuantity]#(lf)      ,[DiscountPercent]#(lf)      ,[OrderDate]#(lf)      ,[InvoiceDays]#(lf)      ,[NoOfChairs]#(lf)FROM [BIDW].[DW].[V_FactCustomerInvoiceUNION]#(lf)WHERE [WKInvoiceDate] >= '1/1/2020' AND #(lf)[WKCompany] IN (#(lf)    '114', '109', '104', '102', '98',#(lf)    '82', '7', '165', '153', '150',#(lf)    '148', '130', '125', '124', '121',#(lf)    '115', '110', '103', '99', '96',#(lf)    '95', '57', '83', '81', '68', #(lf)    '58', '41', '40', '21', '19'#(lf))"]),
+				    #"Added Custom" = Table.AddColumn(Source, "WKProduct2", each if ([WKCustomer]=291740 or [WKCustomer]=291746 or [WKCustomer]=290480 or [WKCustomer]=290477 or [WKCustomer]=32250 or [WKCustomer]=331837 or [WKCustomer]=32249 or [WKCustomer]=331854) then 736 else [WKProduct]),
+				    #"Trimmed Text" = Table.TransformColumns(#"Added Custom",{{"OrderNumber", Text.Trim, type text}})
+				
+				in
+				    #"Trimmed Text"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

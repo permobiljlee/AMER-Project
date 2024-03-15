@@ -1,0 +1,830 @@
+table 'Econ configuration'
+	lineageTag: 436d799f-5aba-47d7-93c7-a4cfde865b75
+
+	measure 'Monthly Quote Total US' = ```
+			
+			CALCULATE( 
+			    SUM('Econ configuration'[Total Quotes w/Net Price > 0]),
+			        FILTER(
+			            ALL('Date'),'Date'[date] = DATE (YEAR (TODAY ()), MONTH (TODAY () ), 1 )))
+			```
+		formatString: 0
+		lineageTag: 1d99e0ed-38d2-4133-a97a-57879f0243c2
+
+		changedProperty = FormatString
+
+	measure 'Monthly Conversion Total US' = ```
+			
+			CALCULATE( 
+			    SUM('Econ configuration'[Converted Cnt US]),
+			        FILTER(
+			            ALL('Date'),'Date'[date] = DATE (YEAR (TODAY ()), MONTH (TODAY () ), 1 )))
+			```
+		formatString: 0
+		lineageTag: f3d342b8-c71f-4400-85a6-6c948264ccd6
+
+	measure 'Monthly Conversion Rate US' =
+			
+			CALCULATE(
+			    (
+			    [Monthly Conversion Total US])/
+			    [Monthly Quote Total US]/
+			    1)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 759cf941-dede-4285-81bd-ee152339ea57
+
+		changedProperty = FormatString
+
+	measure 'Monthly Unconverted US' =
+			CALCULATE(
+			    'Econ configuration'[Monthly Quote Total US] - 'Econ configuration'[Monthly Conversion Total US])
+		formatString: 0
+		lineageTag: 2877eb96-73df-4da3-b576-0178075cef88
+
+	measure 'SUM NP' = CALCULATE(SUM('Econ configuration'[NetPrice]))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 9e38422e-1145-4c34-b93d-9a38f019fc17
+
+	measure 'Monthly Conversion Rate CAN' =
+			
+			CALCULATE(
+			    (
+			    [Monthly Conversion Total CAN])/
+			    [Monthly Quote Total CAN]/
+			    1)
+		lineageTag: fbc046cb-ab26-4ba9-a48a-267fe1462805
+
+	measure 'Monthly Conversion Total CAN' = ```
+			
+			CALCULATE( 
+			    SUM('Econ configuration'[Converted Cnt CAN]),
+			        FILTER(
+			            ALL('Date'),'Date'[date] = DATE (YEAR (TODAY ()), MONTH (TODAY () ), 1 )))
+			```
+		lineageTag: a506c129-c858-400f-a5cb-4dd059d80c04
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Monthly Quote Total CAN' = ```
+			
+			CALCULATE( 
+			    SUM('Econ configuration'[Total Quotes w/Net Price > 0 CANADA]),
+			        FILTER(
+			            ALL('Date'),'Date'[date] = DATE (YEAR (TODAY ()), MONTH (TODAY () ), 1 )))
+			```
+		formatString: 0
+		lineageTag: 4235c638-c384-4578-a3dd-1f605bb316ce
+
+	measure 'Monthly Unconverted CAN' =
+			
+			CALCULATE(
+			    'Econ configuration'[Monthly Quote Total CAN] - 'Econ configuration'[Monthly Conversion Total CAN])
+		lineageTag: d661f3f6-1e71-49e3-87f0-d00a9ff8ceeb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'AVG Conversion Days CAN' =
+			
+			SUM('Econ configuration'[Conversion days (adj outlier)])
+			/
+			SUM('Econ configuration'[Converted Cnt CAN])
+		lineageTag: 3e1e992a-b065-4405-8422-7303eaed7745
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Quote total' = ```
+			
+			CALCULATE( 
+			    SUM('Econ configuration'[Total Quotes w/Net Price > 0]),
+			        USERELATIONSHIP('Ship to customer'[Ship to customer account], 'Econ configuration'[Branchcode]))
+			```
+		lineageTag: a3c050d3-0d17-4475-a877-eab844184a97
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Quotes Change %' = ```
+			
+			VAR apramt = 
+			CALCULATE([Quote total],
+			    'Date'[Month Name Abbr] = "Apr")
+			VAR subamt =
+			CALCULATE(
+			    DIVIDE('Econ configuration'[Quote total] - [AprAmt],
+			        [AprAmt]))
+			RETURN 
+			subamt
+			```
+		formatString: 0%;-0%;0%
+		lineageTag: bb9f5643-6732-4f5a-bbdb-9fdbb7666f9f
+
+	measure AprAmt = ```
+			
+			VAR apramt =
+			CALCULATE(
+			    'Econ configuration'[Quote total],
+			    'Date'[Month Name Abbr] = "Apr")
+			
+			RETURN 
+			apramt
+			```
+		lineageTag: 03eed0a1-fd5a-44f6-bf0f-0783465bbc8e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Quote Total CF' = ```
+			
+			
+			VAR apramt =
+			CALCULATE(
+			    'Econ configuration'[Quote total],
+			    'Date'[Month Name Abbr] = "Apr")
+			VAR subamt =
+			DIVIDE('Econ configuration'[Quote total] - apramt,
+			    apramt)
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    subamt > apramt, "#FFCCCC",
+			    subamt < apramt, "#CCFFCC"
+			)
+			
+			
+			
+			```
+		lineageTag: 651044a6-e251-409c-894d-f7de22b13567
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Averages = ```
+			
+			VAR avgmamj =
+			DIVIDE([Averages May - June] - [Averages March - April], 
+			    [Averages March - April])
+			RETURN
+			avgmamj
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d1efcbb4-092d-4576-b1a0-39e89675e16c
+
+	measure 'Averages March - April' = ```
+			
+			VAR summa =
+			CALCULATE(
+			    SUM('Econ configuration'[Total Quotes w/Net Price > 0]),
+			    FILTER('Date', 
+			        'Date'[Year] = 2023 &&
+			        'Date'[Month] IN {3,4})
+			)
+			// VAR countma =
+			// CALCULATE(
+			//     COUNTROWS('Econ configuration'),
+			//         'Econ configuration'[Quotetype] = "PowerWheelchairQuote",
+			//         CONTAINSSTRING('Econ configuration'[Dealer], "ussc"), 
+			//     FILTER('Date', 
+			//         'Date'[Year] = 2023 &&
+			//         'Date'[Month] IN {3,4})
+			// )
+			RETURN
+			DIVIDE(summa, 41)
+			```
+		formatString: 0.00
+		lineageTag: c843ce89-502f-4e0d-a23e-499f83ac8b48
+
+	measure 'Averages May - June' = ```
+			
+			VAR summa =
+			CALCULATE(
+			    SUM('Econ configuration'[Total Quotes w/Net Price > 0]),
+			    FILTER('Date', 
+			        'Date'[Year] = 2023 &&
+			        'Date'[Month] IN {5,6})
+			)
+			VAR countma =
+			CALCULATE(
+			    COUNTROWS('Econ configuration'),
+			        'Econ configuration'[Quotetype] = "PowerWheelchairQuote",
+			        CONTAINSSTRING('Econ configuration'[Dealer], "ussc"), 
+			    FILTER('Date', 
+			        'Date'[Year] = 2023 &&
+			        'Date'[Month] IN {5,6})
+			)
+			RETURN
+			DIVIDE(summa, 44)
+			```
+		formatString: 0.00
+		lineageTag: 0bcbd104-9e7f-499c-8b3d-6b0be943eaf6
+
+	column ConfigurationsHeader_SK
+		dataType: string
+		lineageTag: 926e6a17-313c-4ac6-b321-41ab02ded867
+		summarizeBy: none
+		sourceColumn: ConfigurationsHeader_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column RecordSource
+		dataType: string
+		lineageTag: 3e118c12-8ac5-4e94-bcd0-d3e279fddc6d
+		summarizeBy: none
+		sourceColumn: RecordSource
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuoteID
+		dataType: string
+		lineageTag: c00f9f7f-bda7-4c99-a486-62189b140a7f
+		summarizeBy: none
+		sourceColumn: QuoteID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Scalanumber
+		dataType: string
+		lineageTag: 869c0f28-c899-4025-91b8-6d6e579e28f4
+		summarizeBy: none
+		sourceColumn: Scalanumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dealer PO'
+		dataType: string
+		lineageTag: fe16c8fe-22cb-4003-8c34-79240e8106cd
+		summarizeBy: none
+		sourceColumn: Dealer PO
+
+		annotation SummarizationSetBy = Automatic
+
+	column Atp
+		dataType: string
+		lineageTag: 4f7ec343-5042-40f7-a926-d6bf177f98e7
+		summarizeBy: none
+		sourceColumn: Atp
+
+		annotation SummarizationSetBy = Automatic
+
+	column Branchcode
+		dataType: string
+		lineageTag: d163ad58-844e-4501-948b-0c3cef7ba6af
+		summarizeBy: none
+		sourceColumn: Branchcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuoteDate
+		dataType: string
+		lineageTag: eda6f96e-270d-4656-ab7b-07bfec045309
+		summarizeBy: none
+		sourceColumn: QuoteDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedBy
+		dataType: string
+		lineageTag: 9be579a2-4ba2-4892-a2ab-92220318773e
+		summarizeBy: none
+		sourceColumn: CreatedBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column ClientReference
+		dataType: string
+		lineageTag: 68222cf3-d948-4b91-a720-f83057f81fff
+		summarizeBy: none
+		sourceColumn: ClientReference
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Our ref'
+		dataType: string
+		lineageTag: a502afe6-168a-479d-97e6-71ef607fb17c
+		summarizeBy: none
+		sourceColumn: Our ref
+
+		annotation SummarizationSetBy = Automatic
+
+	column NetPrice
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: d0fc4993-ad98-4282-b937-21aa862e7c38
+		summarizeBy: sum
+		sourceColumn: NetPrice
+
+		annotation SummarizationSetBy = User
+
+	column ClientName
+		dataType: string
+		lineageTag: c572b614-6cc8-4e27-b00b-e7a5c01b9802
+		summarizeBy: none
+		sourceColumn: ClientName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Chair model'
+		dataType: string
+		lineageTag: d12914aa-cad2-4802-923c-f2bd8d820c28
+		summarizeBy: none
+		sourceColumn: Chair model
+
+		annotation SummarizationSetBy = Automatic
+
+	column Repname
+		dataType: string
+		lineageTag: 08006147-c8c9-4a74-9db0-e7d962070853
+		summarizeBy: none
+		sourceColumn: Repname
+
+		annotation SummarizationSetBy = Automatic
+
+	column PermobilRepCode
+		dataType: string
+		lineageTag: df02cd16-66e9-4a4a-a1bf-d4a4aec110e0
+		summarizeBy: none
+		sourceColumn: PermobilRepCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dealer
+		dataType: string
+		lineageTag: b45dcaf0-7fa1-484a-adab-3d61a559fab3
+		summarizeBy: none
+		sourceColumn: Dealer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Open or Converted' = ```
+			if(ISBLANK('Econ configuration'[Scalanumber]),
+			"Open", 
+			"Converted")
+			```
+		dataType: string
+		lineageTag: 4f38ed2b-2d6e-4e94-9a59-c6663f04d443
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days Open' = ```
+			
+			VAR  age =
+			SWITCH(
+			    TRUE(),
+			    ISBLANK('econ configuration'[Order Date]), DATEDIFF('econ configuration'[Quote Date], TODAY(),DAY),
+			    NOT(ISBLANK('econ configuration'[Order Date])), DATEDIFF('econ configuration'[Quote Date], 'econ configuration'[Order Date],DAY))
+			
+			VAR buckets =
+			SWITCH(TRUE(), 
+			    age >= 0 &&  age <= 30 , "1. 0-30",  
+			    age > 30 &&  age <= 60 , "2. 31-60", 
+			    age > 60 &&  age <= 90 , "3. 61-90",  
+			    age > 90 &&  age <= 120 , "4. 91-120", 
+			    age > 120 &&  age <= 150 , "5. 121-150",  
+			    age > 150 &&  age <= 180 , "6. 151-180", 
+			    age > 180  , "7. >180")
+			
+			RETURN
+			age
+			// SWITCH(
+			//     TRUE(),
+			//     ISBLANK(buckets) || buckets = "7. >180", "Not Converted", 
+			//     buckets)
+			```
+		dataType: int64
+		formatString: 0
+		lineageTag: bfbff234-41e1-454a-9f69-879ab0d4dffc
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quote Date' = date(mid('Econ configuration'[QuoteDate],1,4),mid('Econ configuration'[QuoteDate],5,2),mid('Econ configuration'[QuoteDate],7,2))
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 73e7e435-b659-4bd1-b5ee-fc5022f86a4c
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column '>/<180 Days' = ```
+			
+			VAR  age =
+			SWITCH(
+			    TRUE(),
+			    ISBLANK('econ configuration'[Order Date]), DATEDIFF('econ configuration'[Quote Date], TODAY(),DAY),
+			    NOT(ISBLANK('econ configuration'[Order Date])), DATEDIFF('econ configuration'[Quote Date], 'econ configuration'[Order Date],DAY))
+			
+			VAR buckets =
+			SWITCH(TRUE(), 
+			    age >= 0 &&  age <= 30 , "1. 0-30",  
+			    age > 30 &&  age <= 60 , "2. 31-60", 
+			    age > 60 &&  age <= 90 , "3. 61-90",  
+			    age > 90 &&  age <= 120 , "4. 91-120", 
+			    age > 120 &&  age <= 150 , "5. 121-150",  
+			    age > 150 &&  age <= 180 , "6. 151-180", 
+			    age > 180  , "7. >180")
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(buckets) || buckets = "7. >180", "Not Converted", 
+			    buckets)
+			```
+		dataType: string
+		lineageTag: 26154b04-e643-42a6-9f77-df4aee0e1e4d
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Date' =
+			
+			LOOKUPVALUE(
+			    'Facts_Sales Orders'[Order Date],
+			    'Facts_Sales Orders'[OrderNumber],
+			    'Econ configuration'[Scalanumber],
+			    'Facts_Sales Orders'[RecordSource],
+			    "SO"
+			    )
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2dd8278b-e54e-43c4-b487-4bb34eeb9b86
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days til Converted' =
+			
+			DATEDIFF('Econ configuration'[Quote Date],'Econ configuration'[Order Date],DAY)
+		dataType: int64
+		formatString: 0
+		lineageTag: 35f88c61-37c9-4cbe-b401-e0dbb00cbf4f
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Conversion Days (adj outlier)' = ```
+			
+			VAR days =
+			IF(
+			    ISBLANK('Econ configuration'[Days til Converted]), 0, 
+			    DATEDIFF('Econ configuration'[Quote Date],
+			    'Econ configuration'[Order Date],
+			    DAY)
+			)
+			
+			VAR adj =
+			SWITCH(
+			    TRUE(), 
+			        days < 181 && days > 1, days, 
+			        BLANK()
+			    )
+			
+			RETURN adj
+			```
+		dataType: int64
+		formatString: 0
+		lineageTag: 97ca7475-0873-4aa4-9182-3759f971909c
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column '>/< Days Sort' = ```
+			
+			SWITCH(
+			    TRUE(),
+			    'Econ configuration'[>/<180 Days]= "<30", 1, 
+			    'Econ configuration'[>/<180 Days]= "31-60", 2,
+			    'Econ configuration'[>/<180 Days]= "61-90", 3,
+			    'Econ configuration'[>/<180 Days]= "91-120", 4,
+			    'Econ configuration'[>/<180 Days]= "121-150", 5,
+			    'Econ configuration'[>/<180 Days]= "151-180", 6,
+			    7)
+			```
+		dataType: int64
+		formatString: 0
+		lineageTag: 38bd68d7-4a53-47fc-9909-cc120204dd36
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Converted Cnt US' =
+			
+			IF('Econ configuration'[Converted Cnt]=1 && CONTAINSSTRING('Econ configuration'[Dealer],"ussc"), 1, 0)
+		dataType: int64
+		lineageTag: 327c2af7-deae-4418-b743-92521d6c3e9c
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Converted Cnt CAN' =
+			
+			IF('Econ configuration'[Converted Cnt]=1 && CONTAINSSTRING('Econ configuration'[Dealer],"can"), 1, 0)
+		dataType: int64
+		lineageTag: fd13176d-8fdf-4247-92df-7e83b37a2195
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Serialnumber
+		dataType: string
+		lineageTag: 75e67b2a-2e22-419b-b3a2-5a4c8ab625ee
+		summarizeBy: none
+		sourceColumn: Serialnumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quotetype
+		dataType: string
+		lineageTag: 537add85-78c5-4fb6-9752-b02adf87ab4b
+		summarizeBy: none
+		sourceColumn: Quotetype
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tradecode
+		dataType: string
+		lineageTag: a141b3f4-a766-455d-a0cb-909a3eea610b
+		summarizeBy: none
+		sourceColumn: Tradecode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipToDate
+		dataType: string
+		lineageTag: de31f4b3-df6f-407c-8fca-eb652fa13b03
+		summarizeBy: none
+		sourceColumn: ShipToDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c7e9084-3377-4637-bc6e-3933b063d592
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Converted Cnt'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6ed0aaa9-79d3-4b49-8e67-95edbc090f28
+		summarizeBy: sum
+		sourceColumn: Converted Cnt
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Quotes w/Net Price > 0'
+		dataType: int64
+		formatString: 0
+		lineageTag: f49b52d5-d122-49d6-80b0-f7014d8ad7b5
+		summarizeBy: sum
+		sourceColumn: Total Quotes w/Net Price > 0
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Quotes w/Net Price > 0 CANADA'
+		dataType: int64
+		formatString: 0
+		lineageTag: 93e2d4be-920f-440a-8aa6-536ea99991e9
+		summarizeBy: sum
+		sourceColumn: Total Quotes w/Net Price > 0 CANADA
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Link
+		dataType: string
+		lineageTag: 7b69a0be-ec3d-48f3-b740-0a9ed44b5b4a
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: Link
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipTo_Name
+		dataType: string
+		lineageTag: f694b2bc-0a48-48d2-aef4-fea095bafef6
+		summarizeBy: none
+		sourceColumn: ShipTo_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column PermRepCode = ```
+			
+			SWITCH(
+			    TRUE(),
+			    CONTAINSSTRING('Econ configuration'[Dealer], "can"), LEFT('Econ configuration'[PermobilRepCode], 3),
+			    CONTAINSSTRING('Econ configuration'[Dealer], "ussc"), 'Econ configuration'[PermobilRepCode], 
+			    'Econ configuration'[PermobilRepCode])
+			```
+		dataType: string
+		lineageTag: cebd5442-ee33-4a47-8cb2-b934e38cedbe
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Group' =
+			
+			IF(CONTAINSSTRING('Econ configuration'[ShipTo_Name], "National Seating & Mobility"), "NSM",
+			    IF(CONTAINSSTRING('Econ configuration'[ShipTo_Name], "Numotion"), "USM",
+			    IF(CONTAINSSTRING('Econ configuration'[ShipTo_Name], "VA "), "VA",
+			    LOOKUPVALUE(
+			        'Ship to customer'[ProfileCustomerGroup],
+			        'Ship to customer'[Ship to Region.Territory.SubTerritory],
+			        'Econ configuration'[PermRepCode],
+			        'Ship to customer'[Ship to customer account],
+			        'Econ configuration'[Branchcode]))))
+		dataType: string
+		lineageTag: d5460632-57a6-41a1-911a-1042d553acba
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Econ configuration","TableItemName":"Customer Group (groups)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column 'Demo Check' =
+			
+			SWITCH(TRUE(),
+			    NOT(ISBLANK(LOOKUPVALUE('Demo Roll Out'[Customer],
+			        'Demo Roll Out'[Customer],
+			        'Econ configuration'[ShipTo_Name]))), 1,
+			    NOT(ISBLANK(LOOKUPVALUE('Demo Roll Out'[Econ Customer],
+			        'Demo Roll Out'[Econ Customer],
+			        'Econ configuration'[ShipTo_Name]))), 1,
+			    0)
+		dataType: int64
+		formatString: 0
+		lineageTag: 6563c79b-6e84-4395-abe0-897dae24ca07
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Econ configuration","TableItemName":"Demo Check (groups)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column 'Demo Check (groups)' =
+			SWITCH(
+				TRUE,
+				ISBLANK('Econ configuration'[Demo Check]),
+				"(Blank)",
+				'Econ configuration'[Demo Check] IN {1},
+				"Demo Received",
+				'Econ configuration'[Demo Check] IN {0},
+				"No Demo",
+				"Other"
+			)
+		dataType: string
+		formatString: 0
+		lineageTag: 5675f2b7-10bf-418c-a4d1-aef63db0a5a3
+		summarizeBy: none
+		isDataTypeInferred
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Econ configuration"
+				          }
+				        },
+				        "Property": "Demo Check"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"e","Entity":"Econ configuration"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"Demo Check"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"Demo Received","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"Demo Check"}}],"Values":[[{"Literal":{"Value":"1L"}}]]}}},{"DisplayName":"No Demo","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"Demo Check"}}],"Values":[[{"Literal":{"Value":"0L"}}]]}}},{"DisplayName":"Other"}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Group (groups)' =
+			SWITCH(
+				TRUE,
+				ISBLANK('Econ configuration'[Customer Group]),
+				"(Blank)",
+				'Econ configuration'[Customer Group] IN {"NSM"},
+				"National Seating & Mobillity",
+				'Econ configuration'[Customer Group] IN {"USM"},
+				"Numotion",
+				"Other"
+			)
+		dataType: string
+		lineageTag: 4883586e-7107-4008-b3f6-dd03131e44ce
+		summarizeBy: none
+		isDataTypeInferred
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Econ configuration"
+				          }
+				        },
+				        "Property": "Customer Group"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"e","Entity":"Econ configuration"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"Customer Group"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"National Seating & Mobillity","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"Customer Group"}}],"Values":[[{"Literal":{"Value":"'NSM'"}}]]}}},{"DisplayName":"Numotion","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"Customer Group"}}],"Values":[[{"Literal":{"Value":"'USM'"}}]]}}},{"DisplayName":"Other"}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShiptoState = ```
+			
+			BLANK()
+			    
+			```
+		dataType: int64
+		formatString: 0
+		lineageTag: bc297c9b-2711-4203-bd37-f2920bf5aff1
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Chair model (Config details)' = ```
+			
+			IF(ISBLANK(
+			    LOOKUPVALUE(
+			        'Facts_Quote Details'[Chair base (header)], 
+			        'Facts_Quote Details'[ConfigurationsHeader_SK], 
+			        'Econ configuration'[ConfigurationsHeader_SK])), 
+			        'Econ Configuration'[Chair model], 
+			    LOOKUPVALUE('Facts_Quote Details'[Chair base (header)], 
+			        'Facts_Quote Details'[ConfigurationsHeader_SK], 
+			        'Econ Configuration'[ConfigurationsHeader_SK]))
+			```
+		dataType: string
+		lineageTag: 8b02c103-40ec-4c50-93d1-fc1411372f46
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column ValidToDate
+		dataType: string
+		lineageTag: 7214db9f-5b52-48e6-87e9-431a917021e3
+		summarizeBy: none
+		sourceColumn: ValidToDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quote From Today' = ```
+			
+			VAR dayscount =
+			DATEDIFF('Econ configuration'[Quote Date], TODAY(), DAY)
+			
+			RETURN
+			SWITCH(TRUE(), 
+			    dayscount >= 0 &&  dayscount <= 30 , "1. 0-30",  
+			    dayscount > 30 &&  dayscount <= 60 , "2. 31-60", 
+			    dayscount > 60 &&  dayscount <= 90 , "3. 61-90",  
+			    dayscount > 90 &&  dayscount <= 120 , "4. 91-120", 
+			    dayscount > 120 &&  dayscount <= 150 , "5. 121-150",  
+			    dayscount > 150 &&  dayscount <= 180 , "6. 151-180", 
+			    dayscount > 180 &&  dayscount <= 365 , "7. 181-365",
+			    "8. 365+")
+			```
+		dataType: string
+		lineageTag: 63af4608-08d5-48f8-8b68-b1e4943e707d
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Econ configuration-62307cb9-58f1-4faf-aee3-3edff22684c3' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [CreateNavigationProperties=false, CommandTimeout=#duration(0, 4, 10, 0), Query="SELECT#(lf)ConfigurationsHeader_SK,#(lf)RecordSource,#(lf)QuoteID,#(lf)CASE when ISNULL(NetPrice,0) = 'NaN' then 0 #(lf)     ELSE CONVERT(DECIMAL(18, 2), NetPrice)#(lf)     end as NetPrice,#(lf)Scalanumber,#(lf)Serialnumber,#(lf)DealerPO,#(lf)Atp,#(lf)Branchcode,#(lf)Quotetype,#(lf)QuoteDate,#(lf)ShipToDate,#(lf)ShipTo_Name,#(lf)ValidToDate,#(lf)CreatedBy,#(lf)ClientReference,#(lf)OurRef,#(lf)ClientName,#(lf)ChairModel,#(lf)Tradecode,#(lf)Repname,#(lf)PermobilRepCode,#(lf)Dealer #(lf)FROM sales_Rpt.dim_EconConfigurationHeader#(lf)WHERE QuoteDate > 20200101#(lf)AND QuoteType IN ('smartdrivequote','powerwheelchairquote')#(lf)AND Dealer <> 'NaN'#(lf)AND NetPrice NOT LIKE '%E%'#(lf)ORDER BY QuoteDate ASC"]),
+				    #"Renamed Columns" = Table.RenameColumns(Source,{{"ChairModel", "Chair model"},{"DealerPO", "Dealer PO"}, {"OurRef", "Our ref"}}),
+				    #"Inserted Month" = Table.AddColumn(#"Renamed Columns", "Month", each Date.Month(Date.From([QuoteDate])), Int64.Type),
+				    #"Inserted Integer-Division" = Table.AddColumn(#"Inserted Month", "Converted Cnt", each Number.IntegerDivide(Number.From([ShipToDate]), Number.From([QuoteDate])), Int64.Type),
+				    #"Added Conditional Column" = Table.AddColumn(#"Inserted Integer-Division", "Total Quotes w/Net Price > 0", each if Text.Contains([Dealer], "ussc") and [Quotetype] = "PowerWheelchairQuote" and [NetPrice] > 0 then 1 else 0),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Conditional Column",{{"Total Quotes w/Net Price > 0", Int64.Type}}),
+				    #"Added Custom3" = Table.AddColumn(#"Changed Type2", "Total Quotes w/Net Price > 0 CANADA", each if Text.Contains([Dealer], "can") and [Quotetype] = "PowerWheelchairQuote" and [NetPrice] > 0 then 1 else 0),
+				    #"Inserted Merged Column" = Table.AddColumn(#"Added Custom3", "Link", each Text.Combine({"https://usorder-d365.permobil.com/prod-d3portal/Configurations?order=created%20desc&environment=prod-d3portal&model=Configurations%2C1.0.0&search=", [QuoteID]}), type text)
+				in
+				    #"Inserted Merged Column"
+
+	annotation PBI_ResultType = Table
+

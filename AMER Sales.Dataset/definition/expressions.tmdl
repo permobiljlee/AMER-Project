@@ -1,0 +1,196 @@
+expression RangeStart = #datetime(1900, 1, 1, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+	lineageTag: 12d8adec-8feb-49c8-8fad-681fc99924b7
+
+	annotation PBI_ResultType = DateTime
+
+expression RangeEnd = #datetime(2025, 1, 2, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+	lineageTag: a864a9df-2d05-43e8-b633-b3dcd5d159ab
+
+	annotation PBI_ResultType = DateTime
+
+expression DateKey =
+		let
+		    Source = (x as datetime) => Date.Year(x)*10000 + Date.Month(x)*100 + Date.Day(x)
+		in
+		    Source
+	lineageTag: 59067fd4-8484-4062-915f-fc72e01ef74b
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+
+expression 'Sales budget' =
+		let
+		    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [CreateNavigationProperties=false, CommandTimeout=#duration(0, 4, 10, 0)]),
+		    sales_mart_fact_SalesBudget = Source{[Schema="sales_mart",Item="fact_SalesBudget"]}[Data],
+		    #"Renamed Columns" = Table.RenameColumns(sales_mart_fact_SalesBudget,{{"BudgetPerDayMonth", "Budget per day"}, {"MonthNum", "Monthnumber"}, {"Sales_Group_Description", "Sales group description"}, {"Sales_Unit_Sales_Group", "Sales unit group"}, {"Financial_product_code_Lvl2", "Financial product code Lvl2"}, {"date_key", "Date"}, {"Product_Group", "Product group"}, {"BudgetAccMonth", "Budget acc month"}, {"NoWorkDaysInMonth", "No work days in month"}})
+		in
+		    #"Renamed Columns"
+	lineageTag: 4998e0a8-40ff-44a8-9c65-bb691293267c
+
+	annotation PBI_ResultType = Table
+
+expression 'Sales Budget_Excel_Old' =
+		let
+		    Source = SharePoint.Files("https://permobil.sharepoint.com/sites/BISalesUAT", [ApiVersion = 15]),
+		    #"Sales Budget xlsx_https://permobil sharepoint com/sites/BISalesUAT/Shared Documents/Power BI Model/" = Source{[Name="Sales Budget.xlsx",#"Folder Path"="https://permobil.sharepoint.com/sites/BISalesUAT/Shared Documents/Power BI Model/"]}[Content],
+		    #"Imported Excel Workbook" = Excel.Workbook(#"Sales Budget xlsx_https://permobil sharepoint com/sites/BISalesUAT/Shared Documents/Power BI Model/"),
+		    Sheet1_Sheet = #"Imported Excel Workbook"{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}}),
+		    #"Trimmed Text" = Table.TransformColumns(#"Changed Type",{{"Sales Group Description", Text.Trim, type text}, {"Sales Unit / Sales Group", Text.Trim, type text}}),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Trimmed Text",{{"MonthNum", Int64.Type}}),
+		    #"Trimmed Text1" = Table.TransformColumns(#"Changed Type1",{{"Month", Text.Trim, type text}, {"Product Group", Text.Trim, type text}}),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Trimmed Text1",{{"Budget", type number}})
+		in
+		    #"Changed Type2"
+	lineageTag: cd82e970-4d62-4f29-b797-f2a233e0936c
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression 'DateKey (2)' =
+		let
+		    Source = (x as datetime) => Date.Year(x)*10000 + Date.Month(x)*100 + Date.Day(x)
+		in
+		    Source
+	lineageTag: ab041946-1647-416d-91ff-2e456673416b
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression 'RangeStart (2)' = #datetime(1900, 1, 1, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+	lineageTag: 6b0ab1c6-d4e1-48f1-be45-10c08ca9a85e
+
+expression 'RangeEnd (2)' = #datetime(2025, 1, 2, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+	lineageTag: 6b922a07-ec26-49dd-99f3-27d11ea93938
+
+expression InDate = "2022-01-01T00:00:00Z" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: b2fe01a0-4db8-4789-9aac-d4784d37e3a0
+
+	annotation PBI_ResultType = Text
+
+expression 'User Security_RLS' =
+		let
+		    Source = SharePoint.Files("https://permobil.sharepoint.com/sites/BISalesUAT", [ApiVersion = 15]),
+		    #"PBIX User Security (RLS) xlsx_https://permobil sharepoint com/sites/BISalesUAT/Shared Documents/Power BI Model/" = Source{[Name="PBIX User Security (RLS).xlsx",#"Folder Path"="https://permobil.sharepoint.com/sites/BISalesUAT/Shared Documents/Power BI Model/"]}[Content],
+		    #"Imported Excel Workbook" = Excel.Workbook(#"PBIX User Security (RLS) xlsx_https://permobil sharepoint com/sites/BISalesUAT/Shared Documents/Power BI Model/"),
+		    #"Row Level Security_Sheet" = #"Imported Excel Workbook"{[Item="Row Level Security",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Row Level Security_Sheet", [PromoteAllScalars=true]),
+		    #"Trimmed Text" = Table.TransformColumns(#"Promoted Headers",{{"Commission Group (sometimes called SalesUnit)", Text.Trim, type text}, {"User Logon", Text.Trim, type text}, {"Region#(lf)Code", Text.Trim, type text}, {"Name", Text.Trim, type text}, {"Scope", Text.Trim, type text}}),
+		    #"Filtered Rows" = Table.SelectRows(#"Trimmed Text", each [#"Commission Group (sometimes called SalesUnit)"] <> null and [#"Commission Group (sometimes called SalesUnit)"] <> ""),
+		    #"Merged Queries" = Table.NestedJoin(#"Filtered Rows", {"Commission Group (sometimes called SalesUnit)"}, #"Ship to customer", {"Ship to salesunit Id"}, "Customer", JoinKind.Inner),
+		    #"Expanded Customer" = Table.ExpandTableColumn(#"Merged Queries", "Customer", {"ShipToCustomer_SK"}, {"ShipToCustomer_SK"}),
+		    #"Appended Query" = Table.Combine({#"Expanded Customer", #"User Security_RLS Region"})
+		in
+		    #"Appended Query"
+	lineageTag: 89eb549d-8777-45f4-85fe-b125df12e9ad
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'User Security_RLS Region' =
+		let
+		    Source = SharePoint.Files("https://permobil.sharepoint.com/sites/BISalesUAT", [ApiVersion = 15]),
+		    #"PBIX User Security (RLS) xlsx_https://permobil sharepoint com/sites/BISalesUAT/Shared Documents/Power BI Model/" = Source{[Name="PBIX User Security (RLS).xlsx",#"Folder Path"="https://permobil.sharepoint.com/sites/BISalesUAT/Shared Documents/Power BI Model/"]}[Content],
+		    #"Imported Excel Workbook" = Excel.Workbook(#"PBIX User Security (RLS) xlsx_https://permobil sharepoint com/sites/BISalesUAT/Shared Documents/Power BI Model/"),
+		    #"Row Level Security_Sheet" = #"Imported Excel Workbook"{[Item="Row Level Security",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Row Level Security_Sheet", [PromoteAllScalars=true]),
+		    #"Trimmed Text" = Table.TransformColumns(#"Promoted Headers",{{"Commission Group (sometimes called SalesUnit)", Text.Trim, type text}, {"User Logon", Text.Trim, type text}, {"Region#(lf)Code", Text.Trim, type text}, {"Name", Text.Trim, type text}, {"Scope", Text.Trim, type text}}),
+		    #"Filtered Rows" = Table.SelectRows(#"Trimmed Text", each [#"Region#(lf)Code"] <> null and [#"Region#(lf)Code"] <> ""),
+		    #"Merged Queries" = Table.NestedJoin(#"Filtered Rows", {"Region#(lf)Code"}, #"Ship to customer", {"Ship to salesunit area short"}, "Customer", JoinKind.Inner),
+		    #"Expanded Customer" = Table.ExpandTableColumn(#"Merged Queries", "Customer", {"ShipToCustomer_SK"}, {"ShipToCustomer_SK"})
+		in
+		    #"Expanded Customer"
+	lineageTag: 5e3612f0-ed2a-4896-b999-48dc4de3fa14
+
+	annotation PBI_ResultType = Table
+
+expression SalesOrderHeader = ```
+		let
+		    Source = OData.Feed ("https://permobil.operations.dynamics.com/data/SalesOrderHeadersV2?"
+		        &"&$filter=(dataAreaId eq 'ussc' or dataAreaId eq 'can' or dataAreaId eq 'us')  
+		            and OrderCreationDateTime gt " & InDate
+		        &"&$select=
+		            dataAreaId,
+		            SalesOrderNumber,
+		            SalesOrderStatus,
+		            CommissionSalesRepresentativeGroupId,
+		            SalesOrderName,
+		            SalesOrderPoolId
+		     "
+		    &"&cross-company=true"
+		    ,null, [Implementation="2.0",ODataVersion = 4])
+		in
+		    Source
+		```
+	lineageTag: c1720852-ef48-465f-8ef2-45e7d804f19a
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'DateKey (3)' =
+		let
+		    Source = (x as datetime) => Date.Year(x)*10000 + Date.Month(x)*100 + Date.Day(x)
+		in
+		    Source
+	lineageTag: 63c6b4e5-ef75-4cfa-a44b-c0650c8e85b3
+
+	annotation PBI_ResultType = Function
+
+expression 'RangeStart (3)' = #datetime(1900, 1, 1, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+	lineageTag: b7bab664-d975-4aea-b5b5-ed65b196d91d
+
+	annotation PBI_ResultType = DateTime
+
+expression 'RangeEnd (3)' = #datetime(2025, 1, 2, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+	lineageTag: ad1f400e-4bcf-493c-aaad-727caddf871a
+
+	annotation PBI_ResultType = DateTime
+
+expression 'Canada Master Customer' =
+		let
+		    Source = PowerPlatform.Dataflows(null),
+		    Workspaces = Source{[Id="Workspaces"]}[Data],
+		    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Workspaces{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+		    #"12fed167-094a-4d82-a04f-d08565ed9b96" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="12fed167-094a-4d82-a04f-d08565ed9b96"]}[Data],
+		    #"Canada Master Customer_" = #"12fed167-094a-4d82-a04f-d08565ed9b96"{[entity="Canada Master Customer",version=""]}[Data]
+		in
+		    #"Canada Master Customer_"
+	lineageTag: a7c9b22d-5be7-464b-b614-7690ba8ea2f4
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'Master Budget 2023 - Transfers' =
+		let
+		    Source = PowerPlatform.Dataflows([]),
+		    Workspaces = Source{[Id="Workspaces"]}[Data],
+		    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Workspaces{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+		    #"5a1c40bf-39a4-42dd-995f-95c2fed52ed5" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="5a1c40bf-39a4-42dd-995f-95c2fed52ed5"]}[Data],
+		    #"Master Data List_" = #"5a1c40bf-39a4-42dd-995f-95c2fed52ed5"{[entity="Master Budget 2023 Transfers",version=""]}[Data],
+		    #"Changed Type" = Table.TransformColumnTypes(#"Master Data List_",{{"Budget", type number}}),
+		    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Product Line] <> "Power Parts" and [Product Line] <> "TiLite Parts")),
+		    #"Added Conditional Column" = Table.AddColumn(#"Filtered Rows", "Custom", each if [Product Line] = "Power Chairs" then 1 else if [Product Line] = "TiLite Chairs" then 2 else if [Product Line] = "SmartDrive" then 3 else if [Product Line] = "SmartDrive On-Chair" then 4 else if [Product Line] = "SmartDrive Off Chair" then 5 else if [Product Line] = "ROHO" then 6 else if [Product Line] = "Comfort" then 7 else if [Product Line] = "Third Party" then 8 else if [Product Line] = "Surfaces" then 9 else null),
+		    #"Sorted Rows" = Table.Sort(#"Added Conditional Column",{{"Custom", Order.Ascending}}),
+		    #"Added Index" = Table.AddIndexColumn(#"Sorted Rows", "Index", 1, 1, Int64.Type),
+		    #"Filtered Rows1" = Table.SelectRows(#"Added Index", each ([Year] = 2023))
+		in
+		    #"Filtered Rows1"
+	lineageTag: d74e6b62-1413-40c5-91f3-62288727517c
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression begin2022 = #date(2022, 1, 1) meta [IsParameterQuery=true, Type="Date", IsParameterQueryRequired=true]
+	lineageTag: d4632c39-8992-4d17-b868-b85127cc35b5
+
+	annotation PBI_ResultType = Date
+
+expression endscala2022 = #date(2022, 3, 31) meta [IsParameterQuery=true, Type="Date", IsParameterQueryRequired=true]
+	lineageTag: 4592b429-31d1-4e5d-9b68-8c92f76e35a8
+
+	annotation PBI_ResultType = Date
+

@@ -1,0 +1,1347 @@
+table Facts
+	lineageTag: 7f58c81e-a368-4b03-b0a6-53cce0a5e534
+
+	measure 'No records' = COUNTROWS(Facts)
+		formatString: 0
+		lineageTag: a7084ed5-63ed-4620-bd3d-0e88376cadd6
+
+	measure 'Sum dealer price' = ```
+			SUM(Facts[Dealer price]) 
+			```
+		formatString: #,0.00
+		lineageTag: ae72c922-4ba6-46d5-aed2-ff3159d862c9
+
+	measure 'Sum unit net price' = ```
+			sum(Facts[Unit net price]) 
+			```
+		formatString: #,0.00
+		lineageTag: 59b0776c-befd-4fbe-9c37-8dbfc0a13b86
+
+	measure 'Sum quantity' = ```
+			sum(Facts[Quantity]) 
+			```
+		formatString: #,0
+		lineageTag: 4f82c954-4d5d-4971-baaf-7a30bd34db0f
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Net Price (LC)' = sum(Facts[Net price])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: eefb5a7f-8d4e-449a-bf1f-15a3649736c4
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Sum secondary discount' = SUM(Facts[Secondary discount])
+		formatString: #,0.00
+		lineageTag: 0c0ecc95-9e29-4fde-b68e-3fb56be8706c
+
+	measure RLSViewableFacts =
+			
+			CALCULATE(
+			FIRSTNONBLANK(
+			VALUES(
+			'Facts'[SalesRepCode (Master Customer)])
+			,1)
+			)
+		isHidden
+		lineageTag: 9a152edf-07f6-4087-b26a-1e5ea8adbf73
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure RLSFacts = ```
+			
+			
+			VAR FindUser =
+			    IF (
+			        SUMX (
+			            FILTER (
+			                'Sales Rep Map',
+			                UPPER ( 'Sales Rep Map'[Logon] ) = UPPER ( USERNAME () )
+			                    || UPPER ( 'Sales Rep Map'[Alt email] ) = UPPER ( USERPRINCIPALNAME () )
+			            ),
+			            // Check connection to customer  
+			            FIND (
+			               
+			                UPPER ( 'Sales Rep Map'[Rep] ),
+			                [RLSViewableFacts],
+			                
+			                ,
+			                0
+			            )
+			               
+			        ) > 0,
+			        1,
+			        0
+			    )
+			RETURN
+			    FindUser
+			```
+		formatString: 0
+		isHidden
+		lineageTag: a1802fa7-1289-445a-9fc5-b84b343eb6ae
+
+		changedProperty = IsHidden
+
+		changedProperty = FormatString
+
+	measure USERPRINCIPALNAME = ```
+			USERPRINCIPALNAME()
+			
+			```
+		lineageTag: b4980035-1011-4891-baa2-21b13dfaa2e8
+
+	measure USERNAME = USERNAME()
+		lineageTag: 5d97b36f-3f9a-497c-907c-57aa94011168
+
+	measure 'Sum Cost amount' = SUM(Facts[CostAmount])
+		lineageTag: 4d14a7e2-f097-40f7-9b37-63f08fdade28
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sum no chairs' = SUM(Facts[NoChairs])
+		lineageTag: a2e90b65-5de6-4f76-9df4-a3f5d88dae02
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure RLSFactsDoS = ```
+			
+			
+			VAR FindUser =
+			    IF (
+			        SUMX (
+			            FILTER (
+			                'Sales Rep Map',
+			                UPPER ( 'Sales Rep Map'[MgrLogon] ) = UPPER ( USERNAME () )
+			                    || UPPER ( 'Sales Rep Map'[MgrEmail] ) = UPPER ( USERPRINCIPALNAME () )
+			            ),
+			            // Check connection to customer  
+			            FIND (
+			               
+			                UPPER ( 'Sales Rep Map'[Rep] ),
+			                [RLSViewableFacts],
+			                
+			                ,
+			                0
+			            )
+			               
+			        ) > 0,
+			        1,
+			        0
+			    )
+			RETURN
+			    FindUser
+			```
+		isHidden
+		lineageTag: e734932c-7bbf-4659-9703-6df7fd6b33da
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Fact type'
+		dataType: string
+		lineageTag: df8cfb59-acff-48f3-b906-26b8a53ce0ba
+		summarizeBy: none
+		sourceColumn: Fact type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_SK
+		dataType: string
+		isHidden
+		lineageTag: c4ac8639-f647-48b4-bccd-ca02b41bbe0b
+		summarizeBy: none
+		sourceColumn: Customer_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CostCenter_SK
+		dataType: string
+		isHidden
+		lineageTag: 3434a885-8400-4d70-aaa6-7f6ef92b6b74
+		summarizeBy: none
+		sourceColumn: CostCenter_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FinProduct_SK
+		dataType: string
+		isHidden
+		lineageTag: df47cf24-a560-4820-971e-b8d69fd4179e
+		summarizeBy: none
+		sourceColumn: FinProduct_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FinProject_SK
+		dataType: string
+		isHidden
+		lineageTag: 59ff9066-e7c5-46ba-965a-6eacbaaea35c
+		summarizeBy: none
+		sourceColumn: FinProject_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MarketSalesRegion_SK
+		dataType: string
+		isHidden
+		lineageTag: f3a21965-b652-4e5c-aea4-545f4f6e11c6
+		summarizeBy: none
+		sourceColumn: MarketSalesRegion_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Company_SK
+		dataType: string
+		isHidden
+		lineageTag: 9a773725-3e99-4f4d-a18d-7d4c902b9875
+		summarizeBy: none
+		sourceColumn: Company_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReleasedProduct_SK
+		dataType: string
+		isHidden
+		lineageTag: ae267e6d-7d52-40a0-974b-a84afb9e0f0a
+		summarizeBy: none
+		sourceColumn: ReleasedProduct_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency_SK
+		dataType: string
+		isHidden
+		lineageTag: 1d3f6bcb-911a-45db-92ed-4f5d845eeb32
+		summarizeBy: none
+		sourceColumn: Currency_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date_SK
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4a4705d1-7f78-435e-bf9d-ec315bfb1a7a
+		summarizeBy: none
+		sourceColumn: Date_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order status'
+		dataType: int64
+		formatString: 0
+		lineageTag: c53b128c-1dff-4f37-8173-f0aaa77f7ae0
+		summarizeBy: none
+		sourceColumn: Order status
+
+		annotation SummarizationSetBy = User
+
+	column Quantity
+		dataType: double
+		lineageTag: 226115b1-a60d-495b-8e3f-02ce95e62a15
+		summarizeBy: none
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net price'
+		dataType: double
+		formatString: #,0
+		lineageTag: 46dd1294-93b8-4f60-bd4b-b3822a854a95
+		summarizeBy: sum
+		sourceColumn: Net price
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column 'Unit net price'
+		dataType: double
+		sourceProviderType: decimal(32, 6)
+		lineageTag: ef7ea8b6-8c18-48c8-982a-1a22f08a13c0
+		summarizeBy: sum
+		sourceColumn: Unit net price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Msrp
+		dataType: string
+		lineageTag: ce448ea9-d223-40e8-b727-38801bdba968
+		summarizeBy: none
+		sourceColumn: Msrp
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dealer price'
+		dataType: double
+		lineageTag: f72bd911-6ca4-467b-bc90-2e2adde199f6
+		summarizeBy: none
+		sourceColumn: Dealer price
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Secondary discount'
+		dataType: double
+		lineageTag: c57b863e-9adf-4c21-97f3-f40e190ed41b
+		summarizeBy: none
+		sourceColumn: Secondary discount
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Discount percent'
+		dataType: double
+		lineageTag: 435fdd0a-5eef-4830-8e6e-e8020bc8fd11
+		summarizeBy: none
+		sourceColumn: Discount percent
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BillToCustomer_SK
+		dataType: string
+		isHidden
+		lineageTag: 7f735dcc-c30e-42ce-9f7c-697c4bf1dc82
+		summarizeBy: none
+		sourceColumn: BillToCustomer_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipToCustomer_SK
+		dataType: string
+		isHidden
+		lineageTag: f5d02be6-0228-4b23-a125-dd93343f321e
+		summarizeBy: none
+		sourceColumn: ShipToCustomer_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order type'
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: ba13b0bd-b44d-4c10-b54d-afd5c4f4f7a6
+		summarizeBy: none
+		sourceColumn: Order type
+
+		annotation SummarizationSetBy = Automatic
+
+	column RecordSource
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(35)
+		lineageTag: d7f833e2-ad77-4f6c-8b0a-d82b04266267
+		summarizeBy: none
+		sourceColumn: RecordSource
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNumber
+		dataType: string
+		sourceProviderType: int
+		lineageTag: c71429b6-49a2-4659-9ec3-649a83715b04
+		summarizeBy: none
+		sourceColumn: OrderNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column InvoiceNumber
+		dataType: string
+		sourceProviderType: nvarchar(4000)
+		lineageTag: 04bb7eb2-b33f-4c19-8bd8-0c350ae1ff54
+		summarizeBy: none
+		sourceColumn: InvoiceNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemNumber
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: cc6ec267-2295-4bd2-a9c9-8efc7422cfc8
+		summarizeBy: none
+		sourceColumn: ItemNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column CostAmount
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 93999e73-9c89-4e77-b2aa-cf68112edcb1
+		summarizeBy: none
+		sourceColumn: CostAmount
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NoChairs
+		dataType: double
+		formatString: 0
+		sourceProviderType: float
+		lineageTag: 3ee75644-53e5-4f2f-9601-e0dbc40b5aed
+		summarizeBy: none
+		sourceColumn: NoChairs
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column CustomerOrderReference
+		dataType: string
+		lineageTag: 43fba186-07af-4a99-8e64-c2b47efe020c
+		summarizeBy: none
+		sourceColumn: CustomerOrderReference
+
+		annotation SummarizationSetBy = Automatic
+
+	column FinProductLine_SK
+		dataType: string
+		lineageTag: 72746172-9699-4f3a-840d-2265ce79c9eb
+		summarizeBy: none
+		sourceColumn: FinProductLine_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column NoChairs(SO&RO) = ```
+			
+			//Not for use other than in finding chair Order Unit Reporting 
+			// IF(ISBLANK(Facts[NoChairs]) || Facts[Fact type]<>"SO",-1,Facts[NoChairs])
+			IF(Facts[Fact type]="SO" && Facts[NoChairs] <> 0, Facts[NoChairs],
+			    IF(Facts[Fact type]="SO" && Facts[NoChairs] = 0, Facts[NoChairs] + 1,
+			        IF(Facts[Fact type]="SO LDW" && Facts[NoChairs] <> 0, Facts[NoChairs],
+			            IF(Facts[Fact type]="SO LDW" && Facts[NoChairs] = 0, Facts[NoChairs],
+			        -1))))
+			```
+		dataType: double
+		formatString: 0
+		lineageTag: 5cc4ffd6-15ca-4769-aa14-ebdfef5b9a8f
+		summarizeBy: sum
+		isDataTypeInferred
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column SISerial =
+			
+			VAR ThisOrderNumber = [OrderNumber]
+			
+			RETURN
+			MINX(
+			    FILTER(
+			        'Facts_Sales Orders',
+			        [OrderNumber] = ThisOrderNumber &&
+			        [RecordSource] = "SO"
+			    ),
+			    [SerialNumber]
+			)
+		dataType: string
+		lineageTag: 30b51e1e-22e7-4b0b-bbb0-c7ffa4855f0e
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'IBQ #''s' = ```
+			
+			    IF(Facts[Fact type] = "SI", 1,
+			    IF(Facts[Fact type] = "CI LDW", 1,
+			    IF(Facts[Fact type] = "SO", 2,
+			    IF(Facts[Fact type] = "SO LDW", 2,
+			    IF(Facts[Fact type] = "SQ", 3,
+			    IF(Facts[Fact type] = "SQ LDW", 3,
+			    IF(Facts[Fact type] = "EQ", 3)))))))
+			```
+		dataType: int64
+		formatString: #,0
+		displayFolder: Profile Measures
+		lineageTag: e8a227fc-6ccd-4afe-bf41-f06e8dc6dd83
+		summarizeBy: sum
+		isDataTypeInferred
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCode = ```
+			
+			VAR finprod =
+			LOOKUPVALUE(
+			    'Financial product'[Financial product code],
+			    'Financial product'[FinProduct_SK],
+			    'Facts'[FinProduct_SK])
+			
+			VAR relprod =
+			LOOKUPVALUE(
+			    'Released product'[Financial product code],
+			    'Released product'[ReleasedProduct_SK],
+			    'Facts'[ReleasedProduct_SK])
+			
+			VAR which =
+			IF(finprod = "" || 'Facts'[FinProduct_SK] = "FE4C2E1D71B7541E1DF74D32C2CB4A68369A5A48",
+			    relprod,
+			    finprod)
+			
+			RETURN 
+			IF('Facts'[ItemNumber] <> "Freight",
+			    which,
+			    "Freight")
+			
+			
+			```
+		dataType: string
+		lineageTag: ae278232-b1cb-467a-8625-2f8e22ed2fc2
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Name' =
+			
+			LOOKUPVALUE(
+			    'Product Code'[ChairModel],
+			    'Product Code'[ProductCode],
+			    'Facts'[ProductCode])
+		dataType: string
+		lineageTag: 348246b1-a843-4e9a-b831-e73f3620317c
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Facts","TableItemName":"Chair Value Stream","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column 'Chair Value Stream' =
+			SWITCH(
+				TRUE,
+				ISBLANK('Facts'[Product Name]),
+				"(Blank)",
+				'Facts'[Product Name] IN {"F3Corpus",
+					"M1",
+					"M300Corpus3G",
+					"M300CorpusHD",
+					"M3Corpus"},
+				"Group 3",
+				'Facts'[Product Name] IN {"F5Corpus",
+					"M5Corpus"},
+				"Group 4",
+				'Facts'[Product Name] IN {"K300PSJR",
+					"K300PSJVR2",
+					"K450",
+					"Koala",
+					"M300PSJR",
+					"MiniX"},
+				"Peds",
+				'Facts'[Product Name] IN {"F5CorpusVS",
+					"MCorpusVS"},
+				"Standing",
+				'Facts'[Product Name]
+			)
+		dataType: string
+		lineageTag: 9f075084-12cf-431d-8666-efb85402ae77
+		summarizeBy: none
+		isDataTypeInferred
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Facts"
+				          }
+				        },
+				        "Property": "Product Name"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"f","Entity":"Facts"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"f"}},"Property":"Product Name"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"Group 3","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"f"}},"Property":"Product Name"}}],"Values":[[{"Literal":{"Value":"'F3Corpus'"}}],[{"Literal":{"Value":"'M1'"}}],[{"Literal":{"Value":"'M300Corpus3G'"}}],[{"Literal":{"Value":"'M300CorpusHD'"}}],[{"Literal":{"Value":"'M3Corpus'"}}]]}}},{"DisplayName":"Group 4","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"f"}},"Property":"Product Name"}}],"Values":[[{"Literal":{"Value":"'F5Corpus'"}}],[{"Literal":{"Value":"'M5Corpus'"}}]]}}},{"DisplayName":"Peds","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"f"}},"Property":"Product Name"}}],"Values":[[{"Literal":{"Value":"'K300PSJR'"}}],[{"Literal":{"Value":"'K300PSJVR2'"}}],[{"Literal":{"Value":"'K450'"}}],[{"Literal":{"Value":"'Koala'"}}],[{"Literal":{"Value":"'M300PSJR'"}}],[{"Literal":{"Value":"'MiniX'"}}]]}}},{"DisplayName":"Standing","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"f"}},"Property":"Product Name"}}],"Values":[[{"Literal":{"Value":"'F5CorpusVS'"}}],[{"Literal":{"Value":"'MCorpusVS'"}}]]}}}]}
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Facts","TableItemName":"Chair Value Stream (groups)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column 'Chair Value Stream (groups)' =
+			SWITCH(
+			  TRUE,
+			  ISBLANK('Facts'[Chair Value Stream]),
+			  "(Blank)",
+			  'Facts'[Chair Value Stream] IN {"K300PSJR",
+			    "K300PSJVR2",
+			    "K450",
+			    "Koala",
+			    "M1",
+			    "M300PSJR",
+			    "MiniX"},
+			  "Minor",
+			  'Facts'[Chair Value Stream]
+			)
+		dataType: string
+		lineageTag: 0612b21b-58e3-4c68-8287-7f60b99065b7
+		summarizeBy: none
+		isDataTypeInferred
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Facts"
+				          }
+				        },
+				        "Property": "Chair Value Stream"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"f","Entity":"Facts"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"f"}},"Property":"Chair Value Stream"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"Minor","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"f"}},"Property":"Chair Value Stream"}}],"Values":[[{"Literal":{"Value":"'K300PSJR'"}}],[{"Literal":{"Value":"'K300PSJVR2'"}}],[{"Literal":{"Value":"'K450'"}}],[{"Literal":{"Value":"'Koala'"}}],[{"Literal":{"Value":"'M1'"}}],[{"Literal":{"Value":"'M300PSJR'"}}],[{"Literal":{"Value":"'MiniX'"}}]]}}}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quote Date' = "Blank"
+		dataType: string
+		lineageTag: 7a2c946f-1672-49ac-9bc9-a51bd47cc97f
+		summarizeBy: none
+		isDataTypeInferred
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChairModel =
+			
+			VAR finmod =
+			LOOKUPVALUE(
+			    'Financial product'[Financial product desc],
+			    'Financial product'[FinProduct_SK],
+			    'Facts'[FinProduct_SK])
+			
+			VAR relmod =
+			
+			LOOKUPVALUE(
+			    'Released product'[Product name],
+			    'Released product'[ReleasedProduct_SK],
+			    'Facts'[ReleasedProduct_SK])
+			
+			VAR which =
+			IF(finmod = "" || 'Facts'[FinProduct_SK] = "FE4C2E1D71B7541E1DF74D32C2CB4A68369A5A48",
+			    relmod,
+			    finmod)
+			
+			RETURN which
+		dataType: string
+		lineageTag: fc695229-0965-4380-af3e-33d22248c758
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Commission Group' = ```
+			RELATED('Ship to customer'[ProfileSubTerritory]) 
+			```
+		dataType: string
+		lineageTag: de442e89-5c93-4f0e-b89a-c52d6c84ec8c
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pool Id Name' =
+			
+			LOOKUPVALUE(
+			    'Pool Id Key'[name],
+			    'Pool Id Key'[Pool],
+			    'Facts'[Pool Id])
+		dataType: string
+		lineageTag: 8fcb347f-3a03-4b3a-b51b-6215818f7f07
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pool Id' = IF(RELATED('Sales order'[Sales order PoolId]) = "", "(Blank)", RELATED('Sales order'[Sales order PoolId]))
+		dataType: string
+		lineageTag: 7949d785-56cc-4b13-9fce-48d56f96eeff
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FinProdDesc 1' = ```
+			
+			RELATED('Released product'[Financial product desc Lvl1])
+			
+			// VAR CurrentOrder =    
+			//     'Facts'[OrderNumber]
+			
+			// VAR ProdDesc_lvl2 =    
+			//     CALCULATE(        
+			//         FIRSTNONBLANK('Facts_Returned Orders'[Fin Prod Desc lv2], 1),        
+			//             FILTER(            
+			//                 'Facts_Returned Orders',            
+			//                 'Facts_Returned Orders'[OrderNumber] = CurrentOrder ) 
+			//             )           
+			// RETURN    
+			//     ProdDesc_lvl2
+			```
+		dataType: string
+		lineageTag: e1eaca34-073b-42b4-b70b-1d28a4f46a54
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FinProdDesc 2' = ```
+			
+			
+			VAR CurrentOrder =    
+			    'Facts'[OrderNumber]
+			
+			VAR ProdDesc_lvl2 =  
+			
+			    IF(ISBLANK(RELATED('Released product'[Financial product desc Lvl2])),
+			        CALCULATE(        
+			            FIRSTNONBLANK('Facts_Returned Orders'[Fin Prod Desc lv2], 1),        
+			            FILTER(            
+			                'Facts_Returned Orders',            
+			                'Facts_Returned Orders'[OrderNumber] = CurrentOrder ) 
+			            ),
+			        RELATED('Released product'[Financial product desc Lvl2]
+			        )
+			    )
+			RETURN    
+			    ProdDesc_lvl2
+			
+			```
+		dataType: string
+		lineageTag: e11dd64b-971d-4f83-84fb-d30b79a0e64a
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Initiative = related('Power BI Item Level Initiatives'[Initiative])
+		dataType: string
+		lineageTag: 9d4a6b78-6486-45b4-961e-a83ab2f3e033
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Type Q1 Fix' = ```
+			
+			
+			VAR PartList = 
+			    {
+			    "SP43", "ST07", "SP28", "SP08", "CC13", "BS03", "SP36", "SP04", "BS10",
+			    "BS06", "SP07", "MX1", "ST04", "SP13", "BS13", "SP20", "BS04", "BS15", "SP02",
+			    "CC26", "SP24", "SP05", "SP40", "SP39", "MO01", "SP31", "SP26", "MO15", "SP01", "SP27", 
+			    "SP45", "MO08", "CC19", "BS05", "MO18", "SP38", "SP06", "BS19", "CC34", "BS11", "SP41", 
+			    "SP34", "MO13", "BS07", "CC01", "MO16", "CC21","BS16", "MO02","SP44", "CC35","ST08", 
+			    "CC02", "SP29", "SP22", "BS12", "SP14", "BS18", "ST02", "MO19", "MO07", "SP30","SC02", 
+			    "SP11", "SP23", "CC14", "ST01", "BS09", "ST03", "MO17", "ST06", "SP12", "MO14", "BS02", 
+			    "SP16", "SP17", "BS17", "SP21", "SP18", "BS08", "SP25", "SP09", "ST05", "CC10", "CC09", 
+			    "SP32", "SP35", "SP42", "CC11", "ST09", "CC06", "SP03", "MO12", "BS14", "MO06", "CC22", 
+			    "BS20", "MO04", "SP37", "SE03", "MP31", "PW", "CO1", "RC1", "MS1", "RO1", "RB1", "SE04",
+			    "CC23", "MO09", "Freight", "CC31", "CC20", "ACC2", "5BM1", "3CF5"}
+			
+			
+			RETURN
+			IF('Facts'[Fact type] = "SI", 
+			    'Facts'[Order type],
+			    IF(
+			        'Facts'[Fact type] = "CI LDW" &&
+			            'Facts'[ProductCode] IN PartList && 
+			            'Facts'[Order type] <> "chair", 
+			            "Parts",
+			            'Facts'[Order type]
+			    )
+			)
+			```
+		dataType: string
+		lineageTag: d0b41b29-09ed-44b6-8337-c77338603d8f
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FinProdDesc L1 (Fin Prod)' = RELATED('Financial product'[Financial product desc Lvl1])
+		dataType: string
+		lineageTag: f735a3f8-4830-4ba9-9ce1-399fcef58162
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FinProdDesc L12 (Fin Prod)' = RELATED('Financial product'[Financial product desc Lvl2])
+		dataType: string
+		lineageTag: 58fc9f43-ddfe-47cf-9701-b9ca94f3e474
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SalesRepCode (Master Customer)' =
+			
+			IF(ISBLANK(Facts[Order type]),
+			LOOKUPVALUE(
+			    'Facts_Returned Orders'[SalesRepCode (RO)],
+			    'Facts_Returned Orders'[OrderNumber],
+			    'Facts'[OrderNumber]),
+			LOOKUPVALUE(
+			    'Sales Rep Map'[Rep],
+			    'Sales Rep Map'[D365 Commission Group ID(sometimes called SalesUnit)],
+			    'Facts'[Sales Commission Group]))
+		dataType: string
+		lineageTag: 542651dc-fe93-4dcb-bd7f-96f302bf651d
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Provider Name' =
+			
+			RELATED('Ship to customer'[ProfileCustomerName])
+		dataType: string
+		lineageTag: a8da7a99-292e-4d0a-a00d-cfdafbb72e9f
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Line' =
+			
+			IF('Facts'[Date_SK] <= 20220331 &&
+			    'Facts'[Company_SK] = "B473A5ECB9EEEBFCB444E0D4B4269A1E0E33740B" && // US Company (Scala only used US for all transactions)
+			    'Facts'[Fact type] = "CI LDW" &&
+			    'Facts'[FinProdDesc L1 (Fin Prod)] IN { "Power"}&&
+			    'Facts'[Ship to Region] <> "CAN",
+			    "Power Chairs",
+			
+			IF('Facts'[Company_SK] IN {"DBF107EA99A53AFD092321B962232EFB81FF9297"} && // USSC
+			    'Facts'[Order type] IN {"Chair"} &&
+			    'Facts'[FinProdDesc 1] IN {"Aftermarket", "Power"} &&
+			    'Facts'[Ship to Region] <> "CAN" &&
+			    NOT CONTAINSSTRING('Facts'[FinProdDesc 2], "Manual"),
+			    "Power Chairs",
+			
+			IF(
+			    'Facts'[Company_SK] = "B473A5ECB9EEEBFCB444E0D4B4269A1E0E33740B" && // US Company (Scala only used US for all transactions)
+			    'Facts'[Fact type] = "CI LDW" &&
+			    'Facts'[Ship to Region] <> "CAN" &&
+			    'Facts'[Internal Customer] = 0 &&
+			    'Facts'[FinProdDesc L1 (Fin Prod)] IN { "Aftermarket"} &&
+			    'Facts'[FinProdDesc L12 (Fin Prod)] IN { "Power AM"},
+			    "Power Parts",
+			
+			IF('Facts'[Date_SK] > 20220331 &&
+			    'Facts'[Company_SK] IN {"DBF107EA99A53AFD092321B962232EFB81FF9297"} && // USSC
+			    'Facts'[Order Type Q1 Fix] IN {"Parts"},
+			    "Power Parts",
+			
+			IF('Facts'[Date_SK] <= 20220331 &&
+			    'Facts'[Company_SK] = "B473A5ECB9EEEBFCB444E0D4B4269A1E0E33740B" && // US Company (Scala only used US for all transactions)
+			    'Facts'[Fact type] = "CI LDW" &&
+			    'Facts'[FinProdDesc L1 (Fin Prod)] IN { "Aftermarket", "Manual", "Power Assisted Device"} &&
+			    'Facts'[FinProdDesc L12 (Fin Prod)] IN { "Manual AM", "Max Mobility"} &&
+			    'Facts'[Ship to Region] <> "CAN" &&
+			    'Facts'[ProductCode] IN { "MS1"},
+			    "SmartDrive Off Chair",
+			
+			IF('Facts'[Company_SK] IN {"DBF107EA99A53AFD092321B962232EFB81FF9297"} && // USSC
+			    'Facts'[Initiative] IN {"SmartDrive Commission Identification"} && // Excel file with each part # for sales credit
+			    'Facts'[Order type] IN {"SMRT", "Parts"} &&
+			    'Facts'[FinProdDesc 1] IN {"Aftermarket", "Manual", "Power Assisted Device"} &&
+			    NOT CONTAINSSTRING('Facts'[FinProdDesc 2], "Power") &&
+			    NOT CONTAINSSTRING('Facts'[FinProdDesc 2], "Services"),
+			    "SmartDrive Off Chair",
+			
+			IF('Facts'[Company_SK] IN {"DBF107EA99A53AFD092321B962232EFB81FF9297"} && // USSC
+			    'Facts'[Order type] IN {"Chair"} &&
+			    'Facts'[Internal Customer] = 0 &&
+			    'Facts'[FinProdDesc 1] IN {"Manual"},
+			    "TiLite Demos"
+			)))))))
+		dataType: string
+		lineageTag: 12d819dc-b9b3-47c8-9ed3-eb9c1a7cc33e
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to Region' = RELATED('Ship to customer'[Ship to address country region Id])
+		dataType: string
+		lineageTag: a10f9026-aa99-48b7-aac6-206bfef6594c
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Internal Customer' = RELATED('Ship to customer'[Ship to internal customer])
+		dataType: int64
+		formatString: 0
+		lineageTag: fc2a5283-9577-4701-a2b0-43e03b4a38a9
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Date' = Date(Left([Date_SK],4),Right(left([Date_SK],6),2),right([Date_SK],2))
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 76026cc4-57ee-4bd5-bad1-5fd33f3cffbb
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TiLite Chair Model' =
+			
+			RELATED('Released product'[TiLite Chair Model])
+		dataType: string
+		lineageTag: 38a2f322-e9a9-4992-8ad2-c8b2153d70ba
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Internal Customer (RO)' = LOOKUPVALUE('Facts_Returned Orders'[Internal Customer (RO)],'Facts_Returned Orders'[OrderNumber],'Facts'[OrderNumber])
+		dataType: int64
+		formatString: 0
+		lineageTag: 026c36c9-cb67-494d-9084-d8710e95277e
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column RepCheck =
+			
+			LOOKUPVALUE(
+			    'src_d365_AMR SalesOrderHeaderV2Staging'[Sales Rep Code],
+			    'src_d365_AMR SalesOrderHeaderV2Staging'[SALESORDERNUMBER],
+			    'Facts'[OrderNumber])
+		dataType: string
+		lineageTag: 800e9620-1221-403f-994d-3eadba947309
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column RepDiff? = ```
+			
+			IF(Facts[SalesRepCode (Master Customer)] <> Facts[RepCheck] && 
+			    NOT ISBLANK(Facts[RepCheck]), 1, 0)
+			```
+		dataType: int64
+		formatString: 0
+		lineageTag: ab109bd6-bc0d-4cff-88dd-d64e1c1265ea
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerCChain =
+			
+			VAR meth1 =
+			LOOKUPVALUE(
+			    'Ship to customer'[MasterCompanyChain],
+			    'Ship to customer'[ShipToCustomer_SK],
+			    'Facts'[ShipToCustomer_SK])
+			
+			VAR meth2 =
+			LOOKUPVALUE(
+			    'Bill to customer'[MasterCompanyChain],
+			    'Bill to customer'[BillToCustomer_SK],
+			    'Facts'[BillToCustomer_SK])
+			
+			RETURN
+			IF(ISBLANK(meth1), meth2, meth1)
+		dataType: string
+		lineageTag: 4a5ab740-f2f5-48ec-9af3-c67e84da34f5
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 27f4ca39-faba-4a93-8243-0f9a103be547
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CustomerRequisitionNumber
+		dataType: string
+		lineageTag: 3b3a1201-28fc-4bd0-b8bd-6aec8cc4884c
+		summarizeBy: none
+		sourceColumn: CustomerRequisitionNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Demo Flag' =
+			
+			VAR shipcust =
+			    LOOKUPVALUE(
+			        'Ship to customer'[Check],
+			        'Ship to customer'[ShipToSK_D365],
+			        'Facts'[ShipToCustomer_SK])
+			VAR billcust =
+			LOOKUPVALUE(
+			    'Bill to customer'[Check],
+			    'Bill to customer'[BillToSK_D365],
+			    'Facts'[BillToCustomer_SK])
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    shipcust = billcust, shipcust,
+			    shipcust <> 0, 1,
+			    0)
+		dataType: int64
+		formatString: 0
+		lineageTag: 53ad8da1-c9da-449f-8c1f-62e98c854511
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'State Filter' =
+			
+			IF('Facts'[Date_SK]>=20220401,
+			    LOOKUPVALUE('Ship to customer'[Ship to address state],
+			        'Ship to customer'[ShipToSK_D365],
+			        'Facts'[ShipToCustomer_SK]),
+			    LOOKUPVALUE('Bill to customer'[Bill to address state],
+			        'Bill to customer'[BillToSK_D365],
+			        'Facts'[BillToCustomer_SK]))
+		dataType: string
+		lineageTag: 27cb5ed1-4652-4ef4-a848-e95389da5dbd
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProfileProviderName = ```
+			
+			VAR cchain = [Provider Name]
+			
+			RETURN
+			MINX(
+			    FILTER(
+			        'Facts',
+			        [Provider Name] = cchain &&
+			        [Fact type] = "SI"
+			    ),
+			    'Facts'[Provider Name]
+			)
+			
+			```
+		dataType: string
+		lineageTag: d667d6aa-d861-43e8-b495-79f9e7c4ad04
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'City Filter' =
+			
+			// IF('Facts'[Date_SK]>=20220401,
+			    LOOKUPVALUE('Ship to customer'[Ship to address city],
+			        'Ship to customer'[ShipToSK_D365],
+			        'Facts'[ShipToCustomer_SK])
+			    //     ,
+			    // LOOKUPVALUE('Bill to customer'[Bill to address city],
+			    //     'Bill to customer'[BillToCustomer_SK],
+			    //     'Facts'[BillToCustomer_SK]))
+		dataType: string
+		lineageTag: be68d846-bc11-4179-b3e3-c70e4e284bd4
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dealer/Country =
+			
+			RELATED('Customer Table'[SalesSegmentId])
+		dataType: string
+		lineageTag: 70de98d6-f3f0-406b-9500-2bd00fc86d22
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column State =
+			
+			LOOKUPVALUE(
+			    'Ship to customer'[Ship to address state],
+			    'Ship to customer'[ShipToSK_D365],
+			    'Facts'[ShipToCustomer_SK])
+		dataType: string
+		lineageTag: 46ed6e05-1a19-4b53-9152-bc202ca7ea6b
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProfileAccount =
+			
+			RELATED('Ship to customer'[MasterAccount])
+		dataType: string
+		lineageTag: 57882add-456a-497a-acf4-5476d7fbd010
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipToCustomer_BK
+		dataType: string
+		lineageTag: 0e21dd24-fc0c-466a-8abe-2befc42c2c73
+		summarizeBy: none
+		sourceColumn: ShipToCustomer_BK
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to customer RecordSource'
+		dataType: string
+		lineageTag: 68a598fd-858e-4d27-98b5-772b3c4f2c2c
+		summarizeBy: none
+		sourceColumn: Ship to customer RecordSource
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to customer'
+		dataType: string
+		lineageTag: d583739d-05cf-491f-a705-a9c0610a8ab8
+		summarizeBy: none
+		sourceColumn: Ship to customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to customer name'
+		dataType: string
+		lineageTag: 8d3126df-0a98-488b-8ba4-08d3761c68e8
+		summarizeBy: none
+		sourceColumn: Ship to customer name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to customer company'
+		dataType: string
+		lineageTag: 93fae938-c671-4466-ab63-9732dfa4171e
+		summarizeBy: none
+		sourceColumn: Ship to customer company
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to address city'
+		dataType: string
+		lineageTag: 8232cdae-51af-4cc7-a15e-c2997b423ae5
+		summarizeBy: none
+		sourceColumn: Ship to address city
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to sales segment Id'
+		dataType: string
+		lineageTag: 8016722f-4f0c-4566-9728-1e46a4c583d4
+		summarizeBy: none
+		sourceColumn: Ship to sales segment Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to sales sub segment Id'
+		dataType: string
+		lineageTag: 9a14d28f-f7c7-4f7c-b5b4-1c2c51a21365
+		summarizeBy: none
+		sourceColumn: Ship to sales sub segment Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to company chain'
+		dataType: string
+		lineageTag: 7e3a72e6-d110-4f41-8a1d-1e125d2ede86
+		summarizeBy: none
+		sourceColumn: Ship to company chain
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to commission sales group Id'
+		dataType: string
+		lineageTag: 94b9e24f-a27f-449c-b17c-65c3e1abaca8
+		summarizeBy: none
+		sourceColumn: Ship to commission sales group Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to salesunit Id'
+		dataType: string
+		lineageTag: b493f12a-a5ee-442b-a947-12e5e5b90ef2
+		summarizeBy: none
+		sourceColumn: Ship to salesunit Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to salesunit area short'
+		dataType: string
+		lineageTag: 5e5f0709-3edd-44b5-9ac9-8cf5d7010cd8
+		summarizeBy: none
+		sourceColumn: Ship to salesunit area short
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to internal customer'
+		dataType: int64
+		formatString: 0
+		lineageTag: 183c2fa5-4081-48b2-b406-9d9faba7c81a
+		summarizeBy: sum
+		sourceColumn: Ship to internal customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESORDERNUMBER
+		dataType: string
+		lineageTag: 5b66b389-f8d6-4473-b475-8e0f55a032d0
+		summarizeBy: none
+		sourceColumn: SALESORDERNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSNAME
+		dataType: string
+		lineageTag: 9d6fa2e4-a8dc-4d58-a124-61ed8cbbb325
+		summarizeBy: none
+		sourceColumn: DELIVERYADDRESSNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSSTREET
+		dataType: string
+		lineageTag: fb96b859-6e76-4822-af81-5f29a90389a9
+		summarizeBy: none
+		sourceColumn: DELIVERYADDRESSSTREET
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSCITY
+		dataType: string
+		lineageTag: 3e6c1239-a70d-45c8-85e6-d2db4c884489
+		summarizeBy: none
+		sourceColumn: DELIVERYADDRESSCITY
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSSTATEID
+		dataType: string
+		lineageTag: e835ef0f-75d5-49c4-a6a8-5f0b2673b7e5
+		summarizeBy: none
+		sourceColumn: DELIVERYADDRESSSTATEID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSZIPCODE
+		dataType: string
+		lineageTag: 1d78a33b-13b0-4e84-9e8c-811917996006
+		summarizeBy: none
+		sourceColumn: DELIVERYADDRESSZIPCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Type - Calculated' =
+			
+			IF(
+			    ISBLANK([Order type]) || [Order type] = "",
+			    LOOKUPVALUE(
+			        'FACTS_RETURNEd Orders (Order Type)'[Order Type],
+			        'Facts_Returned Orders (Order Type)'[OrderNumber],
+			        'Facts'[OrderNumber],
+			        "Parts"
+			    ),
+			    [Order Type]
+			)
+		dataType: string
+		lineageTag: d02ae5c9-dc41-47e7-bad7-233bee9162e0
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SalesRepCode (SO Header)' =
+			
+			IF(NOT ISBLANK(Facts[Order type]),
+			LOOKUPVALUE(
+			    'src_d365_AMR SalesOrderHeaderV2Staging'[Sales Rep Code],
+			    'src_d365_AMR SalesOrderHeaderV2Staging'[SALESORDERNUMBER],
+			    'Facts'[OrderNumber]),
+			LOOKUPVALUE(
+			    'Facts_Returned Orders'[SalesRepCode (RO)],
+			    'Facts_Returned Orders'[OrderNumber],
+			    'Facts'[OrderNumber]))
+		dataType: string
+		lineageTag: 5278204d-da01-49ba-a4cd-a9e0fb770c0a
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Facts-a33835b7-370f-4e62-a60a-01183e557c3e = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [CreateNavigationProperties=false, CommandTimeout=#duration(0, 4, 10, 0), Query="WITH FactsTable AS (#(lf)SELECT [FactType]#(lf)      ,[RecordSource]#(lf)      ,[Customer_SK]#(lf)      ,[BillToCustomer_SK]#(lf)      ,[ShipToCustomer_SK]#(lf)      ,[CostCenter_SK]#(lf)      ,[FinProduct_SK]#(lf)      ,[FinProject_SK]#(lf)      ,[MarketSalesRegion_SK]#(lf)      ,[Company_SK]#(lf)      ,[ReleasedProduct_SK]#(lf)      ,[Currency_SK]#(lf)      ,[Date_SK]#(lf)      ,[OrderStatus]#(lf)      ,[OrderType]#(lf)      ,[OrderNumber]#(lf)      ,[NoChairs]#(lf)      ,[InvoiceNumber]#(lf)      ,[ItemNumber]#(lf)      ,[CustomerOrderReference]#(lf)      ,[CustomerRequisitionNumber]#(lf)      ,[Quantity]#(lf)      ,[NetPrice]#(lf)      ,[Unitnetprice]#(lf)      ,[Msrp]#(lf)      ,[DealerPrice]#(lf)      ,[SecondaryDiscount]#(lf)      ,[DiscountPercent]#(lf)      ,[CostAmount]#(lf)      ,[FinProductLine_SK]#(lf)  FROM [sales_Rpt].[fact_Sales]#(lf)#(lf)WHERE FactType IN ('SI','CI LDW') #(lf)AND Company_SK IN ('AC5C3BF7D8B4411C33D4842B7B21A79E243F7E99', 'A1CC37EFDDBBDA8BAA87443BAE04F2CA6C0BFB6D', 'B0A04215D61011864E5492FB039C0F64657DE5EB', 'DBF107EA99A53AFD092321B962232EFB81FF9297', 'B473A5ECB9EEEBFCB444E0D4B4269A1E0E33740B')#(lf)AND (Date_SK >= 20210101#(lf)OR Date_SK = 19000101)#(lf)),#(lf)#(lf)Header AS(#(lf)SELECT [SALESORDERNUMBER]#(lf)      ,[DELIVERYADDRESSNAME]#(lf)      ,[DELIVERYADDRESSSTREET]#(lf)      ,[DELIVERYADDRESSCITY]#(lf)      ,[DELIVERYADDRESSZIPCODE]#(lf)      ,[DELIVERYADDRESSSTATEID]#(lf)  FROM [src_d365_AMR].[SalesOrderHeaderV2Staging]#(lf)),#(lf)#(lf)ShipTo AS (#(lf)SELECT [ShipToCustomer_SK]#(lf)      ,[ShipToCustomer_BK]#(lf)      ,[Ship to customer RecordSource]#(lf)      ,[Ship to customer]#(lf)      ,[Ship to customer name]#(lf)      ,[Ship to customer company]#(lf)      ,[Ship to address city]#(lf)      ,[Ship to sales segment Id]#(lf)      ,[Ship to sales sub segment Id]#(lf)      ,[Ship to company chain]#(lf)      ,[Ship to commission sales group Id]#(lf)      ,[Ship to salesunit Id]#(lf)      ,[Ship to salesunit area short]#(lf)      ,[Ship to internal customer]#(lf)  FROM [sales_Rpt].[dim_ShipToCustomer]#(lf))#(lf)#(lf)SELECT *#(lf)FROM FactsTable FT#(lf)LEFT JOIN ShipTo ST#(lf)ON FT.ShipToCustomer_SK = ST.ShipToCustomer_SK#(lf)LEFT JOIN Header H#(lf)ON FT.OrderNumber = H.SALESORDERNUMBER#(lf)#(lf)#(lf)"]),
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"ShipToCustomer_SK2"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"DealerPrice", "Dealer price"}, {"DiscountPercent", "Discount percent"}, {"FactType", "Fact type"}, {"NetPrice", "Net price"}, {"OrderStatus", "Order status"}, {"OrderType", "Order type"},{"SecondaryDiscount", "Secondary discount"}, {"Unitnetprice", "Unit net price"}}),
+				    #"Inserted Date" = Table.AddColumn(#"Renamed Columns", "Date", each Date.From(Text.From([Date_SK], "en-US")), type date)
+				in
+				    #"Inserted Date"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,44 @@
+table 'Facts_Returned Orders (Order Type)'
+	lineageTag: 6b8f3a2d-aa04-49ba-933e-f1a7adf659fc
+
+	column OrderNumber
+		dataType: string
+		lineageTag: 5dd91769-e651-4cb3-94ab-8ed9384b3b37
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: Facts_Returned Orders[OrderNumber]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Type'
+		dataType: string
+		lineageTag: 50dcc937-9f20-48ae-aff3-ff467dff23d8
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Order Type]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Facts_Returned Orders (Order Type)' = calculated
+		mode: import
+		source =
+				
+				UNION(
+				    SUMMARIZE(
+				        FILTER(
+				        'Facts_Returned Orders',
+				        'Facts_Returned Orders'[Fin Prod Desc lv2] IN {"Adult", "Bariatric", "Pediatric"}),
+				    'Facts_Returned Orders'[OrderNumber],
+				    "Order Type", "Chair"),
+				SUMMARIZE(
+				        FILTER(
+				        'Facts_Returned Orders',
+				        'Facts_Returned Orders'[Fin Prod Desc lv2] IN {"Rear Drive"}),
+				    'Facts_Returned Orders'[OrderNumber],
+				    "Order Type", "SMRT"
+				))
+
+	annotation PBI_Id = 31c48e50ce444fd2b691d6d5b12159b9
+

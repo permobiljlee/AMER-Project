@@ -1,0 +1,216 @@
+table 'Sales Budget_Excel - Bridge'
+	lineageTag: d2123b8f-ad15-4945-9f70-1a91041ebae5
+
+	column RepCode
+		dataType: string
+		lineageTag: 324273a8-d753-4bef-a918-869549620f66
+		summarizeBy: none
+		sourceColumn: RepCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Commission Group (sometimes called SalesUnit)'
+		dataType: string
+		lineageTag: 5aef2060-c259-4f7a-b6d6-63b1167c5adc
+		summarizeBy: none
+		sourceColumn: Commission Group (sometimes called SalesUnit)
+
+		annotation SummarizationSetBy = Automatic
+
+	column LOGONNAME
+		dataType: string
+		lineageTag: f57182f5-c2d0-4cf7-a694-65708837d938
+		summarizeBy: none
+		sourceColumn: LOGONNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column LOGONNAME_2
+		dataType: string
+		lineageTag: a7e0ff8b-586d-4133-a66a-d09b7ed5acee
+		summarizeBy: none
+		sourceColumn: LOGONNAME_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DoS LOGONNAME'
+		dataType: string
+		lineageTag: f4c71108-4776-4021-8c52-94e245c4d85b
+		summarizeBy: none
+		sourceColumn: DoS LOGONNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegionCode
+		dataType: string
+		lineageTag: 0360fb91-7149-43f5-b372-b1a8298a811b
+		summarizeBy: none
+		sourceColumn: RegionCode
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Sales Budget_Excel - Bridge","TableItemName":"RegionCode (groups)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column CurrentRep
+		dataType: string
+		lineageTag: 63ca45e8-8780-4355-9314-3d2a2af38fd5
+		summarizeBy: none
+		sourceColumn: CurrentRep
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 930d611c-9c21-4e7f-89ae-46bde81e894b
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column MonthNum
+		dataType: int64
+		formatString: 0
+		lineageTag: b3365a3e-5c99-4809-9e0d-4d6c3fbde40d
+		summarizeBy: none
+		sourceColumn: MonthNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		lineageTag: b32e51c8-0c62-4231-b996-a2198e847868
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: string
+		lineageTag: 10dee3d4-1061-486e-846b-059206567a32
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Monthly Budget'
+		dataType: double
+		lineageTag: 79fb0797-26b3-4745-a60f-eab4591a0fd6
+		summarizeBy: none
+		sourceColumn: Monthly Budget
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Product Group'
+		dataType: string
+		lineageTag: 7e97b0e6-e6ec-4d3d-9516-d0f54a36b9cd
+		summarizeBy: none
+		sourceColumn: Product Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product code Lvl2'
+		dataType: string
+		lineageTag: 817da27e-0097-4f65-b4ac-b7274fb1781d
+		summarizeBy: none
+		sourceColumn: Financial product code Lvl2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment
+		dataType: string
+		lineageTag: 7c53ea1c-8b4d-4d67-8a6f-b9d0b8ebd34a
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Model Type'
+		dataType: string
+		lineageTag: 5ae52653-0504-43ab-9274-2c1f3b18a822
+		summarizeBy: none
+		sourceColumn: Model Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column LOGONNAME2
+		dataType: string
+		lineageTag: c543b59a-c238-4e58-9b53-3da756783056
+		summarizeBy: none
+		sourceColumn: LOGONNAME2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RegionCode (groups)' =
+			SWITCH(
+			  TRUE,
+			  ISBLANK('Sales Budget_Excel - Bridge'[RegionCode]),
+			  "(Blank)",
+			  'Sales Budget_Excel - Bridge'[RegionCode] IN {"10"},
+			  "Canada",
+			  'Sales Budget_Excel - Bridge'[RegionCode] IN {"C3",
+			    "E1",
+			    "E2",
+			    "E3",
+			    "E4"},
+			  "East",
+			  'Sales Budget_Excel - Bridge'[RegionCode] IN {"C1",
+			    "C2",
+			    "W1",
+			    "W2",
+			    "W3",
+			    "W4"},
+			  "West",
+			  'Sales Budget_Excel - Bridge'[RegionCode]
+			)
+		dataType: string
+		lineageTag: aab27109-3d36-4ea3-b55a-9ec0b6c01471
+		summarizeBy: none
+		isDataTypeInferred
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Sales Budget_Excel - Bridge"
+				          }
+				        },
+				        "Property": "RegionCode"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"s","Entity":"Sales Budget_Excel - Bridge"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"RegionCode"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"Canada","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"RegionCode"}}],"Values":[[{"Literal":{"Value":"'10'"}}]]}}},{"DisplayName":"East","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"RegionCode"}}],"Values":[[{"Literal":{"Value":"'C3'"}}],[{"Literal":{"Value":"'E1'"}}],[{"Literal":{"Value":"'E2'"}}],[{"Literal":{"Value":"'E3'"}}],[{"Literal":{"Value":"'E4'"}}]]}}},{"DisplayName":"West","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"RegionCode"}}],"Values":[[{"Literal":{"Value":"'C1'"}}],[{"Literal":{"Value":"'C2'"}}],[{"Literal":{"Value":"'W1'"}}],[{"Literal":{"Value":"'W2'"}}],[{"Literal":{"Value":"'W3'"}}],[{"Literal":{"Value":"'W4'"}}]]}}}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Sales Budget_Excel - Bridge-204de6c8-dd91-498c-bdd1-54f47fdc86e3' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://permobil.sharepoint.com/sites/BISalesUAT", [ApiVersion = 15]),
+				    #"Sorted Rows" = Table.Sort(Source,{{"Date modified", Order.Descending}}),
+				    #"Sales Budget.xlsx_https://permobil.sharepoint.com/sites/BISalesUAT/Shared Documents/Power BI Model/" = #"Sorted Rows"{[Name="Sales Budget.xlsx",#"Folder Path"="https://permobil.sharepoint.com/sites/BISalesUAT/Shared Documents/Power BI Model/"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"Sales Budget.xlsx_https://permobil.sharepoint.com/sites/BISalesUAT/Shared Documents/Power BI Model/"),
+				    #"Sales Budget_Sheet" = #"Imported Excel Workbook"{[Item="Sales Budget",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Sales Budget_Sheet", [PromoteAllScalars=true]),
+				    #"Filtered Rows1" = Table.SelectRows(#"Promoted Headers", each true),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Filtered Rows1",{{"Date", type date}, {"MonthNum", Int64.Type}, {"Monthly Budget", type number}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Changed Type",{{"LOGONNAME", Text.Trim, type text}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Trimmed Text", each true),
+				    #"Removed Duplicates" = Table.Distinct(#"Filtered Rows", {"RepCode"}),
+				    #"Filtered Rows2" = Table.SelectRows(#"Removed Duplicates", each ([#"Commission Group (sometimes called SalesUnit)"] <> 0))
+				in
+				    #"Filtered Rows2"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,53 @@
+table 'Scala to D365 Acct Bridge Mapping'
+	excludeFromModelRefresh
+	lineageTag: acbfd85a-9f09-46a9-a9fa-38af3071da6a
+
+	column 'Scala AccountNo'
+		dataType: string
+		lineageTag: 49507c91-edb3-49ed-8a6f-cd66779b5428
+		summarizeBy: none
+		sourceColumn: Scala AccountNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORGANIZATIONNAME
+		dataType: string
+		lineageTag: 5b7789b8-4375-41a8-83a0-406dff1b4a2c
+		summarizeBy: none
+		sourceColumn: ORGANIZATIONNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'D365 CUSTOMERACCOUNT'
+		dataType: string
+		lineageTag: 082531a0-7f2e-43ad-95ec-a8777f30e650
+		summarizeBy: none
+		sourceColumn: D365 CUSTOMERACCOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Destination Company'
+		dataType: string
+		lineageTag: 6900cc39-24e4-45e2-b5a1-33173449815c
+		summarizeBy: none
+		sourceColumn: Destination Company
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Scala to D365 Acct Bridge Mapping' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://permobil.sharepoint.com/sites/BISalesUAT", [ApiVersion = 15]),
+				    #"Acct Map 1 JR xlsx_https://permobil sharepoint com/sites/BISalesUAT/Shared Documents/Power BI Model/" = Source{[Name="Acct Map 1 JR.xlsx",#"Folder Path"="https://permobil.sharepoint.com/sites/BISalesUAT/Shared Documents/Power BI Model/"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"Acct Map 1 JR xlsx_https://permobil sharepoint com/sites/BISalesUAT/Shared Documents/Power BI Model/"),
+				    #"Scala to Account Map_Sheet" = #"Imported Excel Workbook"{[Item="Scala to Account Map",Kind="Sheet"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(#"Scala to Account Map_Sheet",{"Column5", "Column6"}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Columns", [PromoteAllScalars=true])
+				in
+				    #"Promoted Headers"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

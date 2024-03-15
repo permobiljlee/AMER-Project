@@ -1,0 +1,556 @@
+table 'Bill to customer'
+	lineageTag: fe9a0bbe-c9b7-4bea-8078-904732d4b8e7
+
+	column 'Bill to Region.Territory' = REPLACE(mid('Bill to customer'[Bill to salesunit Id],1,3),2,1,"")
+		dataType: string
+		lineageTag: 108d84af-07de-484d-bad7-26cc2312cc58
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to Region.Territory.SubTerritory' = mid([Bill to salesunit ID],1,5)
+		dataType: string
+		lineageTag: db7e1fc5-8f78-4f5b-9d0a-d9b5a3af50e1
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column BillToCustomer_SK
+		dataType: string
+		isHidden
+		lineageTag: b3798a6e-cd43-4af9-a943-010e1e18f798
+		summarizeBy: none
+		sourceColumn: BillToCustomer_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column BillToCustomer_BK
+		dataType: string
+		isHidden
+		lineageTag: 98b436ff-cdb8-4696-8a5f-d3934b1c113c
+		summarizeBy: none
+		sourceColumn: BillToCustomer_BK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to customer RecordSource'
+		dataType: string
+		lineageTag: 13732042-27d2-4a03-a890-41bf9988800d
+		summarizeBy: none
+		sourceColumn: Bill to customer RecordSource
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to customer'
+		dataType: string
+		lineageTag: 89631c19-bcd9-49f2-9500-91d0bb2a97e7
+		summarizeBy: none
+		sourceColumn: Bill to customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to customer name'
+		dataType: string
+		lineageTag: 3d8bd66f-2425-4514-8c08-21e6dc2730fc
+		summarizeBy: none
+		sourceColumn: Bill to customer name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to customer company'
+		dataType: string
+		lineageTag: eb03e806-849f-4e6a-b31e-60ed730e74eb
+		summarizeBy: none
+		sourceColumn: Bill to customer company
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to address city'
+		dataType: string
+		lineageTag: d55184b3-111e-437d-aa2a-a37eeffcfe39
+		summarizeBy: none
+		sourceColumn: Bill to address city
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to address country region Id'
+		dataType: string
+		lineageTag: b7fb4a95-07ad-4364-b287-713d207e0d0f
+		summarizeBy: none
+		sourceColumn: Bill to address country region Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to address country region ISOCode'
+		dataType: string
+		lineageTag: 6183f06f-ddd1-41f8-984f-aced4b01ca4b
+		summarizeBy: none
+		sourceColumn: Bill to address country region ISOCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to address description'
+		dataType: string
+		lineageTag: 3b702b01-61f3-4077-8239-e0503749024d
+		summarizeBy: none
+		sourceColumn: Bill to address description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to address state'
+		dataType: string
+		lineageTag: c74d9de1-1392-474d-82d3-7656e50d178b
+		summarizeBy: none
+		sourceColumn: Bill to address state
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to address street'
+		dataType: string
+		lineageTag: 9d28283d-f7b2-43a8-9e41-d488d6cc279b
+		summarizeBy: none
+		sourceColumn: Bill to address street
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to address ZIP code'
+		dataType: string
+		lineageTag: eb3838f2-b2fa-4708-9b9c-d9c8df7504f5
+		summarizeBy: none
+		sourceColumn: Bill to address ZIP code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to sales segment Id'
+		dataType: string
+		lineageTag: e844ae62-c7de-4719-ac1f-51e6d0de9fe4
+		summarizeBy: none
+		sourceColumn: Bill to sales segment Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to sales sub segment Id'
+		dataType: string
+		lineageTag: d90ba220-a501-46f8-acf0-f1bfb644e17b
+		summarizeBy: none
+		sourceColumn: Bill to sales sub segment Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to company chain'
+		dataType: string
+		lineageTag: 99428b48-c696-4ce7-941f-77795b659f32
+		summarizeBy: none
+		sourceColumn: Bill to company chain
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to customer account'
+		dataType: string
+		lineageTag: d0ee28d9-58c1-4179-a31e-d4aa36652cd7
+		summarizeBy: none
+		sourceColumn: Bill to customer account
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to discount price group Id'
+		dataType: string
+		lineageTag: ec007483-5372-4f3b-8d08-6007d011418e
+		summarizeBy: none
+		sourceColumn: Bill to discount price group Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to internal customer'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0a19e237-9cb9-4d1e-8ca9-73989adc66bc
+		summarizeBy: none
+		sourceColumn: Bill to internal customer
+
+		annotation SummarizationSetBy = User
+
+	column 'Bill to line discount code'
+		dataType: string
+		lineageTag: 24e5a62f-82c9-4c6e-b95c-e9be545aa757
+		summarizeBy: none
+		sourceColumn: Bill to line discount code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to chain description'
+		dataType: string
+		lineageTag: 2148efb5-9166-4c41-862c-ae2712475050
+		summarizeBy: none
+		sourceColumn: Bill to chain description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to sales currency code'
+		dataType: string
+		lineageTag: 4211eed8-ec31-4a63-9705-e5617b57cfd2
+		summarizeBy: none
+		sourceColumn: Bill to sales currency code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to commission sales group Id'
+		dataType: string
+		lineageTag: b52f1bf9-7f58-4c5f-aa94-f2ffa797cfbb
+		summarizeBy: none
+		sourceColumn: Bill to commission sales group Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to commission sales group name'
+		dataType: string
+		lineageTag: 7d9ae5e7-5812-47a3-a541-ade0a81ca250
+		summarizeBy: none
+		sourceColumn: Bill to commission sales group name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to commission sales group tran. status'
+		dataType: string
+		lineageTag: 5485f4e7-f5bf-4e6f-ac90-749542485fca
+		summarizeBy: none
+		sourceColumn: Bill to commission sales group tran. status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to salesunit Id'
+		dataType: string
+		lineageTag: e2da571f-98bb-4e74-9cdd-15c67612fef6
+		summarizeBy: none
+		sourceColumn: Bill to salesunit Id
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Bill to customer","TableItemName":"Bill to salesunit Id (East & West)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column 'Bill to salesunit area short'
+		dataType: string
+		lineageTag: e7ed1296-088d-4c6c-b0df-8f1131e2785d
+		summarizeBy: none
+		sourceColumn: Bill to salesunit area short
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to salesunit desc'
+		dataType: string
+		lineageTag: 838b0d1d-46c6-4619-93d2-77b89e7b4581
+		summarizeBy: none
+		sourceColumn: Bill to salesunit desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to salesunit orgtype'
+		dataType: string
+		lineageTag: 8f76eac1-dc39-4837-969e-25f189fbd3e0
+		summarizeBy: none
+		sourceColumn: Bill to salesunit orgtype
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to salesunit region'
+		dataType: string
+		lineageTag: d86f7d01-681a-4d1e-88f0-4c9934b72ed3
+		summarizeBy: none
+		sourceColumn: Bill to salesunit region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to salesunit area'
+		dataType: string
+		lineageTag: e7f04142-392e-4786-bfbb-02e3480f8016
+		summarizeBy: none
+		sourceColumn: Bill to salesunit area
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to salesunit territory'
+		dataType: string
+		lineageTag: 9d236eac-5b11-45c2-8c50-a26f68376efd
+		summarizeBy: none
+		sourceColumn: Bill to salesunit territory
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to salesunit subterritory'
+		dataType: string
+		lineageTag: 3f63960e-0ecb-4c5d-bcef-48154d02f1b6
+		summarizeBy: none
+		sourceColumn: Bill to salesunit subterritory
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bill to salesunit Id (East & West)' =
+			SWITCH(
+			  TRUE,
+			  ISBLANK('Bill to customer'[Bill to salesunit Id]),
+			  "(Blank)",
+			  'Bill to customer'[Bill to salesunit Id] IN {"C.3.1",
+			    "C.3.2",
+			    "C.3.2-SP3",
+			    "C.3.3",
+			    "C.3.4",
+			    "C.3.4-SP4",
+			    "C.3.5",
+			    "C.3.6",
+			    "C.3.6-SP4",
+			    "C.4.1",
+			    "C.4.2",
+			    "C.4.3",
+			    "C.4.3-SP14",
+			    "C.4.4",
+			    "C.4.4-SP4",
+			    "C.4.5",
+			    "C.4.6",
+			    "E.1.1",
+			    "E.1.1-SP5",
+			    "E.1.2",
+			    "E.1.2-SP6",
+			    "E.1.3",
+			    "E.1.3-SP5",
+			    "E.1.3-SP6",
+			    "E.1.4",
+			    "E.1.4-SP6",
+			    "E.2.1",
+			    "E.2.1-SP7",
+			    "E.2.2",
+			    "E.2.3",
+			    "E.2.4-SP8",
+			    "E.2.5",
+			    "E.2.5-SP7",
+			    "E.2.5-SP8",
+			    "E.2.6",
+			    "E.2.6-SP8",
+			    "E.2.7",
+			    "E.3.1",
+			    "E.3.1-SP2",
+			    "E.3.2",
+			    "E.3.2-SP2",
+			    "E.3.3",
+			    "E.3.4",
+			    "E.3.5",
+			    "E.3.5-SP9",
+			    "E.3.6",
+			    "E.3.6-SP9",
+			    "E.4.1",
+			    "E.4.2",
+			    "E.4.2-SP10",
+			    "E.4.3",
+			    "E.4.3-SP10",
+			    "E.4.4",
+			    "E.4.5",
+			    "E.4.5-SP10",
+			    "E.4.6"},
+			  "East",
+			  'Bill to customer'[Bill to salesunit Id] IN {"C.1.1",
+			    "C.1.2",
+			    "C.1.3",
+			    "C.1.4",
+			    "C.1.4-SP1",
+			    "C.2.1",
+			    "C.2.2",
+			    "C.2.3",
+			    "C.2.3-SP2",
+			    "C.2.4",
+			    "C.2.4-SP1",
+			    "C.2.5",
+			    "C.2.5-SP1",
+			    "W.1.1",
+			    "W.1.1-SP11",
+			    "W.1.2",
+			    "W.1.3",
+			    "W.1.4",
+			    "W.1.5",
+			    "W.1.5-SP11",
+			    "W.1.6",
+			    "W.2.1",
+			    "W.2.2",
+			    "W.2.2-SP12",
+			    "W.2.3",
+			    "W.2.3-SP12",
+			    "W.2.4",
+			    "W.2.4-SP12",
+			    "W.3.1",
+			    "W.3.1-SP11",
+			    "W.3.2",
+			    "W.3.3",
+			    "W.3.4",
+			    "W.3.5",
+			    "W.4.1",
+			    "W.4.1-SP13",
+			    "W.4.2",
+			    "W.4.2-SP13",
+			    "W.4.3",
+			    "W.4.3-SP13",
+			    "W.4.4"},
+			  "West",
+			  "Other"
+			)
+		dataType: string
+		lineageTag: 070ac2e5-0f1d-423e-a467-8affe42832a9
+		summarizeBy: none
+		isDataTypeInferred
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Bill to customer"
+				          }
+				        },
+				        "Property": "Bill to salesunit Id"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"b","Entity":"Bill to customer"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"b"}},"Property":"Bill to salesunit Id"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"East","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"b"}},"Property":"Bill to salesunit Id"}}],"Values":[[{"Literal":{"Value":"'C.3.1'"}}],[{"Literal":{"Value":"'C.3.2'"}}],[{"Literal":{"Value":"'C.3.2-SP3'"}}],[{"Literal":{"Value":"'C.3.3'"}}],[{"Literal":{"Value":"'C.3.4'"}}],[{"Literal":{"Value":"'C.3.4-SP4'"}}],[{"Literal":{"Value":"'C.3.5'"}}],[{"Literal":{"Value":"'C.3.6'"}}],[{"Literal":{"Value":"'C.3.6-SP4'"}}],[{"Literal":{"Value":"'C.4.1'"}}],[{"Literal":{"Value":"'C.4.2'"}}],[{"Literal":{"Value":"'C.4.3'"}}],[{"Literal":{"Value":"'C.4.3-SP14'"}}],[{"Literal":{"Value":"'C.4.4'"}}],[{"Literal":{"Value":"'C.4.4-SP4'"}}],[{"Literal":{"Value":"'C.4.5'"}}],[{"Literal":{"Value":"'C.4.6'"}}],[{"Literal":{"Value":"'E.1.1'"}}],[{"Literal":{"Value":"'E.1.1-SP5'"}}],[{"Literal":{"Value":"'E.1.2'"}}],[{"Literal":{"Value":"'E.1.2-SP6'"}}],[{"Literal":{"Value":"'E.1.3'"}}],[{"Literal":{"Value":"'E.1.3-SP5'"}}],[{"Literal":{"Value":"'E.1.3-SP6'"}}],[{"Literal":{"Value":"'E.1.4'"}}],[{"Literal":{"Value":"'E.1.4-SP6'"}}],[{"Literal":{"Value":"'E.2.1'"}}],[{"Literal":{"Value":"'E.2.1-SP7'"}}],[{"Literal":{"Value":"'E.2.2'"}}],[{"Literal":{"Value":"'E.2.3'"}}],[{"Literal":{"Value":"'E.2.4-SP8'"}}],[{"Literal":{"Value":"'E.2.5'"}}],[{"Literal":{"Value":"'E.2.5-SP7'"}}],[{"Literal":{"Value":"'E.2.5-SP8'"}}],[{"Literal":{"Value":"'E.2.6'"}}],[{"Literal":{"Value":"'E.2.6-SP8'"}}],[{"Literal":{"Value":"'E.2.7'"}}],[{"Literal":{"Value":"'E.3.1'"}}],[{"Literal":{"Value":"'E.3.1-SP2'"}}],[{"Literal":{"Value":"'E.3.2'"}}],[{"Literal":{"Value":"'E.3.2-SP2'"}}],[{"Literal":{"Value":"'E.3.3'"}}],[{"Literal":{"Value":"'E.3.4'"}}],[{"Literal":{"Value":"'E.3.5'"}}],[{"Literal":{"Value":"'E.3.5-SP9'"}}],[{"Literal":{"Value":"'E.3.6'"}}],[{"Literal":{"Value":"'E.3.6-SP9'"}}],[{"Literal":{"Value":"'E.4.1'"}}],[{"Literal":{"Value":"'E.4.2'"}}],[{"Literal":{"Value":"'E.4.2-SP10'"}}],[{"Literal":{"Value":"'E.4.3'"}}],[{"Literal":{"Value":"'E.4.3-SP10'"}}],[{"Literal":{"Value":"'E.4.4'"}}],[{"Literal":{"Value":"'E.4.5'"}}],[{"Literal":{"Value":"'E.4.5-SP10'"}}],[{"Literal":{"Value":"'E.4.6'"}}]]}}},{"DisplayName":"West","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"b"}},"Property":"Bill to salesunit Id"}}],"Values":[[{"Literal":{"Value":"'C.1.1'"}}],[{"Literal":{"Value":"'C.1.2'"}}],[{"Literal":{"Value":"'C.1.3'"}}],[{"Literal":{"Value":"'C.1.4'"}}],[{"Literal":{"Value":"'C.1.4-SP1'"}}],[{"Literal":{"Value":"'C.2.1'"}}],[{"Literal":{"Value":"'C.2.2'"}}],[{"Literal":{"Value":"'C.2.3'"}}],[{"Literal":{"Value":"'C.2.3-SP2'"}}],[{"Literal":{"Value":"'C.2.4'"}}],[{"Literal":{"Value":"'C.2.4-SP1'"}}],[{"Literal":{"Value":"'C.2.5'"}}],[{"Literal":{"Value":"'C.2.5-SP1'"}}],[{"Literal":{"Value":"'W.1.1'"}}],[{"Literal":{"Value":"'W.1.1-SP11'"}}],[{"Literal":{"Value":"'W.1.2'"}}],[{"Literal":{"Value":"'W.1.3'"}}],[{"Literal":{"Value":"'W.1.4'"}}],[{"Literal":{"Value":"'W.1.5'"}}],[{"Literal":{"Value":"'W.1.5-SP11'"}}],[{"Literal":{"Value":"'W.1.6'"}}],[{"Literal":{"Value":"'W.2.1'"}}],[{"Literal":{"Value":"'W.2.2'"}}],[{"Literal":{"Value":"'W.2.2-SP12'"}}],[{"Literal":{"Value":"'W.2.3'"}}],[{"Literal":{"Value":"'W.2.3-SP12'"}}],[{"Literal":{"Value":"'W.2.4'"}}],[{"Literal":{"Value":"'W.2.4-SP12'"}}],[{"Literal":{"Value":"'W.3.1'"}}],[{"Literal":{"Value":"'W.3.1-SP11'"}}],[{"Literal":{"Value":"'W.3.2'"}}],[{"Literal":{"Value":"'W.3.3'"}}],[{"Literal":{"Value":"'W.3.4'"}}],[{"Literal":{"Value":"'W.3.5'"}}],[{"Literal":{"Value":"'W.4.1'"}}],[{"Literal":{"Value":"'W.4.1-SP13'"}}],[{"Literal":{"Value":"'W.4.2'"}}],[{"Literal":{"Value":"'W.4.2-SP13'"}}],[{"Literal":{"Value":"'W.4.3'"}}],[{"Literal":{"Value":"'W.4.3-SP13'"}}],[{"Literal":{"Value":"'W.4.4'"}}]]}}},{"DisplayName":"Other"}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	column MasterAccount = ```
+			
+			IF('Bill to customer'[Bill to customer RecordSource] = "d365", 
+			        'Bill to customer'[Bill to customer account],
+			    LOOKUPVALUE('Scala to D365 Acct Bridge'[D365 CUSTOMERACCOUNT], 
+			        'Scala to D365 Acct Bridge'[Scala AccountNo],
+			        'Bill to customer'[Bill to customer]))
+			```
+		dataType: string
+		lineageTag: fe7b478b-1a77-4498-85e1-c3426ecfc07a
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column MasterCompanyChain =
+			
+			IF('Bill to customer'[Bill to customer account] = 'Bill to customer'[MasterAccount],
+			    'Bill to customer'[Bill to company chain],
+			    LOOKUPVALUE('Account to Global'[Global Acct],
+			    'Account to Global'[Ship to Account],
+			    'Bill to customer'[MasterAccount]
+			    ))
+		dataType: string
+		lineageTag: b8232eea-4dda-43e9-88c8-5dcf59508ac8
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Check = ```
+			
+			// VAR cust1 =
+			// IF(ISBLANK(
+			//     LOOKUPVALUE('Demo Roll Out'[Customer],
+			//         'Demo Roll Out'[Customer],
+			//         'Bill to customer'[ProfileCustomerName])),  
+			//         0,
+			//     1
+			// )
+			// VAR cust2 =
+			// IF(ISBLANK(
+			//     LOOKUPVALUE('Demo Roll Out'[Econ Customer],
+			//         'Demo Roll Out'[Econ Customer],
+			//         'Bill to customer'[ProfileCustomerName])),  
+			//         0,
+			//     1
+			// )
+			// RETURN
+			IF('Bill to customer'[Bill to address city] IN
+			    {
+			    "Troy", "Madison Heights", "Chicago", "Earth City", "Indianapolis", "Madison", "Lombard", "West Milwaukee", "Nashville", "Louisville", 
+			    "Charlotte", "Indian Trail", "Birmingham", "Columbia", "Charleston", "Franklin", "Taunton", "West Roxbury", "Warwick", "New Hyde Park", 
+			    "Huntingdon Valley", "Baltimore", "Columbus", "Fisherville", "Apex", "Chesapeake", "Huron", "Tampa", "Norcross", "Miramar", "Orlando", 
+			    "Middleburg", "Mountlake Terrace", "Burlingame", "Fresno", "Sacramento", "Billings", "Phoenix", "Anaheim", "San Diego", "Van Nuys", 
+			    "Fayetteville", "Murray", "Albuquerque", "Dallas", "Houston", "Flowood", "San Antonio", "Kenner"
+			    }, 1,0
+			)
+			```
+		dataType: int64
+		formatString: 0
+		lineageTag: 7d902633-fcc6-4a78-804d-6ca0862d0fc2
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProfileCustomerName =
+			
+			VAR AccNumber = [MasterAccount]
+			
+			RETURN
+			MINX(
+			    FILTER(
+			        'Bill to customer',
+			        [MasterAccount] = AccNumber &&
+			        [Bill to customer RecordSource] = "d365"
+			    ),
+			    [Bill to customer name]
+			)
+		dataType: string
+		lineageTag: a0adb0e8-e02a-4c8f-8a67-302be73e591a
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column BillToSK_D365 =
+			
+			IF('Bill to customer'[Bill to customer RecordSource] <> "ldw",
+			    'Bill to customer'[BillToCustomer_SK])
+		dataType: string
+		lineageTag: 984c0e85-3003-463c-8a96-101fd18643d8
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Bill to salesunit structure'
+		lineageTag: ff42602b-5ecd-4919-af36-a9c94d09bd0a
+
+		level 'Bill to salesunit region'
+			lineageTag: d4a9f852-50ca-4799-8511-2c4d39e01e7c
+			column: 'Bill to salesunit region'
+
+		level 'Bill to salesunit area'
+			lineageTag: 2dc74479-9aa3-474a-98e1-c34344610f2d
+			column: 'Bill to salesunit area'
+
+		level 'Bill to salesunit territory'
+			lineageTag: 3a7b1a91-11eb-467b-bf94-c632ac5b5a32
+			column: 'Bill to salesunit territory'
+
+		level 'Bill to salesunit subterritory'
+			lineageTag: 20829f1e-7aac-4f1d-a6ba-6f0d37b34083
+			column: 'Bill to salesunit subterritory'
+
+		level 'Bill to salesunit Id'
+			lineageTag: f44449fd-0c9d-48e1-9378-7acb450a9c65
+			column: 'Bill to salesunit Id'
+
+	partition 'Bill to customer-76024c74-d66d-48b1-be24-fa6205445ea5' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [CreateNavigationProperties=false, CommandTimeout=#duration(0, 4, 10, 0)]),
+				    ldw_dim_CustomerAll = Source{[Schema="sales_Rpt",Item="dim_BillToCustomer"]}[Data]
+				in
+				    ldw_dim_CustomerAll
+
+	annotation PBI_ResultType = Table
+

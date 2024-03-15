@@ -1,0 +1,128 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: sv-SE
+	dataAccessOptions
+		fastCombine
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBIDesktopVersion = 2.126.927.0 (24.02)
+
+annotation PBI_QueryOrder = ["Facts","Released product","Bill to customer","Company","Financial product","Market sales region","Financial project","Currency","Econ configuration","Sales order","Sales quotation","Date","Quote date","Ship to customer","RangeStart","RangeEnd","DateKey","Item serial number","Sales budget","1 Measure Table","sales_Rpt SalesRepRLS","Sales Budget_Excel_Old","Holiday US","Reference Table","2 Reference Measures","Sales Budget_Excel","REPMAP_VIEW","User Security_RLS","User Security_RLS Region","Scala Re-entered Chair Orders","DateKey (2)","RangeStart (2)","RangeEnd (2)","Sales Budget_Excel - Bridge","Financial Product Lvl 2 Key","US Rehab Booking Targets","Sales_Commission_Group","Scala to D365 Acct Bridge","3 Profile Measures","Account to Global","Last refresh","Product Code","Sales Budget Master","DW DimProduct","Product Group II","DW_DimItem","Sales Rep Map","FactCustomerInvoice_UNION","DF_Sales Rep Lookup (2)","InDate","SalesOrderHeader","InDateList","PPA Matching List","TiLite_AttachmentReporting_Lines","8DEALER_LIST_NET","8DW DimCustomer","Customer Group","Country Region List","8DealerCustomerMap","DW DimCompany","Pool Id Key","Power BI Item Level Initiatives","DW FactSalesOrderTiLite","ACCOUNTS_TILITE","Holidays","Master Budget 2023","Master Budget 2023 - CA","Master Budget 2023 - Transfers","TiLite Chair Type","Facts_Returned Orders","Facts_Sales Orders","ROHO Mapping","On-Chair S&P Mapping","All S&P Orders","CAN British Columbia Transition","Global Rep Map (2)","Facts_Quote Details","DateKey (3)","RangeStart (3)","RangeEnd (3)","Canada Master Customer","DASH_BOOKINGS_TILITECHAIRONLY","DASH_BOOKINGS_MAX","TiLite Open Orders","src_d365_AMR SalesOrderHeaderV2Staging","TiLite_Master_OrderData","TiLite_Master_QuotesData","Demo Roll Out","begin2022","endscala2022","QuotesTEST","Demo Flag Table","State Filter Table","OR01_QUOTE_CONV_UNION_View","Days Grouping Table","Original Dates","Customer Table","Dealer / Country","LegacyQuotesTEST","Scala to D365 Acct Bridge Mapping","Sales Rep Lookup","Status Order","ReturnOrderHeaders","Master Actuals 2023 - CAN","Master Actuals 2023","FactSalesOrderUNION","TiLIte Delivery Addresses","Zip Codes - S&P Rep Mapping","Zip Codes - Mobility Rep Mapping","Neoprene","Query","Sales Rep (Customer Master)","Budget Master"]
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation __TEdtr = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Facts
+ref table 'Released product'
+ref table 'Bill to customer'
+ref table Company
+ref table 'Financial product'
+ref table 'Market sales region'
+ref table 'Financial project'
+ref table Currency
+ref table Date
+ref table 'Quote date'
+ref table 'Ship to customer'
+ref table 'Item serial number'
+ref table '1 Measure Table'
+ref table 'sales_Rpt SalesRepRLS'
+ref table 'Holiday US'
+ref table 'Reference Table'
+ref table '2 Reference Measures'
+ref table 'Sales Budget_Excel'
+ref table REPMAP_VIEW
+ref table 'Scala Re-entered Chair Orders'
+ref table 'Sales Budget_Excel - Bridge'
+ref table 'Financial Product Lvl 2 Key'
+ref table Sales_Commission_Group
+ref table 'US Rehab Booking Targets'
+ref table 'Scala to D365 Acct Bridge'
+ref table '3 Profile Measures'
+ref table 'Account to Global'
+ref table 'Last refresh'
+ref table 'Product Code'
+ref table 'Sales Budget Master'
+ref table 'DW DimProduct'
+ref table 'Product Group II'
+ref table DW_DimItem
+ref table 'Sales Rep Map'
+ref table FactCustomerInvoice_UNION
+ref table InDateList
+ref table 'Calculation Groups'
+ref table 'PPA Matching List'
+ref table TiLite_AttachmentReporting_Lines
+ref table 8DEALER_LIST_NET
+ref table '8DW DimCustomer'
+ref table 'Customer Group'
+ref table 'Country Region List'
+ref table 8DealerCustomerMap
+ref table 'DW DimCompany'
+ref table 'Pool Id Key'
+ref table 'Power BI Item Level Initiatives'
+ref table 'DW FactSalesOrderTiLite'
+ref table ACCOUNTS_TILITE
+ref table Holidays
+ref table 'Master Budget 2023'
+ref table 'TiLite Chair Type'
+ref table 'Facts_Returned Orders'
+ref table 'Facts_Sales Orders'
+ref table 'ROHO Mapping'
+ref table 'On-Chair S&P Mapping'
+ref table 'All S&P Orders'
+ref table 'CAN British Columbia Transition'
+ref table 'Global Rep Map (2)'
+ref table 'DF_Sales Rep Lookup (2)'
+ref table 'Sales order'
+ref table 'Sales quotation'
+ref table 'Facts_Quote Details'
+ref table 'Econ configuration'
+ref table DASH_BOOKINGS_TILITECHAIRONLY
+ref table DASH_BOOKINGS_MAX
+ref table 'TiLite Open Orders'
+ref table 'src_d365_AMR SalesOrderHeaderV2Staging'
+ref table TiLite_Master_OrderData
+ref table TiLite_Master_QuotesData
+ref table 'Demo Roll Out'
+ref table QuotesTEST
+ref table 'Demo Flag Table'
+ref table 'State Filter Table'
+ref table OR01_QUOTE_CONV_UNION_View
+ref table YearCalendarMonth
+ref table 'Days Grouping Table'
+ref table 'Open Quotes PWC - Historical (new)'
+ref table 'Open Quotes PWC - Historical'
+ref table 'Original Dates'
+ref table 'Customer Table'
+ref table 'Dealer / Country'
+ref table LegacyQuotesTEST
+ref table 'Scala to D365 Acct Bridge Mapping'
+ref table 'Sales Rep Lookup'
+ref table 'Status Order'
+ref table ReturnOrderHeaders
+ref table 'Master Actuals 2023'
+ref table FactSalesOrderUNION
+ref table 'TiLIte Delivery Addresses'
+ref table 'Zip Codes - S&P Rep Mapping'
+ref table 'Zip Codes - Mobility Rep Mapping'
+ref table 'Master Actuals 2023 - CAN'
+ref table 'YTD Rankings_Total US'
+ref table 'YTD Rankings_Total CAN'
+ref table Neoprene
+ref table 'Master Budget 2023 - CA'
+ref table Query
+ref table 'Sales Rep (Customer Master)'
+ref table 'Facts_Returned Orders (Order Type)'
+ref table 'Budget Master'
+ref table 'Time Int.'
+
+ref role 'Master Table RLS'
+ref role 'Master Table RLS (DoS)'
+ref role 'Master Table RLS (RVP)'
+ref role 'Read All'
+

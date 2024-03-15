@@ -1,0 +1,41 @@
+table 'TiLite Chair Type'
+	lineageTag: 48b9411a-15d8-4d1d-865e-0cb5b272a165
+
+	column ProductCode
+		dataType: string
+		lineageTag: 644989de-dd08-473b-8ba2-40c2a471d3ed
+		summarizeBy: none
+		sourceColumn: ProductCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductDescription
+		dataType: string
+		lineageTag: 9d3dfc58-e5da-4b5f-add4-001d0d910c89
+		summarizeBy: none
+		sourceColumn: ProductDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Chair Type'
+		dataType: string
+		lineageTag: 54b78f84-c18f-4354-ad2d-4b4152b3ffca
+		summarizeBy: none
+		sourceColumn: Chair Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'TiLite Chair Type-5e45e709-5442-4f16-95b1-e70912fcf70b' = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Workspaces{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+				    #"61371e7c-3103-4956-aa79-92c5a3f0258d" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="61371e7c-3103-4956-aa79-92c5a3f0258d"]}[Data],
+				    #"TiLite Chair Type_" = #"61371e7c-3103-4956-aa79-92c5a3f0258d"{[entity="TiLite Chair Type",version=""]}[Data]
+				in
+				    #"TiLite Chair Type_"
+
+	annotation PBI_ResultType = Table
+

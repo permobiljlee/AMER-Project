@@ -1,0 +1,590 @@
+relationship 16d91889-7b33-4d29-a157-12eee707d0fc
+	fromColumn: Facts.Company_SK
+	toColumn: Company.Company_SK
+
+relationship 3281413a-b820-447b-b821-283b0d0d15d0
+	fromColumn: Facts.MarketSalesRegion_SK
+	toColumn: 'Market sales region'.MarketSalesRegion_SK
+
+relationship cd1fbb8d-6c86-4ac5-acde-5236a3f4074c
+	fromColumn: Facts.FinProject_SK
+	toColumn: 'Financial project'.FinProject_SK
+
+relationship 4b05fe04-d576-44db-b242-b4ffdac27524
+	fromColumn: Facts.Currency_SK
+	toColumn: Currency.Currency_SK
+
+relationship 8ea5694c-28f6-40cb-8c6e-e5ba644e26d1
+	fromColumn: Facts.Date_SK
+	toColumn: Date.date_int
+
+relationship 281e5bf2-56a3-48ee-b668-5c090cb781cd
+	fromColumn: Facts.ShipToCustomer_SK
+	toColumn: 'Ship to customer'.ShipToCustomer_SK
+
+relationship 71b0cbf7-684a-40b2-a2e0-cba876d095d1
+	fromColumn: Facts.BillToCustomer_SK
+	toColumn: 'Bill to customer'.BillToCustomer_SK
+
+relationship e76f940e-1858-4559-b790-a222a2df140c
+	fromColumn: Facts.OrderNumber
+	toColumn: 'Scala Re-entered Chair Orders'.'New Order Number'
+
+relationship f58a37f2-126c-4ce2-9f6c-f999472c94a7
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Financial product'.'Financial product code Lvl2'
+	toColumn: 'Financial Product Lvl 2 Key'.'Financial product code Lvl2'
+
+relationship 184f0684-a66d-434e-afb7-555c0594b535
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Scala to D365 Acct Bridge'.'Scala AccountNo'
+	toColumn: 'Ship to customer'.'Ship to customer'
+
+relationship da95d082-ec85-4b50-bc3a-140042867a38
+	fromColumn: Facts.FinProduct_SK
+	toColumn: 'Financial product'.FinProduct_SK
+
+relationship 8f0358f2-c69b-478e-adac-dbb02a17cf5b
+	fromColumn: Facts.ReleasedProduct_SK
+	toColumn: 'Released product'.ReleasedProduct_SK
+
+relationship 154289b9-6075-474a-aebc-41ffb5585a07
+	fromColumn: 'Released product'.'Financial product code'
+	toColumn: 'Product Code'.ProductCode
+
+relationship ff385425-956b-47f7-b8b3-00760cb66802
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'DW DimProduct'.'Product Group II'
+	toColumn: 'Product Group II'.'Product Group II'
+
+relationship c05153b7-1497-4b25-a452-446d7d6e4848
+	fromColumn: 'DW DimProduct'.ProductCode
+	toColumn: 'Financial product'.'Financial product code'
+
+relationship d38957f6-8b62-41f3-9199-52325dca1b71
+	fromColumn: FactCustomerInvoice_UNION.WKInvoiceDate
+	toColumn: Date.Date
+
+relationship d21dac01-64a7-43de-85b1-cda058fddc40
+	fromColumn: FactCustomerInvoice_UNION.WKProduct
+	toColumn: 'DW DimProduct'.WKProduct
+
+relationship b089881e-4e09-47a6-82cf-cd05ca7cf7e0
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Account to Global'.'Global Acct'
+	toColumn: 'PPA Matching List'.Global
+
+relationship b6d9c6f1-a89f-471a-b23c-76b941b739d2
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: '8DW DimCustomer'.CustAccount
+	toColumn: 'PPA Matching List'.'Dealer Code'
+
+relationship bbc84f0c-3a53-40f8-8de2-d48d37fd54a7
+	fromColumn: 'Ship to customer'.MasterAccount
+	toColumn: 'Account to Global'.'Ship to Account'
+
+relationship 71357cb8-1998-494e-bb6c-3e8224ad3e75
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: TiLite_AttachmentReporting_Lines.Invoice
+	toColumn: FactCustomerInvoice_UNION.InvoiceNumber
+
+relationship 62533334-ba67-4e0d-8b60-366ac01e88cc
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'DW DimCompany'.BKCompany
+	toColumn: Company.Company_BK
+
+relationship defbed37-491e-4646-a74c-291fb4ef8d20
+	fromColumn: FactCustomerInvoice_UNION.WKCompany
+	toColumn: 'DW DimCompany'.WKCompany
+
+relationship 10f4f5f9-0480-4a57-95ed-098c8bfa13cb
+	fromColumn: Facts.ItemNumber
+	toColumn: 'Power BI Item Level Initiatives'.'Part number'
+
+relationship 3c9cc0af-c710-499e-bb67-ac0d4ecba40e
+	fromColumn: 'DW FactSalesOrderTiLite'.WKOrderDate
+	toColumn: Date.Date
+
+relationship 22a990af-190f-4bd1-9961-0b07c3a39392
+	fromColumn: '8DW DimCustomer'.CustAccount#
+	toColumn: ACCOUNTS_TILITE.ACCOUNTCODE_TLT
+
+relationship dd96e78b-f414-4a29-a86c-9068937c6e2e
+	fromColumn: FactCustomerInvoice_UNION.TiLite_ShiptoWKCustomer
+	toColumn: '8DW DimCustomer'.WKCustomer
+
+relationship aff436a2-60e9-40c2-8e81-11703f9de68f
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Date.Date
+	toColumn: Holidays.Holiday
+
+relationship 6ffaf732-ca08-460f-9f38-7ae1cf66e268
+	fromColumn: Facts.'Sales Commission Group'
+	toColumn: 'Sales Budget_Excel - Bridge'.'Commission Group (sometimes called SalesUnit)'
+
+relationship 075dae1b-2019-4dde-9a82-fe0314b2e97d
+	fromColumn: 'Master Budget 2023'.Rep
+	toColumn: 'Sales Rep Map'.Rep
+
+relationship 42fd5d71-bde3-4e86-bfd1-c0556cfb3e5c
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Master Budget 2023'.'Product Line'
+	toColumn: Facts.'Product Line'
+
+relationship df4e8573-826c-41fc-9801-962766bbf45f
+	fromColumn: 'Master Budget 2023'.Date
+	toColumn: Date.Date
+
+relationship 818f3fcc-3fe8-4bd8-b248-a06105fb6f59
+	fromColumn: TiLite_AttachmentReporting_Lines.'Sales Rep (Customer Master)'
+	toColumn: 'Sales Rep Map'.Rep
+
+relationship 9104bde2-0110-4808-813c-d52be365339a
+	fromColumn: TiLite_AttachmentReporting_Lines.InvoiceDate
+	toColumn: Date.Date
+
+relationship 5138f5c7-225e-4c85-9e30-e0ced85d153e
+	fromColumn: TiLite_AttachmentReporting_Lines.'TiLite WKCustomer'
+	toColumn: '8DW DimCustomer'.WKCustomer
+
+relationship 0fc1c3ab-32c2-43be-9139-a982c254c5af
+	fromColumn: 'DW DimProduct'.ProductCode
+	toColumn: 'TiLite Chair Type'.ProductCode
+
+relationship 8b3d2fee-ca51-42be-8f2b-c3bd6bffb401
+	fromColumn: 'Released product'.'Product name'
+	toColumn: 'TiLite Chair Type'.ProductCode
+
+relationship 1108fb97-c96f-43ff-ae3e-b7252538896a
+	fromColumn: 'Facts_Returned Orders'.ReleasedProduct_SK
+	toColumn: 'Released product'.ReleasedProduct_SK
+
+relationship d93a6c17-a54b-4669-89d5-0a65732dd689
+	fromColumn: '8DW DimCustomer'.SalesRep
+	toColumn: 'ROHO Mapping'.SalesRep
+
+relationship 7e8668d6-de19-4a48-8229-df1e66576d1d
+	isActive: false
+	fromColumn: 'On-Chair S&P Mapping'.'Territory Rep Code'
+	toColumn: 'Sales Rep Map'.Rep
+
+relationship 39b9fd8f-29ca-4a3b-8cec-2aa7eb99ca63
+	toCardinality: many
+	fromColumn: TiLite_AttachmentReporting_Lines.ShipPostalCode
+	toColumn: 'On-Chair S&P Mapping'.'ZIP5 Code'
+
+relationship 291d0e23-8329-43c1-bfcd-73c8c7219d3c
+	isActive: false
+	fromColumn: 'Ship to customer'.ProfileCustomerName
+	toColumn: 'CAN British Columbia Transition'.Permobil
+
+relationship ac156df9-5868-4342-a259-f8b8007d2a7c
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: ACCOUNTS_TILITE.ACCOUNTCODE_TLT
+	toColumn: 'CAN British Columbia Transition'.TiLite
+
+relationship f5037906-d591-44fc-aa66-aae5de7ac0f3
+	fromColumn: Facts.OrderNumber
+	toColumn: 'Sales order'.'Order number'
+
+relationship 9bf62249-2f1d-4c6d-81d0-3d464e77ea1d
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: Facts.OrderNumber
+	toColumn: 'Facts_Quote Details'.OrderNumber
+
+relationship ab8dc2b9-a456-4237-9cf9-370aedda56e2
+	isActive: false
+	fromColumn: 'Facts_Quote Details'.ReleasedProduct_SK
+	toColumn: 'Released product'.ReleasedProduct_SK
+
+relationship 55e42dbb-61e6-488c-96e9-fd87136f92f0
+	fromColumn: FactCustomerInvoice_UNION.'CUSTACCOUNT MASTER SK'
+	toColumn: 'Ship to customer'.ShipToCustomer_SK
+
+relationship f93deb01-9ac8-423c-b396-7b3502b75be5
+	isActive: false
+	fromColumn: Facts.Customer_SK
+	toColumn: 'Ship to customer'.ShipToCustomer_SK
+
+relationship 57217ba1-fb20-4547-9432-fb00e8102982
+	fromColumn: 'Facts_Sales Orders'.ItemNumber
+	toColumn: 'Power BI Item Level Initiatives'.'Part number'
+
+relationship 4749fb49-8cc0-4101-81d0-56c9bc9b8ca8
+	fromColumn: 'Facts_Sales Orders'.FinProduct_SK
+	toColumn: 'Financial product'.FinProduct_SK
+
+relationship 7aa71828-3450-4fc1-9224-ab0ef086517d
+	fromColumn: 'Facts_Sales Orders'.ReleasedProduct_SK
+	toColumn: 'Released product'.ReleasedProduct_SK
+
+relationship 7b2e49d0-22bc-4dbd-8474-cc0e0071fef0
+	fromColumn: 'Facts_Sales Orders'.Date_SK
+	toColumn: Date.date_int
+
+relationship 6383c112-ae7d-4ab6-b893-248261e4e237
+	fromColumn: DASH_BOOKINGS_TILITECHAIRONLY.DEALERCODE
+	toColumn: ACCOUNTS_TILITE.ACCOUNTCODE_TLT
+
+relationship 4552e215-7a83-4efd-b378-97eee0db3243
+	fromColumn: DASH_BOOKINGS_TILITECHAIRONLY.DATE
+	toColumn: Date.Date
+
+relationship 1bc9d2eb-4681-41bb-87a3-a85fd8423a99
+	fromColumn: DASH_BOOKINGS_MAX.DATE
+	toColumn: Date.Date
+
+relationship b2b54a0a-df7b-4ede-bc19-23babd4da058
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: DASH_BOOKINGS_TILITECHAIRONLY.Merged_SalesOrderNo
+	toColumn: 'TiLite Open Orders'.SalesOrder
+
+relationship 63068cd2-f11f-4fef-a590-079c23d567c2
+	fromColumn: 'Facts_Returned Orders'.ShipToCustomer_SK
+	toColumn: 'Ship to customer'.ShipToCustomer_SK
+
+relationship c3cbd821-951b-4beb-9e43-0b66e12d9032
+	fromColumn: 'Facts_Sales Orders'.ShipToCustomer_SK
+	toColumn: 'Ship to customer'.ShipToCustomer_SK
+
+relationship 697077b9-155f-43ff-9044-33e5ed43ca6a
+	fromColumn: FactCustomerInvoice_UNION.WKItem
+	toColumn: DW_DimItem.WKItem
+
+relationship b45618b6-ff62-4b7a-b23c-5e96d449123c
+	isActive: false
+	fromColumn: TiLite_AttachmentReporting_Lines.SalesOrder
+	toColumn: DASH_BOOKINGS_MAX.MergedOrderNo
+
+relationship 6137648d-80a9-4b55-b818-9b4eeeff993b
+	isActive: false
+	fromColumn: 'All S&P Orders'.WKCustomer
+	toColumn: '8DW DimCustomer'.WKCustomer
+
+relationship 6936bbaa-962e-4754-92ff-4057d62e8ccd
+	fromColumn: 'All S&P Orders'.WKOrderDate
+	toColumn: Date.Date
+
+relationship a3bf85bb-4fbf-4874-b143-a73603293f17
+	fromColumn: 'All S&P Orders'.WKProduct
+	toColumn: 'DW DimProduct'.WKProduct
+
+relationship 41251065-cbe0-463c-a4d3-ba1b264e8a0b
+	fromColumn: 'All S&P Orders'.WKItem
+	toColumn: DW_DimItem.WKItem
+
+relationship 83c788bc-6826-4d66-af45-7d5812e9d2b5
+	fromColumn: TiLite_Master_OrderData.'Customer No'
+	toColumn: ACCOUNTS_TILITE.ACCOUNTCODE_TLT
+
+relationship 54b42976-e86f-453f-ba76-386d8275748e
+	fromColumn: TiLite_Master_OrderData.'Order Date'
+	toColumn: Date.Date
+
+relationship e716c2b8-9f26-4750-918e-cd9a2a32af77
+	fromColumn: TiLite_Master_OrderData.'Sales Rep Code'
+	toColumn: 'Sales Rep Map'.Rep
+
+relationship bd5b96d7-b4f2-4450-96c6-0f1ea8702fe6
+	fromColumn: TiLite_Master_QuotesData.'Customer No'
+	toColumn: ACCOUNTS_TILITE.ACCOUNTCODE_TLT
+
+relationship ce534e09-bab2-4212-893d-109b59011919
+	fromColumn: TiLite_Master_QuotesData.'Quote Date'
+	toColumn: Date.Date
+
+relationship 90722b84-64cb-4476-bc0a-1eb644fcb2ac
+	fromColumn: TiLite_Master_QuotesData.'Sales Rep Code'
+	toColumn: 'Sales Rep Map'.Rep
+
+relationship 1a20e60e-2092-4916-a7e9-3d61fab487cb
+	isActive: false
+	fromColumn: 'Econ configuration'.PermobilRepCode
+	toColumn: 'Sales Rep Map'.'D365 Commission Group ID(sometimes called SalesUnit)'
+
+relationship 9aa7b1eb-64e3-4e32-a3eb-8f69778780bf
+	isActive: false
+	fromColumn: 'Econ configuration'.'Quote Date'
+	toColumn: Date.Date
+
+relationship 7e7db99e-cd5f-4205-864b-567d919fab4c
+	fromColumn: 'Demo Roll Out'.'Rep Code'
+	toColumn: 'Sales Rep Map'.Rep
+
+relationship f127ffab-07d4-4c39-b9ab-313e5b0f90e7
+	isActive: false
+	toCardinality: many
+	fromColumn: 'Econ configuration'.PermobilRepCode
+	toColumn: 'Ship to customer'.'Ship to commission sales group Id'
+
+relationship ac487df7-2e24-4042-b2d0-c16cfc4fbcaf
+	isActive: false
+	toCardinality: many
+	fromColumn: 'Econ configuration'.Branchcode
+	toColumn: 'Ship to customer'.'Ship to customer account'
+
+relationship c5821ed9-d7c9-4423-9369-e95319809b1c
+	fromColumn: 'Econ configuration'.'Demo Check'
+	toColumn: 'Demo Flag Table'.Flag
+
+relationship 9f179d05-7a52-48fa-8aae-83c3517eccef
+	fromColumn: Facts.'Demo Flag'
+	toColumn: 'Demo Flag Table'.Flag
+
+relationship eb33253b-b250-476d-9771-d93b11decb9f
+	fromColumn: 'Bill to customer'.'Bill to address state'
+	toColumn: 'State Filter Table'.'State Abbr'
+
+relationship 1555cba5-c405-49db-a5a0-95bde274563b
+	isActive: false
+	fromColumn: Facts.'State Filter'
+	toColumn: 'State Filter Table'.'State Abbr'
+
+relationship d52e1e5a-7323-4ab3-9ba4-2fd550157a03
+	fromColumn: OR01_QUOTE_CONV_UNION_View.Quote_Date
+	toColumn: Date.Date
+
+relationship 095e3604-9566-458d-abd8-57a0111760be
+	isActive: false
+	fromColumn: OR01_QUOTE_CONV_UNION_View.Dealer_Code
+	toColumn: 'Ship to customer'.ShipToCustomer_SK
+
+relationship 54204f50-7491-45d4-b88e-0550e1636244
+	fromColumn: OR01_QUOTE_CONV_UNION_View.Quote_ID
+	toColumn: 'Original Dates'.'eCon ID'
+
+relationship 08d7af08-6691-4aaf-b18b-1873b657d12b
+	fromColumn: Facts.BillToCustomer_SK
+	toColumn: 'Customer Table'.Customer_SK
+
+relationship accb0133-6a6c-436b-b314-14f3f19efa2d
+	fromColumn: QuotesTEST.ConfigurationsHeader_SK
+	toColumn: 'Econ configuration'.ConfigurationsHeader_SK
+
+relationship b0cc280e-f403-4f2b-bf4f-b00fc85de77e
+	fromColumn: QuotesTEST.'Chair Model'
+	toColumn: 'Product Code'.ChairModel
+
+relationship 0e7fdfb8-dc3e-44f8-95b3-0729f3ced2c4
+	fromColumn: QuotesTEST.Quote_Date_Key
+	toColumn: Date.Date
+
+relationship 504ca8a3-fc73-4341-9c0a-3a247c42cedc
+	fromColumn: QuotesTEST.BillToCustomer_SK
+	toColumn: 'Customer Table'.Customer_SK
+
+relationship 5c3b8333-e39f-4f7b-9988-46b92dc00c7c
+	fromColumn: Date.yyyymm
+	toColumn: YearCalendarMonth.yyyymm
+
+relationship 6abca32a-666a-4c44-8f59-d9ee3d708c52
+	isActive: false
+	fromColumn: QuotesTEST.'Order date'
+	toColumn: Date.Date
+
+relationship 13b05305-59b3-4f40-bb74-7a8d7d8106ea
+	fromColumn: QuotesTEST.Dealer/Country
+	toColumn: 'Dealer / Country'.'US Dealer / Country'
+
+relationship f15cb84b-aa39-48d7-ae55-c2f6a2cd820b
+	isActive: false
+	fromColumn: 'Facts_Quote Details'.ShipToCustomer_SK
+	toColumn: 'Ship to customer'.ShipToCustomer_SK
+
+relationship 0ea080be-b4f3-4cf9-a2c9-a75130f99a42
+	isActive: false
+	fromColumn: 'Facts_Quote Details'.ConfigurationsHeader_SK
+	toColumn: 'Econ configuration'.ConfigurationsHeader_SK
+
+relationship 1431458d-9fef-409d-bd6e-c22d6e010afa
+	isActive: false
+	fromColumn: 'Facts_Quote Details'.SalesQuotationHeader_SK
+	toColumn: 'Sales quotation'.SalesQuotationHeader_SK
+
+relationship 502ee2f6-467c-4ed0-9a48-66302709647a
+	isActive: false
+	fromColumn: 'Facts_Quote Details'.Date_SK
+	toColumn: Date.Date_integer
+
+relationship 415e6fc5-28d1-46b1-98b7-12f883e0aa9b
+	fromColumn: 'Econ configuration'.PermRepCode
+	toColumn: 'Sales Rep Map'.'D365 Commission Group ID(sometimes called SalesUnit)'
+
+relationship 78d63001-e910-47cd-a280-78207aa17b47
+	fromColumn: 'Facts_Quote Details'.ConfigurationsHeader_SK
+	toColumn: QuotesTEST.ConfigurationsHeader_SK
+
+relationship 0561363c-a508-4bc4-b61b-989998154742
+	fromColumn: QuotesTEST.SalesQuotationHeader_SK
+	toColumn: 'Sales quotation'.SalesQuotationHeader_SK
+
+relationship b6228c3b-ce2b-4eb2-908b-5bddb7b8671e
+	fromColumn: QuotesTEST.ShipToCustomer_SK
+	toColumn: 'Ship to customer'.ShipToCustomer_SK
+
+relationship 4f7e3034-fa23-484d-a145-1b692c647a70
+	fromColumn: 'Open Quotes PWC - Historical (new)'.'Date Key'
+	toColumn: Date.Date
+
+relationship 8df5145b-2447-43bf-9895-c3a282a2bc80
+	fromColumn: 'Open Quotes PWC - Historical (new)'.Dealer/Country
+	toColumn: 'Dealer / Country'.'US Dealer / Country'
+
+relationship 4cdbde1c-bb8c-4d63-b5bc-263845920fad
+	fromColumn: 'Open Quotes PWC - Historical (new)'.'Chair Model'
+	toColumn: 'Product Code'.ChairModel
+
+relationship b351ba79-97f2-4463-ba33-4efdb936c716
+	fromColumn: 'Open Quotes PWC - Historical (new)'.ShipTo
+	toColumn: 'Ship to customer'.ShipToCustomer_SK
+
+relationship 30a4a1dd-3a91-466c-9573-ce79fc655505
+	fromColumn: 'Open Quotes PWC - Historical (new)'.Rep
+	toColumn: 'Sales Rep Map'.Rep
+
+relationship f959ca52-112a-48d2-9fba-3616f05f0281
+	isActive: false
+	fromColumn: QuotesTEST.'Order_Date Key'
+	toColumn: Date.Date
+
+relationship e941dc3e-3192-40f1-9fa3-1ba90105d1db
+	fromColumn: LegacyQuotesTEST.Quote_ID
+	toColumn: 'Original Dates'.'eCon ID'
+
+relationship 78e10ecf-bd47-4502-93d3-fcc2e355f97b
+	fromColumn: LegacyQuotesTEST.Quote_Date
+	toColumn: Date.Date
+
+relationship bccfed6b-705e-4e63-949b-a1940dc0b9f8
+	fromColumn: LegacyQuotesTEST.'Product Code'
+	toColumn: 'Product Code'.ProductCode
+
+relationship 15f97155-9a29-414f-afd6-705ab037fc51
+	fromColumn: LegacyQuotesTEST.Dealer/Country
+	toColumn: 'Dealer / Country'.'US Dealer / Country'
+
+relationship 124197e0-c787-4078-a1d2-448d63db0bb7
+	toCardinality: many
+	fromColumn: LegacyQuotesTEST.'Customer Code Lookup'
+	toColumn: 'Scala to D365 Acct Bridge Mapping'.'D365 CUSTOMERACCOUNT'
+
+relationship 4460f1ea-b0a0-411c-ab3f-51803828c9f2
+	toCardinality: many
+	fromColumn: QuotesTEST.Customer
+	toColumn: 'Scala to D365 Acct Bridge Mapping'.'D365 CUSTOMERACCOUNT'
+
+relationship 44f062cc-e659-42b9-8eda-6be94e6eaef9
+	fromColumn: LegacyQuotesTEST.Dealer_Code
+	toColumn: 8DEALER_LIST_NET.AccountNo
+
+relationship 170a56fb-f1a9-4ae1-a43f-e1124f4b7915
+	fromColumn: 8DEALER_LIST_NET.RepCode
+	toColumn: 'Sales Rep Map'.Rep
+
+relationship 1f854862-2137-433d-9033-69bc1a098927
+	fromColumn: QuotesTEST.Open-0/Converted-1
+	toColumn: 'Status Order'.Index
+
+relationship b3e13bd2-007f-48c5-aeae-2313588fea95
+	fromColumn: LegacyQuotesTEST.BillToCustomer_SK
+	toColumn: 'Ship to customer'.ShipToCustomer_SK
+
+relationship 2aeda204-0ad8-4057-98d0-3d99a365b457
+	isActive: false
+	fromColumn: LegacyQuotesTEST.'Order Date Key'
+	toColumn: Date.Date
+
+relationship 9354d39d-4cd2-4f0d-bfff-49e486db2d0b
+	fromColumn: LegacyQuotesTEST.'Exec Quote Age - Conversion'
+	toColumn: 'Days Grouping Table'.Relationship
+
+relationship 53f4b848-4fd5-4e6f-9ddb-4c649bfae3de
+	fromColumn: QuotesTEST.'Exec DaysOpen - Conversion'
+	toColumn: 'Days Grouping Table'.Relationship
+
+relationship 1e7832a5-045d-48d1-a1cf-b7261e9741c3
+	fromColumn: TiLite_Master_QuotesData.'Exec Quote Age Tilite - Conversion'
+	toColumn: 'Days Grouping Table'.Relationship
+
+relationship b0720974-9882-45a6-9173-db913dd6d491
+	fromColumn: 'Master Actuals 2023'.Date
+	toColumn: Date.Date
+
+relationship 8e05b0ff-4960-4ca2-9b6e-9fa606d41763
+	fromColumn: 'Master Actuals 2023'.RepCode
+	toColumn: 'Sales Rep Map'.Rep
+
+relationship 601d594b-1f6c-423a-9517-2d7790e58494
+	fromColumn: FactSalesOrderUNION.WKCustomer
+	toColumn: '8DW DimCustomer'.WKCustomer
+
+relationship 280a8e13-2802-438c-bfaa-4d30abf75a4b
+	fromColumn: FactCustomerInvoice_UNION.OrderNumber
+	toColumn: 'TiLIte Delivery Addresses'.SalesOrder
+
+relationship 01c6825f-d845-4a72-8c73-35f5316ef62b
+	fromColumn: 'Master Actuals 2023 - CAN'.Date
+	toColumn: Date.Date
+
+relationship fc970aaf-e689-40f9-b5f2-f7d65c7fee23
+	fromColumn: 'Master Actuals 2023 - CAN'.REP
+	toColumn: 'Sales Rep Map'.Rep
+
+relationship e4ecdced-abb3-40aa-86f3-77d76773d70b
+	fromColumn: DW_DimItem.ItemGroupName
+	toColumn: Neoprene.ITEM_MINOR
+
+relationship e2a1505c-0a65-4ff2-a8a3-8edaae0e97fd
+	fromColumn: 'Master Budget 2023 - CA'.Date
+	toColumn: Date.Date
+
+relationship 283b0f6e-9a97-41c0-852e-36e0f4da39fb
+	fromColumn: 'Master Budget 2023 - CA'.Rep
+	toColumn: 'Sales Rep Map'.Rep
+
+relationship cc9133bc-efc9-4a3c-8da3-b7652997fe56
+	isActive: false
+	fromColumn: 'Ship to customer'.'Sales Rep (Customer Master)'
+	toColumn: 'Sales Rep Map'.Rep
+
+relationship 8050ecb3-0f20-40d0-9d6c-c5623faca316
+	fromColumn: FactCustomerInvoice_UNION.'SalesRepCode (SO Header)'
+	toColumn: 'Sales Rep Map'.Rep
+
+relationship 537531bd-af3a-410b-81ad-4f5ec2cb0b50
+	fromColumn: Facts.'SalesRepCode (SO Header)'
+	toColumn: 'Sales Rep Map'.Rep
+
+relationship f7d6d0b2-3c8f-4746-9d96-b75a21207a26
+	isActive: false
+	fromColumn: Facts.'SalesRepCode (Master Customer)'
+	toColumn: 'Sales Rep Map'.Rep
+
+relationship 9903af47-6204-4139-8b71-59905180f505
+	isActive: false
+	fromColumn: FactCustomerInvoice_UNION.'SalesRepCode (Master Customer)'
+	toColumn: 'Sales Rep Map'.Rep
+
+relationship 5ba76004-32ec-4083-8396-dc0e6515fffd
+	fromColumn: 'Budget Master'.Date
+	toColumn: Date.Date
+
+relationship 90e4dd93-adb9-4d51-bc2a-715c0fc83654
+	fromColumn: 'Budget Master'.'Rep Code'
+	toColumn: 'Sales Rep Map'.Rep
+

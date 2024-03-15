@@ -1,0 +1,228 @@
+table 'Master Budget 2023'
+	lineageTag: 85ce2137-6508-47a4-b064-68d74c6c756e
+
+	measure RLSViewableBudgets =
+			
+			CALCULATE(
+			FIRSTNONBLANK(
+			VALUES(
+			'Master Budget 2023'[Rep])
+			,1)
+			)
+		isHidden
+		lineageTag: 8ca80100-ae4e-4b7a-85fc-5ce506f2f3c4
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure RLSBudgets = ```
+			
+			
+			VAR FindUser =
+			    IF (
+			        SUMX (
+			            FILTER (
+			                'Sales Rep Map',
+			                UPPER ( 'Sales Rep Map'[Logon] ) = UPPER ( USERNAME () )
+			                    || UPPER ( 'Sales Rep Map'[Alt email] ) = UPPER ( USERPRINCIPALNAME () )
+			            ),
+			            // Check connection to customer  
+			            FIND (
+			               
+			                UPPER ( 'Sales Rep Map'[Rep] ),
+			                [RLSViewableBudgets],
+			                
+			                ,
+			                0
+			            )
+			               
+			        ) > 0,
+			        1,
+			        0
+			    )
+			RETURN
+			    FindUser
+			```
+		isHidden
+		lineageTag: 5928e722-a7a1-4a46-a6a9-4b9e6305546d
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure RLSBudgetsDoS = ```
+			
+			
+			VAR FindUser =
+			    IF (
+			        SUMX (
+			            FILTER (
+			                'Sales Rep Map',
+			                UPPER ( 'Sales Rep Map'[MgrLogon] ) = UPPER ( USERNAME () )
+			                    || UPPER ( 'Sales Rep Map'[MgrEmail] ) = UPPER ( USERPRINCIPALNAME () )
+			            ),
+			            // Check connection to customer  
+			            FIND (
+			               
+			                UPPER ( 'Sales Rep Map'[Rep] ),
+			                [RLSViewableBudgets],
+			                
+			                ,
+			                0
+			            )
+			               
+			        ) > 0,
+			        1,
+			        0
+			    )
+			RETURN
+			    FindUser
+			```
+		isHidden
+		lineageTag: f777fa10-862f-4ebe-b9c0-bcd117558c3e
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Region
+		dataType: string
+		lineageTag: b98c06ec-09c9-458e-8c81-5cf6ef4f36df
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rep
+		dataType: string
+		lineageTag: 3c6b4b95-b3d9-425d-93e9-6ece2eb8906d
+		summarizeBy: none
+		sourceColumn: Rep
+
+		annotation SummarizationSetBy = Automatic
+
+	column RepName
+		dataType: string
+		lineageTag: 0f99b0f8-cd73-4941-b867-97503fe9d600
+		summarizeBy: none
+		sourceColumn: RepName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 1695e1c2-d7be-402c-a314-ce0b381ad5c0
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column D365
+		dataType: string
+		lineageTag: 10e2af47-79db-4e6d-a6e9-233be3d885c0
+		summarizeBy: none
+		sourceColumn: D365
+
+		annotation SummarizationSetBy = Automatic
+
+	column Area
+		dataType: string
+		lineageTag: 59138c0c-71e1-4192-a343-88f382c706eb
+		summarizeBy: none
+		sourceColumn: Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Line'
+		dataType: string
+		lineageTag: bebc89e8-a176-4e15-9e64-f9c67ad62571
+		summarizeBy: none
+		sourceColumn: Product Line
+		sortByColumn: Custom
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Budget
+		dataType: double
+		formatString: 0.00
+		lineageTag: 7811d0cb-1288-4c2f-992a-046d93e53e66
+		summarizeBy: sum
+		sourceColumn: Budget
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: dcd69897-90a3-4b9e-a7e0-e745fbce3292
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 168f9676-fa43-4e0f-9aca-a7c7098e4ce9
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 6008f4c7-0b89-4047-aea8-e175bfb6167e
+		summarizeBy: sum
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Custom
+		dataType: string
+		lineageTag: e31fff4e-e0d0-4915-b706-a4395014e401
+		summarizeBy: none
+		sourceColumn: Custom
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: 9e92f395-fe13-4946-9509-3032bdbe0c62
+		summarizeBy: sum
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Master Budget 2023-742a3007-4d3a-4010-8086-02bf8e24cdd6' = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows([]),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Workspaces{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+				    #"5a1c40bf-39a4-42dd-995f-95c2fed52ed5" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="5a1c40bf-39a4-42dd-995f-95c2fed52ed5"]}[Data],
+				    #"Master Data List_" = #"5a1c40bf-39a4-42dd-995f-95c2fed52ed5"{[entity="US Master Budget",version=""]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(#"Master Data List_",{{"Budget", type number}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Product Line] <> "Power Parts" and [Product Line] <> "TiLite Parts" and [Product Line] <> "TruShape")),
+				    #"Added Conditional Column" = Table.AddColumn(#"Filtered Rows", "Custom", each if [Product Line] = "Power Chairs" then 1 else if [Product Line] = "TiLite Chairs" then 2 else if [Product Line] = "SmartDrive" then 3 else if [Product Line] = "SmartDrive On-Chair" then 4 else if [Product Line] = "SmartDrive Off Chair" then 5 else if [Product Line] = "ROHO" then 6 else if [Product Line] = "Comfort" then 7 else null),
+				    #"Sorted Rows" = Table.Sort(#"Added Conditional Column",{{"Custom", Order.Ascending}}),
+				    #"Added Index" = Table.AddIndexColumn(#"Sorted Rows", "Index", 1, 1, Int64.Type),
+				    #"Appended Query" = Table.Combine({#"Added Index", #"Master Budget 2023 - CA", #"Master Budget 2023 - Transfers"}),
+				    #"Filtered Rows2" = Table.SelectRows(#"Appended Query", each true),
+				    #"Filtered Rows1" = Table.SelectRows(#"Filtered Rows2", each ([Year] = 2023))
+				in
+				    #"Filtered Rows1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

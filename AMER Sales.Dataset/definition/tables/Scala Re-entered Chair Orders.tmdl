@@ -1,0 +1,55 @@
+table 'Scala Re-entered Chair Orders'
+	lineageTag: 8ef685d0-ba23-441d-a89b-3b90288a7efa
+
+	column 'New Order Number'
+		dataType: string
+		lineageTag: 4c167728-53bc-4559-b412-65a0fbe667e2
+		summarizeBy: none
+		sourceColumn: New Order Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original order number'
+		dataType: string
+		lineageTag: b2835091-363d-464d-8d02-adb0a82ec279
+		summarizeBy: none
+		sourceColumn: Original order number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date Ordered'
+		dataType: dateTime
+		formatString: m/d/yyyy
+		lineageTag: ff5ffc25-0e90-4c8b-be7e-4ccf24105bf4
+		summarizeBy: none
+		sourceColumn: Date Ordered
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	partition 'Scala Re-entered Chair Orders-3167d0a2-8598-4607-8a36-adf1901b8e93' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://permobil.sharepoint.com/sites/BISalesUAT", [ApiVersion = 15]),
+				    #"Sorted Rows" = Table.Sort(Source,{{"Name", Order.Ascending}}),
+				    #"D365 Re-entered Orders from Scala xlsx_https://permobil sharepoint com/sites/BISalesUAT/Shared Documents/Power BI Model/" = #"Sorted Rows"{[Name="D365 Re-entered Orders from Scala.xlsx",#"Folder Path"="https://permobil.sharepoint.com/sites/BISalesUAT/Shared Documents/Power BI Model/"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"D365 Re-entered Orders from Scala xlsx_https://permobil sharepoint com/sites/BISalesUAT/Shared Documents/Power BI Model/"),
+				    Sheet1_Sheet = #"Imported Excel Workbook"{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date Ordered", type date}}),
+				    #"Removed Bottom Rows" = Table.RemoveLastN(#"Changed Type",6),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Removed Bottom Rows",{"Date Ordered", "Original order number", "New Order Number"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns"),
+				    #"Removed Blank Rows" = Table.SelectRows(#"Removed Duplicates", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+				    #"Filtered Rows" = Table.SelectRows(#"Removed Blank Rows", each ([New Order Number] <> null))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,142 @@
+table ACCOUNTS_TILITE
+	lineageTag: 7f6ce2ad-64ed-4797-a75a-0be9b431afb3
+
+	column ACCOUNTCODE_TLT
+		dataType: string
+		lineageTag: 63dbc33d-6b0b-4907-916b-b8ad2b9acf35
+		summarizeBy: none
+		sourceColumn: ACCOUNTCODE_TLT
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCOUNTNAME
+		dataType: string
+		lineageTag: fa46474d-3890-4d2d-93f8-3408939f01fc
+		summarizeBy: none
+		sourceColumn: ACCOUNTNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCOUNTCODE_PER
+		dataType: string
+		lineageTag: 1efd9311-327c-4cdf-9c2d-220416784d9d
+		summarizeBy: none
+		sourceColumn: ACCOUNTCODE_PER
+
+		annotation SummarizationSetBy = Automatic
+
+	column REPCODE
+		dataType: string
+		lineageTag: 37ccfdac-c7dc-4458-a375-716e5ac74572
+		summarizeBy: none
+		sourceColumn: REPCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column REP_NAME
+		dataType: string
+		lineageTag: f5e60e36-5032-48b0-954c-cdc991957093
+		summarizeBy: none
+		sourceColumn: REP_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column AREA
+		dataType: int64
+		formatString: 0
+		lineageTag: 7ad8f4d2-f739-407f-a3be-e8446aabadf3
+		summarizeBy: sum
+		sourceColumn: AREA
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESS
+		dataType: string
+		lineageTag: bd9db5b7-8d85-4642-88f2-ab7bb217be18
+		summarizeBy: none
+		sourceColumn: ADDRESS
+
+		annotation SummarizationSetBy = Automatic
+
+	column CITY
+		dataType: string
+		lineageTag: e3406fa0-f25d-4315-946d-ee947d4e6cfb
+		summarizeBy: none
+		sourceColumn: CITY
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATE
+		dataType: string
+		lineageTag: 145fcafe-ce27-491b-92b2-7093b943d89b
+		summarizeBy: none
+		sourceColumn: STATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZIP
+		dataType: string
+		lineageTag: 7ed3868f-6cbb-4ea1-8ac7-ae3440c5f357
+		summarizeBy: none
+		sourceColumn: ZIP
+
+		annotation SummarizationSetBy = Automatic
+
+	column NOTES
+		dataType: string
+		lineageTag: 3046d5b8-c2d8-47f5-852e-7a3ec03e714d
+		summarizeBy: none
+		sourceColumn: NOTES
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRADECODE
+		dataType: string
+		lineageTag: 42123fe4-a868-4da9-92a9-8c87bbe77ba5
+		summarizeBy: none
+		sourceColumn: TRADECODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column REP_CODE = ```
+			
+			IF('ACCOUNTS_TILITE'[ACCOUNTCODE_TLT] IN
+			    {"7000219", "7040005", "7040005", "7040023", "7000031", "7000213",
+			    "7000167", "7000210", "7000004", "7000005", "7030034", "7000173"}, "BRC",
+			    'ACCOUNTS_TILITE'[REPCODE])
+			
+			```
+		dataType: string
+		lineageTag: f0e3b6f9-8672-4eee-861a-5c2500f9b731
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TiLite Diff?' = ```
+			
+			IF('ACCOUNTS_TILITE'[ACCOUNTCODE_TLT] IN {
+			    "100110",	"100398",	"100647",	"100945",	"101214",	"101254",	"101681",	"101914",	"101999",	"102026",	"102050",	"102051",	"102052",	"102053",	"102054",	"102055",	"102056",	"102057",	"102058",	"102059",	"102060",	"102061",	"102062",	"102063",	"102065",	"102066",	"102067",	"102069",	"102070",	"102071",	"102072",	"102073",	"102074",	"102075",	"102076",	"102077",	"102078",	"102079",	"102080",	"102081",	"102082",	"102083",	"102084",	"102085",	"102086",	"102087",	"102088",	"102090",	"102091",	"102092",	"102093",	"102094",	"102095",	"102096",	"102097",	"102098",	"102099",	"102100",	"102101",	"102102",	"102103",	"102104",	"102105",	"102106",	"102107",	"102108",	"102109",	"102110",	"102111",	"120193",	"130203",	"130214",	"130215",	"130216",	"150008",	"170108",	"170146",	"170147",	"170148",	"280041",	"280190",	"280191",	"280192",	"620021",	"650008",	"7000001",	"7000002",	"7000003",	"7000004",	"7000005",	"7000008",	"7000009",	"7000017",	"7000018",	"7000026",	"7000027",	"7000028",	"7000029",	"7000031",	"7000033",	"7000035",	"7000036",	"7000040",	"7000041",	"7000042",	"7000043",	"7000044",	"7000045",	"7000047",	"7000048",	"7000049",	"7000053",	"7000054",	"7000055",	"7000056",	"7000059",	"7000060",	"7000062",	"7000065",	"7000066",	"7000067",	"7000071",	"7000072",	"7000073",	"7000075",	"7000076",	"7000081",	"7000082",	"7000083",	"7000085",	"7000087",	"7000089",	"7000091",	"7000092",	"7000093",	"7000095",	"7000098",	"7000100",	"7000107",	"7000112",	"7000115",	"7000116",	"7000120",	"7000121",	"7000122",	"7000124",	"7000125",	"7000126",	"7000128",	"7000129",	"7000132",	"7000133",	"7000134",	"7000136",	"7000139",	"7000140",	"7000142",	"7000144",	"7000148",	"7000149",	"7000151",	"7000152",	"7000153",	"7000154",	"7000155",	"7000156",	"7000157",	"7000158",	"7000159",	"7000160",	"7000162",	"7000163",	"7000164",	"7000166",	"7000167",	"7000168",	"7000169",	"7000170",	"7000173",	"7000174",	"7000175",	"7000176",	"7000178",	"7000179",	"7000180",	"7000181",	"7000183",	"7000185",	"7000186",	"7000187",	"7000188",	"7000190",	"7000191",	"7000193",	"7000194",	"7000195",	"7000196",	"7000197",	"7000198",	"7000200",	"7000201",	"7000206",	"7000207",	"7000208",	"7000209",	"7000210",	"7000211",	"7000212",	"7000213",	"7000214",	"7000215",	"7000217",	"7000218",	"7000219",	"7000220",	"7000223",	"7000224",	"7000227",	"7000232",	"7000233",	"7000234",	"7000235",	"7000236",	"7000237",	"7000238",	"7000244",	"7000245",	"7000247",	"7000248",	"7000249",	"7000251",	"7000252",	"7000253",	"7000254",	"7000255",	"7020004",	"7020005",	"7020006",	"7020010",	"7020013",	"7020014",	"7020024",	"7030002",	"7030003",	"7030004",	"7030005",	"7030006",	"7030010",	"7030012",	"7030013",	"7030015",	"7030016",	"7030017",	"7030018",	"7030019",	"7030023",	"7030024",	"7030025",	"7030026",	"7030029",	"7030030",	"7030031",	"7030033",	"7030034",	"7030035",	"7030036",	"7030037",	"7030038",	"7040001",	"7040002",	"7040004",	"7040005",	"7040006",	"7040007",	"7040008",	"7040009",	"7040010",	"7040011",	"7040013",	"7040014",	"7040018",	"7040022",	"7040023",	"7040025",	"7040026",	"7040029",	"7040030",	"7040031",	"7040032",	"7040034",	"7040035",	"7040036",	"7040037",	"7040038"},
+			    1,0)
+			
+			```
+		dataType: int64
+		formatString: 0
+		lineageTag: f9b6ea42-ebbc-40d2-9255-032013bfa487
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ACCOUNTS_TILITE-2da009d8-88aa-4369-b8d6-94dc06148e2c = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("USNASDB04", "scalaDB"),
+				    dbo_ACCOUNTS_TILITE = Source{[Schema="dbo",Item="ACCOUNTS_TILITE"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(dbo_ACCOUNTS_TILITE,{{"REP_CODE", "REPCODE"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

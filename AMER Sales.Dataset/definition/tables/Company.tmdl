@@ -1,0 +1,231 @@
+table Company
+	lineageTag: dd25240e-3d78-46da-a4e0-71e0be74f037
+
+	column Company_SK
+		dataType: string
+		isHidden
+		lineageTag: 33b01395-1f9b-400a-b04f-774dd29adb8f
+		summarizeBy: none
+		sourceColumn: Company_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Company_BK
+		dataType: string
+		isHidden
+		lineageTag: b1c769b9-764e-4d7f-beb5-33beaea24259
+		summarizeBy: none
+		sourceColumn: Company_BK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataLoadDatetime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3046245f-e51a-4e28-94db-d5fc7ccb4b31
+		summarizeBy: none
+		sourceColumn: DataLoadDatetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Record source'
+		dataType: string
+		lineageTag: ca084709-6063-4099-bb89-2fcfbdccfc52
+		summarizeBy: none
+		sourceColumn: Record source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Change type'
+		dataType: string
+		lineageTag: 91e526d1-af01-43d6-b49e-65a3e636d831
+		summarizeBy: none
+		sourceColumn: Change type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Company
+		dataType: string
+		lineageTag: c2ac767e-9d75-47a2-9669-4ff3bbb7b77d
+		summarizeBy: none
+		sourceColumn: Company
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Company","TableItemName":"Company (groups)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column 'Company name'
+		dataType: string
+		lineageTag: 01916352-d8cb-4b02-8839-daebf0a9bad2
+		summarizeBy: none
+		sourceColumn: Company name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: d1c6a498-6969-40ff-8389-910242b9117b
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business unit code'
+		dataType: string
+		lineageTag: cd2394f3-8a4f-43a4-9c8a-be224751bfee
+		summarizeBy: none
+		sourceColumn: Business unit code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business unit'
+		dataType: string
+		lineageTag: 71e88c2c-2490-41f7-a84d-a368ff8db98e
+		summarizeBy: none
+		sourceColumn: Business unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Country code'
+		dataType: string
+		lineageTag: f91ec0d3-0bf7-422b-a64b-dde50aa04269
+		summarizeBy: none
+		sourceColumn: Country code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 906f442f-e76d-422a-8205-4a1dc749039f
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business region code'
+		dataType: string
+		lineageTag: 2096d9d1-27b9-4898-a132-61858872d400
+		summarizeBy: none
+		sourceColumn: Business region code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business region'
+		dataType: string
+		lineageTag: de62bcf5-b102-4106-9eb3-ad9c6a52edd0
+		summarizeBy: none
+		sourceColumn: Business region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Production unit code'
+		dataType: string
+		lineageTag: e9a2fba9-7c10-43ef-9f3b-9848e0ee110d
+		summarizeBy: none
+		sourceColumn: Production unit code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Production unit'
+		dataType: string
+		lineageTag: 01222886-ad30-45f4-8f8f-bdb32ead9250
+		summarizeBy: none
+		sourceColumn: Production unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Site code'
+		dataType: string
+		lineageTag: 3df1b1d6-a40c-444f-b118-45211ad2795d
+		summarizeBy: none
+		sourceColumn: Site code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Curency code'
+		dataType: string
+		lineageTag: 97d58de7-0e72-4d17-8992-ab018dadc351
+		summarizeBy: none
+		sourceColumn: Curency code
+
+		annotation SummarizationSetBy = Automatic
+
+	column report_level
+		dataType: string
+		lineageTag: 5d39d8a5-057a-4db2-b7f9-1fe923096112
+		summarizeBy: none
+		sourceColumn: report_level
+
+		annotation SummarizationSetBy = Automatic
+
+	column FlexRowAuditId
+		dataType: int64
+		formatString: 0
+		lineageTag: 96e3e95e-c23c-402f-b89d-b4db68d265a6
+		summarizeBy: none
+		sourceColumn: FlexRowAuditId
+
+		annotation SummarizationSetBy = Automatic
+
+	column FlexRowHashType1
+		dataType: string
+		lineageTag: 8e768d98-c7ac-468e-9447-99491c4eeea3
+		summarizeBy: none
+		sourceColumn: FlexRowHashType1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Company (groups)' =
+			SWITCH(
+				TRUE,
+				ISBLANK('Company'[Company]),
+				"(Blank)",
+				'Company'[Company] IN {"CAN"},
+				"CAN",
+				'Company'[Company] IN {"US",
+					"USSC"},
+				"US",
+				"Other"
+			)
+		dataType: string
+		lineageTag: cd69c75c-ca8e-4577-8a20-7c5b101cef4b
+		summarizeBy: none
+		isDataTypeInferred
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Company"
+				          }
+				        },
+				        "Property": "Company"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"c","Entity":"Company"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"c"}},"Property":"Company"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"CAN","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"c"}},"Property":"Company"}}],"Values":[[{"Literal":{"Value":"'CAN'"}}]]}}},{"DisplayName":"US","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"c"}},"Property":"Company"}}],"Values":[[{"Literal":{"Value":"'US'"}}],[{"Literal":{"Value":"'USSC'"}}]]}}},{"DisplayName":"Other"}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Company-f5860c38-03a8-49c0-ad89-f6b5d86183c0 = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [CreateNavigationProperties=false, CommandTimeout=#duration(0, 4, 10, 0)]),
+				    sales_Rpt_dim_Company = Source{[Schema="sales_Rpt",Item="dim_Company"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(sales_Rpt_dim_Company,{{"BusinessRegion", "Business region"}, {"BusinessRegionCode", "Business region code"}, {"BusinessUnit", "Business unit"}, {"BusinessUnitCode", "Business unit code"}, {"ChangeType", "Change type"}, {"CompanyName", "Company name"}, {"CountryCode", "Country code"}, {"CurrencyCode", "Curency code"}, {"ProductionUnit", "Production unit"}, {"ProductionUnitCode", "Production unit code"}, {"RecordSource", "Record source"}, {"SiteCode", "Site code"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,32 @@
+table 'Sales Rep (Customer Master)'
+	lineageTag: 6b390ce0-aae0-4a4c-94b9-bcd36d77ce5a
+
+	column 'Ship to commission sales group name'
+		dataType: string
+		lineageTag: ea995747-ad5e-4474-9fe4-a5e72164fd3e
+		summarizeBy: none
+		sourceColumn: Ship to commission sales group name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Rep (Customer Master)'
+		dataType: string
+		lineageTag: b222411a-2d92-4e7a-9fec-69f8370f0167
+		summarizeBy: none
+		sourceColumn: Sales Rep (Customer Master)
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Sales Rep (Customer Master)' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("jZJhb4IwEIb/yoXPLv6GagkwoSylhhjjh8tooBmCKSjz3++gzmHckn3s8753fe/a/d5jBR4hxqFrG2/hsZh5hwXRIzYFAr82uiPMd8LhhAnOgI5+Bi+QCsVklM4MK1PXEKKrWoWu2UpGQaSUDxuCQq4nyK0eQLV9RUylamKvSClAaWvNWK98+YRhCY+J7yaysFp/Um5tp0n8Z07VsTZlBarSFmeuR6pCRxO0H5DTSAaPY6A8im+878EvBrTFiH2eO2y6zjTlbMhkKyXbQfYmmQj8mSBakPr0BGCNDRY441mFA9IEXY2NGQNnLkIWslwAnZiI5pjs324adr7ku6VtDEKAtjTnuiUhC9iPsMx6faroAceKbeCEGwJ2Lt1ufxXovr979/qigbfnd933Y2+ebidBWbzQq27wOm5yw3b/+GeHLw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Ship to commission sales group name" = _t, #"Sales Rep (Customer Master)" = _t]),
+				    #"Trimmed Text" = Table.TransformColumns(Source,{{"Sales Rep (Customer Master)", Text.Trim, type text}})
+				in
+				    #"Trimmed Text"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

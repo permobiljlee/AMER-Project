@@ -1,0 +1,332 @@
+table TiLite_Master_OrderData
+	lineageTag: 74173ace-d9d9-4434-8691-e1ff67bc8968
+
+	column RefID
+		dataType: int64
+		formatString: 0
+		lineageTag: f29f1f90-6e6f-46b8-b428-e2848c028bf0
+		summarizeBy: count
+		sourceColumn: RefID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNo
+		dataType: string
+		lineageTag: 1dc5dda1-417a-497f-89a2-aa86bdd91a1c
+		summarizeBy: none
+		sourceColumn: OrderNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last Mod Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9d74ec3e-c56d-40f7-8d07-a044883722ee
+		summarizeBy: none
+		sourceColumn: Last Mod Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Order Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: b97d7f6b-1b80-4170-b93d-c4dda9a1d00a
+		summarizeBy: none
+		sourceColumn: Order Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Invoice Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 0b24549e-d2db-4d36-ba61-e1b9751dc9a6
+		summarizeBy: none
+		sourceColumn: Invoice Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Cancel Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8120591c-3646-4bad-9092-d4467d267324
+		summarizeBy: none
+		sourceColumn: Cancel Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CustomerName
+		dataType: string
+		lineageTag: 267917f9-d3dd-4034-9e1c-ed93acdaa42f
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerClass
+		dataType: string
+		lineageTag: bf8ce976-e006-4889-827e-d07f8e399152
+		summarizeBy: none
+		sourceColumn: CustomerClass
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: ab4f14eb-25fc-47b9-820c-4c68958d5d18
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegionCountry
+		dataType: string
+		lineageTag: ecb1b58d-4d4f-4f0c-823e-1119eade02fc
+		summarizeBy: none
+		sourceColumn: RegionCountry
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 2d76f921-2cc9-4223-a8bb-4ca3a4a164c1
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column StateProvince
+		dataType: string
+		lineageTag: db0d8e64-ea03-476d-a4c1-592554a1cc7f
+		summarizeBy: none
+		sourceColumn: StateProvince
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderType
+		dataType: string
+		lineageTag: ec67b809-4e22-4fcc-bbbe-ee6eac0fe305
+		summarizeBy: none
+		sourceColumn: OrderType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChairType
+		dataType: string
+		lineageTag: 61f6b360-4ea6-41dd-b5f3-2d70ab45d6e3
+		summarizeBy: none
+		sourceColumn: ChairType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"TiLite_Master_OrderData","TableItemName":"ChairType (groups)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column Net_Chair
+		dataType: double
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 690853ad-3e8b-4369-8d23-a357375d26ff
+		summarizeBy: sum
+		sourceColumn: Net_Chair
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 8e440248-ffb5-4aa9-aa79-1a298c545a82
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipment Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: bfbb4c02-f2e3-4072-a437-d41a062f6a67
+		summarizeBy: none
+		sourceColumn: Shipment Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Cancelation Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: b7d653d3-9d77-4f14-8cbc-a5ca0c5e6f0c
+		summarizeBy: none
+		sourceColumn: Cancelation Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Customer No'
+		dataType: string
+		lineageTag: f2bac615-076e-4c81-b256-0b76ed25dbf1
+		summarizeBy: none
+		sourceColumn: Customer No
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Rep Code' = ```
+			
+			VAR inv =
+			LOOKUPVALUE(
+			    'FactCustomerInvoice_UNION'[SalesRepCode (Master Customer)],
+			    'FactCustomerInvoice_UNION'[TiLite Account],
+			    'TiLite_Master_OrderData'[Customer No])
+			    
+			VAR ord =
+			LOOKUPVALUE(
+			    'FactSalesOrderUNION'[SalesRepCode],
+			    'FactSalesOrderUNION'[TiLite Account],
+			    'TiLite_Master_OrderData'[Customer No])
+			
+			RETURN
+			    IF(NOT(ISBLANK(inv)), inv, ord)
+			```
+		dataType: string
+		lineageTag: 00d83aef-73fc-4d0f-9810-7cbf3d6b1f0f
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rep Name' =
+			
+			LOOKUPVALUE(
+			    'Sales Rep Map'[RepName],
+			    'Sales Rep Map'[Rep],
+			    'TiLite_Master_OrderData'[Sales Rep Code])
+		dataType: string
+		lineageTag: 99c6d153-8604-4415-9f5c-84885fbf853a
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNumber =
+			
+			VAR OrderNo = RIGHT('TiLite_Master_OrderData'[OrderNo],7)
+			
+			RETURN OrderNo
+			// LOOKUPVALUE(
+			//     'DASH_BOOKINGS_TILITECHAIRONLY'[PO NUMBER],
+			//     'DASH_BOOKINGS_TILITECHAIRONLY'[ORDER NO],
+			//     RIGHT('TiLite_Master_OrderData'[OrderNo],7))
+		dataType: string
+		lineageTag: 81827db2-f976-493f-8e5f-6cdd79ccf4d2
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PO Number' = ```
+			
+			VAR OrderNo = [OrderNumber]
+			
+			VAR orderdata = 
+			MAXX(
+			    FILTER(
+			        'DASH_BOOKINGS_TILITECHAIRONLY',
+			        'DASH_BOOKINGS_TILITECHAIRONLY'[ORDER NO] = OrderNo),
+			    'DASH_BOOKINGS_TILITECHAIRONLY'[PO NUMBER]
+			)
+			RETURN
+			orderdata
+			```
+		dataType: string
+		lineageTag: ef99dbe1-1cf3-45ce-99e3-e3eb389c9c18
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ChairType (groups)' =
+			SWITCH(
+				TRUE,
+				ISBLANK('TiLite_Master_OrderData'[ChairType]),
+				"(Blank)",
+				'TiLite_Master_OrderData'[ChairType] IN {"AERO T",
+					"AERO X",
+					"AERO Z",
+					"PILOT",
+					"TWIST"},
+				"Aluminum",
+				'TiLite_Master_OrderData'[ChairType] IN {"CARBON RIGID",
+					"CR1"},
+				"Carbon Rigid",
+				'TiLite_Master_OrderData'[ChairType] IN {"2GX",
+					"TR",
+					"TRA",
+					"TX",
+					"ZR",
+					"ZRA"},
+				"Titanium",
+				"Other"
+			)
+		dataType: string
+		lineageTag: 364b7137-fa18-4147-b5c0-2aa285b564dc
+		summarizeBy: none
+		isDataTypeInferred
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "TiLite_Master_OrderData"
+				          }
+				        },
+				        "Property": "ChairType"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"t","Entity":"TiLite_Master_OrderData"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"t"}},"Property":"ChairType"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"Aluminum","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"t"}},"Property":"ChairType"}}],"Values":[[{"Literal":{"Value":"'AERO T'"}}],[{"Literal":{"Value":"'AERO X'"}}],[{"Literal":{"Value":"'AERO Z'"}}],[{"Literal":{"Value":"'PILOT'"}}],[{"Literal":{"Value":"'TWIST'"}}]]}}},{"DisplayName":"Carbon Rigid","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"t"}},"Property":"ChairType"}}],"Values":[[{"Literal":{"Value":"'CARBON RIGID'"}}],[{"Literal":{"Value":"'CR1'"}}]]}}},{"DisplayName":"Titanium","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"t"}},"Property":"ChairType"}}],"Values":[[{"Literal":{"Value":"'2GX'"}}],[{"Literal":{"Value":"'TR'"}}],[{"Literal":{"Value":"'TRA'"}}],[{"Literal":{"Value":"'TX'"}}],[{"Literal":{"Value":"'ZR'"}}],[{"Literal":{"Value":"'ZRA'"}}]]}}},{"DisplayName":"Other"}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	column Salesperson
+		dataType: string
+		lineageTag: 119ac60c-e987-4cf6-9d43-2faacfc2117e
+		summarizeBy: none
+		sourceColumn: Salesperson
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalespersonName
+		dataType: string
+		lineageTag: 8243f348-932d-405a-ae67-7fdb16bed139
+		summarizeBy: none
+		sourceColumn: SalespersonName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TiLite_Master_OrderData-b5d286ba-4737-4b3e-89e7-97762fd093c9 = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("USPASDB10", "SysproSupplement", [Query="SELECT [RefID]#(lf)      ,[OrderNo]#(lf)      ,CAST([LastModDateTime] AS DATE) AS 'Last Mod Date'#(lf)      ,CAST([EntryDateTime] AS DATE) AS 'Order Date'#(lf)      ,CAST(ISNULL([CompleteDateTime], '1900-01-01') AS DATE) AS 'Invoice Date'#(lf)      ,CAST(ISNULL([CancelDateTime], '1900-01-01') AS DATE) AS 'Cancel Date'#(lf)      ,SUBSTRING([CustomerNo], LEN([CustomerNo]) + 1 - 7, 7) AS 'Customer No'#(lf)      ,[CustomerName]#(lf)      ,[CustomerClass]#(lf)      ,[Region]#(lf)      ,[Subregion] AS RegionCountry#(lf)      ,[Country]#(lf)      ,[StateProvince]#(lf)      ,[OrderType]#(lf)      ,[ChairType]#(lf)      ,[Net_Chair]#(lf)      ,[Salesperson]#(lf)      ,[SalespersonName]#(lf)  FROM [SysproSupplement].[dbo].[TiLite_Master_OrderData]#(lf)  WHERE [EntryDateTime] >= '2022-01-01'AND #(lf)[OrderType] IN ('CHAIR','RMA','PARTS') AND #(lf)[Region] = 'BR AMERICAS'"]),
+				    #"Added Conditional Column" = Table.AddColumn(Source, "Status", each if [OrderType] = "RMA" then "RMA" else if [Invoice Date] <> #datetime(1900, 1, 1, 0, 0, 0) then "Shipped" else if [Cancel Date] <> #datetime(1900, 1, 1, 0, 0, 0) then "Canceled" else "Open"),
+				    #"Added Conditional Column1" = Table.AddColumn(#"Added Conditional Column", "Shipment Date", each if [Invoice Date] = #date(1900, 1, 1) then [Order Status] else [Invoice Date]),
+				    #"Added Conditional Column2" = Table.AddColumn(#"Added Conditional Column1", "Cancelation Date", each if [Cancel Date] = #date(1900, 1, 1) then [Order Status] else [Cancel Date]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Added Conditional Column2",{{"Last Mod Date", type date}, {"Order Date", type date}, {"Invoice Date", type date}, {"Cancel Date", type date}, {"Shipment Date", type date}, {"Cancelation Date", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,339 @@
+table LegacyQuotesTEST
+	excludeFromModelRefresh
+	lineageTag: ecb0034a-1b70-4300-a88a-ec5b31d12f62
+
+	column Order_Number
+		dataType: string
+		lineageTag: 88b8d398-d4a7-4501-a080-8487e85ec3b1
+		summarizeBy: none
+		sourceColumn: Order_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quote_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 739ce102-c786-4f35-a3a6-7fb3b9edee3c
+		summarizeBy: none
+		sourceColumn: Quote_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dealer_Code
+		dataType: string
+		lineageTag: f3df6df9-6ab9-4fef-89f3-b78cff472bb3
+		summarizeBy: none
+		sourceColumn: Dealer_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dealer_Name
+		dataType: string
+		lineageTag: 9f421001-7d42-40a1-91e6-a7ba80a143c1
+		summarizeBy: none
+		sourceColumn: Dealer_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column PL_Code
+		dataType: string
+		lineageTag: 8678f814-919f-414a-adb5-09f9844f0698
+		summarizeBy: none
+		sourceColumn: PL_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column PL_Name
+		dataType: string
+		lineageTag: beb69e3a-d1c5-4159-bfd3-6b007ad321b8
+		summarizeBy: none
+		sourceColumn: PL_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quote_ID
+		dataType: string
+		lineageTag: b25ebff6-6693-4d38-9bdd-f50f99a1e567
+		summarizeBy: none
+		sourceColumn: Quote_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d5581619-9f77-4436-8b60-51201189678e
+		summarizeBy: none
+		sourceColumn: Order_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quote_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: e374278d-245c-4c9f-a0c2-2b0bc5ebcdee
+		summarizeBy: sum
+		sourceColumn: Quote_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Code' = ```
+			
+			SWITCH(TRUE(), 
+			    LegacyQuotesTEST[PL_Code] IN {"1A","1B","1C"} , "ACC2", LegacyQuotesTEST[PL_Code] = "1D" , "ACL2", 
+			    LegacyQuotesTEST[PL_Code] IN {"1E", "1F"} , "ARC2", LegacyQuotesTEST[PL_Code] = "1G" ,  "PRC2", 
+			    LegacyQuotesTEST[PL_Code] IN {"24","79", "80", "90", "91"}, "3EM1", LegacyQuotesTEST[PL_Code] IN {"81", "93", "92"} ,  "3CF5",  LegacyQuotesTEST[PL_Code] = "82" ,  "4CFF", 
+			    LegacyQuotesTEST[PL_Code] = "83" ,  "4DF5", 
+			    LegacyQuotesTEST[PL_Code] = "59" ,  "5BF5", 
+			    LegacyQuotesTEST[PL_Code] = "20" ,  "5BF6", 
+			    LegacyQuotesTEST[PL_Code] = "61" ,  "5CR1", 
+			    LegacyQuotesTEST[PL_Code] = "78", "5BM1", 
+			    LegacyQuotesTEST[PL_Code] IN {"72", "89"} , "3CM1", LegacyQuotesTEST[PL_Code] = "75" , "3CR3", 
+			    LegacyQuotesTEST[PL_Code] = "74" , "3CF3", 
+			    LegacyQuotesTEST[PL_Code] = "77" , "4CFC", 
+			    "Other")
+			```
+		dataType: string
+		lineageTag: bc35bb15-db9b-4d3a-b86b-6e165ff1d58f
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dealer/Country = ```
+			
+			VAR dealerval =
+			CONCATENATEX(
+			    FILTER(
+			        'Customer Table',
+			        'Customer Table'[CustomerCode] = 'LegacyQuotesTEST'[Customer Code Lookup]
+			    ),
+			    'Customer Table'[US Dealer / Country (Motion)],
+			    ", "
+			)
+			
+			RETURN
+			IF(CONTAINSSTRING(dealerval, ", "), 
+			    BLANK(), dealerval)
+			
+			
+			
+			
+			
+			```
+		dataType: string
+		lineageTag: f4368eea-2cc7-43a1-9934-fc833ae0c547
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Code Lookup' =
+			
+			VAR lookup =
+			LOOKUPVALUE(
+			    'Scala to D365 Acct Bridge'[D365 CUSTOMERACCOUNT],
+			    'Scala to D365 Acct Bridge'[Scala AccountNo],
+			    LegacyQuotesTEST[Dealer_Code])
+			RETURN
+			IF(ISBLANK(lookup),
+			    LegacyQuotesTEST[Dealer_Code],
+			    lookup)
+		dataType: string
+		lineageTag: bb823cf7-f660-4d19-9d60-cde36d174d73
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Conversion Days' = ```
+			
+			SWITCH(
+			    TRUE(),
+			        'LegacyQuotesTEST'[Order_Number] <> "", 
+			        DATEDIFF( 'LegacyQuotesTEST'[New Quote Date], 'LegacyQuotesTEST'[Order_Date], DAY) , BLANK())
+			```
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f368cff-184f-4a89-bee2-55e9dabe82a2
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'New Quote Date' =
+			
+			IF(ISBLANK(
+			    LegacyQuotesTEST[Original quote date]),
+			    LegacyQuotesTEST[Quote_Date],
+			    LegacyQuotesTEST[Original quote date])
+		dataType: dateTime
+		lineageTag: a8b82aeb-d5ba-435f-adc3-12f7297d8c6c
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original quote date' = RELATED('Original Dates'[Portal Date])
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 17c22af2-9b6d-4691-8264-f5ea4a7f99c2
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Conversion days (adj outlier)' = ```
+			
+			SWITCH(
+			    TRUE(), 
+			    'LegacyQuotesTEST'[Conversion Days] < 181 && 
+			    'LegacyQuotesTEST'[Conversion Days] > 1, 
+			    'LegacyQuotesTEST'[Conversion Days], BLANK())
+			```
+		dataType: int64
+		formatString: 0
+		lineageTag: 2b678789-53cd-4e43-b113-87cdc90cba2b
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column BillToCustomer_SK =
+			
+			MAXX(
+			    FILTER(
+			        'Bill to customer',
+			        'Bill to customer'[Bill to customer account] = 'LegacyQuotesTEST'[Dealer_Code]
+			            && NOT(ISBLANK('LegacyQuotesTEST'[Dealer_Code]))
+			    ),
+			    'Bill to customer'[BillToCustomer_SK]
+			)
+		dataType: string
+		lineageTag: 9ad574de-0c3f-43fc-a230-78e9caf7ee16
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Exec Quote Age - Conversion' = ```
+			
+			VAR quoteage = 
+			SWITCH(true(), 
+			    'LegacyQuotesTEST'[Order_Count] = 0, DATEDIFF('LegacyQuotesTEST'[Quote_Date],TODAY(),DAY))
+			
+			VAR sansorder =
+			SWITCH(TRUE(), 
+			    quoteage >= 0 &&  quoteage <= 30 , "1. 0-30",  
+			    quoteage > 30 &&  quoteage <= 60 , "2. 31-60", 
+			    quoteage > 60 &&  quoteage <= 90 , "3. 61-90",  
+			    quoteage > 90 &&  quoteage <= 120 , "4. 91-120", 
+			    quoteage > 120 &&  quoteage <= 150 , "5. 121-150",  
+			    quoteage > 150 &&  quoteage <= 180 , "6. 151-180", 
+			    quoteage > 180  , "Not Converted") 
+			
+			VAR orderage =
+			SWITCH(
+			    TRUE(), 
+			    DATEDIFF('LegacyQuotesTEST'[Quote_Date], 'LegacyQuotesTEST'[Order_Date],DAY) >= 0, DATEDIFF('LegacyQuotesTEST'[Quote_Date], 'LegacyQuotesTEST'[Order_Date],DAY))
+			
+			VAR orderbucket =
+			SWITCH(TRUE(), 
+			    orderage >= 0 &&  orderage <= 30 , "1. 0-30",  
+			    orderage > 30 &&  orderage <= 60 , "2. 31-60", 
+			    orderage > 60 &&  orderage <= 90 , "3. 61-90",  
+			    orderage > 90 &&  orderage <= 120 , "4. 91-120", 
+			    orderage > 120 &&  orderage <= 150 , "5. 121-150",  
+			    orderage > 150 &&  orderage <= 180 , "6. 151-180", 
+			    orderage > 180  , "7. >180")
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    'LegacyQuotesTEST'[Order_Count] = 0, sansorder,
+			    ISBLANK(orderbucket) || orderbucket = "7. >180" || sansorder = "7. >180", "Not Converted", 
+			    orderbucket)
+			```
+		dataType: string
+		lineageTag: e512bb49-5c09-4b52-bf38-cb6192939b89
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: 225b6fb2-884f-407a-bcca-ddd02943f32d
+		summarizeBy: sum
+		sourceColumn: Order_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Date Key' =
+			
+			IF(
+			    'LegacyQuotesTEST'[Order_Count] = 0,
+			    EDATE( 'LegacyQuotesTEST'[New Quote Date], 6),
+			    'LegacyQuotesTEST'[Order_Date]
+			)
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: eb847d47-7af3-4f9f-a8b4-e649450865f3
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quote From Today' = ```
+			
+			VAR dayscount =
+			DATEDIFF('LegacyQuotesTEST'[Quote_Date], TODAY(), DAY)
+			
+			RETURN
+			SWITCH(TRUE(), 
+			    dayscount >= 0 &&  dayscount <= 30 , "1. 0-30",  
+			    dayscount > 30 &&  dayscount <= 60 , "2. 31-60", 
+			    dayscount > 60 &&  dayscount <= 90 , "3. 61-90",  
+			    dayscount > 90 &&  dayscount <= 120 , "4. 91-120", 
+			    dayscount > 120 &&  dayscount <= 150 , "5. 121-150",  
+			    dayscount > 150 &&  dayscount <= 180 , "6. 151-180", 
+			    dayscount > 180 &&  dayscount <= 365 , "7. 181-365",
+			    "8. 365+")
+			```
+		dataType: string
+		lineageTag: 1bfa3310-b508-4826-a913-3f8d557fd266
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country =
+			
+			MAXX(
+			    FILTER(
+			        'Bill to customer',
+			        'Bill to customer'[Bill to customer account] = 'LegacyQuotesTEST'[Dealer_Code]
+			            && NOT(ISBLANK('LegacyQuotesTEST'[Dealer_Code]))
+			    ),
+			    'Bill to customer'[Bill to customer company]
+			)
+		dataType: string
+		lineageTag: 7c71221d-57ba-4388-a37c-fa07fd13b9eb
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition LegacyQuotesTEST = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("USNASDB04", "EconQuoteConf", [Query="SELECT #(lf)      REPLACE([Order_Number], 'N/A', '') AS Order_Number#(lf)      ,[Quote_Date]#(lf)      ,UPPER(RTRIM(LTRIM([Dealer_Code]))) AS Dealer_Code#(lf)      ,[Dealer_Name]#(lf)      ,[PL_Code]#(lf)      ,[PL_Name]#(lf)      ,[Quote_ID]#(lf)      ,[Order_Date]#(lf)      ,[Order_Count]#(lf)      ,[Quote_Count]#(lf)  FROM [EconQuoteConf].[dbo].[OR01_Quote_Conv_UNION_View]#(lf)  WHERE Quote_Date >= '09-01-2020' #(lf)  AND Dealer_Name NOT LIKE '%permobil%'#(lf)  AND PL_Code NOT IN ('01','02','03','04','05','06','07','08','09','10','96')#(lf)  ORDER BY Quote_Date ASC"])
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

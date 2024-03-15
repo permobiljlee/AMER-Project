@@ -1,0 +1,178 @@
+table 'DW FactSalesOrderTiLite'
+	lineageTag: 002544fe-5b97-4a19-b17f-ad4dae31a4ef
+
+	column WKOrderDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0f0c7254-e5d6-477e-8e49-e7fd47f6f71c
+		summarizeBy: none
+		sourceColumn: WKOrderDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKCompany
+		dataType: int64
+		formatString: 0
+		lineageTag: dcae124c-48e7-4470-bab1-2dbdecd1c35f
+		summarizeBy: sum
+		sourceColumn: WKCompany
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKCustomer
+		dataType: int64
+		formatString: 0
+		lineageTag: bb4db347-8d3d-409c-8a1a-2b53158acf00
+		summarizeBy: sum
+		sourceColumn: WKCustomer
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKSalesRep
+		dataType: int64
+		formatString: 0
+		lineageTag: f503b7cd-f62d-4604-95ff-a32c3bb72e3d
+		summarizeBy: sum
+		sourceColumn: WKSalesRep
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKProduct
+		dataType: int64
+		formatString: 0
+		lineageTag: f3098662-300e-472a-9534-339bc70ca76a
+		summarizeBy: sum
+		sourceColumn: WKProduct
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKItem
+		dataType: int64
+		formatString: 0
+		lineageTag: bd93a342-8a84-4f7a-80ed-9ba089c10453
+		summarizeBy: sum
+		sourceColumn: WKItem
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKSalesStatus
+		dataType: int64
+		formatString: 0
+		lineageTag: b4b6aa52-a56a-4895-811c-ffdbc95c5e0b
+		summarizeBy: sum
+		sourceColumn: WKSalesStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKInvoiceAccount
+		dataType: int64
+		formatString: 0
+		lineageTag: be59ebb7-9f69-4ea1-80dc-93792262d48b
+		summarizeBy: sum
+		sourceColumn: WKInvoiceAccount
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNumber
+		dataType: string
+		lineageTag: 0cf3b557-0bdc-40f0-b3e0-befec1a1c302
+		summarizeBy: none
+		sourceColumn: OrderNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column PONumber
+		dataType: string
+		lineageTag: 000134cb-1e0b-430c-833f-d2a85825deed
+		summarizeBy: none
+		sourceColumn: PONumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column SerialNumber
+		dataType: string
+		lineageTag: d2cc1a84-8204-4ec7-ac4f-1daf89b3d515
+		summarizeBy: none
+		sourceColumn: SerialNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsChair
+		dataType: int64
+		formatString: 0
+		lineageTag: 719246cb-866d-4ca9-818f-a5a39e5d3e73
+		summarizeBy: sum
+		sourceColumn: IsChair
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuoteDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 82782b44-f64f-432d-835d-75236086351e
+		summarizeBy: none
+		sourceColumn: QuoteDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuoteConversionDays
+		dataType: int64
+		formatString: 0
+		lineageTag: b36bb247-978a-4244-a143-be9ed6958cdc
+		summarizeBy: sum
+		sourceColumn: QuoteConversionDays
+
+		annotation SummarizationSetBy = Automatic
+
+	column NetAmount
+		dataType: double
+		lineageTag: 3fd3ff7d-bb25-418b-84f3-218594a5fb6e
+		summarizeBy: sum
+		sourceColumn: NetAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OrderQuantity
+		dataType: double
+		lineageTag: 45a9836c-1c99-4b20-878b-33b2d630bca8
+		summarizeBy: sum
+		sourceColumn: OrderQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NoOfChairs
+		dataType: int64
+		formatString: 0
+		lineageTag: 6c499268-644d-4dc1-8830-756c60739af0
+		summarizeBy: sum
+		sourceColumn: NoOfChairs
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKProduct2
+		dataType: string
+		lineageTag: 79f7b75d-02ff-4ae0-bc52-e304d67faf13
+		summarizeBy: none
+		sourceColumn: WKProduct2
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DW FactSalesOrderTiLite-17da4cc4-7143-467b-8005-c4aa03387f4f' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("SETIMDB04", "BIDW", [Query="SELECT [WKOrderDate]#(lf)      ,[WKCompany]#(lf)      ,[WKCustomer]#(lf),[WKSalesStatus]#(lf)      ,[WKSalesRep]#(lf)      ,[WKProduct]#(lf)      ,[WKItem]#(lf)      ,[WKInvoiceAccount]#(lf)      ,[OrderNumber]      ,[PONumber]#(lf)      ,[SerialNumber]#(lf)      ,[IsChair]#(lf)      ,[QuoteDate]#(lf)      ,[QuoteConversionDays]      ,[NetAmount]#(lf)      ,[OrderQuantity]#(lf)      ,[NoOfChairs]#(lf)  FROM [BIDW].[DW].[FactSalesOrderTiLite]#(lf)WHERE [WKOrderDate] >= '1/1/2021'"]),
+				    #"Added Custom" = Table.AddColumn(Source, "WKProduct2", each if ([WKCustomer]=291740 or [WKCustomer]=291746 or [WKCustomer]=290480 or [WKCustomer]=290477 or [WKCustomer]=32250 or [WKCustomer]=331837 or [WKCustomer]=32249 or [WKCustomer]=331854) then 736 else [WKProduct]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom",{{"WKCustomer", type text}}),
+				    #"Filtered Rows2" = Table.SelectRows(#"Changed Type", each [WKSalesStatus] <> 1 or [WKSalesStatus] <> 5)
+				in
+				    #"Filtered Rows2"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,205 @@
+table TiLite_AttachmentReporting_Lines
+	lineageTag: 3ec32fde-e8f5-480a-b5e1-36a7b4747524
+
+	column Invoice
+		dataType: string
+		lineageTag: 7859b161-2183-4a0b-a3f2-61b031816a60
+		summarizeBy: none
+		sourceColumn: Invoice
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesOrder
+		dataType: string
+		lineageTag: 72645a2b-8d39-4aff-8099-1426d71eaae9
+		summarizeBy: none
+		sourceColumn: SalesOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column InvoiceDate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 7b02984f-b5fc-40e7-8a47-e041c60ddb2d
+		summarizeBy: none
+		sourceColumn: InvoiceDate
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		lineageTag: 29fd2281-bf74-4ac3-ad18-a851547f9978
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Salesperson
+		dataType: string
+		lineageTag: cda22da8-c876-40d6-932f-c2fbc5e05b71
+		summarizeBy: none
+		sourceColumn: Salesperson
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipAddress4
+		dataType: string
+		lineageTag: c3ff0134-4622-4396-8f37-cba7a7b59e97
+		summarizeBy: none
+		sourceColumn: ShipAddress4
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipPostalCode
+		dataType: string
+		lineageTag: f77c85c1-6450-4396-9b9c-1c475890689c
+		summarizeBy: none
+		sourceColumn: ShipPostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column TrnMonth
+		dataType: string
+		lineageTag: 0b5646aa-83ff-4c3a-a313-40b56d726631
+		summarizeBy: none
+		sourceColumn: TrnMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column TrnYear
+		dataType: string
+		lineageTag: 336ff212-81a5-442f-9399-f6e4d1ccb797
+		summarizeBy: none
+		sourceColumn: TrnYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column AttachmentType
+		dataType: string
+		lineageTag: b27389e8-23ab-4805-933a-a151fc9cf907
+		summarizeBy: none
+		sourceColumn: AttachmentType
+
+		annotation SummarizationSetBy = Automatic
+
+	column AttachmentProduct
+		dataType: string
+		lineageTag: c60878de-a69a-499f-ac40-f33d9b12fc79
+		summarizeBy: none
+		sourceColumn: AttachmentProduct
+
+		annotation SummarizationSetBy = Automatic
+
+	column LongDesc
+		dataType: string
+		lineageTag: f954078a-4b26-4ad9-9451-8a992189031f
+		summarizeBy: none
+		sourceColumn: LongDesc
+
+		annotation SummarizationSetBy = Automatic
+
+	column GrossSalesValue
+		dataType: double
+		lineageTag: c27d45e4-10e3-48eb-9600-f287ca6b5671
+		summarizeBy: sum
+		sourceColumn: GrossSalesValue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DiscountValue
+		dataType: double
+		lineageTag: 33136645-7c5b-4ffc-9b89-334861aaa71d
+		summarizeBy: sum
+		sourceColumn: DiscountValue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NetSalesValue
+		dataType: double
+		lineageTag: 7a54eb33-99d5-4c80-b4be-826a97894fb6
+		summarizeBy: sum
+		sourceColumn: NetSalesValue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sales Rep (Customer Master)' = ```
+			
+			LOOKUPVALUE('FactCustomerInvoice_UNION'[SalesRepCode (Master Customer)], 
+			    'FactCustomerInvoice_UNION'[OrderNumber],
+			    'TiLite_AttachmentReporting_Lines'[SalesOrder])
+			```
+		dataType: string
+		lineageTag: 6feaae22-aea0-421a-9e38-f124cc9ae07d
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Line' = ```
+			
+			IF('TiLite_AttachmentReporting_Lines'[AttachmentType] = "Comfort Company",
+			    "Comfort",
+			    
+			IF('TiLite_AttachmentReporting_Lines'[AttachmentType] = "ROHO",
+			    "ROHO",
+			    
+			IF('TiLite_AttachmentReporting_Lines'[AttachmentType] = "SmartDrive",
+			    "SmartDrive On-Chair")))
+			
+			```
+		dataType: string
+		lineageTag: 32a6df98-db6b-4898-8165-c4328b7a0408
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TiLite WKCustomer' = ```
+			
+			    LOOKUPVALUE('FactCustomerInvoice_UNION'[TiLite_ShiptoWKCustomer], 'FactCustomerInvoice_UNION'[OrderNumber],
+			        'TiLite_AttachmentReporting_Lines'[SalesOrder])
+			```
+		dataType: int64
+		formatString: 0
+		lineageTag: 78f59aaf-dcad-4e62-8c31-afb0ad144d3a
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TiLite Chair Model' = ```
+			
+			    CALCULATE(
+			        FIRSTNONBLANK('FactCustomerInvoice_UNION'[TiLite Chair Model],1),
+			            FILTER(ALL('FactCustomerInvoice_UNION'),
+			            'FactCustomerInvoice_UNION'[OrderNumber] = 'TiLite_AttachmentReporting_Lines'[SalesOrder])
+			)
+			```
+		dataType: string
+		lineageTag: ae8170b1-351f-49d4-9dca-363e09f61a28
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TiLite_AttachmentReporting_Lines-30ee468b-ec94-4d09-aacd-22e53adbeacf = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("USPASDB10"),
+				    SysproSupplement = Source{[Name="SysproSupplement"]}[Data],
+				    dbo_TiLite_AttachmentReporting_Lines = SysproSupplement{[Schema="dbo",Item="TiLite_AttachmentReporting_Lines"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(dbo_TiLite_AttachmentReporting_Lines, each [InvoiceDate] > #datetime(2021, 10, 1, 0, 0, 0))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+

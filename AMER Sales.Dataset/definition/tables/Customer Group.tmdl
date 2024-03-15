@@ -1,0 +1,122 @@
+table 'Customer Group'
+	lineageTag: 339c8d4a-af09-4472-b498-028fa7496656
+
+	column 'DB Key'
+		dataType: string
+		lineageTag: 9e428f54-4f6d-4539-b33b-a8d09eec961b
+		summarizeBy: none
+		sourceColumn: DB Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VGM No'
+		dataType: string
+		lineageTag: 2698f7ce-fd48-43de-a5c9-9969982d1654
+		summarizeBy: none
+		sourceColumn: VGM No
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Member Name'
+		dataType: string
+		lineageTag: df317fcb-fee1-41f4-892f-44a65026bc4c
+		summarizeBy: none
+		sourceColumn: Member Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: d67ec299-108b-4445-a156-2c845e29ce18
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: cfbc437e-9e11-4d09-b786-b7dc6302c69c
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 5f8bc58e-9e03-44a4-98d0-e31b18d17dbd
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zip
+		dataType: string
+		lineageTag: 10e3421d-e40d-4cd0-ac9c-259216420363
+		summarizeBy: none
+		sourceColumn: Zip
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account No'
+		dataType: string
+		lineageTag: 6ba7c998-0b5c-4530-a561-e03bc93b71fc
+		summarizeBy: none
+		sourceColumn: Account No
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Unit'
+		dataType: string
+		lineageTag: b2ac9528-cf76-4cff-b38c-912cedf8eea5
+		summarizeBy: none
+		sourceColumn: Business Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dealer Group'
+		dataType: string
+		lineageTag: 1656e323-ac46-44db-b656-30584238d778
+		summarizeBy: none
+		sourceColumn: Dealer Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustAccount2
+		dataType: string
+		lineageTag: e227a056-ddd0-4ead-a30c-7e1e2be731e2
+		summarizeBy: none
+		sourceColumn: CustAccount2
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Customer Group-ea3f83b3-86cd-45f2-af7a-9d5ad1396f85' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://permobil.sharepoint.com/sites/BIBRAmericas", [ApiVersion = 15]),
+				    #"Budget for Power BI By dealer group and by product 2020 xlsx_https://permobil sharepoint com/sites/BIBRAmericas/Shared Documents/General/Sales Reports 2020/" = Source{[Name="Budget for Power BI By dealer group and by product 2020.xlsx",#"Folder Path"="https://permobil.sharepoint.com/sites/BIBRAmericas/Shared Documents/General/Sales Reports 2020/"]}[Content],
+				    #"Imported Excel" = Excel.Workbook(#"Budget for Power BI By dealer group and by product 2020 xlsx_https://permobil sharepoint com/sites/BIBRAmericas/Shared Documents/General/Sales Reports 2020/"),
+				    #"Dealer Group_Sheet" = #"Imported Excel"{[Item="Customer",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Dealer Group_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"DB Key", type text}, {"VGM No", type text}, {"Member Name", type text}, {"Type", type text}, {"City", type text}, {"State", type text}, {"Zip", type text}, {"Account No.", type text}, {"Business Unit", type text}, {"Dealer Group", type text}}),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Changed Type", "Account No.", Splitter.SplitTextByDelimiter("\", QuoteStyle.Csv), {"Account No..1", "Account No..2"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"Account No..1", type text}, {"Account No..2", type text}}),
+				    #"Split Column by Delimiter1" = Table.SplitColumn(#"Changed Type1", "Account No..1", Splitter.SplitTextByDelimiter("/", QuoteStyle.Csv), {"Account No..1.1", "Account No..1.2"}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Split Column by Delimiter1",{{"Account No..1.1", type text}, {"Account No..1.2", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type2",{"Account No..1.2", "Account No..2"}),
+				    #"Split Column by Delimiter3" = Table.SplitColumn(#"Removed Columns", "Account No..1.1", Splitter.SplitTextByDelimiter("_", QuoteStyle.Csv), {"Account No..1.1.1", "Account No..1.1.2"}),
+				    #"Removed Columns3" = Table.RemoveColumns(#"Split Column by Delimiter3",{"Account No..1.1.2"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns3",{{"Account No..1.1.1", "Account No"}}),
+				    #"Split Column by Delimiter2" = Table.SplitColumn(#"Renamed Columns", "Zip", Splitter.SplitTextByDelimiter("-", QuoteStyle.Csv), {"Zip.1", "Zip.2"}),
+				    #"Removed Columns2" = Table.RemoveColumns(#"Split Column by Delimiter2",{"Zip.2"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Removed Columns2",{{"Zip.1", "Zip"}}),
+				    #"Replaced Errors" = Table.ReplaceErrorValues(#"Renamed Columns1", {{"DB Key", null}}),
+				    #"Grouped Rows" = Table.Group(#"Replaced Errors", {"DB Key", "VGM No", "Member Name", "Type", "City", "State", "Zip", "Account No", "Business Unit", "Dealer Group"}, {{"Count", each Table.RowCount(_), type number}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Grouped Rows",{"Count"}),
+				    #"Added Custom" = Table.AddColumn(#"Removed Columns1", "Custom", each if([Business Unit] = "Max Mobility" or [Business Unit] ="Tilite") then [Account No] else [Account No]),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Added Custom",{{"Custom", "CustAccount2"}})
+				in
+				    #"Renamed Columns2"
+
+	annotation PBI_ResultType = Table
+

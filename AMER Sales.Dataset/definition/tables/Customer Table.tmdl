@@ -1,0 +1,99 @@
+table 'Customer Table'
+	lineageTag: 67838ae1-9dd6-46b6-995a-1215572f5b95
+
+	column Customer_SK
+		dataType: string
+		lineageTag: 6666f0d8-7027-471d-b065-e6b73a42447b
+		summarizeBy: none
+		sourceColumn: Customer_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesSegmentId
+		dataType: string
+		lineageTag: 437b819f-bd89-4d96-b590-4332879d155b
+		summarizeBy: none
+		sourceColumn: SalesSegmentId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'US Dealer / Country' = ```
+			
+			SWITCH(
+			    TRUE(), 
+			    'Customer Table'[SalesSegmentId] = "USM" , "Numo", 
+			    'Customer Table'[SalesSegmentId] = "NSM" , "NSM", 
+			    'Customer Table'[SalesSegmentId] = "VA" , "VA", 
+			    'Customer Table'[SalesSegmentId] = "USR" , "USR", 
+			    'Customer Table'[SalesSegmentId] = "Internal" , "Permobil", 
+			    'Customer Table'[COMMISSIONSALESGROUP_ID] = "SA.1.1", "South America", 
+			    'Customer Table'[Company] = "CAN", "Canada", 
+			    'Customer Table'[Company] = "AUS", "APAC", "Other US")
+			```
+		dataType: string
+		lineageTag: 6f20cfaa-7b50-4f96-a98b-94148b9391a6
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column COMMISSIONSALESGROUP_ID
+		dataType: string
+		lineageTag: 2a79ebb5-1c14-448c-9bde-8ce805a40511
+		summarizeBy: none
+		sourceColumn: COMMISSIONSALESGROUP_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Company
+		dataType: string
+		lineageTag: 72328820-5a60-4b3b-99ec-76f8162b21f8
+		summarizeBy: none
+		sourceColumn: Company
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'US Dealer / Country (Motion)' = ```
+			
+			SWITCH(
+			    TRUE(), 
+			    'Customer Table'[SalesSegmentId] = "USM" , "Numo", 
+			    'Customer Table'[SalesSegmentId] = "NSM" , "NSM", 
+			    'Customer Table'[SalesSegmentId] = "VA" , "VA", 
+			    'Customer Table'[SalesSegmentId] = "USR" , "USR", 
+			    'Customer Table'[SalesSegmentId] = "Internal" , "Permobil", 
+			    'Customer Table'[COMMISSIONSALESGROUP_ID] = "SA.1.1", "South America", 
+			    'Customer Table'[Company] = "CAN" && 'Customer Table'[SalesSegmentId] = "MOT", "Motion", 
+			    'Customer Table'[Company] = "CAN",  "Other CA", 
+			    'Customer Table'[Company] = "AUS", "APAC", "Other US")
+			```
+		dataType: string
+		lineageTag: 229079b5-41c0-42a6-b192-f449f41ecc32
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerCode =
+			
+			LOOKUPVALUE(
+			    'Bill to customer'[Bill to customer account],
+			    'Bill to customer'[BillToCustomer_SK],
+			    'Customer Table'[Customer_SK])
+		dataType: string
+		lineageTag: ca6ce545-78e4-446c-ae64-181dcc0ce2af
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Customer Table' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [Query="SELECT [Customer_SK]#(lf)      ,[COMMISSIONSALESGROUP_ID]#(lf)      ,[Company]#(lf)      ,[SalesSegmentId]#(lf)  FROM [sales_Rpt].[dim_Customer]"])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,210 @@
+table FactSalesOrderUNION
+	lineageTag: 46ff83f8-b7fc-4332-a6c3-af602728348a
+
+	column WKOrderDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 89030f45-a34f-4e48-9e70-c3ea3733e625
+		summarizeBy: none
+		sourceColumn: WKOrderDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKCompany
+		dataType: int64
+		formatString: 0
+		lineageTag: 648833c9-621e-431d-94a9-498b896b2677
+		summarizeBy: sum
+		sourceColumn: WKCompany
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKCustomer
+		dataType: int64
+		formatString: 0
+		lineageTag: c5f37d32-6054-4eb4-9b92-591ea8f17d4a
+		summarizeBy: none
+		sourceColumn: WKCustomer
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKSalesRep
+		dataType: int64
+		formatString: 0
+		lineageTag: 1ed97866-f8c2-47b3-8176-68f67a976732
+		summarizeBy: sum
+		sourceColumn: WKSalesRep
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKInvoiceAccount
+		dataType: int64
+		formatString: 0
+		lineageTag: ffcb2cd7-af3b-4bad-bcad-91207d905786
+		summarizeBy: sum
+		sourceColumn: WKInvoiceAccount
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNumber
+		dataType: string
+		lineageTag: 266a51e6-f788-4fd5-bcb7-e147ee35e699
+		summarizeBy: none
+		sourceColumn: OrderNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuoteDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a3422ae9-e244-4a74-a696-d14517c3a08d
+		summarizeBy: none
+		sourceColumn: QuoteDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesRepCode =
+			
+			
+			VAR method1 =
+			IF(FactSalesOrderUNION[WKCompany] = 82 &&
+			    RELATED('8DW DimCustomer'[DataAreaId]) = "ROHO" &&
+			        'FactSalesOrderUNION'[WKSalesRep] <> 1195,
+			        LOOKUPVALUE('8DW DimCustomer'[ROHO Sales Rep Code],
+			            '8DW DimCustomer'[WKCustomer],
+			            FactSalesOrderUNION[TiLite_ShiptoWKCustomer]),
+			IF(NOT(FactSalesOrderUNION[WKCompany] IN {98,104}),
+			    LOOKUPVALUE('Global Rep Map (2)'[PERM Code NEW],
+			        'Global Rep Map (2)'[WKSalesRep],
+			        FactSalesOrderUNION[WKSalesRep]),
+			IF('FactSalesOrderUNION'[WKCompany] = 98
+			&& 'FactSalesOrderUNION'[CUSTACCOUNT MASTER SK] <> "No Match",
+			    LOOKUPVALUE('Ship to customer'[Ship to commission sales group Id],
+			        'Ship to customer'[TiLite Account],
+			        'FactSalesOrderUNION'[TiLite Account]),
+			    LOOKUPVALUE('Global Rep Map (2)'[SalesRepCode],
+			        'Global Rep Map (2)'[WKSalesRep],
+			        FactSalesOrderUNION[WKSalesRep])
+			)))
+			
+			RETURN
+			method1
+		dataType: string
+		lineageTag: e5557f41-934a-4cb4-9c39-16f3cfa5e1c9
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CUSTACCOUNT LDW BK' = ```
+			
+			//added logic for wkcustomer rows without entries (-1) to be excluded from the switch function.
+			IF(FactSalesOrderUNION[WKCustomer] <> -1,
+			    SWITCH(
+			        true(),
+			        FactSalesOrderUNION[WKCompany] IN {104}, // AHC
+			            (LOOKUPVALUE(
+			                '8DW DimCustomer'[BKCustomer], 
+			                '8DW DimCustomer'[WKCustomer], 
+			                FactSalesOrderUNION[WKCustomer])
+			            ),
+			            FactSalesOrderUNION[WKCompany] = 98, 
+			            (LOOKUPVALUE(
+			                '8DW DimCustomer'[BKCustomer], 
+			                '8DW DimCustomer'[WKCustomer], 
+			                FactSalesOrderUNION[TiLite_ShiptoWKCustomer])
+			            ),
+			            (LOOKUPVALUE(
+			                '8DW DimCustomer'[BKCustomer], 
+			                '8DW DimCustomer'[WKCustomer], 
+			                FactSalesOrderUNION[TiLite_ShiptoWKCustomer])
+			            )
+			        ),
+			//Resolves the wkcustomer nonentries by using wkinvoiceaccount rows instead.
+			LOOKUPVALUE(
+			    '8DW DimCustomer'[BKCustomer], 
+			    '8DW DimCustomer'[WKCustomer], 
+			    FactSalesOrderUNION[WKInvoiceAccount]))
+			```
+		dataType: string
+		lineageTag: 56585fcc-10cd-4fcf-b850-c49b0da63bf8
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column TiLite_ShiptoWKCustomer = ```
+			
+			IF('FactSalesORderUNION'[WKCompany] <> 98,
+			    IF('FactSalesORderUNION'[WKCustomer] <> -1,
+			        'FactSalesORderUNION'[WKCustomer],
+			        'FactSalesORderUNION'[WKInvoiceAccount]),
+			            LOOKUPVALUE('DW FactSalesOrderTiLite'[WKCustomer], 
+			                'DW FactSalesOrderTiLite'[OrderNumber],
+			                'FactSalesORderUNION'[OrderNumber])
+			    )
+			```
+		dataType: int64
+		formatString: 0
+		lineageTag: f4a7237f-b7cb-4eb2-9823-9dc3e6dadfed
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CUSTACCOUNT EDW ID' =
+			
+			switch(
+			    true(),
+			    FactSalesOrderUNION[WKCompany] = 104,
+			     (CONCATENATE(
+			            CONCATENATE("LDW~",[CUSTACCOUNT LDW BK]),"~AHC")),
+			    FactSalesOrderUNION[WKCompany] = 98,
+			     (CONCATENATE(
+			            CONCATENATE("LDW~",[CUSTACCOUNT LDW BK]),"~TISP")),
+			     (CONCATENATE(
+			            CONCATENATE("LDW~",[CUSTACCOUNT LDW BK]),"~AHC"))
+			)
+		dataType: string
+		lineageTag: b7f36e2b-57c1-4006-980c-c99b80403fc7
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TiLite Account' = ```
+			
+			IF(RIGHT('FactSalesOrderUNION'[CUSTACCOUNT EDW ID], 4) = "TISP" &&
+			    MID('FactSalesOrderUNION'[CUSTACCOUNT EDW ID], 10, 8) = "00000000", 
+			    MID('FactSalesOrderUNION'[CUSTACCOUNT EDW ID], 18, 7), "0")
+			```
+		dataType: string
+		lineageTag: 1a22de9d-cfd0-455e-a317-f3fdc281fb24
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CUSTACCOUNT MASTER SK' =
+			
+			LOOKUPVALUE('Ship to customer'[ShipToCustomer_SK],
+			'Ship to customer'[ShipToCustomer_BK], 'FactSalesOrderUNION'[CUSTACCOUNT EDW ID], "No Match")
+		dataType: string
+		lineageTag: 6a371b7b-ec9f-4158-a68c-372b38d1facb
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactSalesOrderUNION = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("setimdb04", "BIDW", [Query="SELECT #(lf)      [WKOrderDate]#(lf)      ,[WKCompany]#(lf)      ,[WKCustomer]#(lf)      ,[WKSalesRep]#(lf)      ,[WKInvoiceAccount]#(lf)      ,[OrderNumber]#(lf)      ,[QuoteDate]#(lf)  FROM [BIDW].[DW].[V_FactSalesOrderUNION]#(lf) WHERE [WKOrderDate] >= DATEADD(day, -180, GETDATE()) AND #(lf)[WKCompany] IN (#(lf)    '114', '109', '104', '102', '98',#(lf)    '82', '7', '165', '153', '150',#(lf)    '148', '130', '125', '124', '121',#(lf)    '115', '110', '103', '99', '96',#(lf)    '95', '57', '83', '81', '68', #(lf)    '58', '41', '40', '21', '19'#(lf))#(lf)ORDER BY WKOrderDate ASC"])
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

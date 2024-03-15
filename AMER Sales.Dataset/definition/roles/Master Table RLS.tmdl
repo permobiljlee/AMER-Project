@@ -1,0 +1,18 @@
+role 'Master Table RLS'
+	modelPermission: read
+
+	tablePermission 'Sales Rep Map' =
+			[Logon] = USERPRINCIPALNAME()
+			||
+			[Email] = USERPRINCIPALNAME()
+			||
+			[Alt email] = USERPRINCIPALNAME()
+			||
+			[Joined Terr] = USERPRINCIPALNAME()
+			||
+			[ClinicalEmail] = USERPRINCIPALNAME()
+			||
+			[EditedRLS2] = USERPRINCIPALNAME()
+
+	annotation PBI_Id = dae9ec77e4a945f798925ca30621fdb9
+

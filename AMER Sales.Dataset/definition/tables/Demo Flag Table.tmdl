@@ -1,0 +1,30 @@
+table 'Demo Flag Table'
+	excludeFromModelRefresh
+	lineageTag: 4e22a1e6-e0aa-4c75-a32e-408e8869983d
+
+	column Demo?
+		dataType: string
+		lineageTag: 5ac35391-1ac3-45eb-b98b-e5723f02f0b2
+		summarizeBy: none
+		sourceColumn: Demo?
+
+		annotation SummarizationSetBy = Automatic
+
+	column Flag
+		dataType: string
+		lineageTag: 36477d0b-25e5-4a1d-a727-9d34555e7239
+		summarizeBy: none
+		sourceColumn: Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Demo Flag Table' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WcknNzVcISk1OzSxLTVHSUTJUitWJVvLLV0CXMFCKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Demo?" = _t, Flag = _t])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

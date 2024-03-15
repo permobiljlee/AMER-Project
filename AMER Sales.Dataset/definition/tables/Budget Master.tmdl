@@ -1,0 +1,78 @@
+table 'Budget Master'
+	lineageTag: b2511bc6-01bb-4688-872c-aaecc63036b1
+
+	column Region
+		dataType: string
+		lineageTag: d441d92e-9f1f-4c84-b71f-08e47079c4b9
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column RepName
+		dataType: string
+		lineageTag: 3b2a01aa-50ec-42ac-89c4-45b39e5d6ba4
+		summarizeBy: none
+		sourceColumn: RepName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Area
+		dataType: string
+		lineageTag: c3324f97-9184-4617-91bf-cb2ac59a0449
+		summarizeBy: none
+		sourceColumn: Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Line'
+		dataType: string
+		lineageTag: 0b20579f-6c09-431b-be91-1c52d3517680
+		summarizeBy: none
+		sourceColumn: Product Line
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2efe44c2-e876-4883-874c-08746ff07f1e
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Budget
+		dataType: double
+		lineageTag: 2d797409-5730-48f2-94a4-426d301b89ea
+		summarizeBy: sum
+		sourceColumn: Budget
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Rep Code'
+		dataType: string
+		lineageTag: c1d4f80d-6590-4469-9664-a400b016755f
+		summarizeBy: none
+		sourceColumn: Rep Code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Budget Master' = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows([]),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Workspaces{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+				    #"d2d66dc8-d28d-4247-8dde-095f118708ce" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="d2d66dc8-d28d-4247-8dde-095f118708ce"]}[Data],
+				    #"US Sales Budgets_" = #"d2d66dc8-d28d-4247-8dde-095f118708ce"{[entity="US Sales Budgets",version=""]}[Data]
+				in
+				    #"US Sales Budgets_"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,129 @@
+table ReturnOrderHeaders
+	lineageTag: 04700803-5f1a-445f-9ef7-3fdf0aa6cd30
+
+	column ReturnOrderHeader_SK
+		dataType: string
+		lineageTag: 04e01f33-2697-453a-891a-dc43f5e2b745
+		summarizeBy: none
+		sourceColumn: ReturnOrderHeader_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column RETURNORDERNUMBER
+		dataType: string
+		lineageTag: e4edca54-b3dc-4107-8e4e-21b66835e011
+		summarizeBy: none
+		sourceColumn: RETURNORDERNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMERACCOUNTNUMBER
+		dataType: string
+		lineageTag: ee8cf2e3-24f4-4716-901c-9b14c4244e9c
+		summarizeBy: none
+		sourceColumn: CUSTOMERACCOUNTNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMERSORDERREFERENCE
+		dataType: string
+		lineageTag: e5639fe2-a841-4ae7-805a-5ddddc3f342e
+		summarizeBy: none
+		sourceColumn: CUSTOMERSORDERREFERENCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISRETURNPROCESSINGSTOPPED
+		dataType: int64
+		formatString: 0
+		lineageTag: bd9424c4-32db-4be8-bfb5-9624d9fb05d1
+		summarizeBy: sum
+		sourceColumn: ISRETURNPROCESSINGSTOPPED
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMERREQUISITIONNUMBER
+		dataType: string
+		lineageTag: 5f7b27c5-52e7-4b57-b2b7-bd74140c19c6
+		summarizeBy: none
+		sourceColumn: CUSTOMERREQUISITIONNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column RETURNDEADLINE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a931bf45-108b-4202-969c-76ba99146518
+		summarizeBy: none
+		sourceColumn: RETURNDEADLINE
+
+		annotation SummarizationSetBy = Automatic
+
+	column RMANUMBER
+		dataType: string
+		lineageTag: 013c34dc-df54-46da-b4be-84ae1d9dd662
+		summarizeBy: none
+		sourceColumn: RMANUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMERRETURNREASONCODE
+		dataType: string
+		lineageTag: 9c5ad2c0-e69c-4004-87ee-4b01cee04888
+		summarizeBy: none
+		sourceColumn: CUSTOMERRETURNREASONCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISREPLACEMENTSALESORDERCREATED
+		dataType: int64
+		formatString: 0
+		lineageTag: 8fc96caf-2c7d-4d8e-8991-3540114cd6f3
+		summarizeBy: sum
+		sourceColumn: ISREPLACEMENTSALESORDERCREATED
+
+		annotation SummarizationSetBy = Automatic
+
+	column REPLACEMENTSALESORDERNUMBER
+		dataType: string
+		lineageTag: 896d937d-262d-4bf5-a859-3aa4bb927d43
+		summarizeBy: none
+		sourceColumn: REPLACEMENTSALESORDERNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column RETURNADDRESSNAME
+		dataType: string
+		lineageTag: 138189f0-6ea5-47a7-9a0a-e57c18edca96
+		summarizeBy: none
+		sourceColumn: RETURNADDRESSNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column RETURNORDERSTATUS
+		dataType: int64
+		formatString: 0
+		lineageTag: b8b00165-f34b-4eee-86a8-745601613448
+		summarizeBy: sum
+		sourceColumn: RETURNORDERSTATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATAAREAID
+		dataType: string
+		lineageTag: 0e0f7025-246e-4056-8d3f-b31c50c183ff
+		summarizeBy: none
+		sourceColumn: DATAAREAID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ReturnOrderHeaders = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [Query="SELECT [ReturnOrderHeader_SK]#(lf)      ,[RETURNORDERNUMBER]#(lf)      ,[CUSTOMERACCOUNTNUMBER]#(lf)      ,[CUSTOMERSORDERREFERENCE]#(lf)      ,[ISRETURNPROCESSINGSTOPPED]#(lf)      ,[CUSTOMERREQUISITIONNUMBER]#(lf)      ,[RETURNDEADLINE]#(lf)      ,[RMANUMBER]#(lf)      ,[CUSTOMERRETURNREASONCODE]#(lf)      ,[ISREPLACEMENTSALESORDERCREATED]#(lf)      ,[REPLACEMENTSALESORDERNUMBER]#(lf)      ,[RETURNADDRESSNAME]#(lf)      ,[RETURNORDERSTATUS]#(lf)      ,[DATAAREAID]#(lf)  FROM [sales_Rpt].[dim_ReturnOrderHeader]"])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

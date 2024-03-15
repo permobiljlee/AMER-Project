@@ -1,0 +1,254 @@
+table 'All S&P Orders'
+	lineageTag: 3f0b8350-f921-4eb3-aee5-c5305ac7dfce
+
+	column WKDeliveryDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e1ac6b01-689d-430a-80b8-db233fbe771b
+		summarizeBy: none
+		sourceColumn: WKDeliveryDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKOrderDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d745bf55-0de4-4f8a-a3a7-47d023a334f2
+		summarizeBy: none
+		sourceColumn: WKOrderDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKCompany
+		dataType: int64
+		formatString: 0
+		lineageTag: fc374ea7-0a2a-48cb-a23e-d847a3a3fe87
+		summarizeBy: sum
+		sourceColumn: WKCompany
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKCustomer
+		dataType: int64
+		formatString: 0
+		lineageTag: fa7990af-4a16-44ac-9f78-de37fc720c38
+		summarizeBy: sum
+		sourceColumn: WKCustomer
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKSalesRep
+		dataType: int64
+		formatString: 0
+		lineageTag: e195dfe6-bbc3-48d5-9d8d-7950bb30ec47
+		summarizeBy: sum
+		sourceColumn: WKSalesRep
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKProduct
+		dataType: int64
+		formatString: 0
+		lineageTag: 3f9d483e-c21f-4775-9467-746ae3f83267
+		summarizeBy: none
+		sourceColumn: WKProduct
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKItem
+		dataType: int64
+		formatString: 0
+		lineageTag: da1a1ab6-f937-446e-a209-717da547ba32
+		summarizeBy: none
+		sourceColumn: WKItem
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKReturnStatusHeader
+		dataType: int64
+		formatString: 0
+		lineageTag: d3d37384-c945-4be2-9efe-6af33b49911f
+		summarizeBy: sum
+		sourceColumn: WKReturnStatusHeader
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKDocumentStatus
+		dataType: int64
+		formatString: 0
+		lineageTag: 73fb3a48-493b-4e15-aaa3-1ed3de0d66fd
+		summarizeBy: sum
+		sourceColumn: WKDocumentStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKDeliveryMode
+		dataType: int64
+		formatString: 0
+		lineageTag: cb538c7d-8973-4921-bbc5-95c2b73d21db
+		summarizeBy: sum
+		sourceColumn: WKDeliveryMode
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKSalesStatus
+		dataType: int64
+		formatString: 0
+		lineageTag: 7fad35d3-6fd0-4834-bb97-9171bdc9997c
+		summarizeBy: sum
+		sourceColumn: WKSalesStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKSalesType
+		dataType: int64
+		formatString: 0
+		lineageTag: 6c269385-1b96-4327-b0bf-e2534b3327d1
+		summarizeBy: sum
+		sourceColumn: WKSalesType
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKOrderCategory
+		dataType: int64
+		formatString: 0
+		lineageTag: f58890c5-d0fd-4e22-84a2-27f8cd7eb356
+		summarizeBy: sum
+		sourceColumn: WKOrderCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKInvoiceAccount
+		dataType: int64
+		formatString: 0
+		lineageTag: 1ee42a37-31ca-4bca-b7b2-d1c3b7387039
+		summarizeBy: sum
+		sourceColumn: WKInvoiceAccount
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNumber
+		dataType: string
+		lineageTag: 1ccdb9a4-765c-45ea-a86f-b6d328a32045
+		summarizeBy: none
+		sourceColumn: OrderNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: 321d5b4f-c8d7-4886-9aaa-ddbb4b7c61d1
+		summarizeBy: sum
+		sourceColumn: LineNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column PONumber
+		dataType: string
+		lineageTag: 45a386b3-945b-42bb-9ef1-e8544a880172
+		summarizeBy: none
+		sourceColumn: PONumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column SerialNumber
+		dataType: string
+		lineageTag: 02de6c95-b9e5-4aff-9d73-8810777eea5d
+		summarizeBy: none
+		sourceColumn: SerialNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuoteDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 02881fee-2721-4328-b957-641ed7481e72
+		summarizeBy: none
+		sourceColumn: QuoteDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuoteConversionDays
+		dataType: int64
+		formatString: 0
+		lineageTag: dc6fbee1-212f-47e3-93de-84e7b2b94c8a
+		summarizeBy: sum
+		sourceColumn: QuoteConversionDays
+
+		annotation SummarizationSetBy = Automatic
+
+	column NetAmount
+		dataType: double
+		lineageTag: 2243bd55-699d-4f1f-913e-59320b10ebc8
+		summarizeBy: sum
+		sourceColumn: NetAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OrderQuantity
+		dataType: double
+		lineageTag: 8cc2c0b1-d77a-427a-b139-56a3a00920de
+		summarizeBy: sum
+		sourceColumn: OrderQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SalesRepCode =
+			
+			VAR customerId =
+			LOOKUPVALUE(
+			    '8DW DimCustomer'[DataAreaId],
+			    '8DW DimCustomer'[WKCustomer],
+			    'All S&P Orders'[WKCustomer])
+			
+			
+			RETURN
+			    IF('All S&P Orders'[WKCompany] = 82 &&
+			        customerId = "ROHO" &&
+			            'All S&P Orders'[WKSalesRep] <> 1195,
+			            LOOKUPVALUE('8DW DimCustomer'[ROHO Sales Rep Code],
+			                '8DW DimCustomer'[WKCustomer],
+			                'All S&P Orders'[WKCustomer]),
+			    IF(NOT('All S&P Orders'[WKCompany] IN {98,104}),
+			        LOOKUPVALUE('Global Rep Map (2)'[PERM Code NEW],
+			            'Global Rep Map (2)'[WKSalesRep],
+			            'All S&P Orders'[WKSalesRep]),
+			        LOOKUPVALUE('Global Rep Map (2)'[SalesRepCode],
+			            'Global Rep Map (2)'[WKSalesRep],
+			            'All S&P Orders'[WKSalesRep])
+			    ))
+		dataType: string
+		lineageTag: 191d6acd-9c73-4ffb-ab8f-81dbd066cbc0
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Provider Name' =
+			
+			LOOKUPVALUE(
+			    '8DW DimCustomer'[Provider Name],
+			    '8DW DimCustomer'[WKCustomer],
+			    'All S&P Orders'[WKCustomer])
+		dataType: string
+		lineageTag: f452ceec-619d-4d25-91e0-162568d1be3f
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'All S&P Orders-8caa88f4-ee62-4d77-aa84-af85e1a48314' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("setimdb04", "BIDW", [Query="SELECT [WKDeliveryDate]#(lf)    , [WKOrderDate]#(lf)    , [WKCompany]#(lf)    , [WKCustomer]#(lf)    , [WKSalesRep]#(lf)    , [WKProduct]#(lf)    , [WKItem]#(lf)    , [WKReturnStatusHeader]#(lf)    , [WKDocumentStatus]#(lf)    , [WKDeliveryMode]#(lf)    , [WKSalesStatus]#(lf)    , [WKSalesType]#(lf)    , [WKOrderCategory]#(lf)    , [WKInvoiceAccount]#(lf)    , [OrderNumber]#(lf)    , [LineNumber]#(lf)    , [PONumber]#(lf)    , [SerialNumber]#(lf)    , [QuoteDate]#(lf)    , [QuoteConversionDays]#(lf)    , [NetAmount]#(lf)    , [OrderQuantity]#(lf)FROM DW.FactSalesOrderROHO #(lf)WHERE [WKOrderDate] >= '10/1/2022'#(lf)UNION #(lf)SELECT [WKDeliveryDate]#(lf)    , [WKOrderDate]#(lf)    , [WKCompany]#(lf)    , [WKCustomer]#(lf)    , [WKSalesRep]#(lf)    , [WKProduct]#(lf)    , [WKItem]#(lf)    , [WKReturnStatusHeader]#(lf)    , [WKDocumentStatus]#(lf)    , [WKDeliveryMode]#(lf)    , [WKSalesStatus]#(lf)    , [WKSalesType]#(lf)    , [WKOrderCategory]#(lf)    , [WKInvoiceAccount]#(lf)    , [OrderNumber]#(lf)    , [LineNumber]#(lf)    , [PONumber]#(lf)    , [SerialNumber]#(lf)    , [QuoteDate]#(lf)    , [QuoteConversionDays]#(lf)    , [NetAmount]#(lf)    , [OrderQuantity]#(lf)FROM DW.FactSalesOrderCOMC#(lf)WHERE [WKOrderDate] >= '10/1/2022'"])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

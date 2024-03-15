@@ -1,0 +1,87 @@
+table 'PPA Matching List'
+	lineageTag: 6ba3f0a6-b3de-47f5-93f4-2b4339aed247
+
+	column 'Dealer Name'
+		dataType: string
+		lineageTag: 64cbb0a9-d6b5-475c-9b76-43dcda34b51a
+		summarizeBy: none
+		sourceColumn: Dealer Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Location Specific Dealer Name'
+		dataType: string
+		lineageTag: afdb567e-34c7-44fd-be77-8ce1a6e13d41
+		summarizeBy: none
+		sourceColumn: Location Specific Dealer Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dealer Code'
+		dataType: string
+		lineageTag: 827984e4-22bf-4610-92ab-ceb9f103b9dc
+		summarizeBy: none
+		sourceColumn: Dealer Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Company
+		dataType: string
+		lineageTag: 9c5d711a-93b4-48e3-9e69-20c5fede2664
+		summarizeBy: none
+		sourceColumn: Company
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trade
+		dataType: string
+		lineageTag: 35129623-4882-4cd5-a4d5-4a1e4ec2237d
+		summarizeBy: none
+		sourceColumn: Trade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Global
+		dataType: string
+		lineageTag: 6907593c-e647-4dcc-aa82-c438fc670942
+		summarizeBy: none
+		sourceColumn: Global
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 7eef7980-5a41-4b18-a46f-f94a3de63555
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Signed
+		dataType: string
+		lineageTag: 5f523b24-dc5f-40c4-86d6-c1737ddc7a8d
+		summarizeBy: none
+		sourceColumn: Signed
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'On Target List?'
+		dataType: string
+		lineageTag: be62ee76-474d-4f5e-941b-672a850c750a
+		summarizeBy: none
+		sourceColumn: On Target List?
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'PPA Matching List-76afa9f3-dd25-4c48-95af-6e4b04589463' = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Workspaces{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+				    #"701c11ea-0c04-4968-adc1-73e70c0535b5" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="701c11ea-0c04-4968-adc1-73e70c0535b5"]}[Data],
+				    #"PPA Matching List_" = #"701c11ea-0c04-4968-adc1-73e70c0535b5"{[entity="PPA Matching List",version=""]}[Data]
+				in
+				    #"PPA Matching List_"
+

@@ -1,0 +1,121 @@
+table DASH_BOOKINGS_TILITECHAIRONLY
+	lineageTag: 519cb1b7-96a1-4a19-b8ff-5a0b2af28ea4
+
+	column 'ORDER NO'
+		dataType: string
+		lineageTag: abdb7f8f-77a2-4b0e-ac42-3d0ac75621e0
+		summarizeBy: none
+		sourceColumn: ORDER NO
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0ddbb48c-2a45-418e-8365-fafd556b9a4a
+		summarizeBy: none
+		sourceColumn: DATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column QTY
+		dataType: double
+		lineageTag: 3dd261a5-8d8b-4c4a-b2b9-619beece0f1a
+		summarizeBy: sum
+		sourceColumn: QTY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'DEALER NAME'
+		dataType: string
+		lineageTag: de190253-1600-4a0f-a56f-c49410c8e935
+		summarizeBy: none
+		sourceColumn: DEALER NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PO NUMBER'
+		dataType: string
+		lineageTag: 7d32fcbb-9851-4c48-a434-ac11200af76a
+		summarizeBy: none
+		sourceColumn: PO NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PROD LINE'
+		dataType: string
+		lineageTag: 2c91f631-ac5c-4c72-8a07-37bc56c864e7
+		summarizeBy: none
+		sourceColumn: PROD LINE
+
+		annotation SummarizationSetBy = Automatic
+
+	column NET
+		dataType: double
+		lineageTag: 4822c61b-b43c-426a-9819-320eb7384021
+		summarizeBy: sum
+		sourceColumn: NET
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DEALERCODE
+		dataType: string
+		lineageTag: 01a78d73-df30-46b9-be8f-e26964cc9b7a
+		summarizeBy: none
+		sourceColumn: DEALERCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRANSTYPE
+		dataType: string
+		lineageTag: 2ab27f90-1895-4b5f-b3a5-11c63b396192
+		summarizeBy: none
+		sourceColumn: TRANSTYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column Merged_SalesOrderNo
+		dataType: string
+		lineageTag: 22ea58c0-7157-4ba0-af38-470ee8a8604e
+		summarizeBy: none
+		sourceColumn: Merged_SalesOrderNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status =
+			
+			LOOKUPVALUE(
+			    'TiLite Open Orders'[Status],
+			    'TiLite Open Orders'[SalesOrder],
+			    'DASH_BOOKINGS_TILITECHAIRONLY'[Merged_SalesOrderNo])
+		dataType: string
+		lineageTag: 70764d9e-af2f-416b-bf39-bb2566a37b93
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Rep Code' =
+			
+			RELATED('Sales Rep Map (2)'[Rep])
+		lineageTag: 3fb8a518-f501-498d-92ed-d8f080850df3
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DASH_BOOKINGS_TILITECHAIRONLY-be6d3873-cd86-4c5f-b82a-4c634ebb3b52 = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("USNASDB04", "SCALADB", [Query="SELECT [ORDER NO]#(lf)      ,[DATE]#(lf)      ,[QTY]#(lf)      ,[DEALER NAME]#(lf)      ,[PO NUMBER]#(lf)      ,[PROD LINE]#(lf)      ,[NET]#(lf)      ,[DEALERCODE]#(lf)      ,[TRANSTYPE]#(lf)  FROM [scalaDB].[dbo].[DASH_BOOKINGS_TILITE]#(lf)  WHERE [DATE] > '01-01-2023'#(lf)  ORDER BY [DATE] DESC "]),
+				    #"Inserted Merged Column" = Table.AddColumn(Source, "Merged", each Text.Combine({"00000000", [ORDER NO]}), type text),
+				    #"Renamed Columns" = Table.RenameColumns(#"Inserted Merged Column",{{"Merged", "Merged_SalesOrderNo"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

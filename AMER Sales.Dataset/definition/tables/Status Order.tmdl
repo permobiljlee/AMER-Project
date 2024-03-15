@@ -1,0 +1,29 @@
+table 'Status Order'
+	lineageTag: 298b79ff-a5c5-48df-be07-2be30ccc629c
+
+	column Index
+		dataType: string
+		lineageTag: 9439656e-f7f5-4783-9514-c45de3d5dbb0
+		summarizeBy: none
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: f7c95ca1-6268-4883-8db4-247091f3134c
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Status Order' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlDSUfIvSM1TitWJVjIEcpzz88pSi0pSU8AiJkARF2MzUwVdBWc/Zx8XpdhYAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Index = _t, Status = _t])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

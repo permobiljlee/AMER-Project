@@ -1,0 +1,36 @@
+table Holidays
+	lineageTag: c8d01d3e-d932-42d8-a538-307b49261c8d
+
+	column Holiday
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 40bda11f-6fa4-41a0-b045-286d752061fc
+		summarizeBy: none
+		sourceColumn: Holiday
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Name of holiday'
+		dataType: string
+		lineageTag: 54cfa796-e84a-441d-9165-f4e0ee1ba38b
+		summarizeBy: none
+		sourceColumn: Name of holiday
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Holidays-f1a35877-0f9f-4ea8-967b-5c526d4ea2b4 = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Workspaces{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+				    #"aa29e2e1-9290-4db2-8814-fc7d6cff2d4e" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="aa29e2e1-9290-4db2-8814-fc7d6cff2d4e"]}[Data],
+				    Holidays_ = #"aa29e2e1-9290-4db2-8814-fc7d6cff2d4e"{[entity="Holidays",version=""]}[Data]
+				in
+				    Holidays_
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,658 @@
+table '1 Measure Table'
+	lineageTag: 8b8532d4-19b4-40db-861b-220315530470
+
+	measure 'Days AC' = if(LASTDATE(DATESMTD('Date'[Date]))=TODAY(),sum('Date'[Business day])-1,sum('Date'[Business day]))
+		formatString: 0
+		displayFolder: _Days Measures
+		lineageTag: 971b0a3e-d03c-460e-990a-3b47195ebead
+
+	measure 'Days BU' = CALCULATE(SUM('Date'[Business day]),DATESBETWEEN('Date'[Date],STARTOFMONTH('Date'[Date]),ENDOFMONTH('Date'[Date])))
+		formatString: 0
+		displayFolder: _Days Measures
+		lineageTag: 6bfca31c-d6da-4816-9703-34ed06f73916
+
+	measure Days = sum('Date'[Business day])
+		formatString: 0
+		displayFolder: _Days Measures
+		lineageTag: 9e5d1f85-10c9-4077-a6d9-f9077e5d2596
+
+	measure 'Days - AC # of business days' = CALCULATE(SUM('Date'[Business day]), DATESBETWEEN('Date'[Date], STARTOFMONTH('Date'[Date]), MIN(ENDOFMONTH('Date'[Date]),TODAY() - 1) ))
+		formatString: 0
+		displayFolder: _Days Measures
+		lineageTag: 1a07aecb-5aea-4b33-8167-6fc543062120
+
+	measure BudgetPWC =
+			
+			CALCULATE(
+			    SUM('Budget Master'[Budget]),
+			        'Budget Master'[Product Line] = "Power Chairs")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .STB
+		lineageTag: 5fd0ddaa-ca31-430e-b93f-655fc482e6ed
+
+		changedProperty = FormatString
+
+	measure 'Budget Q2' =
+			
+			CALCULATE(
+			    SUM('Budget Master'[Budget]),
+			        'Date'[Quarter] = 2)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .STB
+		lineageTag: 572dd344-80fa-4044-a97b-5fdca87224e0
+
+		changedProperty = FormatString
+
+	measure 'Budget Q3' =
+			
+			CALCULATE(
+			    SUM('Budget Master'[Budget]),
+			        'Date'[Quarter] = 3)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .STB
+		lineageTag: 4f6b37b0-7c77-4d39-94b9-2b0bab6b30f7
+
+		changedProperty = FormatString
+
+	measure 'Budget Q4' =
+			
+			CALCULATE(
+			    SUM('Budget Master'[Budget]),
+			        'Date'[Quarter] = 4)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .STB
+		lineageTag: 351bbe78-40b4-49a1-bd48-0769c105db74
+
+		changedProperty = FormatString
+
+	measure 'Current Working Day of Qtr' = ```
+			
+			VAR div =
+			DIVIDE(
+			    [Full Year Budget],
+			    [Current Working Day - Quarter])
+			VAR mult = 
+			div * [Total Working Day - Quarter]
+			VAR final =
+			DIVIDE(
+			    mult,
+			    [Full Year Budget])
+			RETURN
+			[Total Working Day - Quarter]
+			
+			```
+		lineageTag: 45d0c293-0f54-4bf9-996f-bd57b26078ea
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q1 Power' =
+			
+			
+			CALCULATE([Invoiced Power Chairs - US],
+			        FILTER('Date',
+			            'Date'[Year] = 2023 &&
+			            'Date'[Quarter] = 1))
+		lineageTag: f1bdac30-42d8-4eae-849a-db196fd66e0a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Full Year Budget' =
+			
+			CALCULATE(
+			    SUM('Budget Master'[Budget]),
+			        FILTER('Date',
+			            'Date'[Year] = 2024))
+		displayFolder: .STB
+		lineageTag: f620c444-481f-442f-9104-e065765234d8
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure BudgetSDOnChair =
+			
+			CALCULATE(
+			    SUM('Budget Master'[Budget]),
+			        'Budget Master'[Product Line] = "SmartDrive On-Chair")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .STB
+		lineageTag: 31bcc280-6d01-4822-8cc1-22f4533bc187
+
+		changedProperty = FormatString
+
+	measure BudgetSDOffChair =
+			
+			CALCULATE(
+			    SUM('Budget Master'[Budget]),
+			        'Budget Master'[Product Line] = "SmartDrive Off Chair")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .STB
+		lineageTag: a373159b-63c3-461a-bd87-fa97f7419164
+
+		changedProperty = FormatString
+
+	measure BudgetTiLite =
+			
+			CALCULATE(
+			    SUM('Budget Master'[Budget]),
+			        'Budget Master'[Product Line] = "TiLite")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .STB
+		lineageTag: 7d176f01-9bed-4192-bb09-7f58dec9112f
+
+		changedProperty = FormatString
+
+	measure BudgetROHO =
+			
+			CALCULATE(
+			    SUM('Budget Master'[Budget]),
+			        'Budget Master'[Product Line] = "ROHO")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .STB
+		lineageTag: 1948b123-4bc5-4fb2-9d92-cb1dcb57b547
+
+		changedProperty = FormatString
+
+	measure BudgetComfort =
+			
+			CALCULATE(
+			    SUM('Budget Master'[Budget]),
+			        'Budget Master'[Product Line] = "Comfort")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .STB
+		lineageTag: cff6d33f-c64c-43cb-8bc1-f8d9a0ed53fa
+
+		changedProperty = FormatString
+
+	measure 'Column Width' = "*******************"
+		lineageTag: ee1a441c-0886-4ad0-a82e-bd3b0d4054ed
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Invoicing Act/Budget' =
+			
+			CALCULATE(
+			    SUM('Master Budget 2023'[Budget]))
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .STB
+		lineageTag: c41a36cb-82eb-4ab2-a225-b0596efd8934
+
+		changedProperty = FormatString
+
+	measure BudgetSD =
+			
+			CALCULATE(
+			    SUM('Budget Master'[Budget]),
+			        'Budget Master'[Product Line] IN {"SmartDrive"})
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .STB
+		lineageTag: e5e70a2a-8820-44c6-921c-4b3e61c6da5b
+
+	measure Budget3rdParty =
+			
+			CALCULATE(
+			    SUM('Budget Master'[Budget]),
+			        'Budget Master'[Product Line] = "Third Party")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .STB
+		lineageTag: 3933e3f0-f2cf-4790-a62d-91829a6b95ad
+
+	measure BudgetTru =
+			
+			CALCULATE(
+			    SUM('Budget Master'[Budget]),
+			        'Budget Master'[Product Line] = "Trushape")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .STB
+		lineageTag: 64007bf6-799b-45d1-b5de-abbabb051f15
+
+	measure 'Growth Formatting -3' =
+			
+			VAR growth =
+			CALCULATE(
+			    [Heat Map -3 Month Growth %])
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        growth > 0, "#80f38d",
+			        growth = 0, "#ffffff",
+			        growth < 0, "#f18a8a")
+		lineageTag: ae4d0371-2bf0-44f4-a48b-2018b15e64c0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Growth Formatting -2' =
+			
+			VAR growth =
+			CALCULATE(
+			    [Heat Map -2 Month Growth %])
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        growth > 0, "#80f38d",
+			        growth = 0, "#ffffff",
+			        growth < 0, "#f18a8a")
+		lineageTag: b41a94a3-d31a-4288-b4d3-f29c9f589d88
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Growth Formatting -1' =
+			
+			VAR growth =
+			CALCULATE(
+			    [Heat Map -1 Month Growth %])
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        growth > 0, "#80f38d",
+			        growth = 0, "#ffffff",
+			        growth < 0, "#f18a8a")
+		lineageTag: 36d33a6c-21c9-4eeb-ad45-14f2a7005c15
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Growth Formatting -0' =
+			
+			VAR growth =
+			CALCULATE(
+			    [Heat Map 0 Month Growth %])
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        growth > 0, "#80f38d",
+			        growth = 0, "#ffffff",
+			        growth < 0, "#f18a8a")
+		lineageTag: 459f243c-109d-49f0-ac1e-7a342fecd19b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '2023 Actuals - Power Chair' =
+			
+			CALCULATE(
+			    SUM('Master Actuals 2023'[Invoicing]),
+			        'Master Actuals 2023'[Product Line] = "Power")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .Sales Performance (US)\.Sales Bonus & Commissions (US)
+		lineageTag: 0e3041c3-0123-4582-b925-02849a836327
+
+		changedProperty = FormatString
+
+	measure '2023 Actuals - Manual' =
+			
+			CALCULATE(
+			    SUM('Master Actuals 2023'[Invoicing]),
+			        'Master Actuals 2023'[Product Line] = "Manual")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .Sales Performance (US)\.Sales Bonus & Commissions (US)
+		lineageTag: 5e1ba09a-e3cb-4966-adb8-ab7ee5061c88
+
+		changedProperty = FormatString
+
+	measure '2023 Actuals - Comfort' =
+			
+			CALCULATE(
+			    SUM('Master Actuals 2023'[Invoicing]),
+			        'Master Actuals 2023'[Product Line] = "Comfort")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .Sales Performance (US)\.Sales Bonus & Commissions (US)
+		lineageTag: ee066ff0-09a9-4c53-999e-da20dc437168
+
+		changedProperty = FormatString
+
+	measure '2023 Actuals - ROHO' =
+			
+			CALCULATE(
+			    SUM('Master Actuals 2023'[Invoicing]),
+			        'Master Actuals 2023'[Product Line] = "ROHO")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .Sales Performance (US)\.Sales Bonus & Commissions (US)
+		lineageTag: 696ed3f5-0dcc-463c-a3ad-ab35d7d402f7
+
+		changedProperty = FormatString
+
+	measure '2023 Actuals - SmartDrive' =
+			
+			CALCULATE(
+			    SUM('Master Actuals 2023'[Invoicing]),
+			        'Master Actuals 2023'[Product Line] = "SmartDrive")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .Sales Performance (US)\.Sales Bonus & Commissions (US)
+		lineageTag: 1308c4f3-28d6-4dfd-90e6-e4a99ec97303
+
+		changedProperty = FormatString
+
+	measure 'BudgetPWC YTD' = ```
+			
+			
+			// Determine Quarter based on today's date (1,2,3,4)
+			VAR CurrentQuarter =
+			    QUARTER( ( TODAY () ))
+			
+			// Calculate Previous Quarters Full Budget based on today's date (i.e. less than 3 would be Q1 & Q2)
+			VAR PreviousCompletedBudgets =
+			    CALCULATE([Full Year Budget],
+			        FILTER('Budget Master',
+			            'Budget Master'[Product Line] = "Power Chairs"),
+			        FILTER('Date',
+			            'Date'[Quarter] < CurrentQuarter
+			        ))
+			
+			// Current Quarter Full Budget
+			VAR CurrentQtrBudget =
+			CALCULATE(
+			    CALCULATE([Full Year Budget],
+			        FILTER('Budget Master',
+			            'Budget Master'[Product Line] = "Power Chairs"),
+			        FILTER('Date',
+			            'Date'[Quarter] = QUARTER(TODAY()))))
+			
+			// Percentage complete through this quarter based on working days (i.e. 41/63 = %)
+			VAR CurrentQtr_Percent_Complete =
+			DIVIDE([Current Working Day - Quarter], [Total Working Day - Quarter])
+			
+			// Multiply Current Quarter Budget by % Complete 
+			VAR CurrentQtrBudget_to_date =
+			CurrentQtr_Percent_Complete * CurrentQtrBudget
+			
+			RETURN
+			PreviousCompletedBudgets + CurrentQtrBudget_to_date
+			```
+		formatString: $ #,##0;($ #,##0)
+		displayFolder: .STB
+		lineageTag: 4a4f08e7-826d-4bf0-9e6f-af28ee20e4ea
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'BudgetTiLIte YTD' = ```
+			
+			
+			// Determine Quarter based on today's date (1,2,3,4)
+			VAR CurrentQuarter =
+			    QUARTER( ( TODAY () ))
+			
+			// Calculate Previous Quarters Full Budget based on today's date (i.e. less than 3 would be Q1 & Q2)
+			VAR PreviousCompletedBudgets =
+			    CALCULATE([Full Year Budget],
+			        FILTER('Budget Master',
+			            'Budget Master'[Product Line] = "TiLite"),
+			        FILTER('Date',
+			            'Date'[Quarter] < CurrentQuarter
+			        ))
+			
+			// Current Quarter Full Budget
+			VAR CurrentQtrBudget =
+			CALCULATE(
+			    CALCULATE([Full Year Budget],
+			        FILTER('Budget Master',
+			            'Budget Master'[Product Line] = "TiLite"),
+			        FILTER('Date',
+			            'Date'[Quarter] = QUARTER(TODAY()))))
+			
+			// Percentage complete through this quarter based on working days (i.e. 41/63 = %)
+			VAR CurrentQtr_Percent_Complete =
+			DIVIDE([Current Working Day - Quarter], [Total Working Day - Quarter])
+			
+			// Multiply Current Quarter Budget by % Complete 
+			VAR CurrentQtrBudget_to_date =
+			CurrentQtr_Percent_Complete * CurrentQtrBudget
+			
+			RETURN
+			PreviousCompletedBudgets + CurrentQtrBudget_to_date
+			```
+		formatString: $ #,##0;($ #,##0)
+		displayFolder: .STB
+		lineageTag: 174de3e8-d524-42ec-bb30-139a9a0d1ec1
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'BudgetComfort YTD' = ```
+			
+			
+			// Determine Quarter based on today's date (1,2,3,4)
+			VAR CurrentQuarter =
+			    QUARTER( ( TODAY () ))
+			
+			// Calculate Previous Quarters Full Budget based on today's date (i.e. less than 3 would be Q1 & Q2)
+			VAR PreviousCompletedBudgets =
+			    CALCULATE([Full Year Budget],
+			        FILTER('Budget Master',
+			            'Budget Master'[Product Line] = "Comfort"),
+			        FILTER('Date',
+			            'Date'[Quarter] < CurrentQuarter
+			        ))
+			
+			// Current Quarter Full Budget
+			VAR CurrentQtrBudget =
+			CALCULATE(
+			    CALCULATE([Full Year Budget],
+			        FILTER('Budget Master',
+			            'Budget Master'[Product Line] = "Comfort"),
+			        FILTER('Date',
+			            'Date'[Quarter] = QUARTER(TODAY()))))
+			
+			// Percentage complete through this quarter based on working days (i.e. 41/63 = %)
+			VAR CurrentQtr_Percent_Complete =
+			DIVIDE([Current Working Day - Quarter], [Total Working Day - Quarter])
+			
+			// Multiply Current Quarter Budget by % Complete 
+			VAR CurrentQtrBudget_to_date =
+			CurrentQtr_Percent_Complete * CurrentQtrBudget
+			
+			RETURN
+			PreviousCompletedBudgets + CurrentQtrBudget_to_date
+			```
+		formatString: $ #,##0;($ #,##0)
+		displayFolder: .STB
+		lineageTag: d128932d-b0d9-4b33-bb9f-990918893190
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'BudgetROHO YTD' = ```
+			
+			
+			// Determine Quarter based on today's date (1,2,3,4)
+			VAR CurrentQuarter =
+			    QUARTER( ( TODAY () ))
+			
+			// Calculate Previous Quarters Full Budget based on today's date (i.e. less than 3 would be Q1 & Q2)
+			VAR PreviousCompletedBudgets =
+			    CALCULATE([Full Year Budget],
+			        FILTER('Budget Master',
+			            'Budget Master'[Product Line] = "ROHO"),
+			        FILTER('Date',
+			            'Date'[Quarter] < CurrentQuarter
+			        ))
+			
+			// Current Quarter Full Budget
+			VAR CurrentQtrBudget =
+			CALCULATE(
+			    CALCULATE([Full Year Budget],
+			        FILTER('Budget Master',
+			            'Budget Master'[Product Line] = "ROHO"),
+			        FILTER('Date',
+			            'Date'[Quarter] = QUARTER(TODAY()))))
+			
+			// Percentage complete through this quarter based on working days (i.e. 41/63 = %)
+			VAR CurrentQtr_Percent_Complete =
+			DIVIDE([Current Working Day - Quarter], [Total Working Day - Quarter])
+			
+			// Multiply Current Quarter Budget by % Complete 
+			VAR CurrentQtrBudget_to_date =
+			CurrentQtr_Percent_Complete * CurrentQtrBudget
+			
+			RETURN
+			PreviousCompletedBudgets + CurrentQtrBudget_to_date
+			```
+		formatString: $ #,##0;($ #,##0)
+		displayFolder: .STB
+		lineageTag: d69c226e-9de1-4922-8a14-2097967389a0
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'BudgetSD YTD' = ```
+			
+			
+			// Determine Quarter based on today's date (1,2,3,4)
+			VAR CurrentQuarter =
+			    QUARTER( ( TODAY () ))
+			
+			// Calculate Previous Quarters Full Budget based on today's date (i.e. less than 3 would be Q1 & Q2)
+			VAR PreviousCompletedBudgets =
+			    CALCULATE([Full Year Budget],
+			        FILTER('Budget Master',
+			            'Budget Master'[Product Line] = "SmartDrive"),
+			        FILTER('Date',
+			            'Date'[Quarter] < CurrentQuarter
+			        ))
+			
+			// Current Quarter Full Budget
+			VAR CurrentQtrBudget =
+			CALCULATE(
+			    CALCULATE([Full Year Budget],
+			        FILTER('Budget Master',
+			            'Budget Master'[Product Line] = "SmartDrive"),
+			        FILTER('Date',
+			            'Date'[Quarter] = QUARTER(TODAY()))))
+			
+			// Percentage complete through this quarter based on working days (i.e. 41/63 = %)
+			VAR CurrentQtr_Percent_Complete =
+			DIVIDE([Current Working Day - Quarter], [Total Working Day - Quarter])
+			
+			// Multiply Current Quarter Budget by % Complete 
+			VAR CurrentQtrBudget_to_date =
+			CurrentQtr_Percent_Complete * CurrentQtrBudget
+			
+			RETURN
+			PreviousCompletedBudgets + CurrentQtrBudget_to_date
+			```
+		formatString: $ #,##0;($ #,##0)
+		displayFolder: .STB
+		lineageTag: f73d40aa-4356-43d5-9c45-4acbe1b30436
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '2023 Actuals - US Total' = ```
+			
+			[2023 Actuals - Power Chair] +
+			[2023 Actuals - Manual] +
+			[2023 Actuals - SmartDrive] +
+			[2023 Actuals - ROHO] +
+			[2023 Actuals - Comfort] 
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .Sales Performance (US)\.Sales Bonus & Commissions (US)
+		lineageTag: fce86f9c-2655-4587-9f2a-8b66d6122307
+
+		changedProperty = FormatString
+
+	measure 'BudgetTotal YTD' =
+			
+			[BudgetPWC YTD] +
+			[BudgetTiLIte YTD] +
+			[BudgetSD YTD] +
+			[BudgetROHO YTD] +
+			[BudgetComfort YTD]
+		formatString: $ #,##0;($ #,##0)
+		displayFolder: .STB
+		lineageTag: 9121b8e3-f11b-497f-a33e-6028da22f36d
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'BudgetTotal FY' =
+			
+			[BudgetPWC] +
+			[BudgetTiLIte] +
+			[BudgetSD] +
+			[BudgetROHO] +
+			[BudgetComfort]
+		formatString: $ #,##0;($ #,##0)
+		displayFolder: .STB
+		lineageTag: c5938a46-ade1-411f-a1e8-9a1cce09ce13
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rank TiLite 2' =
+			
+			RANKX(
+			        'YTD Rankings_Total S',
+			    'YTD Rankings_Total S'[TiLite $'s],
+			    ,DESC,
+			    DENSE
+			)
+		lineageTag: 2277d6d9-76e3-4924-8f45-0443901b1047
+
+	measure 'BudgetThird Party YTD' = ```
+			
+			
+			// Determine Quarter based on today's date (1,2,3,4)
+			VAR CurrentQuarter =
+			    QUARTER( ( TODAY () ))
+			
+			// Calculate Previous Quarters Full Budget based on today's date (i.e. less than 3 would be Q1 & Q2)
+			VAR PreviousCompletedBudgets =
+			    CALCULATE([Full Year Budget],
+			        FILTER('Budget Master',
+			            'Budget Master'[Product Line] = "Third Party"),
+			        FILTER('Date',
+			            'Date'[Quarter] < CurrentQuarter
+			        ))
+			
+			// Current Quarter Full Budget
+			VAR CurrentQtrBudget =
+			CALCULATE(
+			    CALCULATE([Full Year Budget],
+			        FILTER('Budget Master',
+			            'Budget Master'[Product Line] = "Third Party"),
+			        FILTER('Date',
+			            'Date'[Quarter] = QUARTER(TODAY()))))
+			
+			// Percentage complete through this quarter based on working days (i.e. 41/63 = %)
+			VAR CurrentQtr_Percent_Complete =
+			DIVIDE([Current Working Day - Quarter], [Total Working Day - Quarter])
+			
+			// Multiply Current Quarter Budget by % Complete 
+			VAR CurrentQtrBudget_to_date =
+			CurrentQtr_Percent_Complete * CurrentQtrBudget
+			
+			RETURN
+			PreviousCompletedBudgets + CurrentQtrBudget_to_date
+			```
+		formatString: $ #,##0;($ #,##0)
+		displayFolder: .STB
+		lineageTag: c2b97dc4-857a-4a81-8f81-08b00f9b2d7e
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '1 Measure Table-ad8a7e87-5873-4e03-8c6f-49a07c309d4a' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

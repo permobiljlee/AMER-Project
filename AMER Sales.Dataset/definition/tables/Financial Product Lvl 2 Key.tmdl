@@ -1,0 +1,21 @@
+table 'Financial Product Lvl 2 Key'
+	lineageTag: 160b0786-c08f-46d4-aa4d-26e5aa996103
+
+	column 'Financial product code Lvl2'
+		dataType: string
+		lineageTag: cd580009-0ab0-4ccf-9542-2549fa77d771
+		summarizeBy: none
+		sourceColumn: Financial product code Lvl2
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Financial Product Lvl 2 Key-6c9a26a2-f2fa-47ff-a4f7-fd1b047df596' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WCs3Lzssvz1OK1YlWcgSTzhmJmUVglhOYDICI5ufmluZlJieWZObnKcSUGhgYmSk45+eVFOXngBVEQJRBSIgeBd/M4uLMvHQwxwdMRoLJEDDpCyb99CHW+kMsg3ACIHLGEHOiIGLhzoZgRhCYDAaTYUD1sQA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Financial product code Lvl2" = _t])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

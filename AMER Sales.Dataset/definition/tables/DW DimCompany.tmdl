@@ -1,0 +1,128 @@
+table 'DW DimCompany'
+	lineageTag: b58cba69-0b0e-4efa-9653-c8708696f177
+
+	column WKCompany
+		dataType: int64
+		formatString: 0
+		lineageTag: 30c09894-8f92-4408-a034-a349120e0514
+		summarizeBy: none
+		sourceColumn: WKCompany
+
+		annotation SummarizationSetBy = Automatic
+
+	column BKCompany
+		dataType: string
+		lineageTag: e8c7d260-2ae2-44fc-9894-23bef3de1857
+		summarizeBy: none
+		sourceColumn: BKCompany
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompanyName
+		dataType: string
+		lineageTag: 6da1261a-870f-49a7-8e99-407ac0f5ce33
+		summarizeBy: none
+		sourceColumn: CompanyName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompanyCurrency
+		dataType: string
+		lineageTag: 3503c8e9-ab05-4102-ba8b-d93d6e2f9ae9
+		summarizeBy: none
+		sourceColumn: CompanyCurrency
+
+		annotation SummarizationSetBy = Automatic
+
+	column DW_ValidFrom
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7b353291-82a3-432a-89a9-8c6af6313dd8
+		summarizeBy: none
+		sourceColumn: DW_ValidFrom
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DW_UpdateDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 400c3216-6b14-4732-9053-d7508aad3248
+		summarizeBy: none
+		sourceColumn: DW_UpdateDateTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column DW_IsDeleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1f08341c-ed11-428a-8cca-62e7345b448c
+		summarizeBy: none
+		sourceColumn: DW_IsDeleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column DW_IsInferred
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2e0abe7d-f9fd-4103-98d2-6da1f810211b
+		summarizeBy: none
+		sourceColumn: DW_IsInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column DW_IsCurrent
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0260d890-031c-454f-a0f7-820ae6011250
+		summarizeBy: none
+		sourceColumn: DW_IsCurrent
+
+		annotation SummarizationSetBy = Automatic
+
+	column DW_Rowid
+		dataType: int64
+		formatString: 0
+		lineageTag: c0d7cf06-71ac-4424-87f5-c469e35f6d36
+		summarizeBy: none
+		sourceColumn: DW_Rowid
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompanyLevel1
+		dataType: string
+		lineageTag: 6bf072f5-7e13-45c5-832f-239cfc6ea284
+		summarizeBy: none
+		sourceColumn: CompanyLevel1
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompanyLevel2
+		dataType: string
+		lineageTag: 2686e7e3-4929-40ad-b56d-19f245445f81
+		summarizeBy: none
+		sourceColumn: CompanyLevel2
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompanyLevel3
+		dataType: string
+		lineageTag: 149fd1da-5c47-4756-8fd4-40a53782af75
+		summarizeBy: none
+		sourceColumn: CompanyLevel3
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DW DimCompany-7623d7ed-9bb5-4d7c-bbfc-7de73425611c' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("setimdb04"),
+				    BIDW = Source{[Name="BIDW"]}[Data],
+				    DW_DimCompany = BIDW{[Schema="DW",Item="DimCompany"]}[Data]
+				in
+				    DW_DimCompany
+
+	annotation PBI_ResultType = Table
+

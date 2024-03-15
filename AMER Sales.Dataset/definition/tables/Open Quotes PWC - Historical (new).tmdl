@@ -1,0 +1,148 @@
+table 'Open Quotes PWC - Historical (new)'
+	lineageTag: a39f7923-212c-4762-9914-ca4f1479e6c1
+
+	column 'Date Key'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 84ff998b-e520-4e11-a6b8-90a7a7a0ed23
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Date Key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Number'
+		dataType: string
+		lineageTag: 4481380c-9f4f-4cf6-8b95-a640b0c07ce7
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Order Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date (Quote)'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 23555e52-e90b-4e33-90dc-93ea6b4dd4fe
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Date (Quote)]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quote Count'
+		dataType: int64
+		formatString: 0
+		lineageTag: b35c9588-5b70-4d03-8265-97c8198134b3
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Quote Count]
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderStatus
+		dataType: int64
+		formatString: 0
+		lineageTag: 55832104-97ea-4d14-a30d-2a8e9566322d
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [OrderStatus]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quote Age'
+		dataType: int64
+		formatString: 0
+		lineageTag: 27a26933-5331-47ca-868a-71732fc05ca2
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Quote Age]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dealer/Country
+		dataType: string
+		lineageTag: 57dc3edd-f544-4562-abae-96e4f600cbed
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Dealer/Country]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Chair Model'
+		dataType: string
+		lineageTag: d0a9ead8-f85b-472e-8e63-42f567b13fa7
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Chair Model]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipTo
+		dataType: string
+		lineageTag: cf0cdc65-ae7a-4225-b2df-6447d22c3494
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [ShipTo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuoteID
+		dataType: string
+		lineageTag: b0949ad4-c482-46b7-abc5-d228b0784234
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [QuoteID]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rep
+		dataType: string
+		lineageTag: 32fbb4af-2e5f-4fc3-a832-82362e1d51ed
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Rep]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Open Quotes PWC - Historical (new)' = calculated
+		mode: import
+		source =
+				
+				SELECTCOLUMNS(
+				    GENERATE(
+				        'QuotesTEST',
+				        FILTER(
+				            ALLNOBLANKROW('Date'),
+				            AND(
+				                'Date'[Date] >= 'QuotesTEST'[Quote_Date_Key],
+				                'Date'[Date] <= 'QuotesTEST'[Order_Date Key]
+				            )
+				        )
+				    ),
+				    "Date Key", 'Date'[Date],
+				    "QuoteID", 'QuotesTEST'[QuoteID],
+				    "Rep", 'QuotesTEST'[Rep],
+				    "ShipTo", 'QuotesTEST'[ShipToCustomer_SK],
+				    "Order Number", 'QuotesTEST'[OrderNumber],
+				    "Date (Quote)", 'QuotesTEST'[Quote_Date_Key],
+				    "Dealer/Country", 'QuotesTEST'[Dealer/Country],
+				    "Chair Model", 'QuotesTEST'[Chair Model],
+				    "Quote Count", 1,
+				    "OrderStatus", 'QuotesTEST'[OrderStatus],
+				    "Quote Age", DATEDIFF( 'QuotesTEST'[Quote_Date_Key], 'Date'[Date], DAY)
+				)
+
+	annotation PBI_Id = f0f7ad40d2d24444b0a9bc6c0c8165db
+

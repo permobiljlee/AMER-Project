@@ -1,0 +1,106 @@
+table 'Time Int.'
+	lineageTag: 68142305-5f45-47c0-a9b7-89797448f44a
+
+	calculationGroup
+		precedence: 1
+
+		calculationItem 2022 = ```
+				CALCULATE( 
+				    SELECTEDMEASURE(),
+				    DATESBETWEEN('Date'[Date], MIN('Date'[PPY]), MAX('Date'[PPY])))
+				```
+
+		calculationItem 2023 = ```
+				CALCULATE( 
+				    SELECTEDMEASURE(),
+				    DATESBETWEEN('Date'[Date], MIN('Date'[PY]), MAX('Date'[PY])))
+				```
+
+		calculationItem 'YoY (Previous)' = ```
+				VAR cy =
+				CALCULATE( 
+				    SELECTEDMEASURE(),
+				    DATESBETWEEN('Date'[Date], MIN('Date'[PY]), MAX('Date'[PY])))
+				VAR py =
+				CALCULATE( 
+				    SELECTEDMEASURE(),
+				    DATESBETWEEN('Date'[Date], MIN('Date'[PPY]), MAX('Date'[PPY])))
+				RETURN
+				CALCULATE(
+				    IF(cy > 0 && py > 0,
+				        DIVIDE(
+				            (cy - py),
+				            py), BLANK()), 
+				            'Date'[YTD] = "YTD")
+				```
+
+			formatStringDefinition = "0%"
+
+		calculationItem 2024 = ```
+				CALCULATE( 
+				    SELECTEDMEASURE(),
+				    DATESBETWEEN('Date'[Date], MIN('Date'[Date]), MAX('Date'[Date])))
+				```
+
+		calculationItem 'YoY (Current)' = ```
+				VAR cy =
+				CALCULATE( 
+				    SELECTEDMEASURE(),
+				    DATESBETWEEN('Date'[Date], MIN('Date'[Date]), MAX('Date'[Date])))
+				VAR py =
+				CALCULATE( 
+				    SELECTEDMEASURE(),
+				    DATESBETWEEN('Date'[Date], MIN('Date'[PY]), MAX('Date'[PY])))
+				RETURN
+				CALCULATE(
+				    IF(cy > 0 && py > 0,
+				        DIVIDE(
+				            (cy - py),
+				            py), BLANK()), 
+				            'Date'[YTD] = "YTD")
+				```
+
+			formatStringDefinition = "#%"
+
+		calculationItem YTD = ```
+				CALCULATE( 
+				    SELECTEDMEASURE(),
+				    'Date'[YTD] = "YTD")
+				```
+
+		calculationItem QTD = ```
+				CALCULATE( 
+				    SELECTEDMEASURE(),
+				    'Date'[Quarter] = QUARTER(TODAY()))
+				```
+
+		calculationItem MTD = ```
+				CALCULATE( 
+				    SELECTEDMEASURE(),
+				    'Date'[Month] = MONTH(TODAY()))
+				```
+
+		calculationItem Today = ```
+				CALCULATE( 
+				    SELECTEDMEASURE(),
+				    'Date'[Date] = TODAY())
+				```
+
+	column Name
+		dataType: string
+		lineageTag: 465d1b65-1bfa-45e6-8522-92871731a6b0
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: ae4c88e7-88c9-4096-aa06-7bd04701c16d
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+

@@ -1,0 +1,93 @@
+table 'Master Actuals 2023 - CAN'
+	lineageTag: dabe3926-5103-4391-8d1e-7daf93ff1224
+
+	column 'Canada Rep Mapping'
+		dataType: string
+		lineageTag: 69404ca7-7a25-41c4-90f4-f56b1b94a5c0
+		summarizeBy: none
+		sourceColumn: Canada Rep Mapping
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attribute
+		dataType: string
+		lineageTag: 8bc91915-59bb-4b50-8212-f332183b07af
+		summarizeBy: none
+		sourceColumn: Attribute
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoicing
+		dataType: double
+		lineageTag: e44dd673-0fb6-4b92-8c6b-fe7e71667e2b
+		summarizeBy: sum
+		sourceColumn: Invoicing
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 5e53908e-c290-4ceb-b0bc-0421b7d50b29
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b5e1dae3-5cee-443b-96e4-8d1aae810e8a
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column REP
+		dataType: string
+		lineageTag: 6691071a-0b3c-4f6a-99a9-87f55b471053
+		summarizeBy: none
+		sourceColumn: REP
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month = MONTH([Date])
+		dataType: int64
+		formatString: 0
+		lineageTag: 849a3408-d4a0-489d-8e5e-e19791698298
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column EOMonth =
+			
+			YEAR([Date]) * 10000 + MONTH([Date]) * 100 + DAY(EOMONTH([Date], 0))
+		dataType: int64
+		formatString: 0
+		lineageTag: d89e4a11-27dc-4cd4-8a14-e63821f57d3b
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Master Actuals 2023 - CAN' = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Workspaces{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+				    #"5a1c40bf-39a4-42dd-995f-95c2fed52ed5" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="5a1c40bf-39a4-42dd-995f-95c2fed52ed5"]}[Data],
+				    #"Master CAN Actuals_" = #"5a1c40bf-39a4-42dd-995f-95c2fed52ed5"{[entity="Master CAN Actuals",version=""]}[Data]
+				in
+				    #"Master CAN Actuals_"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

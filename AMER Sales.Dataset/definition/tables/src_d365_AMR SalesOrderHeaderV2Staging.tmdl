@@ -1,0 +1,67 @@
+table 'src_d365_AMR SalesOrderHeaderV2Staging'
+	lineageTag: 4cd6de94-bb9d-4d5d-a0a0-4d288085726f
+
+	column ORDERCREATIONDATETIME
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e7c4610d-0743-4b3d-ad78-dec7a3854d30
+		summarizeBy: none
+		sourceColumn: ORDERCREATIONDATETIME
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESORDERNUMBER
+		dataType: string
+		lineageTag: 4bb047a3-df65-4deb-840c-2854c4d0a73c
+		summarizeBy: none
+		sourceColumn: SALESORDERNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column COMMISSIONSALESREPRESENTATIVEGROUPID
+		dataType: string
+		lineageTag: 3a61aa87-690a-41ac-904c-d5fce3f46563
+		summarizeBy: none
+		sourceColumn: COMMISSIONSALESREPRESENTATIVEGROUPID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Rep Code' = ```
+			
+			VAR newcan =
+			IF(
+			    [DATAAREAID] = "CAN",
+			    LEFT('src_d365_AMR SalesOrderHeaderV2Staging'[COMMISSIONSALESREPRESENTATIVEGROUPID], 3),
+			    'src_d365_AMR SalesOrderHeaderV2Staging'[COMMISSIONSALESREPRESENTATIVEGROUPID])
+			
+			RETURN    
+			LOOKUPVALUE(
+			    'Sales Rep Map'[Rep],
+			    'Sales Rep Map'[D365 Commission Group ID(sometimes called SalesUnit)],
+			    newcan)
+			```
+		dataType: string
+		lineageTag: 3da0592d-6088-4a5c-880c-e82a57136524
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATAAREAID
+		dataType: string
+		lineageTag: cc359aa4-96bc-46c4-a670-b645d739455d
+		summarizeBy: none
+		sourceColumn: DATAAREAID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'src_d365_AMR SalesOrderHeaderV2Staging-2bb9cf54-1a9a-4c2f-bd3a-5a3c324138d9' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [Query="SELECT [ORDERCREATIONDATETIME]#(lf)      ,[SALESORDERNUMBER]#(lf)      ,[COMMISSIONSALESREPRESENTATIVEGROUPID]#(lf)      ,[DATAAREAID]#(lf)      FROM [src_d365_AMR].[SalesOrderHeaderV2Staging]#(lf)#(tab)  WHERE [ORDERCREATIONDATETIME] > '01-01-2022'#(lf)          AND [ORDERINGCUSTOMERACCOUNTNUMBER] <> '1001000'#(lf)#(tab)  ORDER BY [ORDERCREATIONDATETIME] DESC"])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

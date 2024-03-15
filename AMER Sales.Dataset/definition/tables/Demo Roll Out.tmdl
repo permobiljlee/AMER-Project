@@ -1,0 +1,152 @@
+table 'Demo Roll Out'
+	lineageTag: dc5ea54c-0b94-499a-a2e1-8bee576f1388
+
+	column Area
+		dataType: string
+		lineageTag: d606ae6d-e074-4c91-82b1-537f1ac52b5e
+		summarizeBy: none
+		sourceColumn: Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column Clinic
+		dataType: string
+		lineageTag: 9e8a627d-26c2-424e-a8bc-82130b10d85c
+		summarizeBy: none
+		sourceColumn: Clinic
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 55b90d15-4bfe-4e79-bceb-a83e0167fb23
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'M3 Corpus'
+		dataType: int64
+		formatString: 0
+		lineageTag: ae7441dc-2c2b-48e4-a3cc-3ef124929843
+		summarizeBy: sum
+		sourceColumn: M3 Corpus
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'F3 Corpus'
+		dataType: int64
+		formatString: 0
+		lineageTag: 043203dc-d3aa-4492-b1ee-4ac51ec8053e
+		summarizeBy: sum
+		sourceColumn: F3 Corpus
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'M300 Corpus HD'
+		dataType: int64
+		formatString: 0
+		lineageTag: 940957a7-add6-4a5a-bd19-aa546fbf765a
+		summarizeBy: sum
+		sourceColumn: M300 Corpus HD
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total
+		dataType: int64
+		formatString: 0
+		lineageTag: 2991513e-e903-4662-9fc2-450282e17c3b
+		summarizeBy: sum
+		sourceColumn: Total
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rep Code'
+		dataType: string
+		lineageTag: 441fc01a-d2d1-4550-87e9-c93c44317555
+		summarizeBy: none
+		sourceColumn: Rep Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zip
+		dataType: int64
+		formatString: 0
+		lineageTag: d4e21715-82dd-4250-9476-6c2c67eb6e18
+		summarizeBy: sum
+		sourceColumn: Zip
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship to location'
+		dataType: string
+		lineageTag: 795c1eec-951b-4e72-ab65-d3cf7e4fbfa8
+		summarizeBy: none
+		sourceColumn: Ship to location
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'M3 Corpus?'
+		dataType: string
+		lineageTag: 6bce579d-e141-444b-9039-dfc430a158e3
+		summarizeBy: none
+		sourceColumn: M3 Corpus?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'F3 Corpus?'
+		dataType: string
+		lineageTag: 42936bba-6c76-4659-8385-26a1f5b0f2a8
+		summarizeBy: none
+		sourceColumn: F3 Corpus?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'M300 Corpus HD?'
+		dataType: string
+		lineageTag: abbc87d4-ee69-4ded-826a-8ec44ba5ad8e
+		summarizeBy: none
+		sourceColumn: M300 Corpus HD?
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer
+		dataType: string
+		lineageTag: 292d3bc1-2fd0-4fd4-8808-44d17d692a74
+		summarizeBy: none
+		sourceColumn: Customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Econ Customer'
+		dataType: string
+		lineageTag: f78e7217-8ab5-48d6-9691-f40eccd3d75e
+		summarizeBy: none
+		sourceColumn: Econ Customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Demo Flag Filter' =
+			
+			IF('Demo Roll Out'[Customer] <> "0", 1, 0)
+		dataType: int64
+		formatString: 0
+		lineageTag: dc6c59a3-a94b-4485-948f-81ec42ac4287
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Demo Roll Out-c250effa-27a6-4be2-8ed6-6457a867ee02' = m
+		mode: import
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Source{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+				    #"11f039f7-235d-4d80-b9db-924495bb1394" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="11f039f7-235d-4d80-b9db-924495bb1394"]}[Data],
+				    #"Demo Roll Out1" = #"11f039f7-235d-4d80-b9db-924495bb1394"{[entity="Demo Roll Out"]}[Data]
+				in
+				    #"Demo Roll Out1"
+
+	annotation PBI_ResultType = Table
+

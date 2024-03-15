@@ -1,0 +1,112 @@
+table 8DealerCustomerMap
+	lineageTag: 63391bd6-fa62-4708-a5df-e3ca6c5bf361
+
+	column DealerId
+		dataType: string
+		lineageTag: 80cd7b94-8573-49d3-a497-697d7f039e76
+		summarizeBy: none
+		sourceColumn: DealerId
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustAccount
+		dataType: string
+		lineageTag: d0e96030-496d-404e-964a-c6236dba4d4f
+		summarizeBy: none
+		sourceColumn: CustAccount
+
+		annotation SummarizationSetBy = Automatic
+
+	column BKCustomer
+		dataType: string
+		lineageTag: c2190f0c-e009-4d1c-9bc0-5d6468e5ed3a
+		summarizeBy: none
+		sourceColumn: BKCustomer
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompanyCode
+		dataType: string
+		lineageTag: 7106fcb3-daf2-4f83-b718-76ab3c2d536a
+		summarizeBy: none
+		sourceColumn: CompanyCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column BusinessUnit
+		dataType: string
+		lineageTag: 72a43d45-689e-4562-9037-6fdf7672b3cc
+		summarizeBy: none
+		sourceColumn: BusinessUnit
+
+		annotation SummarizationSetBy = Automatic
+
+	column Main_Branch
+		dataType: string
+		lineageTag: 92723bc7-7eaf-46f3-ae91-c461fe3c5148
+		summarizeBy: none
+		sourceColumn: Main_Branch
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cts
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 80bba03c-e0e3-4d39-98ae-a96cb68d5c36
+		summarizeBy: none
+		sourceColumn: Cts
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUser
+		dataType: string
+		lineageTag: 8125822a-b2a6-461c-985f-6fdb821e00f5
+		summarizeBy: none
+		sourceColumn: CUser
+
+		annotation SummarizationSetBy = Automatic
+
+	column Uts
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3e6d4b02-902c-46ac-8142-2b77070fa799
+		summarizeBy: none
+		sourceColumn: Uts
+
+		annotation SummarizationSetBy = Automatic
+
+	column UUser
+		dataType: string
+		lineageTag: 0df7c433-81da-42a5-9992-13dc52cec856
+		summarizeBy: none
+		sourceColumn: UUser
+
+		annotation SummarizationSetBy = Automatic
+
+	column MainDealerGroup
+		dataType: string
+		lineageTag: c5143c11-df56-4110-8836-a8e5861d244d
+		summarizeBy: none
+		sourceColumn: MainDealerGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column Chain
+		dataType: string
+		lineageTag: bb26fa65-843a-4c3d-a520-b02d782560e5
+		summarizeBy: none
+		sourceColumn: Chain
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 8DealerCustomerMap-aa67a974-1562-4c86-890a-b4a33df214e3 = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("SETIMDB04", "BIDW"),
+				    dbo_DealerCustomerMap = Source{[Schema="dbo",Item="DealerCustomerMap"]}[Data]
+				in
+				    dbo_DealerCustomerMap
+
+	annotation PBI_ResultType = Table
+

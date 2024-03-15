@@ -1,0 +1,80 @@
+table 'Sales Budget Master'
+	isHidden
+	lineageTag: 9ab57122-8be0-429d-ac3c-9ce95b1e435d
+
+	column RepCode
+		dataType: string
+		isHidden
+		lineageTag: 431f7693-959a-4876-a67f-bea086802e85
+		summarizeBy: none
+		sourceColumn: RepCode
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 49fa5186-7a3a-45d2-9e4f-adfee5107448
+		summarizeBy: none
+		sourceColumn: Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Monthly Budget'
+		dataType: double
+		isHidden
+		lineageTag: 45db362d-ddf9-444d-85b7-521f868e0361
+		summarizeBy: sum
+		sourceColumn: Monthly Budget
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Product Group'
+		dataType: string
+		isHidden
+		lineageTag: d10f6912-c10a-4165-aa46-2ab1fde5eefb
+		summarizeBy: none
+		sourceColumn: Product Group
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product code Lvl2'
+		dataType: string
+		isHidden
+		lineageTag: 0d895d05-5787-47f0-a1f9-7e21c333f5ec
+		summarizeBy: none
+		sourceColumn: Financial product code Lvl2
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Sales Budget Master-ed7388cb-6cf9-44b3-97a2-47d061867d89' = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Workspaces{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+				    #"9acf1e40-84bc-4890-a7b0-59025c618707" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="9acf1e40-84bc-4890-a7b0-59025c618707"]}[Data],
+				    #"Sales Budget Master_" = #"9acf1e40-84bc-4890-a7b0-59025c618707"{[entity="Sales Budget Master",version=""]}[Data]
+				in
+				    #"Sales Budget Master_"
+
+	changedProperty = IsHidden
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,153 @@
+table REPMAP_VIEW
+	lineageTag: 69a1c648-ac46-4b65-be8e-3e905f922413
+
+	column Rep
+		dataType: string
+		lineageTag: 1d3447c7-3380-49f5-88d4-9802d1531d84
+		summarizeBy: none
+		sourceColumn: Rep
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScalaName
+		dataType: string
+		lineageTag: ebb8964e-fd8b-4d10-9224-3ef20a004192
+		summarizeBy: none
+		sourceColumn: ScalaName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 2c464532-1040-45e8-9002-e0fca014256b
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column UserId
+		dataType: int64
+		formatString: 0
+		lineageTag: 354c3d62-2df9-4dcf-9b94-a8631c67ddb4
+		summarizeBy: count
+		sourceColumn: UserId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Logon
+		dataType: string
+		lineageTag: e6bda5c5-6370-4d45-b8c1-d520c60759a6
+		summarizeBy: none
+		sourceColumn: Logon
+
+		annotation SummarizationSetBy = Automatic
+
+	column FirstName
+		dataType: string
+		lineageTag: 776ded1e-9a79-48e0-94c7-bd9ee42a621c
+		summarizeBy: none
+		sourceColumn: FirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastName
+		dataType: string
+		lineageTag: f6c33fc3-5a8b-4da6-bfca-f6abe3572c13
+		summarizeBy: none
+		sourceColumn: LastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: c7bdce02-70e5-4e47-b54d-fc1ce7e7a7de
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phone1
+		dataType: string
+		lineageTag: 5fc18b54-9daf-4a4c-abab-cc9cc8a07b1b
+		summarizeBy: none
+		sourceColumn: Phone1
+
+		annotation SummarizationSetBy = Automatic
+
+	column MgrId
+		dataType: int64
+		formatString: 0
+		lineageTag: dee5dff9-3ff6-47ac-a73b-44c84557ab03
+		summarizeBy: count
+		sourceColumn: MgrId
+
+		annotation SummarizationSetBy = Automatic
+
+	column MgrLogon
+		dataType: string
+		lineageTag: 1e4a08f2-3680-4656-aa55-2e4474917294
+		summarizeBy: none
+		sourceColumn: MgrLogon
+
+		annotation SummarizationSetBy = Automatic
+
+	column MgrFirstName
+		dataType: string
+		lineageTag: ed15af80-eefe-4fcc-ac5e-b98af2d250fc
+		summarizeBy: none
+		sourceColumn: MgrFirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MgrLastName
+		dataType: string
+		lineageTag: ce62fc20-6a74-48c5-86cd-193be18c4942
+		summarizeBy: none
+		sourceColumn: MgrLastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MgrEmail
+		dataType: string
+		lineageTag: 3b4ee183-0031-4d3e-80df-26c52f363cf8
+		summarizeBy: none
+		sourceColumn: MgrEmail
+
+		annotation SummarizationSetBy = Automatic
+
+	column Terr
+		dataType: string
+		lineageTag: 1e04ca33-efc8-42b0-af0a-8f3fde5981a6
+		summarizeBy: none
+		sourceColumn: Terr
+
+		annotation SummarizationSetBy = Automatic
+
+	column TerrDescr
+		dataType: string
+		lineageTag: 156ecc62-39c7-4b81-925d-051b1b056fa0
+		summarizeBy: none
+		sourceColumn: TerrDescr
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCT
+		dataType: string
+		lineageTag: bd678779-b09a-4fa2-b4ec-9320a90ed70d
+		summarizeBy: none
+		sourceColumn: ACCT
+
+		annotation SummarizationSetBy = Automatic
+
+	partition REPMAP_VIEW-b57aa78a-84ca-471c-babe-1a525da597f9 = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("USNASDB04"),
+				    scalaDB_PROD_COPY = Source{[Name="scalaDB_PROD_COPY"]}[Data],
+				    dbo_REPMAP_VIEW = scalaDB_PROD_COPY{[Schema="dbo",Item="REPMAP_VIEW"]}[Data]
+				in
+				    dbo_REPMAP_VIEW
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,99 @@
+table 'Zip Codes - S&P Rep Mapping'
+	lineageTag: 57509eb2-6975-4beb-b716-96ae0257a350
+
+	column 'ZIP CODE'
+		dataType: string
+		lineageTag: c5d49339-4c94-4d4d-a209-25f96ab618ab
+		summarizeBy: none
+		sourceColumn: ZIP CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: e94fc23c-1026-4e87-9f5f-61ae5abe5ea4
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary_city
+		dataType: string
+		lineageTag: 5adb9bfb-bc48-41a7-a275-3c8d8b900fcd
+		summarizeBy: none
+		sourceColumn: primary_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column4
+		dataType: string
+		lineageTag: b62b0c4c-bc8b-48bf-8275-d22b4d700825
+		summarizeBy: none
+		sourceColumn: Column4
+
+		annotation SummarizationSetBy = Automatic
+
+	column county
+		dataType: string
+		lineageTag: 4dd7e048-b7b2-47a3-b267-d331097611df
+		summarizeBy: none
+		sourceColumn: county
+
+		annotation SummarizationSetBy = Automatic
+
+	column area_codes
+		dataType: string
+		lineageTag: 6051b781-59b5-4afc-877f-2e6578722aae
+		summarizeBy: none
+		sourceColumn: area_codes
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Salesman Code'
+		dataType: string
+		lineageTag: 2ada4cbd-5eed-4e22-9375-b44223cffd8c
+		summarizeBy: none
+		sourceColumn: Salesman Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Salesman Description'
+		dataType: string
+		lineageTag: c7cc6937-b8ae-4871-b449-68fa7969e4c6
+		summarizeBy: none
+		sourceColumn: Salesman Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sls Rep Code/ Region / Terr/ AX Code'
+		dataType: string
+		lineageTag: 1e54edd7-2410-4484-be5d-fae7e8b32031
+		summarizeBy: none
+		sourceColumn: Sls Rep Code/ Region / Terr/ AX Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zip_Code
+		dataType: string
+		lineageTag: cabc6b30-3725-4126-b78f-b54220fbdf6d
+		summarizeBy: none
+		sourceColumn: Zip_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Zip Codes - S&P Rep Mapping' = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Workspaces{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+				    #"e7379b27-318f-4c19-8e8b-72ac143b57d7" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="e7379b27-318f-4c19-8e8b-72ac143b57d7"]}[Data],
+				    #"Zip Codes - Sales Rep Mapping - S&P_" = #"e7379b27-318f-4c19-8e8b-72ac143b57d7"{[entity="Zip Codes - Sales Rep Mapping - S&P",version=""]}[Data]
+				in
+				    #"Zip Codes - Sales Rep Mapping - S&P_"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

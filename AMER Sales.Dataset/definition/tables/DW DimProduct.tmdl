@@ -1,0 +1,311 @@
+table 'DW DimProduct'
+	lineageTag: 2a4ac16e-ab67-41db-a085-b4ffe906194d
+
+	column WKProduct
+		dataType: int64
+		formatString: 0
+		lineageTag: 1d5a85a2-69e6-440a-997e-be1df3361592
+		summarizeBy: none
+		sourceColumn: WKProduct
+
+		annotation SummarizationSetBy = Automatic
+
+	column BKProduct
+		dataType: string
+		lineageTag: 2e926bd0-6706-43f5-861f-aea75e57bc31
+		summarizeBy: none
+		sourceColumn: BKProduct
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCode
+		dataType: string
+		lineageTag: fe02feba-8282-4f56-adfa-0cfa6b2c85a3
+		summarizeBy: none
+		sourceColumn: ProductCode
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"DW DimProduct","TableItemName":"Canada Product","ObjectType":4},"LinkType":"UsedInGroup"},{"LinkTarget":{"TableName":"DW DimProduct","TableItemName":"Canada Surfaces","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column ProductDescription
+		dataType: string
+		lineageTag: d2db6c3b-c0cb-49eb-bf64-3df500bc93d4
+		summarizeBy: none
+		sourceColumn: ProductDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductLvl5Name
+		dataType: string
+		lineageTag: 0c9b4c0c-eb5c-46c7-8e8f-22f643121ac7
+		summarizeBy: none
+		sourceColumn: ProductLvl5Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductLvl4Name
+		dataType: string
+		lineageTag: 56f1c03a-4e7c-48f8-9148-6f6d7f36c442
+		summarizeBy: none
+		sourceColumn: ProductLvl4Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductLvl3Name
+		dataType: string
+		lineageTag: 41730834-bb6f-4573-9a67-b7fad4e6bfa3
+		summarizeBy: none
+		sourceColumn: ProductLvl3Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductLvl2Name
+		dataType: string
+		lineageTag: 518175da-8ceb-4137-b88a-f509aa6ecf97
+		summarizeBy: none
+		sourceColumn: ProductLvl2Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductLvl1Name
+		dataType: string
+		lineageTag: c31c2ba8-be10-4409-bf0c-d83595e526ac
+		summarizeBy: none
+		sourceColumn: ProductLvl1Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: 9b831b63-da29-40d7-8f59-c8ba4ccb5e5e
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCodeLvl5
+		dataType: string
+		lineageTag: 20f3c833-2c0e-4030-9fb5-5b1ad62b4c4c
+		summarizeBy: none
+		sourceColumn: ProductCodeLvl5
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCodeLvl4
+		dataType: string
+		lineageTag: f7cf6111-2ded-49a0-90b1-e9cf49ad336f
+		summarizeBy: none
+		sourceColumn: ProductCodeLvl4
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCodeLvl3
+		dataType: string
+		lineageTag: 51643e46-a274-42a9-bb1b-aead7f302599
+		summarizeBy: none
+		sourceColumn: ProductCodeLvl3
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCodeLvl2
+		dataType: string
+		lineageTag: 23df0547-0a97-4fb2-bd56-b294098226f2
+		summarizeBy: none
+		sourceColumn: ProductCodeLvl2
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCodeLvl1
+		dataType: string
+		lineageTag: 2db6b25b-e680-4dee-a344-dc19b4aa0e75
+		summarizeBy: none
+		sourceColumn: ProductCodeLvl1
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCategoryCode
+		dataType: string
+		lineageTag: e58b0648-1fde-4353-9954-e1ebfe51e4ac
+		summarizeBy: none
+		sourceColumn: ProductCategoryCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCategoryName
+		dataType: string
+		lineageTag: a5bfa991-aba4-4f94-b59c-62be2447054a
+		summarizeBy: none
+		sourceColumn: ProductCategoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCategory
+		dataType: string
+		lineageTag: 02d99e9b-dfcd-4f21-8cce-4ea60a67f1dc
+		summarizeBy: none
+		sourceColumn: ProductCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Group II'
+		dataType: string
+		lineageTag: ed956ecf-143f-4c2d-855f-23f7cd964263
+		summarizeBy: none
+		sourceColumn: Product Group II
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Canada Product' =
+			SWITCH(
+			  TRUE,
+			  ISBLANK('DW DimProduct'[ProductCode]),
+			  "(Blank)",
+			  'DW DimProduct'[ProductCode] IN {"850",
+			    "850B",
+			    "850C",
+			    "850S"},
+			  "Comfort",
+			  'DW DimProduct'[ProductCode] IN {"Freight"},
+			  "Freight",
+			  'DW DimProduct'[ProductCode] IN {"RC1",
+			    "RM1",
+			    "RO1"},
+			  "ROHO",
+			  'DW DimProduct'[ProductCode] IN {"830"},
+			  "SmartDrives",
+			  'DW DimProduct'[ProductCode] IN {"820"},
+			  "TruShape",
+			  "3rd Party"
+			)
+		dataType: string
+		lineageTag: 90f3df7c-a6f2-4295-9f68-36ac10254f38
+		summarizeBy: none
+		isDataTypeInferred
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "DW DimProduct"
+				          }
+				        },
+				        "Property": "ProductCode"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"d","Entity":"DW DimProduct"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"ProductCode"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"Comfort","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"ProductCode"}}],"Values":[[{"Literal":{"Value":"'850'"}}],[{"Literal":{"Value":"'850B'"}}],[{"Literal":{"Value":"'850C'"}}],[{"Literal":{"Value":"'850S'"}}]]}}},{"DisplayName":"Freight","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"ProductCode"}}],"Values":[[{"Literal":{"Value":"'Freight'"}}]]}}},{"DisplayName":"ROHO","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"ProductCode"}}],"Values":[[{"Literal":{"Value":"'RC1'"}}],[{"Literal":{"Value":"'RM1'"}}],[{"Literal":{"Value":"'RO1'"}}]]}}},{"DisplayName":"SmartDrives","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"ProductCode"}}],"Values":[[{"Literal":{"Value":"'830'"}}]]}}},{"DisplayName":"TruShape","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"ProductCode"}}],"Values":[[{"Literal":{"Value":"'820'"}}]]}}},{"DisplayName":"3rd Party"}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TiLite Chair Model' =
+			
+			LOOKUPVALUE('TiLite Chair Type'[Chair Type],'TiLite Chair Type'[ProductCode],'DW DimProduct'[ProductCode])
+		dataType: string
+		lineageTag: 940f58bd-685b-46d2-b0d8-e9e557f141bc
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Canada Surfaces' =
+			SWITCH(
+				TRUE,
+				ISBLANK('DW DimProduct'[ProductCode]),
+				"(Blank)",
+				'DW DimProduct'[ProductCode] IN {"1021",
+					"1021B",
+					"1021M",
+					"1021P",
+					"1021V",
+					"650",
+					"655",
+					"850S",
+					"917",
+					"918",
+					"923",
+					"RM1",
+					"VICM"},
+				"Surfaces",
+				"Other"
+			)
+		dataType: string
+		lineageTag: f559e393-e24a-45fe-8971-d1fc1e0b3a62
+		summarizeBy: none
+		isDataTypeInferred
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "DW DimProduct"
+				          }
+				        },
+				        "Property": "ProductCode"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"d","Entity":"DW DimProduct"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"ProductCode"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"Surfaces","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"ProductCode"}}],"Values":[[{"Literal":{"Value":"'1021'"}}],[{"Literal":{"Value":"'1021B'"}}],[{"Literal":{"Value":"'1021M'"}}],[{"Literal":{"Value":"'1021P'"}}],[{"Literal":{"Value":"'1021V'"}}],[{"Literal":{"Value":"'650'"}}],[{"Literal":{"Value":"'655'"}}],[{"Literal":{"Value":"'850S'"}}],[{"Literal":{"Value":"'917'"}}],[{"Literal":{"Value":"'918'"}}],[{"Literal":{"Value":"'923'"}}],[{"Literal":{"Value":"'RM1'"}}],[{"Literal":{"Value":"'VICM'"}}]]}}},{"DisplayName":"Other"}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DW DimProduct-5ca31270-ea9c-4597-82ea-c863ddf4fbcf' = m
+		mode: import
+		source = ```
+				let
+				    Source = Sql.Databases("setimdb04"),
+				    BIDW = Source{[Name="BIDW"]}[Data],
+				    DW_DimProduct = BIDW{[Schema="DW",Item="DimProduct"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(DW_DimProduct,{"DW_ValidFrom", "DW_UpdateDateTime", "DW_IsDeleted", "DW_IsInferred", "DW_IsCurrent", "DW_Rowid", "ProdVendorCode", "ProdVendorName"}),
+				    #"Added Custom" = Table.AddColumn(#"Removed Columns", "Product Group", each if([ProductCode] = "161" or [ProductCode] = "251" or [ProductCode] = "418" or [ProductCode] = "451" or [ProductCode] = "492" or [ProductCode] = "494" or [ProductCode] = "516" or [ProductCode] = "CCF" or [ProductCode] = "411" or [ProductCode] = "412" or [ProductCode] = "442" or [ProductCode] = "450" or [ProductCode] = "463" or [ProductCode] = "465" or [ProductCode] = "471" or [ProductCode] = "477" or [ProductCode] = "715" or [ProductCode] = "730" or [ProductCode] = "_FRT" or [ProductCode] = "511" or [ProductCode] = "514" or [ProductCode] = "515" or [ProductCode] = "519" or [ProductCode] = "414" or [ProductCode] = "416" or [ProductCode] = "415" or [ProductCode] = "517" or [ProductCode] = "413" or [ProductCode] = "_OTH") then "Tilite parts" 
+				
+				else if([ProductCode] = "Freight" or [WKProduct] = 750 or [ProductCode] = "Missing product COMCS") then "Comfort"
+				
+				else if([ProductCodeLvl1] = "MWC" and [ProductCodeLvl2] = "T") then "Tilite" 
+				
+				else if([ProductCodeLvl1] = "MWC" and [ProductCodeLvl2] = "M") then "Smartdrives" 
+				
+				else if([ProductCodeLvl1] = "MWC" and [ProductCodeLvl2] = "L") then "Lifestand" 
+				
+				else if([ProductCodeLvl1] = "AM" and [ProductCodeLvl2] = "X" or [WKProduct]= -1) then "Pwc Parts" 
+				
+				else if([ProductCodeLvl1] = "AM" and [ProductCodeLvl2] = "Y") then "Tilite parts" 
+				
+				else if([ProductCodeLvl1] = "CARS") then "Car adaptation" 
+				
+				else if([ProductCodeLvl1] = "Chair") then "Chairs" 
+				
+				else if([ProductCodeLvl1] = "Unknown") then "Other" 
+				
+				else if([ProductCodeLvl1] = "PWC") then "Pwc Chairs" 
+				
+				else if([ProductCodeLvl1] = "3") then "3rd party" 
+				
+				else if([ProductCodeLvl1] = "ROHO" and [ProductCodeLvl2] = "R") then "Roho" else if([ProductCodeLvl1] = "ROHO" and [ProductCodeLvl2] = "CP") then "Comfort" 
+				
+				else if([ProductCodeLvl1] = "ROHO" and [ProductCodeLvl2] = "O") then "TruShape" 
+				
+				else ""),
+				    #"Filtered Rows1" = Table.SelectRows(#"Added Custom", each true),
+				    #"Renamed Columns" = Table.RenameColumns(#"Filtered Rows1",{{"Product Group", "Product Group II"}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each true),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Filtered Rows",{{"Product Group II", type text}}),
+				    #"Uppercased Text" = Table.TransformColumns(#"Changed Type",{{"ProductName", Text.Upper, type text}, {"ProductLvl1Name", Text.Upper, type text}, {"ProductLvl2Name", Text.Upper, type text}, {"ProductLvl3Name", Text.Upper, type text}, {"ProductLvl4Name", Text.Upper, type text}, {"ProductLvl5Name", Text.Upper, type text}, {"ProductDescription", Text.Upper, type text}})
+				in
+				    #"Uppercased Text"
+				```
+
+	annotation PBI_ResultType = Exception
+

@@ -1,0 +1,964 @@
+table Date
+	lineageTag: 1ce43bfc-5d07-4002-b34b-a325cbf65c76
+	dataCategory: Time
+
+	measure 'Start of Year' = STARTOFYEAR('Date'[Date])
+		formatString: General Date
+		lineageTag: d4b92767-c860-4223-b91b-1d6ca40424e2
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: m/d/yyyy
+		lineageTag: 22d10fb9-bf7c-4797-a90c-59f7df369cde
+		summarizeBy: none
+		sourceColumn: Date
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Date_integer
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6d169ec2-974e-4830-bf9e-f2b0658b8cc9
+		summarizeBy: none
+		sourceColumn: Date_integer
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column date_int
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: dd990c2c-6ea3-4184-ad49-0fb317a9890b
+		summarizeBy: none
+		sourceColumn: date_int
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column 'Date uk'
+		dataType: string
+		isHidden
+		lineageTag: 54df7195-eee8-4914-a80e-ee288dbf6ee2
+		summarizeBy: none
+		sourceColumn: Date uk
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date us'
+		dataType: string
+		isHidden
+		lineageTag: 90609aac-5cc2-411d-9899-c00ba9880217
+		summarizeBy: none
+		sourceColumn: Date us
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date sw'
+		dataType: string
+		isHidden
+		lineageTag: 645b9311-900d-4090-a8dc-c0deb8552621
+		summarizeBy: none
+		sourceColumn: Date sw
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day suffix'
+		dataType: string
+		lineageTag: e5d42c36-e9d8-42ea-87b4-719aa87bf753
+		summarizeBy: none
+		sourceColumn: Day suffix
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day name'
+		dataType: string
+		lineageTag: 7a053485-7318-4b01-a0db-a4abc6f1672c
+		summarizeBy: none
+		sourceColumn: Day name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day of week us'
+		dataType: int64
+		formatString: 0
+		lineageTag: 86f55747-ad8b-44ce-8bec-8394fa5bab2b
+		summarizeBy: none
+		sourceColumn: Day of week us
+
+		annotation SummarizationSetBy = User
+
+	column 'Day of week'
+		dataType: int64
+		formatString: 0
+		lineageTag: 07ae35a5-d280-4d02-9c5f-0952542f42cc
+		summarizeBy: none
+		sourceColumn: Day of week
+
+		annotation SummarizationSetBy = User
+
+	column 'Day of week in month'
+		dataType: string
+		lineageTag: 2e53f7c7-acf2-439f-9904-3feeaa11705f
+		summarizeBy: none
+		sourceColumn: Day of week in month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day of month'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b09cd63-d762-42ef-bfc9-4247b01ec998
+		summarizeBy: none
+		sourceColumn: Day of month
+
+		annotation SummarizationSetBy = User
+
+	column 'Day of quarter'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8cc36a19-c526-483c-bfe2-3c024820f238
+		summarizeBy: none
+		sourceColumn: Day of quarter
+
+		annotation SummarizationSetBy = User
+
+	column 'Day of year'
+		dataType: int64
+		formatString: 0
+		lineageTag: a3b4800d-fd68-4b9c-ba1e-21ad6cf764d6
+		summarizeBy: none
+		sourceColumn: Day of year
+
+		annotation SummarizationSetBy = User
+
+	column 'First date of week'
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: aea4a3af-3221-4775-be7f-d2f9b35a012c
+		summarizeBy: none
+		sourceColumn: First date of week
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Last date of week'
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: b97bf6a0-ac04-46cb-911d-a07753b03ce3
+		summarizeBy: none
+		sourceColumn: Last date of week
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Week of month'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 77c62511-23a4-417e-a210-720dbf83486f
+		summarizeBy: none
+		sourceColumn: Week of month
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column 'Week of quarter'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9420c885-abc3-45d4-a355-18a9c038838e
+		summarizeBy: none
+		sourceColumn: Week of quarter
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column 'Week of year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1fe28e5b-5d0a-41d9-bc3b-4acf1bbb717b
+		summarizeBy: none
+		sourceColumn: Week of year
+
+		annotation SummarizationSetBy = User
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: b3838dad-d8e2-4ebe-8a0e-90a7565ab2f0
+		summarizeBy: none
+		sourceColumn: Month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = User
+
+	column 'Calender month year'
+		dataType: string
+		lineageTag: 1b7aefb7-6c87-4d23-bfb0-2b9e1e786e8d
+		summarizeBy: none
+		sourceColumn: Calender month year
+		sortByColumn: 'Month in year'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month name'
+		dataType: string
+		lineageTag: 187a968f-1f80-4bd4-83ac-9c1384cf4e31
+		summarizeBy: none
+		sourceColumn: Month name
+		sortByColumn: Month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month of quarter'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2648e3d1-60fa-457a-886f-0a186d4d1e60
+		summarizeBy: none
+		sourceColumn: Month of quarter
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 2237fbca-b471-4c5e-9ba3-12e13d80b36b
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = User
+
+	column 'Calender quarter year'
+		dataType: string
+		lineageTag: 32372f29-0d6d-455a-943a-e9cf01e28ffb
+		summarizeBy: none
+		sourceColumn: Calender quarter year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year quarter'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1bff168f-99f5-439e-a22e-a44e0ab669dc
+		summarizeBy: none
+		sourceColumn: Year quarter
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: f7630a97-f174-45a5-8799-12b852df6a6e
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = User
+
+	column 'Short year'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2ada6aff-d684-44ec-8aa3-79f827b3e158
+		summarizeBy: none
+		sourceColumn: Short year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column 'Year name'
+		dataType: string
+		isHidden
+		lineageTag: f6397f39-8e20-4deb-bd6c-a5d7bfe65611
+		summarizeBy: none
+		sourceColumn: Year name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month year'
+		dataType: string
+		lineageTag: 5abb7e76-58c6-41c9-9a28-317be29f3211
+		summarizeBy: none
+		sourceColumn: Month year
+		sortByColumn: mmyyyy
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month in year'
+		dataType: string
+		isHidden
+		lineageTag: 4b7099f6-8ed9-40a0-9cff-dacfa27ddf61
+		summarizeBy: none
+		sourceColumn: Month in year
+		sortByColumn: 'Month year'
+
+		changedProperty = IsHidden
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year month'
+		dataType: string
+		isHidden
+		lineageTag: d22eb3ca-0549-49bd-84a5-a71970925a42
+		summarizeBy: none
+		sourceColumn: Year month
+		sortByColumn: 'Calender month year'
+
+		changedProperty = IsHidden
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column mmyyyy
+		dataType: string
+		isHidden
+		lineageTag: 78d34f4c-a913-4498-a53e-65ffa7889756
+		summarizeBy: none
+		sourceColumn: mmyyyy
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column yyyymm
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 8819056b-ce98-45d5-9130-59dd0666f9c8
+		summarizeBy: none
+		sourceColumn: yyyymm
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column 'First day of month'
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 208d234d-3322-4fcb-b22d-e7d81b9c2277
+		summarizeBy: none
+		sourceColumn: First day of month
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Last day of month'
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: ac93ee5d-6442-4b2d-a60b-1946f18f69d5
+		summarizeBy: none
+		sourceColumn: Last day of month
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'First day of quarter'
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 2194ce91-d229-452a-a062-570d7c74605a
+		summarizeBy: none
+		sourceColumn: First day of quarter
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Last day of quarter'
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: f9cbc613-e793-4a4e-8ad5-1a320b135676
+		summarizeBy: none
+		sourceColumn: Last day of quarter
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'First day of year'
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 4580f30a-8ba4-4f56-a616-9dbe595adf8e
+		summarizeBy: none
+		sourceColumn: First day of year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Last day of year'
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 3a2af7bc-6af3-4b0e-adb3-1ca195b512b0
+		summarizeBy: none
+		sourceColumn: Last day of year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Is weekday'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7ab4669c-e5a8-4aa3-a5c3-71e42b9c6372
+		summarizeBy: none
+		sourceColumn: Is weekday
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal day of year'
+		dataType: string
+		isHidden
+		lineageTag: 8cf8665c-f84d-4437-857a-152554be7998
+		summarizeBy: none
+		sourceColumn: Fiscal day of year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal week of year'
+		dataType: string
+		isHidden
+		lineageTag: 3431e3bd-0272-47ca-bbae-2f24b5b6d82b
+		summarizeBy: none
+		sourceColumn: Fiscal week of year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal month'
+		dataType: string
+		isHidden
+		lineageTag: 029a2419-35fd-4966-b339-0898ef7e983d
+		summarizeBy: none
+		sourceColumn: Fiscal month
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal quarter'
+		dataType: string
+		isHidden
+		lineageTag: 9a5e3ce6-429a-49ab-8bf7-da9cb862b642
+		summarizeBy: none
+		sourceColumn: Fiscal quarter
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal year'
+		dataType: string
+		isHidden
+		lineageTag: 0fd5f3eb-67ff-48db-8742-3c974c04edf2
+		summarizeBy: none
+		sourceColumn: Fiscal year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal year short name'
+		dataType: string
+		isHidden
+		lineageTag: 0602a835-527f-4596-ae2c-513fb92e3cf8
+		summarizeBy: none
+		sourceColumn: Fiscal year short name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal year name'
+		dataType: string
+		isHidden
+		lineageTag: 9983fc41-48b1-42f5-9992-efdaf88ad50f
+		summarizeBy: none
+		sourceColumn: Fiscal year name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal year month'
+		dataType: string
+		isHidden
+		lineageTag: fca8c54c-1361-4177-a6aa-eb601e088a99
+		summarizeBy: none
+		sourceColumn: Fiscal year month
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal month year'
+		dataType: string
+		isHidden
+		lineageTag: 55e683e1-8f64-4105-b484-7d8ddec4db8f
+		summarizeBy: none
+		sourceColumn: Fiscal month year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal mmyyyy'
+		dataType: string
+		isHidden
+		lineageTag: b8c80822-ceff-4817-88fc-a7c664940ff9
+		summarizeBy: none
+		sourceColumn: Fiscal mmyyyy
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal year quarter'
+		dataType: string
+		isHidden
+		lineageTag: c7dba7f3-2cdb-44ef-8b87-de6a98d085b7
+		summarizeBy: none
+		sourceColumn: Fiscal year quarter
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal first day of month'
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: abc8fb3f-eb21-4545-b188-126641d29065
+		summarizeBy: none
+		sourceColumn: Fiscal first day of month
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Fiscal last day of month'
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 9a78f375-2f61-4bc5-b87a-a52b522a5985
+		summarizeBy: none
+		sourceColumn: Fiscal last day of month
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Fiscal first day of quarter'
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 0c7a0766-ee14-4666-af64-1790071b5271
+		summarizeBy: none
+		sourceColumn: Fiscal first day of quarter
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Fiscal last day of quarter'
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 8c158dbd-2d04-440d-a5f8-6247b8608244
+		summarizeBy: none
+		sourceColumn: Fiscal last day of quarter
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Fiscal first day of year'
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 61fda5fd-8fef-4ee5-9749-78fb07d03284
+		summarizeBy: none
+		sourceColumn: Fiscal first day of year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Fiscal last day of year'
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 23d6620f-bba3-4c1d-9eb2-975f37e57187
+		summarizeBy: none
+		sourceColumn: Fiscal last day of year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column record_source
+		dataType: string
+		isHidden
+		lineageTag: adeffc55-3a2e-4131-a440-f585b74ff03f
+		summarizeBy: none
+		sourceColumn: record_source
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Load timestamp'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 715207b6-3a92-4b50-a2ff-1bac388a2c53
+		summarizeBy: none
+		sourceColumn: Load timestamp
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Holiday = RELATED('Holidays'[Name of holiday])
+		dataType: string
+		lineageTag: 53c6dba2-121d-40e1-97d4-f1159db9f115
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business day' = SWITCH(false(),'Date'[Day of week]=6||'Date'[Day of week]=7||istext('Date'[HOLIDAY]),1,0)
+		dataType: int64
+		formatString: 0
+		lineageTag: 4d19856d-57fa-4a34-8a51-80af03b40062
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business days in month' = CALCULATE(SUM('Date'[Business day]),DATESBETWEEN('Date'[Date],'Date'[First day of year],'Date'[Last day of year]))
+		dataType: int64
+		formatString: 0
+		lineageTag: dfcd7c2b-4fc4-42f4-baad-9f0c8a24e2e2
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Workday Y/N' =
+			IF('Date'[Day of Week] = 6
+			                    ||'Date'[Day of Week]=7
+			                    ||istext('Date'[Holiday]),
+			                    0,
+			                    1)
+		dataType: int64
+		formatString: 0
+		lineageTag: 609e022c-2111-4597-970a-849a9d6d00b6
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start of Month' = STARTOFMONTH('Date'[Date])
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6bbe41dc-10c6-426b-bc39-78dc46b2021f
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'End of Month' = ENDOFMONTH('Date'[Date])
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 63545e72-66ed-4cf4-87b0-ef8779f5717b
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Working Day of Month' = CALCULATE(SUM('Date'[Workday Y/N]),DATESBETWEEN('Date'[Date],'Date'[Start of Month],'Date'[Date]))
+		dataType: int64
+		formatString: 0
+		lineageTag: d9142ac0-7907-4153-9b5a-f6ea9075fc50
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Working Day of Quarter' = CALCULATE(SUM('Date'[Workday Y/N]),DATESBETWEEN('Date'[Date],'Date'[Start of Quarter],'Date'[Date]))
+		dataType: int64
+		lineageTag: a1e29405-dcbe-43d9-8b86-416af0da0ec1
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start of Quarter' = STARTOFQUARTER('Date'[Date])
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 88b78d2c-9b03-4c52-9cef-20197a0a0057
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Working Days in Month' = CALCULATE(SUM('Date'[Workday Y/N]),DATESBETWEEN('Date'[Date],'Date'[Start of Month],'Date'[End of Month]))
+		dataType: int64
+		formatString: 0
+		lineageTag: a01dcf53-ca63-4243-b4b0-a5620dc51000
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Working Days in Quarter' = CALCULATE(SUM('Date'[Workday Y/N]),DATESBETWEEN('Date'[Date],'Date'[Start of Quarter],'Date'[End of Quarter]))
+		dataType: int64
+		lineageTag: 481ec907-ead5-4f90-8fc2-5e0c3aa0e26d
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'End of Quarter' = ENDOFQUARTER('Date'[Date])
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b6ccb8cf-30b2-4d02-8ca6-cfcbd2d581de
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Working Day of Year' = CALCULATE(SUM('Date'[Workday Y/N]),DATESBETWEEN('Date'[Date],'Date'[Start of Year],'Date'[Date]))
+		dataType: int64
+		formatString: 0
+		lineageTag: c54149b0-9280-4fb8-a484-d7c790940bb5
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Working Days in Year' = CALCULATE(SUM('Date'[Workday Y/N]),DATESBETWEEN('Date'[Date],'Date'[Start of Year],'Date'[Last day of year] ))
+		dataType: int64
+		formatString: 0
+		lineageTag: 8103d968-63a1-452e-9114-b2d076459b31
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column PY =
+			
+			DATEADD('Date'[Date], -1, YEAR)
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ee6d5e13-d8d3-431a-871a-e71887f6e724
+		summarizeBy: none
+		isDataTypeInferred
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column YTD =
+			
+			IF('Date'[Date] <= [Today's Date]
+			    && 'Date'[Year] = YEAR(TODAY()), "YTD", "")
+		dataType: string
+		lineageTag: 2c3e06d2-0412-4da7-9dc1-f6bf8f282302
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column PPY = ```
+			
+			DATEADD('Date'[Date],-2,YEAR) 
+			```
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 346264b9-ff66-4398-9163-3a774297c010
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PY Year' = ```
+			YEAR('Date'[Date] -1) 
+			```
+		dataType: int64
+		formatString: 0
+		lineageTag: 1822a37f-fdac-40bf-bd8c-b8a2c534594a
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name Abbr'
+		dataType: string
+		lineageTag: c74f550c-c677-4dda-8f18-0b5de00de596
+		summarizeBy: none
+		sourceColumn: Month Name Abbr
+		sortByColumn: Month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column PM-1 =
+			
+			VAR CurrMonth = 'Date'[Month]
+			VAR PrevMonth = IF(CurrMonth = 1, 12, CurrMonth - 1)
+			RETURN
+			PrevMonth
+		dataType: int64
+		formatString: 0
+		lineageTag: fe9bd0a2-8743-407f-a810-129ec2743488
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column PM-2 = ```
+			DATEADD('Date'[Date],-2,MONTH) 
+			```
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6fc600bc-878f-40ea-97a4-7ef458d46d02
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column PM-3 = ```
+			DATEADD('Date'[Date],-3,MONTH) 
+			```
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5afe6d52-3f31-4c07-b6f3-78ec07fd31e1
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column MTD = ```
+			
+			IF(
+			    'Date'[Year] = YEAR(TODAY()) && 
+			    'Date'[Month] = MONTH(TODAY()) &&
+			    'Date'[Date] <= [Today's Date], "MTD", "")
+			```
+		dataType: string
+		lineageTag: 9785f0ae-f270-4fb1-8074-5413497ee903
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Year Hierarchy'
+		lineageTag: cccf2089-2832-488b-9cca-106577b8f778
+
+		level Year
+			lineageTag: 0722a5c8-dcc5-4bee-9714-c954a3455cac
+			column: Year
+
+		level 'Month Name Abbr'
+			lineageTag: 52667a4f-a921-482d-ae35-dcfd05f71203
+			column: 'Month Name Abbr'
+
+	partition Date-86d2fd38-66fe-4c7d-b110-0cf07ccb01a4 = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [CreateNavigationProperties=false, CommandTimeout=#duration(0, 4, 10, 0)]),
+				    sales_Rpt_dim_Calendar_Date = Source{[Schema="sales_Rpt",Item="dim_Calendar_Date"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(sales_Rpt_dim_Calendar_Date,{{"calender_month_year", "Calender month year"}, {"calender_quarter_year", "Calender quarter year"}, {"date", "Date_integer"}, {"date_sw", "Date sw"}, {"date_uk", "Date uk"}, {"date_us", "Date us"}, {"day_name", "Day name"}, {"day_of_month", "Day of month"}, {"day_of_quarter", "Day of quarter"}, {"day_of_week", "Day of week"}, {"day_of_week_in_month", "Day of week in month"}, {"day_of_week_us", "Day of week us"}, {"day_of_year", "Day of year"}, {"day_suffix", "Day suffix"}, {"first_date_of_week", "First date of week"}, {"first_day_of_month", "First day of month"}, {"first_day_of_quarter", "First day of quarter"}, {"first_day_of_year", "First day of year"}, {"fiscal_day_of_year", "Fiscal day of year"}, {"fiscal_first_day_of_month", "Fiscal first day of month"}, {"fiscal_first_day_of_quarter", "Fiscal first day of quarter"}, {"fiscal_first_day_of_year", "Fiscal first day of year"}, {"fiscal_last_day_of_month", "Fiscal last day of month"}, {"fiscal_last_day_of_quarter", "Fiscal last day of quarter"}, {"fiscal_last_day_of_year", "Fiscal last day of year"}, {"fiscal_mmyyyy", "Fiscal mmyyyy"}, {"fiscal_month", "Fiscal month"}, {"fiscal_month_year", "Fiscal month year"}, {"fiscal_quarter", "Fiscal quarter"}, {"fiscal_week_of_year", "Fiscal week of year"}, {"fiscal_year", "Fiscal year"}, {"fiscal_year_month", "Fiscal year month"}, {"fiscal_year_name", "Fiscal year name"}, {"fiscal_year_quarter", "Fiscal year quarter"}, {"fiscal_year_short_name", "Fiscal year short name"}, {"is_weekday", "Is weekday"}, {"last_date_of_week", "Last date of week"}, {"last_day_of_month", "Last day of month"}, {"last_day_of_quarter", "Last day of quarter"}, {"last_day_of_year", "Last day of year"}, {"load_timestamp", "Load timestamp"}, {"month_in_year", "Month in year"}, {"month_name", "Month name"}, {"month_of_quarter", "Month of quarter"}, {"month", "Month"}, {"month_year", "Month year"}, {"quarter", "Quarter"}, {"short_year", "Short year"}, {"week_of_month", "Week of month"}, {"week_of_quarter", "Week of quarter"}, {"week_of_year", "Week of year"}, {"year", "Year"}, {"year_month", "Year month"}, {"year_name", "Year name"}, {"year_quarter", "Year quarter"}, {"date_key", "Date"}}),
+				    #"Inserted Text Before Delimiter" = Table.AddColumn(#"Renamed Columns", "Month Name Abbr", each Text.BeforeDelimiter([Calender month year], "-"), type text)
+				in
+				    #"Inserted Text Before Delimiter"
+
+	annotation PBI_ResultType = Table
+

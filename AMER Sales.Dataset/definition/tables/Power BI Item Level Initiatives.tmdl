@@ -1,0 +1,41 @@
+table 'Power BI Item Level Initiatives'
+	lineageTag: ad62dc3d-c872-4bb7-a2f5-abfd07212b99
+
+	column 'Part number'
+		dataType: string
+		lineageTag: 38957537-2be8-4e0e-946d-f7358237b712
+		summarizeBy: none
+		sourceColumn: Part number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Initiative
+		dataType: string
+		lineageTag: a311b372-b3d1-4f41-a916-b8031e06ad01
+		summarizeBy: none
+		sourceColumn: Initiative
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Part description'
+		dataType: string
+		lineageTag: dd0de6eb-bf52-4028-b307-a5f51d4bbc59
+		summarizeBy: none
+		sourceColumn: Part description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Power BI Item Level Initiatives-22825155-32c0-469c-acb7-be11ef71c07c' = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Workspaces{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+				    #"61371e7c-3103-4956-aa79-92c5a3f0258d" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="61371e7c-3103-4956-aa79-92c5a3f0258d"]}[Data],
+				    #"Item Level Initiatives_" = #"61371e7c-3103-4956-aa79-92c5a3f0258d"{[entity="Item Level Initiatives",version=""]}[Data]
+				in
+				    #"Item Level Initiatives_"
+
+	annotation PBI_ResultType = Table
+

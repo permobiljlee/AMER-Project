@@ -1,0 +1,251 @@
+table 'Global Rep Map (2)'
+	lineageTag: dd1b8dac-6895-46ef-9a04-fc85faa96519
+
+	column WKSalesRep
+		dataType: int64
+		formatString: 0
+		lineageTag: 6335b0ea-10ca-4244-88dc-a625d9615554
+		summarizeBy: sum
+		sourceColumn: WKSalesRep
+
+		annotation SummarizationSetBy = Automatic
+
+	column BKSalesRep
+		dataType: string
+		lineageTag: 6e110153-8673-4720-8df3-7fe2f788d17c
+		summarizeBy: none
+		sourceColumn: BKSalesRep
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesRepCode
+		dataType: string
+		lineageTag: f5ccb9dd-1340-4961-bfdf-8bc5335e642c
+		summarizeBy: none
+		sourceColumn: SalesRepCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesRepDescription
+		dataType: string
+		lineageTag: 13bc4abe-fa1b-4068-af02-a9fcf3745536
+		summarizeBy: none
+		sourceColumn: SalesRepDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesRegionCode
+		dataType: int64
+		formatString: 0
+		lineageTag: f21d87d6-35d0-4c10-b851-6c6db482acba
+		summarizeBy: count
+		sourceColumn: SalesRegionCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesRegion
+		dataType: string
+		lineageTag: 5ddd196e-6491-42bd-ae44-18244e2afca7
+		summarizeBy: none
+		sourceColumn: SalesRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column MarketGroupCode
+		dataType: int64
+		formatString: 0
+		lineageTag: 98b0dc35-dafe-4af8-998c-6d0e97799372
+		summarizeBy: count
+		sourceColumn: MarketGroupCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column MarketGroup
+		dataType: string
+		lineageTag: 9cfcbc34-7f3a-42f5-88aa-8c24b0ed8d73
+		summarizeBy: none
+		sourceColumn: MarketGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column BusinessRegion
+		dataType: string
+		lineageTag: e4a25124-9494-42b7-9c55-9a62f02da9eb
+		summarizeBy: none
+		sourceColumn: BusinessRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column BusinessRegionCode
+		dataType: int64
+		formatString: 0
+		lineageTag: 87d2e544-beda-4000-ac1c-bc5beb5edbc3
+		summarizeBy: count
+		sourceColumn: BusinessRegionCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesArea
+		dataType: string
+		lineageTag: d3ddd8f6-6b89-4d42-9aeb-997f1bdbcffa
+		summarizeBy: none
+		sourceColumn: SalesArea
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesAreaCode
+		dataType: int64
+		formatString: 0
+		lineageTag: db60962a-1535-479c-94b7-20dd76383b77
+		summarizeBy: count
+		sourceColumn: SalesAreaCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritory
+		dataType: string
+		lineageTag: 38ad9b21-a02d-4a61-8a04-b34a51f21233
+		summarizeBy: none
+		sourceColumn: SalesTerritory
+
+		annotation SummarizationSetBy = Automatic
+
+	column UserID
+		dataType: string
+		lineageTag: e413b329-97c0-4bd5-ac81-cb57f2fe331a
+		summarizeBy: none
+		sourceColumn: UserID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DW_ValidFrom
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: db304240-d9de-4742-8e89-8bf5c07a98af
+		summarizeBy: none
+		sourceColumn: DW_ValidFrom
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DW_UpdateDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 979aa1e1-ed75-4cda-a780-942b5d4614bf
+		summarizeBy: none
+		sourceColumn: DW_UpdateDateTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column DW_IsDeleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c7e871ab-604a-4f9d-bb0c-246bfd288228
+		summarizeBy: none
+		sourceColumn: DW_IsDeleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column DW_IsInferred
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6168703a-48de-466a-a24d-3d5f41790a2e
+		summarizeBy: none
+		sourceColumn: DW_IsInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column DW_IsCurrent
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a4b12836-64f5-4573-82ba-82bbfd8538e6
+		summarizeBy: none
+		sourceColumn: DW_IsCurrent
+
+		annotation SummarizationSetBy = Automatic
+
+	column DW_Rowid
+		dataType: int64
+		formatString: 0
+		lineageTag: 46bedcba-d904-45fe-84c0-b8818f108297
+		summarizeBy: sum
+		sourceColumn: DW_Rowid
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompanyCode
+		dataType: string
+		lineageTag: 2ad7a11b-3bf3-4b00-97df-8400b65fb3ab
+		summarizeBy: none
+		sourceColumn: CompanyCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column GlobalSalesRepCode
+		dataType: string
+		lineageTag: ce0bf738-9787-4493-898c-ea7311169050
+		summarizeBy: none
+		sourceColumn: GlobalSalesRepCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column MDSEnterDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2545f080-2c91-4a00-be84-10d577990a6d
+		summarizeBy: none
+		sourceColumn: MDSEnterDateTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PERM Code' =
+			
+			LOOKUPVALUE(
+			    'DF_Sales Rep Lookup (2)'[PERM Code],
+			    'DF_Sales Rep Lookup (2)'[WKSalesRep],
+			    'Global Rep Map (2)'[WKSalesRep]
+			    )
+		dataType: string
+		lineageTag: 4ba7bd48-2cb7-4b77-bfcb-ceaf7e85d2b7
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PERM Code NEW' = ```
+			
+			    VAR CurrentRep =
+			    'Global Rep Map (2)'[UserID]
+			    VAR RepCode = CALCULATE(
+			                    FIRSTNONBLANK('Sales Rep Map'[Rep], 1),
+			                        FILTER('Sales Rep Map',
+			                            'Sales Rep Map'[Logon] = CurrentRep))
+			                            
+			
+			RETURN
+			
+			IF(NOT(ISBLANK('Global Rep Map (2)'[PERM Code])),
+			    'Global Rep Map (2)'[PERM Code],
+			    RepCode)
+			```
+		dataType: string
+		lineageTag: a1c92129-657e-40f0-9c36-ae33fd5db603
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Global Rep Map (2)-aed67302-da2e-413e-a111-14fa74fa1654' = m
+		mode: import
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Source{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+				    #"2ebf11a4-fa51-4271-8c6a-b8e4653bbba7" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="2ebf11a4-fa51-4271-8c6a-b8e4653bbba7"]}[Data],
+				    #"Global Rep Map1" = #"2ebf11a4-fa51-4271-8c6a-b8e4653bbba7"{[entity="Global Rep Map"]}[Data]
+				in
+				    #"Global Rep Map1"
+
+	annotation PBI_ResultType = Table
+

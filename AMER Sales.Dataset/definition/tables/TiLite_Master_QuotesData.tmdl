@@ -1,0 +1,352 @@
+table TiLite_Master_QuotesData
+	lineageTag: 82bef4a2-7640-4d86-a8ea-2627d63125c3
+
+	measure 'Net Price Quotes' =
+			
+			SUM('TiLite_Master_QuotesData'[Net_Chair])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 7e43d734-2b3b-48fe-8588-424b5897a0ed
+
+	measure 'TiLite Quote Qty' =
+			
+			CALCULATE(
+			    SUM('TiLite_Master_QuotesData'[Count]),
+			    DATESBETWEEN('Date'[Date], MIN('Date'[Date]), MAX('Date'[Date])
+			    )
+			)
+		lineageTag: 70a7facd-e685-4510-ab87-3eea3983e6f7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TiLite Quote Qty PY' =
+			
+			CALCULATE(
+			    SUM('TiLite_Master_QuotesData'[Count]),
+			    DATESBETWEEN('Date'[Date], MIN('Date'[PY]), MAX('Date'[PY])
+			    )
+			)
+		lineageTag: 099f154b-7e94-4af2-ad6a-57740e88952a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TiLite Quoted YoY Change' =
+			
+			IF([TiLite Quote Qty PY] > 750,
+			    DIVIDE(
+			        [TiLite Quote Qty],
+			        [TiLite Quote Qty PY]) - 1, BLANK())
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 1c0ec68e-8f53-47b6-9560-94e5aa032099
+
+	column QuoteNo
+		dataType: string
+		lineageTag: ccf9c354-35ae-4506-90f2-5bc1bce1147b
+		summarizeBy: none
+		sourceColumn: QuoteNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date Last Updated'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 0757551a-1777-4df7-80ba-d03d4f790eb0
+		summarizeBy: none
+		sourceColumn: Date Last Updated
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Quote Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 73fdcfaf-12f9-4be2-81c0-1a6ef6496e03
+		summarizeBy: none
+		sourceColumn: Quote Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Order Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: d95f86fb-4234-43c4-bcf5-2b2e31698cd5
+		summarizeBy: none
+		sourceColumn: Order Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Cancel Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 24b5adc5-a76a-43b8-8859-5a6a640d65df
+		summarizeBy: none
+		sourceColumn: Cancel Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Customer No'
+		dataType: string
+		lineageTag: f7d5523f-af81-4efc-b379-012d1f654b86
+		summarizeBy: none
+		sourceColumn: Customer No
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Exp Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 347ed3c8-8101-47dc-8b69-112fd65b484a
+		summarizeBy: none
+		sourceColumn: Exp Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CustomerName
+		dataType: string
+		lineageTag: 60cf0d57-68b2-4b2e-8164-5f8db7253c53
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerClass
+		dataType: string
+		lineageTag: 25bb9b11-d347-4c85-9b3a-70661312cc6c
+		summarizeBy: none
+		sourceColumn: CustomerClass
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: d5fc3c8b-f3a8-4d5c-a252-7590d4a5579b
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegionCountry
+		dataType: string
+		lineageTag: 759cf5dc-7b78-467e-8d36-313ecaaeca0c
+		summarizeBy: none
+		sourceColumn: RegionCountry
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: adcbfdc8-b25f-45ae-8dbb-a5e7511c1214
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column StateProvince
+		dataType: string
+		lineageTag: fd570306-4205-4dd1-8fdd-155a59ae3618
+		summarizeBy: none
+		sourceColumn: StateProvince
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuoteType
+		dataType: string
+		lineageTag: ff3023bc-4b8f-49a0-a412-1b37132c7e51
+		summarizeBy: none
+		sourceColumn: QuoteType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChairType
+		dataType: string
+		lineageTag: 6e60af46-932f-4ae1-9012-96947dc96527
+		summarizeBy: none
+		sourceColumn: ChairType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quotes Status'
+		dataType: string
+		lineageTag: c8b5cb43-09ba-475f-9818-37a5319750c5
+		summarizeBy: none
+		sourceColumn: Quotes Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column TodaysDate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 9d2b700e-28f8-45f1-b747-f08387d14d97
+		summarizeBy: none
+		sourceColumn: TodaysDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Quote Age'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6409c285-cb69-444b-b93f-a67856772c9f
+		summarizeBy: sum
+		sourceColumn: Quote Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Count
+		dataType: int64
+		formatString: 0
+		lineageTag: 919c4430-cfd6-45d8-beb1-aafc02487377
+		summarizeBy: sum
+		sourceColumn: Count
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Rep Code' =
+			
+			VAR fciu =
+			LOOKUPVALUE(
+			    'FactCustomerInvoice_UNION'[SalesRepCode (Master Customer)],
+			    'FactCustomerInvoice_UNION'[TiLite Account],
+			    'TiLite_Master_QuotesData'[Customer No])
+			VAR fsou =
+			LOOKUPVALUE(
+			    'FactSalesOrderUNION'[SalesRepCode],
+			    'FactSalesOrderUNION'[TiLite Account],
+			    'TiLite_Master_QuotesData'[Customer No])
+			
+			RETURN
+			IF(ISBLANK(fciu), fsou, fciu)
+		dataType: string
+		lineageTag: 148da5b5-f9cf-48ca-89f0-2f176849b6b4
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rep Name' =
+			
+			LOOKUPVALUE(
+			    'Sales Rep Map'[RepName],
+			    'Sales Rep Map'[Rep],
+			    'TiLite_Master_QuotesData'[Sales Rep Code])
+		dataType: string
+		lineageTag: 2dc3d813-5b83-48bf-b30c-6912cb6e625f
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Net_Chair
+		dataType: double
+		lineageTag: 2c69fff3-fe71-4755-b4f0-8781a5f99649
+		summarizeBy: sum
+		sourceColumn: Net_Chair
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Exec Quote Age Tilite - Conversion' = ```
+			
+			VAR  age =
+			SWITCH(
+			    TRUE(),
+			    TiLite_Master_QuotesData[Exp Date] < TiLite_Master_QuotesData[TodaysDate], 999,
+			    TiLite_Master_QuotesData[Order Date] = DATE(1900, 1, 1), DATEDIFF(TiLite_Master_QuotesData[Quote Date], TiLite_Master_QuotesData[TodaysDate],DAY),
+			    TiLite_Master_QuotesData[Order Date] <> DATE(1900, 1, 1), DATEDIFF(TiLite_Master_QuotesData[Quote Date], TiLite_Master_QuotesData[Order Date],DAY),
+			    TiLite_Master_QuotesData[Cancel Date] <> DATE(1900, 1, 1), DATEDIFF(TiLite_Master_QuotesData[Quote Date], TiLite_Master_QuotesData[Cancel Date],DAY))
+			
+			VAR buckets =
+			SWITCH(TRUE(), 
+			    age = 999, "Not Converted",
+			    age >= 0 &&  age <= 30 , "1. 0-30",  
+			    age > 30 &&  age <= 60 , "2. 31-60", 
+			    age > 60 &&  age <= 90 , "3. 61-90",  
+			    age > 90 &&  age <= 120 , "4. 91-120", 
+			    age > 120 &&  age <= 150 , "5. 121-150",  
+			    age > 150 &&  age <= 180 , "6. 151-180", 
+			    age > 180  , "7. >180")
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    // TiLite_Master_QuotesData[Order Date] = DATE(1900, 1, 1), sansorder,
+			    ISBLANK(buckets) || buckets = "7. >180", "Not Converted", 
+			    buckets)
+			```
+		dataType: string
+		lineageTag: 7a92d684-847f-4b17-a638-7867082973e6
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column quoteages =
+			
+			SWITCH(
+			    TRUE(),
+			    TiLite_Master_QuotesData[Exp Date] < TiLite_Master_QuotesData[TodaysDate], 999,
+			    TiLite_Master_QuotesData[Order Date] = DATE(1900, 1, 1), DATEDIFF(TiLite_Master_QuotesData[Quote Date], TiLite_Master_QuotesData[TodaysDate],DAY),
+			    TiLite_Master_QuotesData[Order Date] <> DATE(1900, 1, 1), DATEDIFF(TiLite_Master_QuotesData[Quote Date], TiLite_Master_QuotesData[Order Date],DAY),
+			    TiLite_Master_QuotesData[Cancel Date] <> DATE(1900, 1, 1), DATEDIFF(TiLite_Master_QuotesData[Quote Date], TiLite_Master_QuotesData[Cancel Date],DAY))
+		dataType: int64
+		formatString: 0
+		lineageTag: 2061a36e-d834-4112-873b-f576b38da33d
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quote From Today' = ```
+			
+			VAR dayscount =
+			DATEDIFF('TiLite_Master_QuotesData'[Quote Date], TODAY(), DAY)
+			
+			RETURN
+			SWITCH(TRUE(), 
+			    dayscount >= 0 &&  dayscount <= 30 , "1. 0-30",  
+			    dayscount > 30 &&  dayscount <= 60 , "2. 31-60", 
+			    dayscount > 60 &&  dayscount <= 90 , "3. 61-90",  
+			    dayscount > 90 &&  dayscount <= 120 , "4. 91-120", 
+			    dayscount > 120 &&  dayscount <= 150 , "5. 121-150",  
+			    dayscount > 150 &&  dayscount <= 180 , "6. 151-180", 
+			    dayscount > 180 &&  dayscount <= 365 , "7. 181-365",
+			    "8. 365+")
+			```
+		dataType: string
+		lineageTag: 6e7eaf66-fd8c-4360-b3e5-7e97fc3efb83
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TiLite_Master_QuotesData-4dbfd4bb-3887-4084-be7b-77b5c78800a6 = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("USPASDB10", "SysproSupplement", [Query="SELECT#(lf)      [QuoteNo]#(lf)      ,CAST([LastModDateTime] AS DATE) AS 'Date Last Updated'#(lf)      ,CAST([EntryDateTime] AS DATE) AS 'Quote Date'#(lf)      ,CAST(ISNULL([ConvDateTime], '1900-01-01') AS DATE) AS 'Order Date'#(lf)      ,CAST(ISNULL([CancelDateTime], '1900-01-01') AS DATE) AS 'Cancel Date'#(lf)      ,SUBSTRING([CustomerNo], LEN([CustomerNo]) + 1 - 7, 7) AS 'Customer No'#(lf)      ,[ExpirationDateTime] AS 'Exp Date'#(lf)      ,[CustomerName]#(lf)      ,[CustomerClass]#(lf)      ,[Region]#(lf)      ,[Subregion] AS RegionCountry#(lf)      ,[Country]#(lf)      ,[StateProvince]#(lf)      ,[QuoteType]#(lf)      ,[ChairType]#(lf)      ,[Net_Chair]#(lf)  FROM [SysproSupplement].[dbo].[TiLite_Master_QuoteData]  #(lf)WHERE [EntryDateTime] >= '2021-01-01'AND #(lf)[Region] = 'BR AMERICAS'#(lf)AND [QuoteType] = 'CHAIR'#(lf)ORDER BY [EntryDateTime] ASC"]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Date Last Updated", type date}, {"Quote Date", type date}, {"Order Date", type date}, {"Cancel Date", type date}, {"Exp Date", type date}}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Changed Type", "Quotes Status", each if [Cancel Date] <> #date(1900, 1, 1) then "Canceled" else if [Order Date] <> #date(1900, 1, 1) then "Converted" else "Open"),
+				    #"Added Custom2" = Table.AddColumn(#"Added Conditional Column", "TodaysDate", each DateTime.LocalNow()),
+				    #"Extracted Date1" = Table.TransformColumns(#"Added Custom2",{{"TodaysDate", DateTime.Date, type date}}),
+				    #"Added Custom" = Table.AddColumn(#"Extracted Date1", "Quote Age", each [TodaysDate]-[Date Last Updated]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Quote Age", Int64.Type}}),
+				    #"Added Custom1" = Table.AddColumn(#"Changed Type1", "Count", each 1),
+				    #"Replaced Errors" = Table.ReplaceErrorValues(#"Added Custom1", {{"Net_Chair", 0}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Replaced Errors", each true)
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+

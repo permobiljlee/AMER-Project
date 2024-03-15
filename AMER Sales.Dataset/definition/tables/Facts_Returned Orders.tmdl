@@ -1,0 +1,242 @@
+table 'Facts_Returned Orders'
+	lineageTag: 34bbef9c-ce4c-4ede-9166-79bdd40c4cbd
+
+	column 'Fact type'
+		dataType: string
+		lineageTag: 4aa46c13-57c6-49e0-a376-7c8a7f064146
+		summarizeBy: none
+		sourceColumn: Fact type
+
+		annotation SummarizationSetBy = Automatic
+
+	column RecordSource
+		dataType: string
+		lineageTag: 64c64d7b-74d7-4ca6-8cd4-4361c6e62604
+		summarizeBy: none
+		sourceColumn: RecordSource
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_SK
+		dataType: string
+		lineageTag: f0598764-5a4b-4cac-91ca-6f338aa63510
+		summarizeBy: none
+		sourceColumn: Customer_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column FinProduct_SK
+		dataType: string
+		lineageTag: 44ff0ada-cfd6-4cbf-a16f-c0c830a5d4b9
+		summarizeBy: none
+		sourceColumn: FinProduct_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Company_SK
+		dataType: string
+		lineageTag: 3329d522-0c55-4cc6-95d6-b90081503c3e
+		summarizeBy: none
+		sourceColumn: Company_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReleasedProduct_SK
+		dataType: string
+		lineageTag: e64a3585-41f3-4034-b341-e5468faab0de
+		summarizeBy: none
+		sourceColumn: ReleasedProduct_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date_SK
+		dataType: int64
+		formatString: 0
+		lineageTag: 6797d400-2cba-451d-adb7-8c9aad4e971d
+		summarizeBy: sum
+		sourceColumn: Date_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order status'
+		dataType: int64
+		formatString: 0
+		lineageTag: a8a37048-2bd8-44db-8517-0768167e4ede
+		summarizeBy: sum
+		sourceColumn: Order status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order type'
+		dataType: string
+		lineageTag: 24e34c87-755a-4074-a8ce-1f921210cf5e
+		summarizeBy: none
+		sourceColumn: Order type
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNumber
+		dataType: string
+		lineageTag: 2fdda50e-b9b2-45be-8c27-2f033e19d49d
+		summarizeBy: none
+		sourceColumn: OrderNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemNumber
+		dataType: string
+		lineageTag: 2b4bd656-327b-4334-8254-4dad18eb991a
+		summarizeBy: none
+		sourceColumn: ItemNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column SerialNumber
+		dataType: string
+		lineageTag: 974ffdf2-87ca-4132-a492-a4fe63d7cc48
+		summarizeBy: none
+		sourceColumn: SerialNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Net price'
+		dataType: double
+		lineageTag: 075d9937-cb98-41e8-b3b6-2516b9da9a8a
+		summarizeBy: sum
+		sourceColumn: Net price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ConfigurationsHeader_SK
+		dataType: string
+		lineageTag: a43292b3-9b4a-4fae-948a-d464aeb3b253
+		summarizeBy: none
+		sourceColumn: ConfigurationsHeader_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesQuotationHeader_SK
+		dataType: string
+		lineageTag: adc5d810-2808-4b2b-942d-a7c4b4535513
+		summarizeBy: none
+		sourceColumn: SalesQuotationHeader_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesOrderHeader_SK
+		dataType: string
+		lineageTag: 8bbddaab-409a-4420-8aeb-ca4cff3cd052
+		summarizeBy: none
+		sourceColumn: SalesOrderHeader_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReturnOrderHeader_SK
+		dataType: string
+		lineageTag: 60c93e92-3b2b-40a0-8ada-5551061af26f
+		summarizeBy: none
+		sourceColumn: ReturnOrderHeader_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesCommissionGroup_SK
+		dataType: string
+		lineageTag: fe1bcf1f-a687-4eae-b124-8578403f0b68
+		summarizeBy: none
+		sourceColumn: SalesCommissionGroup_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 12d11164-be62-4aba-bd24-4c97891a00a1
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Sales Commission Group (RO)' = ```
+			RELATED('Ship to customer'[ProfileSubTerritory]) 
+			```
+		dataType: string
+		lineageTag: 7d8696a5-6916-45c7-a95c-08ea50356793
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SalesRepCode (RO)' =
+			
+			LOOKUPVALUE(
+			    'Sales Rep Map'[Rep],
+			    'Sales Rep Map'[D365 Commission Group ID(sometimes called SalesUnit)],
+			    'Facts_Returned Orders'[Sales Commission Group (RO)])
+		dataType: string
+		lineageTag: 72b1001f-e1a0-45d3-9068-898724183022
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Internal Customer (RO)' = RELATED('Ship to customer'[Ship to internal customer])
+		dataType: int64
+		formatString: 0
+		lineageTag: e89851ca-3ec5-432d-a3ff-adad26229e2d
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fin Prod Desc lv2' = RELATED('Released product'[Financial product desc Lvl2])
+		dataType: string
+		lineageTag: 5c67305b-d212-483e-869c-62ab3e3b0967
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesInvoiceHeader_SK
+		dataType: string
+		lineageTag: 3c6745b5-a945-4874-8382-a80e74d054c0
+		summarizeBy: none
+		sourceColumn: SalesInvoiceHeader_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipToCustomer_SK
+		dataType: string
+		lineageTag: ec905b97-8759-4697-9d6f-5185e4dce7c4
+		summarizeBy: none
+		sourceColumn: ShipToCustomer_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Type - Calculated' =
+			
+			LOOKUPVALUE('Facts_Returned Orders (Order Type)'[Order Type],
+			'Facts_Returned Orders (Order Type)'[OrderNumber],
+			'Facts_Returned Orders'[OrderNumber], "Parts")
+		dataType: string
+		lineageTag: 600610e9-379a-4c06-a038-33a74f200882
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Facts_Returned Orders-f7f66ba8-1fce-4aac-ae4d-a7f7d96c462d' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [CreateNavigationProperties=false, CommandTimeout=#duration(0, 4, 10, 0), Query="SELECT [FactType]#(lf)      ,[RecordSource]#(lf)      ,[Customer_SK]#(lf)      ,[FinProduct_SK]#(lf)      ,[Company_SK]#(lf)      ,[ReleasedProduct_SK]#(lf),[ShipToCustomer_SK]#(lf)      ,[Date_SK]#(lf)      ,[OrderStatus]#(lf)      ,[OrderType]#(lf)      ,[OrderNumber]#(lf)      ,[ItemNumber]#(lf)      ,[SerialNumber]#(lf)      ,[NetPrice]#(lf)      ,[ConfigurationsHeader_SK]#(lf)      ,[SalesQuotationHeader_SK]#(lf)      ,[SalesOrderHeader_SK]#(lf)      ,[SalesInvoiceHeader_SK]#(lf)      ,[ReturnOrderHeader_SK]#(lf)      ,[SalesCommissionGroup_SK]#(lf)  FROM [sales_Rpt].[fact_Sales]#(lf)WHERE FactType IN ('RO') #(lf)AND (Company_SK = 'A1CC37EFDDBBDA8BAA87443BAE04F2CA6C0BFB6D' OR Company_SK = 'DBF107EA99A53AFD092321B962232EFB81FF9297' OR Company_SK = #(lf)'B473A5ECB9EEEBFCB444E0D4B4269A1E0E33740B')#(lf)AND (Date_SK >= 20220101#(lf)OR Date_SK = 19000101)"]),
+				    #"Renamed Columns" = Table.RenameColumns(Source,{{"FactType", "Fact type"}, {"NetPrice", "Net price"}, {"OrderStatus", "Order status"},{"OrderType", "Order type"}}),
+				    #"Inserted Date" = Table.AddColumn(#"Renamed Columns", "Date", each Date.From(Text.From([Date_SK], "en-US")), type date)
+				in
+				    #"Inserted Date"
+
+	annotation PBI_ResultType = Exception
+

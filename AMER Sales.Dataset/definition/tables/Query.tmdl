@@ -1,0 +1,284 @@
+table Query
+	lineageTag: e523a288-290b-459c-8534-dc978af05b9d
+
+	column Rep
+		dataType: string
+		lineageTag: f1fb87c5-7d7e-446d-992c-571f80d2c908
+		summarizeBy: none
+		sourceColumn: Rep
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Active (1) / Inactive (0)'
+		dataType: string
+		lineageTag: 096bc100-906e-4a2b-bac6-e183ba720745
+		summarizeBy: none
+		sourceColumn: Active (1) / Inactive (0)
+
+		annotation SummarizationSetBy = Automatic
+
+	column RepName
+		dataType: string
+		lineageTag: 7f15215f-d0bc-4a51-9a4a-57a06ee6e37c
+		summarizeBy: none
+		sourceColumn: RepName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Canada Rep Mapping'
+		dataType: string
+		lineageTag: cea375c6-2010-4368-a404-54ea865ddc71
+		summarizeBy: none
+		sourceColumn: Canada Rep Mapping
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'S&P On-Chair Rep'
+		dataType: string
+		lineageTag: 22ee0b54-3870-4c71-995b-6b1a4b560776
+		summarizeBy: none
+		sourceColumn: S&P On-Chair Rep
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 79ad6a5e-dbb1-4fc8-80bc-cb0a052a2ad3
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'D365 Commission Group ID(sometimes called SalesUnit)'
+		dataType: string
+		lineageTag: 8b5d343d-5199-4779-871e-a2754e64bde0
+		summarizeBy: none
+		sourceColumn: D365 Commission Group ID(sometimes called SalesUnit)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vendor_D365
+		dataType: string
+		lineageTag: 1bc793b5-3880-4bb3-b714-98c08dfc6325
+		summarizeBy: none
+		sourceColumn: Vendor_D365
+
+		annotation SummarizationSetBy = Automatic
+
+	column FinSalesRep
+		dataType: string
+		lineageTag: ed767215-ca7f-49ce-bcf8-b39091d893f0
+		summarizeBy: none
+		sourceColumn: FinSalesRep
+
+		annotation SummarizationSetBy = Automatic
+
+	column FinSalesRep_SK
+		dataType: string
+		lineageTag: 91070392-305a-421d-9693-3e76f6700b67
+		summarizeBy: none
+		sourceColumn: FinSalesRep_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 97ebba36-d66e-41c8-a8db-94f84a40793f
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column UserId
+		dataType: int64
+		formatString: 0
+		lineageTag: e2fbd287-2efa-4dba-8c19-29a5b08d5bf6
+		summarizeBy: count
+		sourceColumn: UserId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Logon
+		dataType: string
+		lineageTag: 11b3f8bd-f370-4010-907d-0f81be39c6a7
+		summarizeBy: none
+		sourceColumn: Logon
+
+		annotation SummarizationSetBy = Automatic
+
+	column FirstName
+		dataType: string
+		lineageTag: 549c7bf5-2475-4f1c-a908-aab996acf93f
+		summarizeBy: none
+		sourceColumn: FirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastName
+		dataType: string
+		lineageTag: 7ffff97a-4a48-4630-a1ed-9860c5232063
+		summarizeBy: none
+		sourceColumn: LastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: 14712717-1a9d-404b-b45c-6db7033907eb
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phone1
+		dataType: string
+		lineageTag: 99823124-27cd-4d7d-a423-5ed916804582
+		summarizeBy: none
+		sourceColumn: Phone1
+
+		annotation SummarizationSetBy = Automatic
+
+	column MgrId
+		dataType: int64
+		formatString: 0
+		lineageTag: db2dabc2-2b06-4ec4-bf70-58ac2449c5ae
+		summarizeBy: count
+		sourceColumn: MgrId
+
+		annotation SummarizationSetBy = Automatic
+
+	column MgrLogon
+		dataType: string
+		lineageTag: 8efd5246-1708-4185-849e-69680fda6ef4
+		summarizeBy: none
+		sourceColumn: MgrLogon
+
+		annotation SummarizationSetBy = Automatic
+
+	column MgrFirstName
+		dataType: string
+		lineageTag: 060d53c3-b4d3-457e-955e-5a9428d64274
+		summarizeBy: none
+		sourceColumn: MgrFirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MgrLastName
+		dataType: string
+		lineageTag: c0354494-318d-4415-bb2c-a424f0504a26
+		summarizeBy: none
+		sourceColumn: MgrLastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MgrEmail
+		dataType: string
+		lineageTag: b3189ad7-dbc1-43b8-a8e4-b7af5b85fcd8
+		summarizeBy: none
+		sourceColumn: MgrEmail
+
+		annotation SummarizationSetBy = Automatic
+
+	column Terr
+		dataType: string
+		lineageTag: a404d006-8765-4ab2-bf12-6b5020e1755f
+		summarizeBy: none
+		sourceColumn: Terr
+
+		annotation SummarizationSetBy = Automatic
+
+	column TerrDescr
+		dataType: string
+		lineageTag: 80bbd53d-b31c-4dc4-94e9-8400876c3026
+		summarizeBy: none
+		sourceColumn: TerrDescr
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCT
+		dataType: string
+		lineageTag: e9199d6a-7c63-4642-86c3-a9f4ae511928
+		summarizeBy: none
+		sourceColumn: ACCT
+
+		annotation SummarizationSetBy = Automatic
+
+	column EditedRLS
+		dataType: string
+		lineageTag: 43fcb55a-4095-4e3c-b82e-e94686ab048e
+		summarizeBy: none
+		sourceColumn: EditedRLS
+
+		annotation SummarizationSetBy = Automatic
+
+	column ClinicalEmail
+		dataType: string
+		lineageTag: e1f623e8-747b-4fb4-b40e-ca72db950bb9
+		summarizeBy: none
+		sourceColumn: ClinicalEmail
+
+		annotation SummarizationSetBy = Automatic
+
+	column Area
+		dataType: string
+		lineageTag: 093154dc-7699-497a-8ccc-2122abcf8244
+		summarizeBy: none
+		sourceColumn: Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column EditedRLS2
+		dataType: string
+		lineageTag: db662460-ec51-485a-a903-2ef52ecd5861
+		summarizeBy: none
+		sourceColumn: EditedRLS2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Alt email'
+		dataType: string
+		lineageTag: 3907382e-4bfb-44a2-a097-7f2246144140
+		summarizeBy: none
+		sourceColumn: Alt email
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RVP Email'
+		dataType: string
+		lineageTag: fb463b8f-c851-4526-970e-5df9fa06c668
+		summarizeBy: none
+		sourceColumn: RVP Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RVP Logon'
+		dataType: string
+		lineageTag: e6c87ed3-a7eb-4d89-b386-67512501f885
+		summarizeBy: none
+		sourceColumn: RVP Logon
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Joined Terr'
+		dataType: string
+		lineageTag: 8becfc4b-58a9-4776-92e3-6477346f0001
+		summarizeBy: none
+		sourceColumn: Joined Terr
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Query = m
+		mode: import
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    #"57cedf8c-3bd1-4312-9641-3125f68ba4aa" = Source{[workspaceId="57cedf8c-3bd1-4312-9641-3125f68ba4aa"]}[Data],
+				    #"5c4bf4d3-0a37-4dfe-9e24-40a79d245a34" = #"57cedf8c-3bd1-4312-9641-3125f68ba4aa"{[dataflowId="5c4bf4d3-0a37-4dfe-9e24-40a79d245a34"]}[Data],
+				    Query1 = #"5c4bf4d3-0a37-4dfe-9e24-40a79d245a34"{[entity="Query"]}[Data]
+				in
+				    Query1
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

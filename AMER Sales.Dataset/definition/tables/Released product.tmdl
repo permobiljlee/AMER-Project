@@ -1,0 +1,310 @@
+table 'Released product'
+	lineageTag: 52a87d8d-1138-4579-af72-b6069399ea8c
+
+	column ReleasedProduct_SK
+		dataType: string
+		isHidden
+		lineageTag: 8d588da2-035f-4f88-a728-7ffd8d52764f
+		summarizeBy: none
+		sourceColumn: ReleasedProduct_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReleasedProduct_BK
+		dataType: string
+		isHidden
+		lineageTag: a9a23d38-b6de-4997-8c69-580e2f3b1ecd
+		summarizeBy: none
+		sourceColumn: ReleasedProduct_BK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product number'
+		dataType: string
+		lineageTag: a66a20c8-0cf2-4bff-becd-1860c33a28c1
+		summarizeBy: none
+		sourceColumn: Product number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product name'
+		dataType: string
+		lineageTag: f094f285-bd7f-4ce5-b187-6cf0f7098da0
+		summarizeBy: none
+		sourceColumn: Product name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product group Id'
+		dataType: string
+		lineageTag: 530258fa-83e3-4efa-ac6b-672c11c9370e
+		summarizeBy: none
+		sourceColumn: Product group Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Company
+		dataType: string
+		lineageTag: 07a528ba-9000-4735-b8fd-e40221854c92
+		summarizeBy: none
+		sourceColumn: Company
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item model group Id'
+		dataType: string
+		lineageTag: 003ccb84-0e87-49fa-bdd2-e23a7b4a7cb9
+		summarizeBy: none
+		sourceColumn: Item model group Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product sub type'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6880eb35-1ecf-4f92-8359-7a61fb71e816
+		summarizeBy: none
+		sourceColumn: Product sub type
+
+		annotation SummarizationSetBy = User
+
+	column 'Search hub name'
+		dataType: string
+		lineageTag: b70c3872-976c-4e97-a231-eb94c35ac043
+		summarizeBy: none
+		sourceColumn: Search hub name
+
+		annotation SummarizationSetBy = Automatic
+
+	column BOMLevel
+		dataType: string
+		lineageTag: a4bff1ff-7566-4a12-adad-fd932b37f5e5
+		summarizeBy: none
+		sourceColumn: BOMLevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Primary vendor account number'
+		dataType: string
+		isHidden
+		lineageTag: 59507101-f65a-4f2c-a24c-208009b24d71
+		summarizeBy: none
+		sourceColumn: Primary vendor account number
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sell start date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 63194d51-f864-4776-92cf-d6d67a2ca7d1
+		summarizeBy: none
+		sourceColumn: Sell start date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sell end date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ee4cd532-f1ec-4809-a620-213b38cb04c1
+		summarizeBy: none
+		sourceColumn: Sell end date
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataLoadDatetime
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 299892d6-2e9a-4ef2-b27a-a8058a662811
+		summarizeBy: none
+		sourceColumn: DataLoadDatetime
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Source system'
+		dataType: string
+		lineageTag: d744b99b-0d8b-4fb6-a6f6-45835f9c0a2a
+		summarizeBy: none
+		sourceColumn: Source system
+
+		annotation SummarizationSetBy = Automatic
+
+	column RecordSource
+		dataType: string
+		lineageTag: be58ef2d-3b38-417a-a0b2-2f3e761ad5d7
+		summarizeBy: none
+		sourceColumn: RecordSource
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChangeType
+		dataType: string
+		isHidden
+		lineageTag: ce368c37-15e7-47c7-a540-24874c956910
+		summarizeBy: none
+		sourceColumn: ChangeType
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_SK
+		dataType: string
+		isHidden
+		lineageTag: 9154a692-2000-46c1-b5b5-668f5cced139
+		summarizeBy: none
+		sourceColumn: Product_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column InventoryUnitSymbol
+		dataType: string
+		lineageTag: 26c6f15b-208d-4c11-b724-ccfb402582ec
+		summarizeBy: none
+		sourceColumn: InventoryUnitSymbol
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product code'
+		dataType: string
+		lineageTag: e4f5882d-a8d3-4b3c-b559-eb37e08a3944
+		summarizeBy: none
+		sourceColumn: Financial product code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product desc'
+		dataType: string
+		lineageTag: b6429c3f-ad59-4dcf-b4a8-d345c6cca152
+		summarizeBy: none
+		sourceColumn: Financial product desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product code Lvl1'
+		dataType: string
+		lineageTag: 1ad55053-16bc-4547-a8f6-5470f02bea81
+		summarizeBy: none
+		sourceColumn: Financial product code Lvl1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product code Lvl2'
+		dataType: string
+		lineageTag: 1e4cca0d-b34e-43bd-937b-5c4f19700620
+		summarizeBy: none
+		sourceColumn: Financial product code Lvl2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product code Lvl3'
+		dataType: string
+		lineageTag: 1bd3ed35-ab42-4c80-a948-7f0bdcf69414
+		summarizeBy: none
+		sourceColumn: Financial product code Lvl3
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product code Lvl4'
+		dataType: string
+		lineageTag: 56c1a971-4e53-400f-b669-19709ba91653
+		summarizeBy: none
+		sourceColumn: Financial product code Lvl4
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product code Lvl5'
+		dataType: string
+		lineageTag: 4e64d546-b0db-4977-bf09-5ec9d4fefd4a
+		summarizeBy: none
+		sourceColumn: Financial product code Lvl5
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product desc Lvl1'
+		dataType: string
+		lineageTag: afe73b52-d07c-46bd-87ca-77f376ee3cbc
+		summarizeBy: none
+		sourceColumn: Financial product desc Lvl1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product desc Lvl2'
+		dataType: string
+		lineageTag: 4001ee6a-1269-49ed-928e-81562ad7f23b
+		summarizeBy: none
+		sourceColumn: Financial product desc Lvl2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product desc Lvl3'
+		dataType: string
+		lineageTag: 0549479a-6446-4e98-9ab6-bf9053e984c1
+		summarizeBy: none
+		sourceColumn: Financial product desc Lvl3
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product desc Lvl4'
+		dataType: string
+		lineageTag: dcf56966-8aa1-45b1-ab24-d03bde86268d
+		summarizeBy: none
+		sourceColumn: Financial product desc Lvl4
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial product desc Lvl5'
+		dataType: string
+		lineageTag: 11e2224f-771a-45e5-89ef-3815aa497cdb
+		summarizeBy: none
+		sourceColumn: Financial product desc Lvl5
+
+		annotation SummarizationSetBy = Automatic
+
+	column Prod =
+			
+			IF('Released product'[RecordSource] = "d365",
+			    LOOKUPVALUE(
+			        'Financial product'[Financial product desc],
+			        'Financial product'[Financial product code],
+			        'Released product'[Financial product code],
+			        'Released product'[Product Name]))
+		dataType: string
+		lineageTag: 950e769b-2c75-4a6d-aa92-740a9aac080c
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TiLite Chair Model' =
+			
+			LOOKUPVALUE('TiLite Chair Type'[Chair Type],'TiLite Chair Type'[ProductCode],'Released product'[Financial product code])
+		dataType: string
+		lineageTag: 1369dcef-49e5-48ea-8730-acdb11afcef2
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Released product-49df0e85-603a-427c-855f-3149a275109b' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [CreateNavigationProperties=false, CommandTimeout=#duration(0, 4, 10, 0)]),
+				    ldw_dim_ReleasedProductAll = Source{[Schema="sales_Rpt",Item="dim_ReleasedProduct"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(ldw_dim_ReleasedProductAll,{{"ItemModelGroupId", "Item model group Id"}, {"PrimaryVendorAccountNumber", "Primary vendor account number"}, {"ProductGroupID", "Product group Id"}, {"ProductName", "Product name"}, {"ProductNumber", "Product number"}, {"ProductSubType", "Product sub type"}, {"SellEndDate", "Sell end date"}, {"SellStartDate", "Sell start date"}, {"Sourcesystem", "Source system"}, {"SearcHubName", "Search hub name"}, {"FinProductCode", "Financial product code"}, {"FinProductCodeLvl1", "Financial product code Lvl1"}, {"FinProductCodeLvl2", "Financial product code Lvl2"}, {"FinProductCodeLvl3", "Financial product code Lvl3"}, {"FinProductCodeLvl4", "Financial product code Lvl4"}, {"FinProductCodeLvl5", "Financial product code Lvl5"}, {"FinProductDesc", "Financial product desc"}, {"FinProductDescLvl1", "Financial product desc Lvl1"}, {"FinProductDescLvl2", "Financial product desc Lvl2"}, {"FinProductDescLvl3", "Financial product desc Lvl3"}, {"FinProductDescLvl4", "Financial product desc Lvl4"}, {"FinProductDescLvl5", "Financial product desc Lvl5"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

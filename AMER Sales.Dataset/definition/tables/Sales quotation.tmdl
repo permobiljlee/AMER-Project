@@ -1,0 +1,147 @@
+table 'Sales quotation'
+	lineageTag: c932ceec-d6da-4f4c-bf92-f9fc372f9ec6
+
+	column SalesQuotationHeader_SK
+		dataType: string
+		lineageTag: 5a50b189-57fa-41f5-99aa-ae5cf3611ba6
+		summarizeBy: none
+		sourceColumn: SalesQuotationHeader_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesQuotationHeader_BK
+		dataType: string
+		lineageTag: 4421dafd-f084-4be6-ada3-4756d98db37d
+		summarizeBy: none
+		sourceColumn: SalesQuotationHeader_BK
+
+		annotation SummarizationSetBy = Automatic
+
+	column RecordSource
+		dataType: string
+		lineageTag: 77bcbf4e-99c4-48fd-8059-e9649b3d8bf2
+		summarizeBy: none
+		sourceColumn: RecordSource
+
+		annotation SummarizationSetBy = Automatic
+
+	column D365QuoteID
+		dataType: string
+		lineageTag: 71ee46b5-4d8b-4cd3-92f9-ba0544c794e7
+		summarizeBy: none
+		sourceColumn: D365QuoteID
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuoteDate_SK
+		dataType: int64
+		formatString: 0
+		lineageTag: 18171442-edd0-48f7-8608-ccc05a3eb353
+		summarizeBy: none
+		sourceColumn: QuoteDate_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuoteStatus
+		dataType: int64
+		formatString: 0
+		lineageTag: 2557a5ba-948e-48b2-b533-7a2d4125af96
+		summarizeBy: none
+		sourceColumn: QuoteStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 5ffd7b69-60fc-49f2-b709-5dd4a610e6f5
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipToCustomer_SK
+		dataType: string
+		lineageTag: ae215e01-12d2-4b11-8320-58339aa950ef
+		summarizeBy: none
+		sourceColumn: ShipToCustomer_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column BillToCustomer_SK
+		dataType: string
+		lineageTag: ff95900c-7046-4a03-b9c6-0f25a79000dc
+		summarizeBy: none
+		sourceColumn: BillToCustomer_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerAccount
+		dataType: string
+		lineageTag: 11d74768-0130-4f1c-93b6-0b3f21e745ec
+		summarizeBy: none
+		sourceColumn: CustomerAccount
+
+		annotation SummarizationSetBy = Automatic
+
+	column InvoiceAccount
+		dataType: string
+		lineageTag: fba4906a-15e2-4089-942b-7be46fcf38a7
+		summarizeBy: none
+		sourceColumn: InvoiceAccount
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerReference
+		dataType: string
+		lineageTag: ffa03369-7d5a-4e63-a4e8-53dbd0fdd081
+		summarizeBy: none
+		sourceColumn: CustomerReference
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESORDERPOOLID
+		dataType: string
+		lineageTag: e52b7292-5053-4e03-a0e7-96caca5c024a
+		summarizeBy: none
+		sourceColumn: SALESORDERPOOLID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CANOrderID
+		dataType: string
+		lineageTag: cf76e9ca-a010-41e9-a062-022e93723a13
+		summarizeBy: none
+		sourceColumn: CANOrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column USOrderID
+		dataType: string
+		lineageTag: e99168c3-3926-4917-aa2e-8a7cf7fd7e55
+		summarizeBy: none
+		sourceColumn: USOrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quote Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7e2e451e-226f-45ab-bd55-7bc73aed001f
+		summarizeBy: none
+		sourceColumn: Quote Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 'Sales quotation-4f860386-f4c1-4382-8b98-373bb3d1af64' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [CreateNavigationProperties=false, CommandTimeout=#duration(0, 4, 10, 0), Query="SELECT [SalesQuotationHeader_SK]#(lf)      ,[SalesQuotationHeader_BK]#(lf)      ,[RecordSource]#(lf)      ,[D365QuoteID]#(lf)      ,[QuoteDate_SK]#(lf)      ,[QuoteStatus]#(lf)      ,[Type]#(lf)      ,[ShipToCustomer_SK]#(lf)      ,[BillToCustomer_SK]#(lf)      ,[CustomerAccount]#(lf)      ,[InvoiceAccount]#(lf)      ,[CustomerReference]#(lf)      ,CASE #(lf)        WHEN CHARINDEX('can', [SalesQuotationHeader_BK]) > 0 THEN NULLIF([OrderID], '')        ELSE NULL#(lf)      END AS CANOrderID#(lf)      ,CASE #(lf)        WHEN CHARINDEX('us', [SalesQuotationHeader_BK]) > 0 THEN NULLIF([OrderID], '')#(lf)      END AS USOrderID#(lf)      ,[SALESORDERPOOLID]#(lf)  FROM [sales_Rpt].[dim_SalesQuotationHeader]#(lf)  WHERE Type IN ('chair', 'SMRT')#(lf)AND (QuoteDate_SK >= 20220101 OR QuoteDate_SK = 19000101)#(lf)AND CHARINDEX('aus', SalesQuotationHeader_BK) = 0"]),
+				    #"Inserted Date" = Table.AddColumn(Source, "Quote Date", each Date.From(Text.From([QuoteDate_SK], "en-US")), type date)
+				in
+				    #"Inserted Date"
+
+	annotation PBI_ResultType = Table
+

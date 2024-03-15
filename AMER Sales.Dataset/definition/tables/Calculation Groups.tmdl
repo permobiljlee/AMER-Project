@@ -1,0 +1,164 @@
+table 'Calculation Groups'
+	lineageTag: 86991e98-225c-4f88-9fbc-7a5e984bfd25
+
+	calculationGroup
+
+		calculationItem 'Full Year Budget' = CALCULATE(SELECTEDMEASURE())
+
+		calculationItem 'Q1 Budget' = ```
+				CALCULATE(SELECTEDMEASURE(), 
+				    FILTER('Date',
+				        'Date'[Quarter] = 1))
+				```
+
+		calculationItem 'Q2 Budget' = ```
+				CALCULATE(SELECTEDMEASURE(), 
+				    FILTER('Date',
+				        'Date'[Quarter] = 2))
+				```
+
+		calculationItem 'Q3 Budget' = ```
+				CALCULATE(SELECTEDMEASURE(), 
+				    FILTER('Date',
+				        'Date'[Quarter] = 3))
+				```
+
+		calculationItem 'Q4 Budget' = ```
+				CALCULATE(SELECTEDMEASURE(), 
+				    FILTER('Date',
+				        'Date'[Quarter] = 4))
+				```
+
+		calculationItem 'PWC STB Q1' = ```
+				VAR div =
+				DIVIDE(
+				    CALCULATE([Invoiced Power Chairs - US], FILTER('Date', 'Date'[Quarter] = 1 && 'date'[year] = 2023)),
+				    [Current Working Day - Quarter])
+				VAR mult = 
+				div * [Total Working Day - Quarter]
+				VAR final =
+				DIVIDE(
+				    mult,
+				    CALCULATE(SELECTEDMEASURE(), 
+				    FILTER('Date',
+				        'Date'[Quarter] = 1),
+				    FILTER('Master Budget 2023',
+				        'Master Budget 2023'[Product Line] = "Power Chairs")))
+				RETURN
+				final
+				```
+
+		calculationItem 'SD STB Q1' = ```
+				VAR div =
+				DIVIDE(
+				    CALCULATE([Invoiced TiLite On-Chair - SmartDrives Aluminum] + [Invoiced SmartDrives Off-Chair for Commissions - Total US], FILTER('Date', 'Date'[Quarter] = 1 && 'date'[year] = 2023)),
+				    [Current Working Day - Quarter])
+				VAR mult = 
+				div * [Total Working Day - Quarter]
+				VAR final =
+				DIVIDE(
+				    mult,
+				    CALCULATE(SELECTEDMEASURE(), 
+				    FILTER('Date',
+				        'Date'[Quarter] = 1),
+				    FILTER('Master Budget 2023',
+				        'Master Budget 2023'[Product Line] = "SmartDrive On-Chair" ||
+				        'Master Budget 2023'[Product Line] = "SmartDrive On-Chair")))
+				RETURN
+				final
+				```
+
+		calculationItem 'SD Off STB Q1' = ```
+				VAR div =
+				DIVIDE(
+				    CALCULATE([Invoiced SmartDrives Off-Chair for Commissions - Total US], FILTER('Date', 'Date'[Quarter] = 1 && 'date'[year] = 2023)),
+				    [Current Working Day - Quarter])
+				VAR mult = 
+				div * [Total Working Day - Quarter]
+				VAR final =
+				DIVIDE(
+				    mult,
+				    CALCULATE(SELECTEDMEASURE(), 
+				    FILTER('Date',
+				        'Date'[Quarter] = 1),
+				    FILTER('Master Budget 2023',
+				        'Master Budget 2023'[Product Line] = "SmartDrive Off Chair")))
+				RETURN
+				final
+				```
+
+		calculationItem 'ROHO STB Q1' = ```
+				VAR div =
+				DIVIDE(
+				    CALCULATE([Invoiced TiLite On-Chair - ROHO], FILTER('Date', 'Date'[Quarter] = 1 && 'date'[year] = 2023)),
+				    [Current Working Day - Quarter])
+				VAR mult = 
+				div * [Total Working Day - Quarter]
+				VAR final =
+				DIVIDE(
+				    mult,
+				    CALCULATE(SELECTEDMEASURE(), 
+				    FILTER('Date',
+				        'Date'[Quarter] = 1),
+				    FILTER('Master Budget 2023',
+				        'Master Budget 2023'[Product Line] = "ROHO")))
+				RETURN
+				final
+				```
+
+		calculationItem 'TiLite STB Q1' = ```
+				VAR div =
+				DIVIDE(
+				    CALCULATE([Invoiced TiLite Chairs excl On Chair SmartDrives], FILTER('Date', 'Date'[Quarter] = 1 && 'date'[year] = 2023)),
+				    [Current Working Day - Quarter])
+				VAR mult = 
+				div * [Total Working Day - Quarter]
+				VAR final =
+				DIVIDE(
+				    mult,
+				    CALCULATE(SELECTEDMEASURE(), 
+				    FILTER('Date',
+				        'Date'[Quarter] = 1),
+				    FILTER('Master Budget 2023',
+				        'Master Budget 2023'[Product Line] = "TiLite Chairs")))
+				RETURN
+				final
+				```
+
+		calculationItem 'Comfort STB Q1' = ```
+				VAR div =
+				DIVIDE(
+				    CALCULATE([Invoiced TiLite On-Chair - Comfort], FILTER('Date', 'Date'[Quarter] = 1 && 'date'[year] = 2023)),
+				    [Current Working Day - Quarter])
+				VAR mult = 
+				div * [Total Working Day - Quarter]
+				VAR final =
+				DIVIDE(
+				    mult,
+				    CALCULATE(SELECTEDMEASURE(), 
+				    FILTER('Date',
+				        'Date'[Quarter] = 1),
+				    FILTER('Master Budget 2023',
+				        'Master Budget 2023'[Product Line] = "Comfort")))
+				RETURN
+				final
+				```
+
+	column 'Budget Calcs'
+		dataType: string
+		lineageTag: ce174536-2dfc-4bd6-b80d-02c8764f0208
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: ea513ca3-6d52-419a-8216-796a321fc498
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+

@@ -1,0 +1,78 @@
+table 'Financial project'
+	lineageTag: 681c9e9e-fb9a-4691-a738-5a0a455c3b6f
+
+	column FinProject_SK
+		dataType: string
+		isHidden
+		lineageTag: fc29bf81-a484-4141-96c7-9435fc45b563
+		summarizeBy: none
+		sourceColumn: FinProject_SK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FinProject_BK
+		dataType: string
+		isHidden
+		lineageTag: 8902318c-8f69-4a9d-b5e7-9ea0dbf787ff
+		summarizeBy: none
+		sourceColumn: FinProject_BK
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataLoadDatetime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5a0eeb2a-45f0-4796-8a8d-9ed5d8a220ae
+		summarizeBy: none
+		sourceColumn: DataLoadDatetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Record source'
+		dataType: string
+		lineageTag: 2042880e-bec6-40aa-ad75-8b792d3e1bee
+		summarizeBy: none
+		sourceColumn: Record source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Change type'
+		dataType: string
+		lineageTag: 5bcd13d7-5755-40f3-bb4a-54cce675299f
+		summarizeBy: none
+		sourceColumn: Change type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial project'
+		dataType: string
+		lineageTag: acf0baf6-ca12-4b35-b9d2-aa6ed791c092
+		summarizeBy: none
+		sourceColumn: Financial project
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial project description'
+		dataType: string
+		lineageTag: 7832cece-965a-41ce-b6eb-e302e5bd78a2
+		summarizeBy: none
+		sourceColumn: Financial project description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Financial project-b2b48dcd-e0fd-401f-bc53-c9d55d7099d4' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("permobilsqldw.database.windows.net", "edw", [CreateNavigationProperties=false, CommandTimeout=#duration(0, 4, 10, 0)]),
+				    #"dbo_sales_mart.[dim_FinProject_All" = Source{[Schema="sales_Rpt",Item="dim_FinProject"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(#"dbo_sales_mart.[dim_FinProject_All",{{"ChangeType", "Change type"}, {"FinProject", "Financial project"}, {"FinProjectDescription", "Financial project description"}, {"RecordSource", "Record source"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+
