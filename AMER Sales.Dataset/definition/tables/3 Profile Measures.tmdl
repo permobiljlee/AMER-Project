@@ -6843,6 +6843,14 @@ table '3 Profile Measures'
 
 		changedProperty = FormatString
 
+	measure Example =
+			
+			BLANK()
+		displayFolder: .Sales Performance (US)
+		lineageTag: 3687a9d4-71a6-4380-b6c6-30a64f44e833
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	partition '3 Profile Measures-43eb16fc-ce03-4c16-b5fc-3fca67495e96' = m
 		mode: import
 		source =
